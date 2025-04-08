@@ -53,31 +53,53 @@ a {
   margin: 0 0 0 auto;
 }
 
+
+/* Navigation */
+.main-head {
+  width: 95%;
+  margin: 0 auto;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: row;
-  min-height: 10vh;
-  width: 60%;
   flex-wrap: wrap;
+  min-height: 10vh;
+  padding: 1.5rem 0;
 }
+
 nav .logo {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  flex-direction: row;
-  flex: 1 1 10rem;
 }
+
+nav .logo img {
+  width: 40px;
+}
+
 nav .logo h1 {
-  margin: 2rem;
+  margin-left: 1rem;
+  font-size: 2.5rem;
 }
+
 nav ul {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
-  flex: 1 1 40rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+nav ul li a {
+  font-size: 1.8rem;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+nav ul li a.active,
+nav ul li a:hover {
+  background: #2c2c2c;
+  color: white;
+  border-radius: 2rem;
 }
 
 .intro {
