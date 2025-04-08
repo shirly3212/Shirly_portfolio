@@ -16,3 +16,28 @@
   flex: 1 1 calc(20% - 1rem);
   @include flex(center, center, column);
 }
+
+
+/* _projects.scss */
+.projects {
+  padding: 4rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 4rem;
+  text-align: center;
+  width: 90%;
+  margin: auto;
+}
+
+.projects img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.projects img:hover {
+  transform: scale(1.05);
+}
