@@ -1,0 +1,14 @@
+footer {
+  background: linear-gradient(#ff660071, #ff007b8c);
+  color: white;
+  min-height: 7vh;
+  padding: 0% 5%;
+  @include flex(space-between, center, row);
+  align-items: flex-start;
+  align-items: center;
+  list-style: none;
+
+  ul {
+    @include flex(space-around, center, row);
+  }
+}

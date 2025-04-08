@@ -1,0 +1,216 @@
+.main-head {
+  width: 95%;
+  margin: 0 0 0 auto;
+}
+
+nav {
+  @include flex(space-between, center, row);
+  min-height: 10vh;
+  width: 60%;
+  flex-wrap: wrap;
+  .logo {
+    @include flex(flex-start, center, row);
+    flex: 1 1 10rem;
+    h1 {
+      margin: 2rem;
+    }
+  }
+  ul {
+    @include flex(space-around, center, row);
+    flex: 1 1 40rem;
+  }
+}
+
+.intro {
+  min-height: 90vh;
+  width: 90%;
+  margin: auto;
+  flex-wrap: wrap;
+  @include flex(space-between, center, row);
+  h2 {
+    font-size: 8rem;
+    padding-top: 2rem;
+    background: linear-gradient(#0d335f, #38a4d3);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+  h3 {
+    font-size: 6rem;
+    padding: 2rem 0rem;
+  }
+  p {
+    padding-top: 2rem;
+    color: $gray-text;
+  }
+}
+
+.splash {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  height: 100%;
+  z-index: -1;
+  transform-origin: top;
+}
+
+.intro-social {
+  margin-top: 4rem;
+  a {
+    margin-right: 5rem;
+  }
+}
+
+.active {
+  background: $gray-text;
+  color: white;
+  padding: 1rem 3rem;
+  border-radius: 2rem;
+}
+
+.intro-text,
+.intro-images {
+  flex: 1 1 40rem;
+}
+
+/*animation*/
+
+#PLANT-R {
+  animation: PLANT-R 1.8s ease infinite alternate;
+}
+
+#PLANT-L {
+  animation: PLANT-L 1.8s ease infinite alternate 0.6s;
+}
+
+@keyframes PLANT-R {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes PLANT-L {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+#HANDPENCIL {
+  animation: HANDPENCIL 1.5s infinite alternate;
+}
+
+@keyframes HANDPENCIL {
+  from {
+    transform: rotateZ(2.7deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+
+#HAND-L {
+  animation: HAND-L 1.5s infinite alternate;
+}
+
+@keyframes HAND-L {
+  from {
+    transform: rotateZ(1deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+
+#SHIRT {
+  animation: SHIRT 1.5s infinite alternate;
+}
+
+@keyframes SHIRT {
+  from {
+    transform: rotateZ(1deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+
+#SHIRTBODY {
+  animation: SHIRTBODY 1.5s infinite alternate;
+}
+
+@keyframes SHIRTBODY {
+  from {
+    transform: rotateZ(0.7deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+
+#SHIRT-L {
+  animation: SHIRT-L 1.5s infinite alternate;
+}
+
+@keyframes SHIRT-L {
+  from {
+    transform: rotateZ(0.6deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+
+#HEAD {
+  animation: HEAD 1.5s infinite alternate;
+}
+
+@keyframes HEAD {
+  from {
+    transform: rotateZ(0.7deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+
+.intro-text h2 {
+  opacity: 0;
+  transform: translateY(-75%);
+  animation: fadeInFromBottom 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(-75%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.intro-text p,
+h3 {
+  opacity: 0;
+  transform: translateX(-25%);
+  animation: fadeInFromLeft 1.75s ease-in-out forwards;
+  animation-delay: 0.75s;
+}
+
+@keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-25%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

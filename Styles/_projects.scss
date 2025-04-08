@@ -1,0 +1,18 @@
+.projects {
+  width: 90%;
+  margin: auto;
+  min-height: 90vh;
+  @include flex(space-between, center, row);
+  text-align: center;
+  flex-wrap: wrap;
+  h2 {
+    margin: 5rem;
+    padding: 2rem 5rem;
+  }
+}
+
+.Travelly,
+.Photographer {
+  flex: 1 1 calc(20% - 1rem);
+  @include flex(center, center, column);
+}

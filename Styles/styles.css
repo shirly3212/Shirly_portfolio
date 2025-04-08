@@ -1,0 +1,414 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+li,
+button,
+label,
+input,
+a,
+p {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 4rem;
+}
+
+h3 {
+  font-size: 2.5rem;
+}
+
+h4,
+h5 {
+  font-size: 2rem;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #2c2c2c;
+}
+
+.main-head {
+  width: 95%;
+  margin: 0 0 0 auto;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  min-height: 10vh;
+  width: 60%;
+  flex-wrap: wrap;
+}
+nav .logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex: 1 1 10rem;
+}
+nav .logo h1 {
+  margin: 2rem;
+}
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  flex: 1 1 40rem;
+}
+
+.intro {
+  min-height: 90vh;
+  width: 90%;
+  margin: auto;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+.intro h2 {
+  font-size: 8rem;
+  padding-top: 2rem;
+  background: linear-gradient(#0d335f, #38a4d3);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+.intro h3 {
+  font-size: 6rem;
+  padding: 2rem 0rem;
+}
+.intro p {
+  padding-top: 2rem;
+  color: #2c2c2c;
+}
+
+.splash {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  height: 100%;
+  z-index: -1;
+  transform-origin: top;
+}
+
+.intro-social {
+  margin-top: 4rem;
+}
+.intro-social a {
+  margin-right: 5rem;
+}
+
+.active {
+  background: #2c2c2c;
+  color: white;
+  padding: 1rem 3rem;
+  border-radius: 2rem;
+}
+
+.intro-text,
+.intro-images {
+  flex: 1 1 40rem;
+}
+
+/*animation*/
+#PLANT-R {
+  animation: PLANT-R 1.8s ease infinite alternate;
+}
+
+#PLANT-L {
+  animation: PLANT-L 1.8s ease infinite alternate 0.6s;
+}
+
+@keyframes PLANT-R {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+@keyframes PLANT-L {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+#HANDPENCIL {
+  animation: HANDPENCIL 1.5s infinite alternate;
+}
+
+@keyframes HANDPENCIL {
+  from {
+    transform: rotateZ(2.7deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+#HAND-L {
+  animation: HAND-L 1.5s infinite alternate;
+}
+
+@keyframes HAND-L {
+  from {
+    transform: rotateZ(1deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+#SHIRT {
+  animation: SHIRT 1.5s infinite alternate;
+}
+
+@keyframes SHIRT {
+  from {
+    transform: rotateZ(1deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+#SHIRTBODY {
+  animation: SHIRTBODY 1.5s infinite alternate;
+}
+
+@keyframes SHIRTBODY {
+  from {
+    transform: rotateZ(0.7deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+#SHIRT-L {
+  animation: SHIRT-L 1.5s infinite alternate;
+}
+
+@keyframes SHIRT-L {
+  from {
+    transform: rotateZ(0.6deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+#HEAD {
+  animation: HEAD 1.5s infinite alternate;
+}
+
+@keyframes HEAD {
+  from {
+    transform: rotateZ(0.7deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+.intro-text h2 {
+  opacity: 0;
+  transform: translateY(-75%);
+  animation: fadeInFromBottom 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(-75%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.intro-text p, h3 {
+  opacity: 0;
+  transform: translateX(-25%);
+  animation: fadeInFromLeft 1.75s ease-in-out forwards;
+  animation-delay: 0.75s;
+}
+
+@keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-25%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.projects {
+  width: 90%;
+  margin: auto;
+  min-height: 90vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  flex-wrap: wrap;
+}
+.projects h2 {
+  margin: 5rem;
+  padding: 2rem 5rem;
+}
+
+.Travelly,
+.Photographer {
+  flex: 1 1 calc(20% - 1rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form-section {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 3rem;
+}
+.form-section form {
+  padding: 3rem 10rem;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2), 0px 20px 40px rgba(255, 44, 104, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 2rem;
+}
+.form-section form input,
+.form-section form textarea {
+  margin: 2rem;
+}
+.form-section form input:focus,
+.form-section form textarea:focus {
+  outline: 2px solid #ff2c68;
+}
+.form-section form textarea {
+  font-family: "Manrope" sans-serif;
+  font-size: 2rem;
+}
+.form-section form button {
+  width: 100%;
+  padding: 2rem;
+  cursor: pointer;
+  background: #ff2c68;
+  color: white;
+  border-style: none;
+}
+.form-section form button:focus {
+  background: #ff8eae;
+}
+
+footer {
+  background: linear-gradient(rgba(255, 102, 0, 0.4431372549), rgba(255, 0, 123, 0.5490196078));
+  color: white;
+  min-height: 7vh;
+  padding: 0% 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
+  align-items: center;
+  list-style: none;
+}
+footer ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 1200px) {
+  html {
+    font-size: 53%;
+  }
+  .splash {
+    display: none;
+  }
+  svg {
+    width: 110%;
+    height: 120%;
+  }
+  nav {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 754px) {
+  html {
+    font-size: 45%;
+  }
+  .main-head {
+    width: 100%;
+  }
+  nav .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1 1 20rem;
+    margin-top: 2rem;
+  }
+  nav ul {
+    flex: 1 1 60rem;
+    margin: 2rem 0rem;
+  }
+  .intro-text {
+    margin-top: 5rem;
+    text-align: center;
+  }
+  .intro-images {
+    text-align: center;
+  }
+  .intro-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+  .intro-social a {
+    margin: 2rem;
+  }
+  .Travelly img,
+  .Photographer img {
+    height: 100%;
+    width: 100%;
+  }
+  .form {
+    padding: 0rem;
+    width: 100%;
+  }
+}/*# sourceMappingURL=styles.css.map */
