@@ -22,3 +22,9 @@
 .projects img:hover {
   transform: scale(1.05);
 }
+
+.Travelly,
+.Photographer {
+  flex: 1 1 calc(20% - 1rem);
+  @include flex(center, center, column);
+}
