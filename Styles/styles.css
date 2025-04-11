@@ -288,17 +288,41 @@ nav ul li a:hover {
     transform: translateX(0);
   }
 }
+
+
 .projects {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  display: grid; /* Enables grid layout */
+  grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
+  grid-auto-rows: auto; /* Automatically adjust row height */
+  gap: 4rem; /* Space between grid items */
+  text-align: center;
   width: 90%;
   margin: auto;
-  min-height: 90vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  text-align: center;
-  flex-wrap: wrap;
 }
+
+.projects img {
+  width: 100%;
+  max-width: 500px; /* Ensure consistent image sizing */
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover; /* Maintains aspect ratio */
+  transition: transform 0.3s ease-in-out;
+}
+
+.projects img:hover {
+  transform: scale(1.05); /* Zoom effect on hover */
+}
+
+/* Responsive Design for Smaller Screens */
+@media screen and (max-width: 754px) {
+  .projects {
+    grid-template-columns: 1fr; /* Stack items vertically for smaller screens */
+  }
+}
+
+
 .projects h2 {
   margin: 5rem;
   padding: 2rem 5rem;
