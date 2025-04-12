@@ -48,3 +48,14 @@ document.addEventListener("DOMContentLoaded", function () {
   `;
   document.head.appendChild(style);
 });
+
+<script>
+  function scrollGallery(direction) {
+    const container = document.getElementById('galleryScroll');
+    const scrollAmount = container.clientWidth * 0.8;
+    container.scrollBy({
+      left: direction * scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+</script>
