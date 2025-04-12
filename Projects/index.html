@@ -34,7 +34,9 @@
     <div class="page-content">
 <div class="gallery-container">
   <h2>Gallery</h2>
-  <div class="gallery-scroll">
+   <div class="gallery-nav">
+    <button class="arrow left" onclick="scrollGallery(-1)">&#8592;</button>
+    <div class="gallery-scroll" id="galleryScroll">
     <img src="../img/gallery1.jpg" alt="Gallery Image 1">
     <img src="../img/gallery2.jpg" alt="Gallery Image 2">
     <img src="../img/gallery3.jpg" alt="Gallery Image 3">
@@ -42,7 +44,10 @@
     <img src="../img/gallery5.jpg" alt="Gallery Image 5">
     <img src="../img/gallery6.jpg" alt="Gallery Image 5">
   </div>
+ <button class="arrow right" onclick="scrollGallery(1)">&#8594;</button>
+  </div>
 </div>
+
     
         <section class="projects">
         <div class="project-item">
