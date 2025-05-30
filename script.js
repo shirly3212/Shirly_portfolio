@@ -1,4 +1,3 @@
-
 // Mobile navigation toggle
 document.addEventListener("DOMContentLoaded", function () {
   const nav = document.querySelector("nav ul");
@@ -49,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.head.appendChild(style);
 });
 
-<script>
+
   function scrollGallery(direction) {
     const container = document.getElementById('galleryScroll');
     const scrollAmount = container.clientWidth * 0.8;
@@ -58,4 +57,20 @@ document.addEventListener("DOMContentLoaded", function () {
       behavior: 'smooth'
     });
   }
-</script>
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const galleryScroll = document.querySelector(".gallery-scroll");
+  const leftArrow = document.querySelector(".left-arrow");
+  const rightArrow = document.querySelector(".right-arrow");
+
+  if (leftArrow && rightArrow && galleryScroll) {
+    leftArrow.addEventListener("click", () => {
+      galleryScroll.scrollBy({ left: -400, behavior: "smooth" });
+    });
+
+    rightArrow.addEventListener("click", () => {
+      galleryScroll.scrollBy({ left: 400, behavior: "smooth" });
+    });
+  }
+});
