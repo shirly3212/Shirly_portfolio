@@ -556,3 +556,24 @@ footer ul {
     right: 0.5rem;
   }
 }
+
+
+@media screen and (max-width: 754px) {
+  header.main-head {
+    display: block !important;
+    width: 100%;
+    position: relative;
+    z-index: 999;
+  }
+  
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    width: 100%;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+}
