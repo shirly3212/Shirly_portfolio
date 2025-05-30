@@ -507,3 +507,52 @@ footer ul {
     width: 100%;
   }
 }/*# sourceMappingURL=styles.css.map */
+
+
+.modern-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  color: #2c2c2c;
+  border: none;
+  border-radius: 50%;
+  font-size: 4rem;
+  opacity: 0.5;
+  z-index: 10;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  transition: opacity 0.3s ease;
+}
+
+.modern-arrow:hover,
+.modern-arrow:active {
+  opacity: 1;
+}
+
+.gallery-container {
+  position: relative;
+}
+
+.left-arrow {
+  left: 1rem;
+}
+
+.right-arrow {
+  right: 1rem;
+}
+
+@media screen and (max-width: 754px) {
+  .modern-arrow {
+    font-size: 3rem;
+    padding: 0.5rem 1.5rem;
+  }
+
+  .left-arrow {
+    left: 0.5rem;
+  }
+
+  .right-arrow {
+    right: 0.5rem;
+  }
+}
