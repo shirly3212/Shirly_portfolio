@@ -412,21 +412,6 @@ nav ul li a:hover {
 }
 
 
-.arrow {
-  background-color: #ff2c68;
-  border: none;
-  color: white;
-  font-size: 3rem;
-  padding: 1rem;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.arrow:hover {
-  background-color: #d21c52;
-}
-
 footer {
   background: linear-gradient(rgba(255, 102, 0, 0.4431372549), rgba(255, 0, 123, 0.5490196078));
   color: white;
