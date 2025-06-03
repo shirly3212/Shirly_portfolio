@@ -22,54 +22,50 @@ $gray-text: #2c2c2c;
 @import "footer";
 
 
-@media screen and (max-width: 1200px) {
-  html {
-    font-size: 53%;
-  }
-  .splash {
-    display: none;
-  }
-  svg {
-    width: 110%;
-    height: 120%;
-  }
-  nav {
-    width: 100%;
-  }
-}
-
 @media screen and (max-width: 754px) {
   html {
     font-size: 45%;
+    display: block;
   }
 
   .main-head {
+    display: block;
     width: 100%;
+    position: relative;
+    z-index: 999;
   }
+
   nav {
+    @include flex(column, flex-start, column);
+
     .logo {
       @include flex(center, center, column);
       flex: 1 1 20rem;
       margin-top: 2rem;
     }
+
     ul {
       flex: 1 1 60rem;
       margin: 2rem 0rem;
     }
   }
+
   .intro-text {
     margin-top: 5rem;
     text-align: center;
   }
+
   .intro-images {
     text-align: center;
   }
+
   .intro-social {
     @include flex(center, center, row);
     a {
       margin: 2rem;
     }
   }
+
   .Travelly,
   .Photographer {
     img {
@@ -77,6 +73,7 @@ $gray-text: #2c2c2c;
       width: 100%;
     }
   }
+
   .form {
     padding: 0rem;
     width: 100%;
