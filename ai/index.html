@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Projects | Shirly Herscovici</title>
+  <title>AI Projects | Shirly Ben Nun</title>
   <link rel="stylesheet" href="../Styles/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,7 @@
       background: linear-gradient(to bottom, #f4fdff, #e6f9ff);
       color: #1a1a1a;
       overflow-x: hidden;
+      perspective: 1000px;
     }
     .flare-path {
       position: fixed;
@@ -27,16 +28,33 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      background: url('icons/flare-path.svg') no-repeat center center;
+      background: url('../icons/flare-path.svg') no-repeat center center;
       background-size: cover;
       animation: moveBackground 60s linear infinite;
       z-index: -2;
       opacity: 0.12;
+      transform: translateZ(0);
+      will-change: transform;
     }
     @keyframes moveBackground {
       0% { transform: scale(1) translateY(0); }
       50% { transform: scale(1.05) translateY(-10px); }
       100% { transform: scale(1) translateY(0); }
+    }
+    .parallax-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at 30% 30%, rgba(0,188,212,0.1), transparent),
+                  radial-gradient(circle at 70% 70%, rgba(0,172,193,0.1), transparent);
+      animation: pulseBackground 20s ease-in-out infinite;
+    }
+    @keyframes pulseBackground {
+      0%, 100% { transform: scale(1); opacity: 0.1; }
+      50% { transform: scale(1.02); opacity: 0.2; }
     }
     .typewriter {
       overflow: hidden;
@@ -86,12 +104,27 @@
       backdrop-filter: blur(8px);
       color: #111;
       box-shadow: 0 0 50px rgba(0, 188, 212, 0.1);
+      transform-style: preserve-3d;
     }
-    .ai-video video, .ai-app-frame iframe {
+    .ai-video video {
       width: 100%;
       border: none;
       border-radius: 1rem;
       margin-top: 2rem;
+    }
+    .ai-app-frame iframe {
+      width: 100%;
+      height: 800px;
+      max-height: 90vh;
+      border: 2px solid #00bcd4;
+      border-radius: 1rem;
+      margin-top: 2rem;
+    }
+    .expand-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1.6rem;
     }
     .cta-button {
       display: inline-block;
@@ -139,6 +172,13 @@
       margin: 0 1rem;
       width: 30px;
     }
+    /* Mouse-based parallax effect */
+    document.addEventListener('mousemove', (e) => {
+      const amount = 15;
+      const x = (e.clientX / window.innerWidth - 0.5) * amount;
+      const y = (e.clientY / window.innerHeight - 0.5) * amount;
+      document.querySelector('.parallax-layer').style.transform = `translate(${x}px, ${y}px)`;
+    });
   </style>
 </head>
 
@@ -146,6 +186,7 @@
   <script>AOS.init({ once: true, duration: 1000 });</script>
 
   <div class="flare-path"></div>
+  <div class="parallax-layer"></div>
   <img src="../icons/chip.svg" class="chip-anim one" alt="chip">
   <img src="../icons/chip.svg" class="chip-anim two" alt="chip">
   <img src="../icons/chip.svg" class="chip-anim three" alt="chip">
