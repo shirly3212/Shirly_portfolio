@@ -33,6 +33,23 @@
       z-index: -2;
       opacity: 0.12;
     }
+    .moving-lines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      pointer-events: none;
+      background-image: linear-gradient(to right, rgba(0,188,212,0.05) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(0,188,212,0.05) 1px, transparent 1px);
+      background-size: 80px 80px;
+      animation: scrollLines 60s linear infinite;
+    }
+    @keyframes scrollLines {
+      0% { background-position: 0 0; }
+      100% { background-position: 80px 80px; }
+    }
     @keyframes moveBackground {
       0% { transform: scale(1) translateY(0); }
       50% { transform: scale(1.05) translateY(-10px); }
@@ -110,7 +127,8 @@
       display: block;
       width: 100%;
       max-width: 430px;
-      height: 800px;
+      height: calc(100vw * 2.17);
+      max-height: 90vh;
       margin: 2rem auto;
       border: 2px solid #00bcd4;
       border-radius: 1rem;
@@ -122,6 +140,7 @@
   <script>AOS.init({ once: true, duration: 1000 });</script>
 
   <div class="flare-path"></div>
+  <div class="moving-lines"></div>
   <img src="../icons/chip.svg" class="chip-anim one" alt="chip">
   <img src="../icons/chip.svg" class="chip-anim two" alt="chip">
   <img src="../icons/chip.svg" class="chip-anim three" alt="chip">
