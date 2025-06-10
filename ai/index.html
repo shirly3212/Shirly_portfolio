@@ -100,11 +100,11 @@
     }
     .ai-video video {
       display: block;
-      max-width: 600px;
-      width: 100%;
+      max-width: 1000px;
+      width: 90%;
       margin: 2rem auto 0;
       border-radius: 1rem;
-      box-shadow: 0 0 20px rgba(0, 188, 212, 0.15);
+      box-shadow: 0 0 30px rgba(0, 188, 212, 0.2);
     }
     .ai-app-frame iframe {
       display: block;
@@ -125,16 +125,6 @@
   <img src="../icons/chip.svg" class="chip-anim one" alt="chip">
   <img src="../icons/chip.svg" class="chip-anim two" alt="chip">
   <img src="../icons/chip.svg" class="chip-anim three" alt="chip">
-    document.addEventListener('mousemove', (e) => {
-      const amount = 15;
-      const x = (e.clientX / window.innerWidth - 0.5) * amount;
-      const y = (e.clientY / window.innerHeight - 0.5) * amount;
-      const layer = document.querySelector('.parallax-layer');
-      if (layer) {
-        layer.style.transform = `translate(${x}px, ${y}px)`;
-      }
-    });
-  </script>
 
   <header class="main-head" data-aos="fade-down">
     <nav>
