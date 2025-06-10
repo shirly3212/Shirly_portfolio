@@ -98,6 +98,17 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
     }
+    .ai-app-frame iframe {
+      width: 100%;
+      max-width: 430px;
+      height: 800px;
+      border: 2px solid #00bcd4;
+      border-radius: 1rem;
+      margin-top: 2rem;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
   </style>
 </head>
 
@@ -108,7 +119,6 @@
   <img src="../icons/chip.svg" class="chip-anim one" alt="chip">
   <img src="../icons/chip.svg" class="chip-anim two" alt="chip">
   <img src="../icons/chip.svg" class="chip-anim three" alt="chip">
-  <script>
     document.addEventListener('mousemove', (e) => {
       const amount = 15;
       const x = (e.clientX / window.innerWidth - 0.5) * amount;
