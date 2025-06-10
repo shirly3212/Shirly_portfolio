@@ -19,7 +19,6 @@
       background: linear-gradient(to bottom, #f4fdff, #e6f9ff);
       color: #1a1a1a;
       overflow-x: hidden;
-      perspective: 1000px;
     }
     .flare-path {
       position: fixed;
@@ -33,44 +32,11 @@
       animation: moveBackground 60s linear infinite;
       z-index: -2;
       opacity: 0.12;
-      transform: translateZ(0);
-      will-change: transform;
     }
     @keyframes moveBackground {
       0% { transform: scale(1) translateY(0); }
       50% { transform: scale(1.05) translateY(-10px); }
       100% { transform: scale(1) translateY(0); }
-    }
-    .tech-particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -3;
-      pointer-events: none;
-      background: url('https://www.transparenttextures.com/patterns/cubes.png');
-      opacity: 0.06;
-      animation: scrollMove 100s linear infinite;
-    }
-    @keyframes scrollMove {
-      from { background-position: 0 0; }
-      to { background-position: 0 2000px; }
-    }
-    .parallax-layer {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: radial-gradient(circle at 30% 30%, rgba(0,188,212,0.1), transparent),
-                  radial-gradient(circle at 70% 70%, rgba(0,172,193,0.1), transparent);
-      animation: pulseBackground 20s ease-in-out infinite;
-    }
-    @keyframes pulseBackground {
-      0%, 100% { transform: scale(1); opacity: 0.1; }
-      50% { transform: scale(1.02); opacity: 0.2; }
     }
     .typewriter {
       overflow: hidden;
@@ -138,13 +104,10 @@
 <body class="ai-page">
   <script>AOS.init({ once: true, duration: 1000 });</script>
 
-  <div class="tech-particles"></div>
   <div class="flare-path"></div>
-  <div class="parallax-layer"></div>
   <img src="../icons/chip.svg" class="chip-anim one" alt="chip">
   <img src="../icons/chip.svg" class="chip-anim two" alt="chip">
   <img src="../icons/chip.svg" class="chip-anim three" alt="chip">
-
   <script>
     document.addEventListener('mousemove', (e) => {
       const amount = 15;
