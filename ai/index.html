@@ -27,7 +27,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      background: url('../icons/flare-path.svg') no-repeat center center;
+      background: url('icons/flare-path.svg') no-repeat center center;
       background-size: cover;
       animation: moveBackground 60s linear infinite;
       z-index: -2;
@@ -57,11 +57,26 @@
       text-align: center;
       background: rgba(255,255,255,0.75);
       backdrop-filter: blur(8px);
-      <div class="ai-header-bar"></div>
+      position: relative;
+      overflow: hidden;
     }
     .ai-header h2 {
       font-size: 5rem;
       color: #00bcd4;
+    }
+    .ai-header-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 25rem;
+      background: linear-gradient(90deg, rgba(0,188,212,0.25), rgba(0,172,193,0.4), rgba(0,188,212,0.25));
+      z-index: -1;
+      animation: shiftBar 10s linear infinite;
+    }
+    @keyframes shiftBar {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 0; }
     }
     .section-wrapper {
       padding: 5rem 10%;
@@ -138,7 +153,7 @@
   <header class="main-head" data-aos="fade-down">
     <nav>
       <div class="logo">
-        <img src="../icons/code.svg" alt="logo" />
+        <img src="icons/code.svg" alt="logo" />
         <h1>Shirly Herscovici</h1>
       </div>
       <ul>
@@ -146,12 +161,13 @@
         <li><a href="../Projects/index.html">Design</a></li>
         <li><a href="../web/index.html">Web</a></li>
         <li><a href="../contact/index.html">Contact</a></li>
-        <li><a class="active" href="ai.html">AI</a></li>
+        <li><a class="active" href="../ai/index.html">AI</a></li>
       </ul>
     </nav>
   </header>
 
   <section class="ai-header" data-aos="fade-up">
+    <div class="ai-header-bar"></div>
     <h2 class="typewriter">Creating the Future with AI...</h2>
   </section>
 
@@ -159,7 +175,7 @@
     <h3>Smart Parking Promo</h3>
     <p>This AI-generated promotional video and app prototype presents a seamless solution to urban parking challenges through a smart system design.</p>
     <div class="ai-video">
-      <video src="../videos/smart_parking_promo.mp4" controls autoplay muted loop></video>
+      <video src="videos/smart_parking_promo.mp4" controls autoplay muted loop></video>
     </div>
   </section>
 
@@ -174,7 +190,7 @@
   <section class="section-wrapper" data-aos="zoom-in-up">
     <h3>Why AI?</h3>
     <p>Artificial Intelligence is not just a trend—it's a transformative force redefining how we interact with technology. From streamlining processes to enhancing creativity, AI tools empower us to build smarter, faster, and more effectively than ever before.</p>
-    <a href="../Projects/index.html" class="cta-button">View All Projects</a>
+    <a href="Projects/index.html" class="cta-button">View All Projects</a>
   </section>
 
   <footer data-aos="fade-up">
