@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Projects | Shirly Ben Nun</title>
+  <link rel="stylesheet" href="../Styles/styles.css" />
+  <style>
+    body.ai-page {
+      background: linear-gradient(-45deg, #a3ec74, #c5ffe4, #91d4fd, #a092f9);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite, fadeInBody 2s ease-in;
+      color: #1e1e2f;
+      font-family: "Manrope", sans-serif;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .ai-header {
+      background: linear-gradient(to right, #93f9b9, #acfdfc);
+      padding: 2rem 0;
+      text-align: center;
+      animation: slideDown 1.5s ease forwards;
+    }
+
+    .ai-header h2 {
+      font-size: 6rem;
+      background: linear-gradient(to right, #1e1e2f, #3333a8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .ai-project {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4rem 2rem;
+      animation: fadeInUp 1.5s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .ai-project h3 {
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .ai-project p {
+      font-size: 2rem;
+      max-width: 800px;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .dynamic-text {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      color: #4f46e5;
+      animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #4f46e5;
+      width: 0;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 28ch }
+    }
+
+    @keyframes blink-caret {
+      50% { border-color: transparent; }
+    }
+
+    .ai-video {
+      margin: 4rem auto;
+      max-width: 800px;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+      animation: fadeInZoom 1.5s ease forwards;
+    }
+
+    .ai-svg {
+      margin-top: 5rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .ai-svg svg {
+      width: 160px;
+      height: 160px;
+      stroke: #4f46e5;
+      fill: none;
+      stroke-width: 2;
+      stroke-dasharray: 150;
+      stroke-dashoffset: 150;
+      animation: draw 3s ease forwards;
+    }
+
+    @keyframes fadeInZoom {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .ai-app-frame {
+      margin: 3rem auto;
+      max-width: 500px;
+      height: 700px;
+      border: 2px solid #4f46e5;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(79, 70, 229, 0.3);
+    }
+  </style>
+</head>
+
+<body class="ai-page">
+  <header class="main-head">
+    <nav>
+      <div class="logo">
+        <img src="../icons/code.svg" alt="logo" />
+        <h1>Shirly Ben Nun</h1>
+      </div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../Projects/index.html">Design</a></li>
+        <li><a href="../web/index.html">Web</a></li>
+        <li><a href="../contact/index.html">Contact</a></li>
+        <li><a class="active" href="ai.html">AI</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="ai-header">
+    <h2>AI Projects</h2>
+  </section>
+
+  <section class="ai-project">
+    <h3>Smart Parking Promo</h3>
+    <p>This is an AI-generated promotional video and prototype app for a smart parking system. It showcases an innovative and automated approach to parking management.</p>
+    <div class="dynamic-text">Creating the Future with AI...</div>
+    <div class="ai-video">
+      <video src="../videos/smart_parking_promo.mp4" controls autoplay muted loop width="100%"></video>
+    </div>
+    <div class="ai-app-frame">
+      <iframe src="https://preview--park-nexus-urban-flow.lovable.app/" width="100%" height="100%" frameborder="0" title="Smart Parking App"></iframe>
+    </div>
+    <div class="ai-svg">
+      <svg viewBox="0 0 100 100">
+        <path d="M10,90 Q50,10 90,90" />
+        <circle cx="50" cy="50" r="5" fill="#4f46e5" />
+      </svg>
+    </div>
+  </section>
+
+  <footer>
+    <h4>Shirly Ben Nun &copy; 2025</h4>
+    <li><a href="#"><img src="../icons/instagram 1.svg" alt="instagram" /></a></li>
+    <li><a href="#"><img src="../icons/twitter 1.svg" alt="twitter" /></a></li>
+    <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w"><img src="../icons/youtube-symbol 1.svg" alt="youtube" /></a></li>
+  </footer>
+</body>
+
+</html>
