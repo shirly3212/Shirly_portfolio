@@ -11,6 +11,23 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: linear-gradient(135deg, rgba(0,188,212,0.1) 0%, rgba(124,77,255,0.08) 100%), url('../images/tech-grid.svg');
+      background-size: cover;
+      opacity: 0.8;
+      animation: backgroundMove 60s linear infinite;
+    }
+    @keyframes backgroundMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
+    }
     html, body {
       margin: 0;
       padding: 0;
@@ -21,7 +38,6 @@
       overflow-x: hidden;
       text-align: center;
     }
-
     .cursor {
       width: 20px;
       height: 20px;
@@ -33,7 +49,6 @@
       z-index: 1000;
       transition: transform 0.1s ease;
     }
-
     .typewriter {
       font-size: 3.8rem;
       white-space: nowrap;
@@ -41,20 +56,49 @@
       border-right: 0.15em solid #00bcd4;
       color: #00bcd4;
       width: fit-content;
-      margin: 0 auto;
+      margin: 2rem auto;
       animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
     }
-
     @keyframes typing {
       from { width: 0 }
       to { width: 100% }
     }
-
     @keyframes blink-caret {
       from, to { border-color: transparent }
       50% { border-color: #00bcd4; }
     }
-
+    header {
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      flex-wrap: wrap;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-weight: bold;
+    }
+    nav ul li a.active {
+      color: #00bcd4;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .logo img {
+      height: 40px;
+    }
     .two-column-section {
       display: flex;
       flex-wrap: wrap;
@@ -65,228 +109,150 @@
       max-width: 1400px;
       margin: auto;
     }
-
     .two-column-section .text {
       flex: 1 1 400px;
     }
-
     .two-column-section .media video {
       max-width: 100%;
       width: 700px;
       border-radius: 1rem;
       box-shadow: 0 0 15px rgba(0, 188, 212, 0.4);
     }
-
-    .cta-button {
+    .phone-mockup {
+      max-width: 360px;
+      margin: 4rem auto;
+      border: 16px solid #333;
+      border-radius: 36px;
       position: relative;
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 1.2rem 3rem;
-      font-size: 2rem;
-      background: linear-gradient(135deg, #00bcd4, #7c4dff);
-      color: white;
-      border-radius: 3rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      box-shadow: 0 0 15px rgba(0,229,255,0.6);
       overflow: hidden;
-      z-index: 1;
-      transition: all 0.3s ease-in-out;
+      background: #000;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
     }
-
-    .cta-button:hover {
+    .phone-mockup iframe {
+      width: 100%;
+      height: 640px;
+      border: none;
+      display: block;
+    }
+    .metric-box {
+      position: relative;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      flex: 1 1 200px;
+      transition: transform 0.3s ease;
+    }
+    .metric-box:hover {
       transform: scale(1.05);
-      background: linear-gradient(135deg, #00acc1, #9575cd);
     }
-
-    .cta-button::before {
+    .metric-box::before {
       content: "";
       position: absolute;
       top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
-      transform: skewX(-20deg);
-      transition: left 0.5s ease-in-out;
-      z-index: -1;
-      animation: shine 2.5s infinite;
-    }
-
-    @keyframes shine {
-      0% { left: -75%; }
-      50% { left: 125%; }
-      100% { left: 125%; }
-    }
-
-    .phone-mockup {
-      width: 360px;
-      height: 740px;
-      margin: 4rem auto;
-      background: #111;
-      border-radius: 40px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.4);
-      padding: 20px;
-      position: relative;
-      transition: transform 0.5s ease-in-out;
-    }
-
-    .phone-mockup:hover {
-      transform: rotateY(4deg) rotateX(4deg) scale(1.02);
-      box-shadow: 0 25px 45px rgba(0,0,0,0.3);
-    }
-
-    .phone-mockup::before {
-      content: '';
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 6px;
-      background: #555;
-      border-radius: 3px;
-    }
-
-    .phone-mockup .screen {
+      left: 0;
       width: 100%;
-      height: 100%;
-      border-radius: 25px;
-      overflow: hidden;
+      height: 5px;
+      background: linear-gradient(90deg, #00bcd4, #7c4dff);
+      animation: scan 3s linear infinite;
     }
-
-    .phone-mockup .screen iframe,
-    .phone-mockup .screen img {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 25px;
-      object-fit: cover;
+    @keyframes scan {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    footer {
+      margin-top: 4rem;
+      padding: 2rem;
+      background: #f5f5f5;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <div id="particles-js"></div>
-<div class="cursor" id="cursor"></div>
-
-<section class="ai-header" data-aos="fade-up">
-  <h2 class="typewriter">Creating the Future with AI...</h2>
-</section>
-
-<section class="two-column-section" data-aos="fade-up">
-  <div class="text">
-    <h3>Smart Parking Promo</h3>
-    <p>This AI-generated promotional video and app prototype presents a seamless solution to urban parking challenges through a smart system design.</p>
-    <a href="../Projects/index.html" class="cta-button">View All Projects</a>
-  </div>
-  <div class="media">
-    <video src="../videos/smart_parking_promo.mp4" controls autoplay muted loop></video>
-  </div>
-</section>
-
-<section class="section-wrapper" data-aos="fade-left">
-  <h3>App Demo – Park Nexus</h3>
-  <p>Experience the live prototype app developed for this system. Interact with its core functionality and navigation logic below:</p>
-  <div class="phone-mockup">
-    <div class="screen">
-      <iframe src="https://preview--park-nexus-urban-flow.lovable.app/" title="Smart Parking App" allowfullscreen onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"></iframe>
-      <img src="../images/fallback-character.gif" alt="Funny fallback character" style="display:none;" />
+  <header>
+    <div class="logo">
+      <img src="../icons/code.svg" alt="logo" />
+      <h1>Shirly Herscovici</h1>
     </div>
-  </div>
-</section>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../Projects/index.html">Design</a></li>
+        <li><a href="../web/index.html">Web</a></li>
+        <li><a href="../contact/index.html">Contact</a></li>
+        <li><a class="active" href="../ai/index.html">AI</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<section class="ai-metrics" data-aos="fade-up">
-  <div class="metric-box">
-    <h4 id="count1">0%</h4>
-    <p>Faster Parking Detection</p>
-  </div>
-  <div class="metric-box">
-    <h4 id="count2">0X</h4>
-    <p>Efficiency with AI Routing</p>
-  </div>
-  <div class="metric-box">
-    <h4 id="count3">0</h4>
-    <p>Real-Time Availability</p>
-  </div>
-  <div class="metric-box">
-    <h4 id="count4">0%</h4>
-    <p>Reduction in Urban Congestion</p>
-  </div>
-</section>
+  <div class="cursor" id="cursor"></div>
+  <h2 class="typewriter">Creating the Future with AI...</h2>
 
-<footer data-aos="fade-up">
-  <p>Shirly Ben Nun &copy; 2025</p>
-  <div>
-    <a href="#"><img src="../icons/instagram 1.svg" alt="instagram" /></a>
-    <a href="#"><img src="../icons/twitter 1.svg" alt="twitter" /></a>
-    <a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w"><img src="../icons/youtube-symbol 1.svg" alt="youtube" /></a>
-  </div>
-</footer>
+  <section class="two-column-section" data-aos="fade-up">
+    <div class="text">
+      <h3>Smart Parking Promo</h3>
+      <p>This AI-generated promotional video and app prototype presents a seamless solution to urban parking challenges through a smart system design.</p>
+    </div>
+    <div class="media">
+      <video src="../videos/smart_parking_promo.mp4" controls autoplay muted loop></video>
+    </div>
+  </section>
+
+  <section class="phone-mockup" data-aos="fade-left">
+    <iframe src="https://preview--park-nexus-urban-flow.lovable.app/" title="Smart Parking App Demo"></iframe>
+  </section>
+
+  <section class="ai-metrics" data-aos="fade-up" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; padding: 4rem 2rem;">
+    <div class="metric-box">
+      <h4 id="count1">0%</h4>
+      <p>Faster Parking Detection</p>
+    </div>
+    <div class="metric-box">
+      <h4 id="count2">0X</h4>
+      <p>Efficiency with AI Routing</p>
+    </div>
+    <div class="metric-box">
+      <h4 id="count3">0</h4>
+      <p>Real-Time Availability</p>
+    </div>
+    <div class="metric-box">
+      <h4 id="count4">0%</h4>
+      <p>Reduction in Urban Congestion</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Shirly Ben Nun &copy; 2025</p>
+  </footer>
 
   <script>
     window.addEventListener("DOMContentLoaded", function () {
       if (typeof AOS !== 'undefined') {
         AOS.init({ once: true, duration: 1000 });
       }
-
       if (typeof particlesJS !== 'undefined') {
         particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
       }
-
-      // GSAP Scroll Animations
       gsap.registerPlugin(ScrollTrigger);
-
-      gsap.from(".two-column-section .text", {
-        x: -100,
-        opacity: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: ".two-column-section",
-          start: "top 80%",
-          toggleActions: "play none none none"
-        }
-      });
-
-      gsap.from(".two-column-section .media", {
-        x: 100,
-        opacity: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: ".two-column-section",
-          start: "top 80%",
-          toggleActions: "play none none none"
-        }
-      });
-
-      gsap.from(".phone-mockup", {
-        scale: 0.9,
-        opacity: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: ".phone-mockup",
-          start: "top 85%",
-          toggleActions: "play none none none"
-        }
-      });
-
       gsap.from(".metric-box", {
         y: 50,
         opacity: 0,
-        duration: 0.8,
+        duration: 1,
         stagger: 0.2,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: ".ai-metrics",
           start: "top 80%",
           toggleActions: "play none none none"
         }
       });
-
       const cursor = document.getElementById("cursor");
       document.addEventListener("mousemove", e => {
         cursor.style.left = e.clientX + "px";
         cursor.style.top = e.clientY + "px";
       });
-
       function countUp(id, endVal, suffix = "%") {
         let el = document.getElementById(id);
         let i = 0;
