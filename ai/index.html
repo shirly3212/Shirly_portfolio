@@ -16,240 +16,171 @@
       margin: 0;
       padding: 0;
       font-family: "Manrope", sans-serif;
-      background: radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.05), transparent 60%),
-                  radial-gradient(circle at 80% 80%, rgba(0, 172, 193, 0.05), transparent 60%),
-                  linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #ffffff;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #e0f7ff;
       overflow-x: hidden;
-      background-size: cover;
-      background-attachment: fixed;
-      animation: aiBackgroundFlow 45s ease-in-out infinite;
+      background-size: 400% 400%;
+      animation: darkTechFlow 30s ease-in-out infinite;
     }
 
-    @keyframes aiBackgroundFlow {
-      0% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
-      100% { background-position: 0% 0%; }
+    @keyframes darkTechFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(90deg, rgba(0,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(rgba(0,255,255,0.02) 1px, transparent 1px);
-      background-size: 80px 80px;
-      z-index: -1;
-      animation: scrollLines 120s linear infinite;
-    }
-
-    @keyframes scrollLines {
-      0% { background-position: 0 0; }
-      100% { background-position: 80px 80px; }
-    }
-
-    .flare-path, .moving-lines {
-      display: none;
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .ai-header {
-      padding: 10rem 2rem;
+      padding: 8rem 2rem;
       text-align: center;
-      background: linear-gradient(180deg, #00bcd4, #1a237e);
-      color: white;
+      background: linear-gradient(160deg, #1a237e, #0f2027);
+      color: #e0f7ff;
       position: relative;
+      z-index: 1;
     }
 
     .ai-header h2 {
-      font-size: 6rem;
+      font-size: 5.5rem;
       font-weight: 800;
-      text-shadow: 0 0 15px #00e5ff;
+      background: linear-gradient(to right, #00e5ff, #00acc1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textGlow 4s ease-in-out infinite alternate;
     }
 
-    .typewriter {
-      overflow: hidden;
-      border-right: .15em solid #00e5ff;
-      white-space: nowrap;
-      animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: #00e5ff; }
+    @keyframes textGlow {
+      from { text-shadow: 0 0 10px #00e5ff; }
+      to { text-shadow: 0 0 30px #00e5ff; }
     }
 
     .section-wrapper {
       min-height: 90vh;
-      padding: 6rem 4rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 20, 40, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 5rem 3rem;
+      background: rgba(20, 30, 60, 0.8);
       border-radius: 2rem;
-      box-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+      box-shadow: 0 0 50px rgba(0, 229, 255, 0.15);
       margin: 4rem auto;
       width: 85%;
-      backdrop-filter: blur(10px);
-      color: white;
+      backdrop-filter: blur(15px);
+      color: #e0f7ff;
+      position: relative;
+      z-index: 1;
     }
 
     .section-wrapper h3 {
-      color: #00e5ff;
-      font-size: 3rem;
-      text-shadow: 0 0 12px rgba(0,229,255,0.9);
-    }
+  font-size: 2.8rem;
+  color: #00e5ff;
+  text-shadow: 0 0 10px rgba(0,229,255,0.4);
+  text-align: center;
+}
 
     .section-wrapper p {
-      font-size: 1.9rem;
-      line-height: 1.8;
-      color: #ffffff;
-    }
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: #e0f7ff;
+  text-align: center;
+}
 
-    .ai-video video {
+    .ai-video video,
+    .ai-app-frame iframe {
       display: block;
       width: 100%;
-      max-width: 1600px;
-      height: auto;
+      max-width: 1400px;
+      border: 2px solid #00bcd4;
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgba(0,188,212,0.4);
       margin: 2rem auto 0;
-      border-radius: 1rem;
-      border: 3px solid #00e5ff;
-      box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
-    }
-
-    .ai-app-frame iframe {
-      width: 100%;
-      max-width: 430px;
-      height: calc(100vw * 2.17);
-      max-height: 90vh;
-      margin: 2rem auto;
-      border: 2px solid #00e5ff;
-      border-radius: 1rem;
-      box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
     }
 
     .cta-button {
       display: inline-block;
       margin-top: 2rem;
-      padding: 1.5rem 3.5rem;
-      font-size: 2.2rem;
-      background: radial-gradient(circle at center, #00e5ff, #007acc);
+      padding: 1.2rem 3rem;
+      font-size: 2rem;
+      background: linear-gradient(135deg, #00bcd4, #00e5ff);
       color: white;
-      border: none;
-      border-radius: 50px;
-      box-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
+      border-radius: 3rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
       font-weight: 700;
-      transition: all 0.4s ease-in-out;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-button::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.2);
-      transform: skewX(-20deg);
-      transition: left 0.5s ease-in-out;
-    }
-
-    .cta-button:hover::after {
-      left: 150%;
+      box-shadow: 0 0 15px rgba(0,229,255,0.6);
+      transition: all 0.3s ease-in-out;
     }
 
     .cta-button:hover {
-      transform: scale(1.08);
-      background: radial-gradient(circle at center, #00bcd4, #00e5ff);
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #00acc1, #00e5ff);
+    }
+
+    nav {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(6px);
+      padding: 1.5rem 3rem;
+      border-bottom: 1px solid rgba(0, 172, 193, 0.2);
+    }
+
+    nav ul li a {
+      color: #111;
+      font-weight: 600;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #00acc1;
     }
 
     footer {
       background: transparent;
-      border-top: 1px solid rgba(255,255,255,0.2);
-      color: white;
+      border-top: 1px solid rgba(0,172,193,0.2);
+      color: #222;
+      text-align: center;
+      padding: 2rem;
     }
+  .ai-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
 
-    /* AI particle effect */
-    .ai-particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -2;
-    }
+.ai-particles img, .ai-particles span {
+  width: 18px;
+  height: 18px;
+  background: rgba(0, 229, 255, 0.4);
+  border-radius: 50%;
+}
 
-    .ai-particles span {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: rgba(0, 255, 255, 0.2);
-      border-radius: 50%;
-      box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
-      animation: floatParticles 20s linear infinite;
-    }
+.ai-particles span {
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 229, 255, 0.2);
+  border-radius: 50%;
+}
 
-    @keyframes floatParticles {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.5;
-      }
-      50% {
-        transform: translateY(-500px) scale(1.2);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-1000px) scale(0.8);
-        opacity: 0;
-      }
-    }
-
-    .ai-particles span:nth-child(odd) {
-      background: rgba(0, 255, 255, 0.1);
-      animation-duration: 30s;
-      animation-delay: 2s;
-    }
-
-    .ai-particles span:nth-child(even) {
-      background: rgba(0, 255, 255, 0.3);
-      animation-duration: 40s;
-      animation-delay: 4s;
-    }
-  </style>
+@keyframes floatParticles {
+  0% { transform: translateY(0) scale(1); opacity: 0.4; }
+  50% { transform: translateY(-300px) scale(1.2); opacity: 0.8; }
+  100% { transform: translateY(-600px) scale(1); opacity: 0; }
+}
+</style>
 </head>
 
 <body class="ai-page">
   <div class="ai-particles">
-    <img src="../icons/chip.svg" style="position:absolute; top:10%; left:15%; width:30px; opacity:0.05; animation: floatParticles 25s linear infinite;">
-    <img src="../icons/chip.svg" style="position:absolute; top:80%; left:75%; width:40px; opacity:0.07; animation: floatParticles 30s linear infinite;">
-    <img src="../icons/brain-ai.svg" style="position:absolute; top:60%; left:40%; width:45px; opacity:0.06; animation: floatParticles 35s linear infinite;">
-    <span style="top: 80%; left: 10%;"></span>
-    <span style="top: 90%; left: 20%;"></span>
-    <span style="top: 95%; left: 30%;"></span>
-    <span style="top: 85%; left: 40%;"></span>
-    <span style="top: 92%; left: 50%;"></span>
-    <span style="top: 88%; left: 60%;"></span>
-    <span style="top: 96%; left: 70%;"></span>
-    <span style="top: 89%; left: 80%;"></span>
-    <span style="top: 91%; left: 90%;"></span>
+    <img src="../icons/chip.svg" style="top: 20%; left: 15%; width: 30px;">
+    <img src="../icons/brain-ai.svg" style="top: 60%; left: 60%; width: 40px;">
+    <span style="top: 90%; left: 10%;"></span>
+    <span style="top: 92%; left: 30%;"></span>
+    <span style="top: 95%; left: 50%;"></span>
+    <span style="top: 97%; left: 70%;"></span>
+    <span style="top: 94%; left: 90%;"></span>
   </div>
-  <script>AOS.init({ once: true, duration: 1000 });</script>
-
+  <script>AOS.init({ once: false, duration: 1200, easing: 'ease-in-out', offset: 80 });</script>
   <header class="main-head" data-aos="fade-down">
     <nav>
       <div class="logo">
@@ -270,7 +201,7 @@
     <h2 class="typewriter">Creating the Future with AI...</h2>
   </section>
 
-  <section class="section-wrapper" data-aos="fade-up">
+  <section class="section-wrapper" data-aos="fade-up" data-aos-delay="100">
     <h3>Smart Parking Promo</h3>
     <p>This AI-generated promotional video and app prototype presents a seamless solution to urban parking challenges through a smart system design.</p>
     <div class="ai-video">
@@ -278,7 +209,7 @@
     </div>
   </section>
 
-  <section class="section-wrapper" data-aos="fade-left">
+  <section class="section-wrapper" data-aos="fade-left" data-aos-delay="200">
     <h3>App Demo – Park Nexus</h3>
     <p>Experience the live prototype app developed for this system. Interact with its core functionality and navigation logic below:</p>
     <div class="ai-app-frame">
@@ -286,7 +217,7 @@
     </div>
   </section>
 
-  <section class="section-wrapper" data-aos="zoom-in-up">
+  <section class="section-wrapper" data-aos="zoom-in-up" data-aos-delay="300">
     <h3>Why AI?</h3>
     <p>Artificial Intelligence is not just a trend—it's a transformative force redefining how we interact with technology. From streamlining processes to enhancing creativity, AI tools empower us to build smarter, faster, and more effectively than ever before.</p>
     <a href="../Projects/index.html" class="cta-button">View All Projects</a>
@@ -300,3 +231,5 @@
       <a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w"><img src="../icons/youtube-symbol 1.svg" alt="youtube" /></a>
     </div>
   </footer>
+</body>
+</html>
