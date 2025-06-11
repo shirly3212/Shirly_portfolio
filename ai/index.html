@@ -83,27 +83,28 @@
       50% { transform: translateY(-20px); }
     }
 
-    .ai-header {
-      padding: 8rem 2rem;
-      text-align: center;
-      background: linear-gradient(160deg, #1a237e, #0f2027);
-      color: #e0f7ff;
-      position: relative;
-      z-index: 1;
-    }
-
-    .ai-header h2 {
+    .typewriter {
+      overflow: hidden;
+      border-right: .15em solid #00bcd4;
+      white-space: nowrap;
+      animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+      width: fit-content;
+      margin: 0 auto;
       font-size: 5.5rem;
       font-weight: 800;
       background: linear-gradient(to right, #00e5ff, #00acc1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: textGlow 4s ease-in-out infinite alternate;
     }
 
-    @keyframes textGlow {
-      from { text-shadow: 0 0 10px #00e5ff; }
-      to { text-shadow: 0 0 30px #00e5ff; }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #00bcd4; }
     }
 
     .section-wrapper {
@@ -134,15 +135,24 @@
       text-align: center;
     }
 
-    .ai-video video,
+    .ai-video video {
+      display: block;
+      max-width: 1000px;
+      width: 90%;
+      margin: 2rem auto 0;
+      border-radius: 1rem;
+      box-shadow: 0 0 30px rgba(0, 188, 212, 0.2);
+    }
+
     .ai-app-frame iframe {
       display: block;
       width: 100%;
-      max-width: 1400px;
+      max-width: 430px;
+      height: calc(100vw * 2.17);
+      max-height: 90vh;
+      margin: 2rem auto;
       border: 2px solid #00bcd4;
       border-radius: 1rem;
-      box-shadow: 0 0 15px rgba(0,188,212,0.4);
-      margin: 2rem auto 0;
     }
 
     .cta-button {
@@ -192,6 +202,7 @@
 </head>
 <body class="ai-page">
   <script>AOS.init({ once: true, duration: 1000 });</script>
+
   <div class="flare-path"></div>
   <div class="moving-lines"></div>
   <img src="../icons/chip.svg" class="chip-anim one" alt="chip">
