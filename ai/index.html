@@ -170,10 +170,74 @@
       border-top: 1px solid rgba(255,255,255,0.2);
       color: white;
     }
-  </style>
+      
+
+    /* AI particle effect */
+    .ai-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .ai-particles span {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: rgba(0, 255, 255, 0.2);
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+      animation: floatParticles 20s linear infinite;
+    }
+
+    @keyframes floatParticles {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: translateY(-500px) scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-1000px) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    .ai-particles span:nth-child(odd) {
+      background: rgba(0, 255, 255, 0.1);
+      animation-duration: 30s;
+      animation-delay: 2s;
+    }
+
+    .ai-particles span:nth-child(even) {
+      background: rgba(0, 255, 255, 0.3);
+      animation-duration: 40s;
+      animation-delay: 4s;
+    }
+</style>
 </head>
 
 <body class="ai-page">
+  <div class="ai-particles">
+    <img src="../icons/chip.svg" style="position:absolute; top:10%; left:15%; width:30px; opacity:0.05; animation: floatParticles 25s linear infinite;">
+    <img src="../icons/chip.svg" style="position:absolute; top:80%; left:75%; width:40px; opacity:0.07; animation: floatParticles 30s linear infinite;">
+    <img src="../icons/brain-ai.svg" style="position:absolute; top:60%; left:40%; width:45px; opacity:0.06; animation: floatParticles 35s linear infinite;">
+
+    <span style="top: 80%; left: 10%;"></span>
+    <span style="top: 90%; left: 20%;"></span>
+    <span style="top: 95%; left: 30%;"></span>
+    <span style="top: 85%; left: 40%;"></span>
+    <span style="top: 92%; left: 50%;"></span>
+    <span style="top: 88%; left: 60%;"></span>
+    <span style="top: 96%; left: 70%;"></span>
+    <span style="top: 89%; left: 80%;"></span>
+    <span style="top: 91%; left: 90%;"></span>
+  </div>
   <script>AOS.init({ once: true, duration: 1000 });</script>
 
   <header class="main-head" data-aos="fade-down">
