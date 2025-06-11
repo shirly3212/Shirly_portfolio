@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Projects | Shirly Ben Nun</title>
   <link rel="stylesheet" href="../Styles/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -39,7 +37,7 @@
       background-size: cover;
       animation: moveBackground 60s linear infinite;
       z-index: -2;
-      opacity: 0.05;
+      opacity: 0.07;
     }
 
     .moving-lines {
@@ -131,7 +129,6 @@
     .section-wrapper p {
       font-size: 1.8rem;
       line-height: 1.6;
-      color: #e0f7ff;
       text-align: center;
     }
 
@@ -203,12 +200,14 @@
 <body class="ai-page">
   <script>AOS.init({ once: true, duration: 1000 });</script>
 
+  <!-- רקעים דינמיים -->
   <div class="flare-path"></div>
   <div class="moving-lines"></div>
   <img src="../icons/chip.svg" class="chip-anim one" alt="chip">
   <img src="../icons/chip.svg" class="chip-anim two" alt="chip">
   <img src="../icons/chip.svg" class="chip-anim three" alt="chip">
 
+  <!-- ניווט -->
   <header class="main-head" data-aos="fade-down">
     <nav>
       <div class="logo">
@@ -225,10 +224,12 @@
     </nav>
   </header>
 
+  <!-- כותרת עם הקלדה -->
   <section class="ai-header" data-aos="fade-up">
     <h2 class="typewriter">Creating the Future with AI...</h2>
   </section>
 
+  <!-- וידאו -->
   <section class="section-wrapper" data-aos="fade-up" data-aos-delay="100">
     <h3>Smart Parking Promo</h3>
     <p>This AI-generated promotional video and app prototype presents a seamless solution to urban parking challenges through a smart system design.</p>
@@ -237,6 +238,7 @@
     </div>
   </section>
 
+  <!-- אפליקציה -->
   <section class="section-wrapper" data-aos="fade-left" data-aos-delay="200">
     <h3>App Demo – Park Nexus</h3>
     <p>Experience the live prototype app developed for this system. Interact with its core functionality and navigation logic below:</p>
@@ -245,12 +247,14 @@
     </div>
   </section>
 
+  <!-- הסבר למה AI -->
   <section class="section-wrapper" data-aos="zoom-in-up" data-aos-delay="300">
     <h3>Why AI?</h3>
     <p>Artificial Intelligence is not just a trend—it's a transformative force redefining how we interact with technology. From streamlining processes to enhancing creativity, AI tools empower us to build smarter, faster, and more effectively than ever before.</p>
     <a href="../Projects/index.html" class="cta-button">View All Projects</a>
   </section>
 
+  <!-- תחתית -->
   <footer data-aos="fade-up">
     <p>Shirly Ben Nun &copy; 2025</p>
     <div>
