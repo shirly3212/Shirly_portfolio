@@ -19,77 +19,40 @@
       color: #1a1a1a;
       overflow-x: hidden;
     }
-
     @keyframes colorFlow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
-    .flare-path {
+    .flare-path, .moving-lines, .chip-anim {
+      pointer-events: none;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;
-      background: url('../icons/flare-path.svg') no-repeat center center;
-      background-size: cover;
-      animation: moveBackground 60s linear infinite;
-      z-index: -2;
-      opacity: 0.12;
+      z-index: -1;
     }
-
-    .moving-lines {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -3;
-      pointer-events: none;
-      background-image: linear-gradient(to right, rgba(0,188,212,0.05) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(0,188,212,0.05) 1px, transparent 1px);
-      background-size: 80px 80px;
-      animation: scrollLines 60s linear infinite;
-    }
-
-    @keyframes scrollLines {
-      0% { background-position: 0 0; }
-      100% { background-position: 80px 80px; }
-    }
-
-    @keyframes moveBackground {
-      0% { transform: scale(1) translateY(0); }
-      50% { transform: scale(1.05) translateY(-10px); }
-      100% { transform: scale(1) translateY(0); }
-    }
-
     .chip-anim {
-      position: fixed;
       width: 60px;
       opacity: 0.1;
-      z-index: -1;
       animation: floaty 12s ease-in-out infinite;
     }
-
     .chip-anim.one { top: 20%; left: 5%; animation-delay: 0s; }
     .chip-anim.two { top: 60%; left: 90%; animation-delay: 5s; }
     .chip-anim.three { top: 80%; left: 30%; animation-delay: 2.5s; }
-
     @keyframes floaty {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
     }
-
     .ai-header {
-      padding: 8rem 2rem;
-      position: relative;
-      overflow: hidden;
+      padding: 10rem 2rem 6rem;
+      text-align: center;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
     }
-
     .ai-header h2 {
-      font-size: 5rem;
+      font-size: 4.5rem;
       white-space: nowrap;
       overflow: hidden;
       border-right: 0.15em solid #00bcd4;
@@ -98,77 +61,81 @@
       width: fit-content;
       animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite, centerText 1s ease-in-out 4s forwards;
     }
-
     @keyframes typing {
       from { width: 0 }
       to { width: 100% }
     }
-
     @keyframes blink-caret {
       from, to { border-color: transparent }
       50% { border-color: #00bcd4; }
     }
-
     @keyframes centerText {
       0% { transform: translateX(0); text-align: left; }
       100% { transform: translateX(0); text-align: center; }
     }
-
     .section-wrapper {
-      min-height: 90vh;
-      padding: 5rem 3rem;
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 2rem;
-      box-shadow: 0 0 30px rgba(170, 85, 255, 0.1);
-      margin: 4rem auto;
-      width: 85%;
-      max-width: 1400px;
-      backdrop-filter: blur(15px);
-      color: #2c2c2c;
-      position: relative;
-      z-index: 1;
+      padding: 4rem 2rem;
+      margin: 3rem auto;
+      max-width: 1100px;
+      border-radius: 1.5rem;
+      background: rgba(255,255,255,0.5);
+      box-shadow: 0 0 25px rgba(124, 77, 255, 0.2);
+      backdrop-filter: blur(12px);
+      text-align: center;
     }
-
     .section-wrapper h3 {
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       color: #7c4dff;
-      text-align: center;
     }
-
     .section-wrapper p {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
+      color: #333;
       line-height: 1.6;
-      color: #2c2c2c;
-      text-align: center;
+      margin-bottom: 2rem;
     }
-
-    .ai-app-frame iframe {
-      display: block;
+    .ai-video video {
       width: 100%;
-      height: 100vh;
+      max-width: 900px;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0, 188, 212, 0.3);
+      margin: auto;
+      display: block;
+    }
+    .ai-app-frame iframe {
+      width: 100%;
       max-width: 430px;
-      margin: 2rem auto;
+      height: 90vh;
       border: 2px solid #7c4dff;
       border-radius: 1rem;
-    }
-
-    .cta-button {
       display: block;
-      margin: 2rem auto 0;
-      padding: 1.2rem 3rem;
-      font-size: 2rem;
+      margin: 2rem auto;
+    }
+    .cta-button {
       background: linear-gradient(135deg, #00bcd4, #7c4dff);
-      color: white;
+      padding: 1.2rem 3rem;
       border-radius: 3rem;
-      text-transform: uppercase;
+      color: white;
+      font-size: 1.8rem;
       font-weight: 700;
-      box-shadow: 0 0 15px rgba(0,229,255,0.6);
+      box-shadow: 0 0 15px rgba(124,77,255,0.4);
+      text-decoration: none;
       transition: all 0.3s ease-in-out;
+      display: inline-block;
+    }
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(124,77,255,0.6);
+    }
+    footer {
       text-align: center;
+      padding: 3rem 2rem;
+      color: #444;
+    }
+    footer img {
+      margin: 0 1rem;
     }
   </style>
 </head>
-  
 <body>
   <script>AOS.init({ once: true, duration: 1000 });</script>
 
@@ -179,9 +146,13 @@
   <img src="../icons/chip.svg" class="chip-anim three" alt="chip">
 
   <section class="ai-header" data-aos="fade-up">
-    <div class="typewriter-container">
-      <h2 class="typewriter">Creating the Future with AI...</h2>
-    </div>
+    <h2 class="typewriter">Creating the Future with AI...</h2>
+  </section>
+
+  <section class="section-wrapper" data-aos="zoom-in">
+    <h3>Why AI?</h3>
+    <p>Artificial Intelligence is not just a trend—it's a transformative force redefining how we interact with technology.</p>
+    <a href="../Projects/index.html" class="cta-button">View All Projects</a>
   </section>
 
   <section class="section-wrapper" data-aos="fade-up">
@@ -198,12 +169,6 @@
     <div class="ai-app-frame">
       <iframe src="https://preview--park-nexus-urban-flow.lovable.app/" title="Smart Parking App"></iframe>
     </div>
-  </section>
-
-  <section class="section-wrapper" data-aos="zoom-in-up">
-    <h3>Why AI?</h3>
-    <p>Artificial Intelligence is not just a trend—it's a transformative force redefining how we interact with technology. From streamlining processes to enhancing creativity, AI tools empower us to build smarter, faster, and more effectively than ever before.</p>
-    <a href="../Projects/index.html" class="cta-button">View All Projects</a>
   </section>
 
   <footer data-aos="fade-up">
