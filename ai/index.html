@@ -16,134 +16,165 @@
       margin: 0;
       padding: 0;
       font-family: "Manrope", sans-serif;
-      background: linear-gradient(to bottom, #f4fdff, #e6f9ff);
-      color: #1a1a1a;
+      background: radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.05), transparent 60%),
+                  radial-gradient(circle at 80% 80%, rgba(0, 172, 193, 0.05), transparent 60%),
+                  linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
       overflow-x: hidden;
-    }
-    .flare-path {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background: url('../icons/flare-path.svg') no-repeat center center;
       background-size: cover;
-      animation: moveBackground 60s linear infinite;
-      z-index: -2;
-      opacity: 0.12;
+      background-attachment: fixed;
+      animation: aiBackgroundFlow 45s ease-in-out infinite;
     }
-    .moving-lines {
+
+    @keyframes aiBackgroundFlow {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    body::before {
+      content: "";
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -3;
-      pointer-events: none;
-      background-image: linear-gradient(to right, rgba(0,188,212,0.05) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(0,188,212,0.05) 1px, transparent 1px);
+      background-image: 
+        linear-gradient(90deg, rgba(0,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(rgba(0,255,255,0.02) 1px, transparent 1px);
       background-size: 80px 80px;
-      animation: scrollLines 60s linear infinite;
+      z-index: -1;
+      animation: scrollLines 120s linear infinite;
     }
+
     @keyframes scrollLines {
       0% { background-position: 0 0; }
       100% { background-position: 80px 80px; }
     }
-    @keyframes moveBackground {
-      0% { transform: scale(1) translateY(0); }
-      50% { transform: scale(1.05) translateY(-10px); }
-      100% { transform: scale(1) translateY(0); }
+
+    .flare-path, .moving-lines {
+      display: none;
     }
+
+    .ai-header {
+      padding: 10rem 2rem;
+      text-align: center;
+      background: linear-gradient(180deg, #00bcd4, #1a237e);
+      color: white;
+      position: relative;
+    }
+
+    .ai-header h2 {
+      font-size: 6rem;
+      font-weight: 800;
+      text-shadow: 0 0 15px #00e5ff;
+    }
+
     .typewriter {
       overflow: hidden;
-      border-right: .15em solid #00bcd4;
+      border-right: .15em solid #00e5ff;
       white-space: nowrap;
       animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
     }
+
     @keyframes typing {
       from { width: 0 }
       to { width: 100% }
     }
+
     @keyframes blink-caret {
       from, to { border-color: transparent }
-      50% { border-color: #00bcd4; }
+      50% { border-color: #00e5ff; }
     }
-    .ai-header {
-      padding: 8rem 2rem;
-      text-align: center;
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(8px);
-      position: relative;
-      overflow: hidden;
+
+    .section-wrapper {
+      min-height: 90vh;
+      padding: 6rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2rem;
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+      margin: 4rem auto;
+      width: 85%;
+      backdrop-filter: blur(10px);
+      color: white;
     }
-    .ai-header h2 {
-      font-size: 5rem;
-      color: #00bcd4;
-    }
-    .ai-header-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 25rem;
-      background: linear-gradient(90deg, rgba(0,188,212,0.25), rgba(0,172,193,0.4), rgba(0,188,212,0.25));
-      z-index: -1;
-      animation: shiftBar 10s linear infinite;
-    }
-    @keyframes shiftBar {
-      0% { background-position: 0 0; }
-      100% { background-position: 1000px 0; }
-    }
-    .chip-anim {
-      position: fixed;
-      width: 60px;
-      opacity: 0.1;
-      z-index: -1;
-      animation: floaty 12s ease-in-out infinite;
-    }
-    .chip-anim.one {
-      top: 20%; left: 5%; animation-delay: 0s;
-    }
-    .chip-anim.two {
-      top: 60%; left: 90%; animation-delay: 5s;
-    }
-    .chip-anim.three {
-      top: 80%; left: 30%; animation-delay: 2.5s;
-    }
-    @keyframes floaty {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
+
     .ai-video video {
       display: block;
-      max-width: 1000px;
-      width: 90%;
+      width: 100%;
+      max-width: 1600px;
+      height: auto;
       margin: 2rem auto 0;
       border-radius: 1rem;
-      box-shadow: 0 0 30px rgba(0, 188, 212, 0.2);
+      border: 3px solid #00e5ff;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
     }
+
     .ai-app-frame iframe {
-      display: block;
       width: 100%;
       max-width: 430px;
       height: calc(100vw * 2.17);
       max-height: 90vh;
       margin: 2rem auto;
-      border: 2px solid #00bcd4;
+      border: 2px solid #00e5ff;
       border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1.5rem 3.5rem;
+      font-size: 2.2rem;
+      background: radial-gradient(circle at center, #00e5ff, #007acc);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      transition: all 0.4s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: skewX(-20deg);
+      transition: left 0.5s ease-in-out;
+    }
+
+    .cta-button:hover::after {
+      left: 150%;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.08);
+      background: radial-gradient(circle at center, #00bcd4, #00e5ff);
+    }
+
+    footer {
+      background: transparent;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      color: white;
     }
   </style>
 </head>
 
 <body class="ai-page">
   <script>AOS.init({ once: true, duration: 1000 });</script>
-
-  <div class="flare-path"></div>
-  <div class="moving-lines"></div>
-  <img src="../icons/chip.svg" class="chip-anim one" alt="chip">
-  <img src="../icons/chip.svg" class="chip-anim two" alt="chip">
-  <img src="../icons/chip.svg" class="chip-anim three" alt="chip">
 
   <header class="main-head" data-aos="fade-down">
     <nav>
@@ -162,7 +193,6 @@
   </header>
 
   <section class="ai-header" data-aos="fade-up">
-    <div class="ai-header-bar"></div>
     <h2 class="typewriter">Creating the Future with AI...</h2>
   </section>
 
