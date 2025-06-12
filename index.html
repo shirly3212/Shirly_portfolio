@@ -52,7 +52,7 @@
         body::before, body::after {
             content: '';
             position: fixed;
-            z-index: -1;
+            z-index: -2; /* Set to -2 to ensure splash is above them */
             border-radius: 50%;
             opacity: 0.3;
             filter: blur(120px);
@@ -186,8 +186,6 @@
 
         /* Intro Section Specific Styles */
         .intro {
-            /* This will be handled by Tailwind classes in HTML, but here for reference if needed */
-            /* min-height: 90vh; */
             width: 90%;
             margin: auto;
             flex-wrap: wrap;
@@ -206,20 +204,7 @@
             display: inline-block;
         }
         .intro h3 {
-            /* Original size: 6rem; Adjusted to be responsive with Tailwind classes */
             padding: 2rem 0rem;
-        }
-        .intro p {
-            padding-top: 2rem;
-            color: #2c2c2c;
-        }
-        .splash { /* Re-adding styles for splash image */
-            position: absolute;
-            top: 0%;
-            right: 0%;
-            height: 100%;
-            z-index: -1;
-            transform-origin: top;
         }
         .intro-social a {
             margin-right: 5rem; /* Specific spacing for social icons */
@@ -227,49 +212,96 @@
 
         /* Media Queries from original CSS */
         @media screen and (max-width: 1200px) {
-            .splash {
-                display: none; /* Hide splash image on smaller screens */
-            }
             svg {
                 width: 110%; /* Adjust SVG size */
                 height: 120%;
             }
-            /* nav width was 100% in old CSS, but already handled by Tailwind container */
         }
+
+        /* Mobile specific styles */
         @media screen and (max-width: 754px) {
-            header.main-head {
-                display: block !important; /* Ensure header becomes block */
+            /* Remove the problematic override for header.main-head - keep it fixed! */
+            /* header.main-head {
+                display: block !important;
                 width: 100%;
-                position: relative; /* Change to relative for mobile nav toggle */
+                position: relative;
                 z-index: 999;
-            }
+            } */
+
+            /* Ensure nav itself remains a row layout on mobile for logo and toggle */
             nav {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row !important; /* Force row direction for logo and toggle */
+                flex-wrap: nowrap !important; /* Prevent wrapping */
             }
+
+            /* Mobile nav toggle should be visible and positioned correctly */
+            .nav-toggle {
+                display: block; /* Show hamburger icon */
+            }
+
+            /* Mobile navigation list */
             nav ul {
-                width: 100%;
+                display: none; /* Hidden by default */
+                flex-direction: column;
                 background: white;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                position: absolute; /* Position relative to the parent <nav> */
+                top: 100%; /* Position right below the nav bar */
+                left: 0;
+                width: 100%;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                /* Add transition for smooth reveal */
+                transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
             }
-            /* Original mobile nav CSS (display: none/flex) is handled by JS injection */
+
+            nav ul.show-nav {
+                display: flex; /* Show when active */
+                opacity: 1;
+                visibility: visible;
+            }
+
+            /* Hide with opacity and visibility for better transition */
+            nav ul:not(.show-nav) {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            nav ul li {
+                padding: 1rem 2rem;
+                text-align: center;
+                border-bottom: 1px solid #ddd;
+            }
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+
+            /* Adjust padding-top of intro section to compensate for fixed header height */
+            .intro {
+                padding-top: 10rem; /* Increased padding to ensure content is not hidden */
+            }
+
+            /* Adjustments for general layout on mobile */
+            .main-head {
+                width: 100%;
+            }
             nav .logo {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
-                flex: 1 1 20rem;
-                margin-top: 2rem;
+                flex: 1 1 auto; /* Allow it to take necessary space */
+                margin-top: 0; /* Reset margin */
             }
             nav ul { /* Re-added to allow flex: 1 1 60rem; */
-                flex: 1 1 60rem;
-                margin: 2rem 0rem;
+                flex: 1 1 auto; /* Allow it to take necessary space */
+                margin: 0; /* Reset margin */
             }
             .intro-text {
-                margin-top: 5rem;
+                margin-top: 2rem; /* Adjusted margin */
                 text-align: center;
             }
-            /* The 'me' div is the parent of SVG and splash */
             .me {
                  text-align: center; /* Ensures content within 'me' is centered */
             }
@@ -284,38 +316,8 @@
             }
         }
 
-        /* Mobile navigation specific styles injected by JS (duplicated here for clarity but handled by script) */
-        @media screen and (max-width: 754px) {
-            .nav-toggle {
-                display: block; /* Hamburger icon visible on mobile */
-            }
-            nav ul {
-                display: none; /* Hide nav list by default on mobile */
-                flex-direction: column;
-                background: white;
-                position: absolute;
-                top: 100%; /* Position below the header */
-                left: 0;
-                width: 100%;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                z-index: 1000;
-            }
-            nav ul.show-nav {
-                display: flex; /* Show nav list when active */
-            }
-            nav ul li {
-                padding: 1rem 2rem;
-                text-align: center;
-                border-bottom: 1px solid #ddd;
-            }
-            nav ul li:last-child {
-                border-bottom: none; /* No border for the last item */
-            }
-        }
-
         /* SVG Line Drawing Animation */
         #LINEPAINT {
-            /* Changed fill to stroke for drawing effect */
             fill: none; /* No fill */
             stroke: #38A5D2; /* Use the original fill color as stroke color */
             stroke-width: 2px; /* Make the line visible */
@@ -329,6 +331,17 @@
                 stroke-dashoffset: 0; /* Draw the line */
             }
         }
+
+        /* Splash image styling for full height and right alignment */
+        .splash {
+            position: fixed; /* Position relative to the viewport */
+            top: 0;
+            right: 0;
+            height: 100vh; /* Full viewport height */
+            width: auto; /* Maintain aspect ratio */
+            object-fit: cover; /* Cover the area, cropping if necessary, to avoid gaps */
+            z-index: -1; /* Behind content but in front of particles and other background elements */
+        }
     </style>
 </head>
 
@@ -336,14 +349,18 @@
     <!-- Particles.js Canvas -->
     <div id="particles-js"></div>
 
+    <!-- Splash image - Moved outside the intro section for fixed positioning -->
+    <img class="splash" src="img/splash.svg" alt="Shirly Ben Nun background splash graphic">
+
     <!-- Header -->
-    <header class="header-frosted shadow-md fixed w-full z-50 main-head"> <!-- Added main-head class -->
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
+    <header class="header-frosted shadow-md fixed w-full z-50 main-head">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap relative"> <!-- Added relative to nav for absolute positioning of ul -->
             <div class="logo flex items-center">
                 <!-- Using Font Awesome icon for a modern look -->
                 <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
                 <h1 class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition duration-300 rounded-lg p-2">Shirly Ben Nun</h1>
             </div>
+            <!-- Mobile toggle will be inserted here by JS -->
             <ul class="flex space-x-8">
                 <li><a href="/" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700">Home</a></li>
                 <li><a href="Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Design</a></li>
@@ -368,7 +385,7 @@
             </div>
         </div>
         <div class="me mt-12 flex justify-center items-center relative">
-            <!-- Your SVG content and splash image remain -->
+            <!-- Your SVG content remains -->
             <svg width="1124" height="923" viewBox="0 0 1124 923" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-3xl h-auto">
                 <path id="HAIR-NO-MOVEMENT"
                     d="M738.362 184.495C738.199 184.525 737.956 184.569 737.66 184.621C731.879 185.642 696.925 191.398 661.685 177.07C646.756 171.001 681.481 181.602 648.232 160.5C609.25 135.76 638.403 123.036 635.5 111.5C629.704 88.4646 600.014 72.1158 620.5 74.5C625.894 75.1277 623.522 59.4785 632.506 57.1513C634.48 56.6401 643.12 54.402 647.333 46.7682C651.09 39.9583 678.989 36.0851 680.5 30.5C704.081 30.5 686.452 7.48471 715.442 12.654C732.116 15.6271 745.085 23.744 770.342 39.8566C814.303 67.9008 836.284 81.923 841.224 103.406C845.906 123.769 834.668 132.543 842.841 154.34C850.452 174.636 842.868 171.083 847.028 187.501C853.721 213.922 848.549 245.117 838.2 257.196C826.853 270.439 816.002 277.708 801.596 287.357C783.513 299.469 781.212 453.117 770.342 452.501C750.635 451.384 618.264 337.407 617.5 320C617.5 326 615 257 635.704 180.773C639.994 172.158 730.028 181.36 731.137 176.411"
@@ -438,7 +455,7 @@
                         d="M20.0127 742.239C20.6885 792.151 50.5979 809.174 87.1969 808.678C88.0468 808.667 88.8931 808.646 89.7343 808.615C91.4293 808.557 93.1069 808.457 94.7671 808.316C127.7670 805.531 153.1850 786.862 152.5560 740.445C151.9060 692.407 89.6913 632.617 85.0256 628.197L85.0176 628.193C84.840 628.024 84.7489 627.940 84.7489 627.940C84.7489 627.940 19.3371 692.331 20.0127 742.239Z"
                         fill="#D0CDE1" />
                     <path id="Vector_34_2"
-                        d="M89.5044 801.011L64.8084 767.474L89.6164 804.728L89.7342 808.615C91.4292 808.557 93.1068 808.457 94.7671 808.316L91.4799 758.418L91.4947 758.032L91.4494 757.960L91.1368 753.245L114.9870 715.238L91.0154 749.711L90.9676 750.712L88.4849 713.013L108.8110 673.797L88.1391 706.387L85.0255 628.197L85.0144 627.937L85.0175 628.193L86.1949 689.871L65.1068 665.699L86.3563 695.182L87.3628 728.955L67.5339 696.800L87.5063 733.921L88.0654 752.700L59.3155 707.957L88.2643 759.251L89.5044 801.011Z"
+                        d="M89.5044 801.011L64.8084 767.474L89.6164 804.728L89.7342 808.615C91.4292 808.557 93.1068 808.457 94.7671 808.316L91.4799 758.418L91.4947 758.032L91.4494 757.960L91.1368 753.245L114.9870 715.238L91.0154 749.711L90.9676 750.712L88.4849 713.013L108.8110 673.797L88.1391 706.387L85.0255 628.197L85.0144 627.937L85.0175 628.193L86.1949 689.871L65.1068 665.699L86.3563 695.249L87.3628 728.955L67.5339 696.800L87.5063 733.921L88.0654 752.700L59.3155 707.957L88.2643 759.251L89.5044 801.011Z"
                         fill="#3F3D56" />
                 </g>
                 <g id="SQUARE">
@@ -488,7 +505,6 @@
                     <text x="1000" y="100" font-size="40" fill="black">me</text>
                 </defs>
             </svg>
-            <img class="splash" src="img/splash.svg" alt="" class="absolute inset-0 w-full h-full object-contain">
         </div>
     </section>
 
@@ -552,12 +568,14 @@
             "retina_detect": true
         });
 
-        // --- Mobile Navigation Toggle (from original script.js) ---
+        // --- Mobile Navigation Toggle ---
         document.addEventListener("DOMContentLoaded", function () {
-            const nav = document.querySelector("nav ul");
-            // Check if nav exists before proceeding
-            if (!nav) {
-                console.warn("Navigation list (nav ul) not found. Mobile toggle may not work.");
+            const nav = document.querySelector("nav"); // Select the nav element
+            const navUl = document.querySelector("nav ul"); // Select the ul for toggling
+
+            // Check if nav and navUl exist
+            if (!nav || !navUl) {
+                console.warn("Navigation elements (nav or nav ul) not found. Mobile toggle may not work.");
                 return;
             }
 
@@ -566,45 +584,53 @@
             toggle.innerHTML = "☰";
             toggle.style.cursor = "pointer";
             toggle.style.fontSize = "3rem";
-            toggle.style.display = "none"; // Hidden by default, shown via CSS media query
+            toggle.style.display = "none"; // Controlled by CSS media query
             toggle.style.userSelect = "none";
 
-            // Insert toggle button before the navigation list
-            nav.parentNode.insertBefore(toggle, nav);
+            // Insert toggle button inside the nav element, right after the logo div
+            const logoDiv = nav.querySelector(".logo");
+            if (logoDiv) {
+                nav.insertBefore(toggle, navUl); // Insert before the ul, but inside nav
+            } else {
+                nav.prepend(toggle); // Fallback: prepend to nav if logo not found
+            }
 
-            // Event listener for toggle click
             toggle.addEventListener("click", () => {
-                nav.classList.toggle("show-nav");
+                navUl.classList.toggle("show-nav"); // Toggle class on navUl
             });
 
-            // Dynamically inject mobile navigation CSS
+            // Dynamically inject mobile navigation CSS - most mobile specific styling moved here
             const style = document.createElement("style");
             style.innerHTML = `
                 @media screen and (max-width: 754px) {
                     .nav-toggle {
-                        display: block; /* Show hamburger icon */
-                        position: absolute; /* Position relative to header */
-                        right: 1.5rem; /* Align to the right */
-                        top: 50%; /* Center vertically */
-                        transform: translateY(-50%);
+                        display: block; /* Show hamburger icon on mobile */
                     }
 
                     nav ul {
-                        display: none; /* Hide nav list by default on mobile */
+                        display: none; /* Hidden by default on mobile */
                         flex-direction: column;
                         background: white;
-                        position: absolute;
-                        top: 100%; /* Position below the header */
+                        position: absolute; /* Position relative to its parent <nav> */
+                        top: 100%; /* Position right below the nav bar */
                         left: 0;
                         width: 100%;
                         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                         z-index: 1000;
-                        padding-top: 1rem; /* Add some padding */
-                        padding-bottom: 1rem; /* Add some padding */
+                        padding-top: 1rem;
+                        padding-bottom: 1rem;
+                        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Smooth transition */
                     }
 
                     nav ul.show-nav {
-                        display: flex; /* Show nav list when active */
+                        display: flex; /* Show when active */
+                        opacity: 1;
+                        visibility: visible;
+                    }
+
+                    nav ul:not(.show-nav) {
+                        opacity: 0;
+                        visibility: hidden;
                     }
 
                     nav ul li {
@@ -613,7 +639,7 @@
                         border-bottom: 1px solid #ddd;
                     }
                     nav ul li:last-child {
-                        border-bottom: none; /* No border for the last item */
+                        border-bottom: none;
                     }
                 }
             `;
