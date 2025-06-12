@@ -272,6 +272,19 @@
             transform: translateY(-2px); /* Slight lift */
             box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4); /* Blue glow on button hover */
         }
+
+        /* Loading spinner for AI insight */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #2563eb;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -298,12 +311,12 @@
 
     <!-- Main content area with adjusted top padding to prevent header overlap -->
     <main class="pt-36 pb-12 flex-grow"> <!-- Added flex-grow here -->
-        <div class="container mx-auto px-6 w-full text-center"> <!-- Removed max-w-screen-2xl for full width -->
+        <div class="container mx-auto px-6 w-full text-center">
             <h2 class="text-5xl section-title mx-auto text-gray-800 mb-10">Web Development Projects</h2>
 
-            <div class="flex flex-col gap-y-12" id="project-cards-container"> <!-- Changed to flex col and increased gap-y -->
+            <div class="flex flex-col gap-y-20" id="project-cards-container"> <!-- Increased gap-y to gap-y-20 -->
                 <!-- Project Item 1: TRAVELLY -->
-                <div class="portfolio-card flex flex-col md:flex-row items-center bg-white p-8 rounded-xl shadow-2xl animate-on-scroll"
+                <div class="portfolio-card flex flex-col md:flex-row items-center bg-white p-10 rounded-xl shadow-2xl animate-on-scroll"
                     data-project='{
                         "id": "travelly",
                         "title": "TRAVELLY - Travel Agency Website",
@@ -314,11 +327,11 @@
                         "github_repo": "https://github.com/shirly3212/TRAVELLY"
                     }'>
                     <div class="md:w-1/2 flex justify-center items-center mb-6 md:mb-0 md:mr-8">
-                        <img src="uploaded:image_79a716.jpg-0152efb6-ad31-4da5-996f-95a5bc98e841" alt="Travelly Website" class="rounded-lg w-full h-64 md:h-80 object-cover shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <img src="uploaded:image_79a716.jpg-0152efb6-ad31-4da5-996f-95a5bc98e841" alt="Travelly Website" class="rounded-lg w-full h-64 md:h-96 object-cover shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
                     </div>
-                    <div class="md:w-1/2 flex flex-col justify-center text-center md:text-left">
+                    <div class="md:w-1/2 flex flex-col justify-center text-center md:text-left md:max-w-[45%]"> <!-- Adjusted max-w for text -->
                         <h4 class="text-3xl font-bold text-gray-800 mb-3">TRAVELLY - Travel Agency Website</h4>
-                        <p class="text-gray-700 text-lg mb-6 leading-relaxed">A modern and responsive website for a travel agency, featuring an attractive design and smooth user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.</p>
+                        <p class="text-gray-700 text-base mb-6 leading-relaxed">A modern and responsive website for a travel agency, featuring an attractive design and smooth user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.</p>
                         <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center w-full md:w-auto self-center md:self-start">
                             View Project <i class="fas fa-external-link-alt ml-2"></i>
                         </button>
@@ -326,22 +339,22 @@
                 </div>
 
                 <!-- Project Item 2: People Counter - Reversed Layout -->
-                <div class="portfolio-card flex flex-col md:flex-row-reverse items-center bg-white p-8 rounded-xl shadow-2xl animate-on-scroll"
+                <div class="portfolio-card flex flex-col md:flex-row-reverse items-center bg-white p-10 rounded-xl shadow-2xl animate-on-scroll"
                     data-project='{
                         "id": "people-counter",
                         "title": "People Counter - Simple Counter App",
-                        "image": "../img/PEOPLE_COUNTER.png",
+                        "image": "uploaded:image_79aabd.png-ed3a1796-e9a4-4111-80fc-43ddf96b2f36",
                         "description": "A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.",
                         "technologies": ["HTML5", "CSS3", "JavaScript"],
                         "live_demo": "https://shirly3212.github.io/People-Counter/",
                         "github_repo": "https://github.com/shirly3212/People-Counter"
                     }'>
                     <div class="md:w-1/2 flex justify-center items-center mb-6 md:mb-0 md:ml-8">
-                        <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" class="rounded-lg w-full h-64 md:h-80 object-cover shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <img src="uploaded:image_79aabd.png-ed3a1796-e9a4-4111-80fc-43ddf96b2f36" alt="People Counter App" class="rounded-lg w-full h-64 md:h-96 object-cover shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
                     </div>
-                    <div class="md:w-1/2 flex flex-col justify-center text-center md:text-right">
+                    <div class="md:w-1/2 flex flex-col justify-center text-center md:text-right md:max-w-[45%]"> <!-- Adjusted max-w for text -->
                         <h4 class="text-3xl font-bold text-gray-800 mb-3">People Counter - Simple Counter App</h4>
-                        <p class="text-gray-700 text-lg mb-6 leading-relaxed">A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.</p>
+                        <p class="text-gray-700 text-base mb-6 leading-relaxed">A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.</p>
                         <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center w-full md:w-auto self-center md:self-end">
                             View Project <i class="fas fa-external-link-alt ml-2"></i>
                         </button>
@@ -349,22 +362,22 @@
                 </div>
 
                 <!-- Project Item 3: Photographer - Standard Layout -->
-                <div class="portfolio-card flex flex-col md:flex-row items-center bg-white p-8 rounded-xl shadow-2xl animate-on-scroll"
+                <div class="portfolio-card flex flex-col md:flex-row items-center bg-white p-10 rounded-xl shadow-2xl animate-on-scroll"
                     data-project='{
                         "id": "photographer",
                         "title": "Photographer - Visual Portfolio",
-                        "image": "../img/Photographer_me.png",
+                        "image": "uploaded:image_531df3.png-e2b6f8f5-6208-4b0d-be08-b0be9573a6d6",
                         "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information, built using HTML and CSS to ensure aesthetic appeal across devices.",
                         "technologies": ["HTML5", "CSS3"],
                         "live_demo": "https://shirly3212.github.io/Photographer/",
                         "github_repo": "https://github.com/shirly3212/Photographer"
                     }'>
                     <div class="md:w-1/2 flex justify-center items-center mb-6 md:mb-0 md:mr-8">
-                        <img src="../img/Photographer_me.png" alt="Photographer Portfolio" class="rounded-lg w-full h-64 md:h-80 object-cover shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <img src="uploaded:image_531df3.png-e2b6f8f5-6208-4b0d-be08-b0be9573a6d6" alt="Photographer Portfolio" class="rounded-lg w-full h-64 md:h-96 object-cover shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
                     </div>
-                    <div class="md:w-1/2 flex flex-col justify-center text-center md:text-left">
+                    <div class="md:w-1/2 flex flex-col justify-center text-center md:text-left md:max-w-[45%]"> <!-- Adjusted max-w for text -->
                         <h4 class="text-3xl font-bold text-gray-800 mb-3">Photographer - Visual Portfolio</h4>
-                        <p class="text-gray-700 text-lg mb-6 leading-relaxed">A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information, built using HTML and CSS to ensure aesthetic appeal across devices.</p>
+                        <p class="text-gray-700 text-base mb-6 leading-relaxed">A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information, built using HTML and CSS to ensure aesthetic appeal across devices.</p>
                         <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center w-full md:w-auto self-center md:self-start">
                             View Project <i class="fas fa-external-link-alt ml-2"></i>
                         </button>
@@ -398,13 +411,24 @@
                 <span class="text-gray-600 font-semibold">Technologies Used:</span>
                 <div id="modalTechnologies" class="flex flex-wrap gap-2"></div>
             </div>
+            <div id="aiInsightContainer" class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-blue-800 text-left hidden">
+                <p class="font-semibold mb-2">✨ AI Insight:</p>
+                <div id="aiInsightText"></div>
+                <div id="aiInsightLoading" class="flex items-center justify-center mt-2 hidden">
+                    <div class="spinner mr-2"></div>
+                    <span>Generating insight...</span>
+                </div>
+            </div>
             <div class="flex justify-center gap-4 mt-6">
-                <a id="modalLiveDemoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full transition duration-300 flex items-center">
+                <a id="modalLiveDemoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
                     Live Demo <i class="fas fa-external-link-alt ml-2"></i>
                 </a>
-                <a id="modalGithubRepoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-full transition duration-300 flex items-center">
+                <a id="modalGithubRepoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
                     GitHub Repo <i class="fab fa-github ml-2"></i>
                 </a>
+                <button id="aiInsightBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center">
+                    ✨ AI Insight
+                </button>
             </div>
         </div>
     </div>
@@ -487,9 +511,16 @@
         const modalTechnologies = document.getElementById('modalTechnologies');
         const modalLiveDemoBtn = document.getElementById('modalLiveDemoBtn');
         const modalGithubRepoBtn = document.getElementById('modalGithubRepoBtn');
+        const aiInsightBtn = document.getElementById('aiInsightBtn');
+        const aiInsightContainer = document.getElementById('aiInsightContainer');
+        const aiInsightText = document.getElementById('aiInsightText');
+        const aiInsightLoading = document.getElementById('aiInsightLoading');
+
+        let currentProjectData = null; // Store data of the currently opened project
 
         // Function to open the modal
         function openModal(projectData) {
+            currentProjectData = projectData; // Store the data
             modalProjectImage.src = projectData.image;
             modalProjectTitle.textContent = projectData.title;
             modalProjectDescription.textContent = projectData.description;
@@ -505,6 +536,11 @@
             modalLiveDemoBtn.href = projectData.live_demo;
             modalGithubRepoBtn.href = projectData.github_repo;
 
+            // Reset and hide AI Insight section
+            aiInsightContainer.classList.add('hidden');
+            aiInsightText.textContent = '';
+            aiInsightLoading.classList.add('hidden');
+
             projectModal.classList.add('is-visible');
             document.body.style.overflow = 'hidden'; // Prevent scrolling of body
         }
@@ -513,6 +549,7 @@
         function closeModal() {
             projectModal.classList.remove('is-visible');
             document.body.style.overflow = ''; // Restore scrolling of body
+            currentProjectData = null; // Clear current project data
         }
 
         // Event listeners for opening modal: now on the entire card OR the "View Project" button
@@ -526,20 +563,23 @@
                 }
 
                 const projectDataString = card.dataset.project;
-                const projectData = JSON.parse(projectDataString);
-                openModal(projectData);
+                console.log("projectDataString:", projectDataString); // Debugging line
+
+                // Check for null/undefined or the literal string "undefined"
+                if (!projectDataString || projectDataString === "undefined") {
+                    console.error("Invalid or undefined project data string for this card:", projectDataString);
+                    // Optionally display a message to the user or skip opening modal
+                    return;
+                }
+
+                try {
+                    const projectData = JSON.parse(projectDataString);
+                    openModal(projectData);
+                } catch (e) {
+                    console.error("Error parsing JSON for project data:", projectDataString, e);
+                }
             });
         });
-
-        // The button's own event listener (already present) will still work:
-        // document.querySelectorAll('.view-project-btn').forEach(button => {
-        //     button.addEventListener('click', (event) => {
-        //         const projectDataString = event.target.closest('.portfolio-card').dataset.project;
-        //         const projectData = JSON.parse(projectDataString);
-        //         openModal(projectData);
-        //     });
-        // });
-
 
         // Event listener for closing modal via button
         closeModalBtn.addEventListener('click', closeModal);
@@ -555,6 +595,55 @@
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape' && projectModal.classList.contains('is-visible')) {
                 closeModal();
+            }
+        });
+
+        // --- Gemini API Integration ---
+        aiInsightBtn.addEventListener('click', async () => {
+            if (!currentProjectData) {
+                console.error("No project data available to generate insight.");
+                return;
+            }
+
+            aiInsightContainer.classList.remove('hidden'); // Show container
+            aiInsightText.textContent = ''; // Clear previous text
+            aiInsightLoading.classList.remove('hidden'); // Show loading spinner
+
+            const prompt = `Given the following web development project:
+Title: ${currentProjectData.title}
+Description: ${currentProjectData.description}
+Technologies: ${currentProjectData.technologies.join(', ')}
+
+Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting the unique aspect or impact of this project. Focus on what makes it stand out or its practical value. Do not include a title for the summary. Return only the summary text.`;
+
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    aiInsightText.textContent = text;
+                } else {
+                    aiInsightText.textContent = "Failed to generate insight. Please try again.";
+                    console.error("Unexpected API response structure:", result);
+                }
+            } catch (error) {
+                aiInsightText.textContent = "Error generating insight. " + error.message;
+                console.error("Error calling Gemini API:", error);
+            } finally {
+                aiInsightLoading.classList.add('hidden'); // Hide loading spinner
             }
         });
     </script>
