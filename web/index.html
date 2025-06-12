@@ -1,62 +1,519 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Shirly Ben Nun is a motion graphic designer, video editor, and a Junior website developer who specializes in HTML & CSS">
-  <meta name="robots" content="index,follow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
- <link rel="stylesheet" href="../Styles/styles.css">
-  <title> Shirly Ben Nun| Motion Graphic Designer & Website Developer </title>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Shirly Ben Nun is a motion graphic designer, video editor, and a Junior website developer who specializes in HTML & CSS">
+    <meta name="robots" content="index,follow">
+    <title>Shirly Ben Nun | Web Development Projects</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts for 'Inter' -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom font for a modern look - Inter is a good choice */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8); /* Subtle gradient */
+            background-size: 400% 400%; /* For animation */
+            animation: gradientBackground 15s ease infinite alternate; /* Background animation */
+            color: #1a202c; /* Dark text color for readability */
+            position: relative; /* Needed for pseudo-elements and particles */
+            overflow-x: hidden; /* Prevent horizontal scroll from background elements */
+        }
 
+        /* Particles.js canvas styling */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -2; /* Ensure it's behind other background elements and content */
+        }
+
+        /* Keyframes for background gradient animation */
+        @keyframes gradientBackground {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        /* Abstract background shapes/particles */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            z-index: -1; /* Behind content, but in front of particles */
+            border-radius: 50%;
+            opacity: 0.1; /* More subtle opacity */
+            filter: blur(80px); /* Soft blur effect */
+            transition: all 0.5s ease-in-out; /* Smooth transitions */
+        }
+
+        body::before {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #60a5fa, #3b82f6); /* Blueish gradient */
+            top: -50px;
+            left: -50px;
+            animation: floatShape 20s infinite ease-in-out alternate;
+        }
+
+        body::after {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #a78bfa, #8b5cf6); /* Purplish gradient */
+            bottom: -100px;
+            right: -100px;
+            animation: floatShape 25s infinite ease-in-out alternate-reverse;
+        }
+
+        @keyframes floatShape {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -30px) rotate(45deg); }
+            50% { transform: translate(0, 50px) rotate(90deg); }
+            75% { transform: translate(-20px, 30px) rotate(135deg); }
+            100% { transform: translate(0, 0) rotate(180deg); }
+        }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom styles for section titles */
+        .section-title {
+            position: relative;
+            display: inline-block; /* Essential for typing effect on width */
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            color: #2563eb; /* Vibrant blue for titles */
+            /* Typing animation properties */
+            overflow: hidden; /* Ensures text is hidden until typed */
+            white-space: nowrap; /* Keeps text on a single line for typing effect */
+            border-right: 3px solid #2563eb; /* Blinking cursor */
+            animation:
+                typing 3.5s steps(26, end) forwards, /* 26 characters for "Web Development Projects" */
+                blink-caret 0.75s step-end infinite;
+            width: 0; /* Start with 0 width */
+        }
+        /* Remove the ::after rule that creates the underline */
+        .section-title::after {
+            content: none; /* Explicitly remove the pseudo-element content */
+        }
+
+        /* Keyframes for typing animation */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% } /* Animate to full width */
+        }
+
+        /* Keyframes for blinking caret */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #2563eb; }
+        }
+
+        /* Card hover effect for portfolio items */
+        .portfolio-card {
+            background-color: #ffffff; /* White background for cards */
+            border: 1px solid #e2e8f0; /* Very light gray border */
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+        }
+        .portfolio-card:hover {
+            transform: translateY(-8px) scale(1.02); /* More pronounced lift AND slight scale */
+            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.18), 0 8px 12px -5px rgba(0, 0, 0, 0.08), 0 0 20px rgba(59, 130, 246, 0.5); /* Blue glow on hover */
+        }
+        /* Responsive adjustments for header on small screens */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 1.5rem; /* Add some padding on small screens */
+                padding-right: 1.5rem;
+            }
+            nav .logo {
+                margin-bottom: 1rem;
+            }
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+                align-items: flex-start; /* Align nav items to start */
+                background-color: rgba(241, 245, 249, 0.9); /* Slightly darker background for mobile nav with transparency */
+                border-radius: 0.5rem;
+                padding: 1rem;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            }
+            nav ul li {
+                width: 100%;
+                text-align: left; /* Align text to left for LTR */
+            }
+            nav ul li a {
+                display: block;
+                padding: 0.75rem 1rem;
+                width: 100%;
+            }
+            body::before, body::after {
+                width: 150px;
+                height: 150px;
+                filter: blur(50px);
+            }
+            .section-title {
+                font-size: 2.5rem; /* Adjusted font size for small screens to help fit typing effect */
+                white-space: nowrap; /* KEEP nowrap for precise typing effect */
+                overflow: hidden; /* KEEP hidden for precise typing effect */
+                text-align: center;
+                animation:
+                    typing 3.5s steps(26, end) forwards, /* Use the same typing animation */
+                    blink-caret 0.75s step-end infinite;
+            }
+        }
+        /* Custom Footer Gradient - replicating original CSS */
+        .custom-footer-gradient {
+            background: linear-gradient(to right, #ff6600, #ff007b); /* Orange to Pink/Purple */
+        }
+        /* Frosted glass effect for header */
+        .header-frosted {
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+            backdrop-filter: blur(10px); /* Blur effect */
+            -webkit-backdrop-filter: blur(10px); /* Safari support */
+        }
+
+        /* --- Animation for elements on scroll --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Add delays for staggered effect */
+        .animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+        .animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+        .animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+        .animate-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+        .animate-on-scroll:nth-child(5) { transition-delay: 0.5s; }
+        .animate-on-scroll:nth-child(6) { transition-delay: 0.6s; }
+
+
+        /* --- Modal Styles --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh; /* Limit height to prevent overflow */
+            overflow-y: auto; /* Enable scrolling for long content */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .modal-overlay.is-visible .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #4a5568;
+            transition: color 0.2s ease;
+        }
+        .modal-close-btn:hover {
+            color: #ef4444; /* Red for close */
+        }
+    </style>
+</head>
 <body>
-    <header class="main-head">
-        <nav>
-            <div class="logo">
-                <img src="../icons/code.svg" alt="logo">
-                <h1>Shirly Ben Nun</h1>
+    <!-- Particles.js Canvas -->
+    <div id="particles-js"></div>
+
+    <!-- Header -->
+    <header class="header-frosted shadow-md fixed w-full z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
+            <div class="logo flex items-center">
+                <!-- Using Font Awesome icon for a modern look -->
+                <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
+                <h1 class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition duration-300 rounded-lg p-2">Shirly Ben Nun</h1>
             </div>
-            <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../Projects/index.html">Design</a></li>
-        <li><a class="active" href="#">Web</a></li>
-        <li><a href="../contact/index.html">Contact</a></li>
-        <li><a href="../ai/index.html">AI</a></li>
-      </ul>
+            <ul class="flex space-x-8">
+                <li><a href="../index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Home</a></li>
+                <li><a href="../Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Design</a></li>
+                <li><a href="#" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700">Web</a></li>
+                <li><a href="../contact/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
+                <li><a href="../ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
+            </ul>
         </nav>
     </header>
 
-    <div class="projects">
-        <div class="project-item">
-            <a href="https://shirly3212.github.io/TRAVELLY/" target="_blank">
-                <img src="../img/TRAVEELY_ME.png" alt="Travelly">
-            </a>
+    <!-- Main content area with adjusted top padding to prevent header overlap -->
+    <main class="pt-36 pb-12"> <!-- Adjusted padding-top from pt-24 to pt-36 (9rem) -->
+        <div class="container mx-auto px-6 max-w-6xl text-center">
+            <h2 class="text-5xl section-title mx-auto text-gray-800 mb-10">Web Development Projects</h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="project-cards-container">
+                <!-- Project Item 1: TRAVELLY -->
+                <div class="portfolio-card bg-white p-6 rounded-lg shadow-lg transition-all duration-300 border border-gray-100 animate-on-scroll"
+                    data-project='{
+                        "id": "travelly",
+                        "title": "TRAVELLY - Travel Agency Website",
+                        "image": "../img/TRAVELLY_ME.png",
+                        "description": "This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.",
+                        "technologies": ["HTML5", "CSS3", "JavaScript"],
+                        "live_demo": "https://shirly3212.github.io/TRAVELLY/",
+                        "github_repo": "https://github.com/shirly3212/TRAVELLY"
+                    }'>
+                    <img src="../img/TRAVELLY_ME.png" alt="Travelly Website" class="rounded-md mb-4 w-full h-48 object-cover">
+                    <h4 class="text-2xl font-semibold text-gray-800 mb-2">TRAVELLY - Travel Agency Website</h4>
+                    <p class="text-gray-600 mb-4">A modern and responsive website for a travel agency, featuring an attractive design and smooth user experience.</p>
+                    <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full text-sm transition duration-300 flex items-center justify-center w-full mt-4">
+                        View Project <i class="fas fa-external-link-alt ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Project Item 2: People Counter -->
+                <div class="portfolio-card bg-white p-6 rounded-lg shadow-lg transition-all duration-300 border border-gray-100 animate-on-scroll"
+                    data-project='{
+                        "id": "people-counter",
+                        "title": "People Counter - Simple Counter App",
+                        "image": "../img/PEOPLE_COUNTER.png",
+                        "description": "A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.",
+                        "technologies": ["HTML5", "CSS3", "JavaScript"],
+                        "live_demo": "https://shirly3212.github.io/People-Counter/",
+                        "github_repo": "https://github.com/shirly3212/People-Counter"
+                    }'>
+                    <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" class="rounded-md mb-4 w-full h-48 object-cover">
+                    <h4 class="text-2xl font-semibold text-gray-800 mb-2">People Counter - Simple Counter App</h4>
+                    <p class="text-gray-600 mb-4">A straightforward application designed to count people, featuring a clean interface and clear functionality.</p>
+                    <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full text-sm transition duration-300 flex items-center justify-center w-full mt-4">
+                        View Project <i class="fas fa-external-link-alt ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Project Item 3: Photographer -->
+                <div class="portfolio-card bg-white p-6 rounded-lg shadow-lg transition-all duration-300 border border-gray-100 animate-on-scroll"
+                    data-project='{
+                        "id": "photographer",
+                        "title": "Photographer - Visual Portfolio",
+                        "image": "../img/Photographer_me.png",
+                        "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information, built using HTML and CSS to ensure aesthetic appeal across devices.",
+                        "technologies": ["HTML5", "CSS3"],
+                        "live_demo": "https://shirly3212.github.io/Photographer/",
+                        "github_repo": "https://github.com/shirly3212/Photographer"
+                    }'>
+                    <img src="../img/Photographer_me.png" alt="Photographer Portfolio" class="rounded-md mb-4 w-full h-48 object-cover">
+                    <h4 class="text-2xl font-semibold text-gray-800 mb-2">Photographer - Visual Portfolio</h4>
+                    <p class="text-gray-600 mb-4">A sleek visual portfolio for photographers, showcasing work in an elegant and modern style.</p>
+                    <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full text-sm transition duration-300 flex items-center justify-center w-full mt-4">
+                        View Project <i class="fas fa-external-link-alt ml-2"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="project-item">
-            <a href="https://shirly3212.github.io/People-Counter/" target="_blank">
-                <img src="../img/PEOPLE_COUNTER.png" alt="People Counter">
-            </a>
+    </main>
+
+    <!-- Footer -->
+    <footer class="custom-footer-gradient text-white min-h-7vh py-8 flex justify-between items-center flex-wrap px-5">
+        <h4 class="text-xl font-medium mb-4 md:mb-0">Shirly Ben Nun © 2025</h4>
+        <ul class="flex justify-center items-center flex-wrap gap-6">
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Instagram"><i class="fab fa-instagram text-2xl"></i></a></li>
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Twitter"><i class="fab fa-twitter text-2xl"></i></a></li>
+            <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-200 transition duration-300" title="YouTube"><i class="fab fa-youtube text-2xl"></i></a></li>
+            <!-- Added LinkedIn and GitHub icons for professional portfolios -->
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="LinkedIn"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="GitHub"><i class="fab fa-github text-2xl"></i></a></li>
+        </ul>
+    </footer>
+
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+            <img id="modalProjectImage" src="" alt="Project Image" class="rounded-md mb-4 w-full h-64 object-cover">
+            <h3 id="modalProjectTitle" class="text-3xl font-bold text-gray-800 mb-4"></h3>
+            <p id="modalProjectDescription" class="text-gray-700 mb-4"></p>
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-gray-600 font-semibold">Technologies Used:</span>
+                <div id="modalTechnologies" class="flex flex-wrap gap-2"></div>
+            </div>
+            <div class="flex justify-center gap-4 mt-6">
+                <a id="modalLiveDemoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full transition duration-300 flex items-center">
+                    Live Demo <i class="fas fa-external-link-alt ml-2"></i>
+                </a>
+                <a id="modalGithubRepoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-full transition duration-300 flex items-center">
+                    GitHub Repo <i class="fab fa-github ml-2"></i>
+                </a>
+            </div>
         </div>
-       <div class="project-item">
-      <a href="https://shirly3212.github.io/Photographer/" target="_blank">
-        <img src="../img/Photographer_me.png" alt="Photographer">
-      </a>
     </div>
-  </div> 
-<footer>
-    <h4> Shirly Ben Nun © 2025 </h4>
-    <li><a href="#"><img src="../icons/instagram 1.svg" alt="instagram"></a></li>
-    <li><a href="#"><img src="../icons/twitter 1.svg" alt="twitter"></a></li>
-    <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w"><img src="../icons/youtube-symbol 1.svg" alt="youtube-social"></a></li>
-  </footer>
 
- </body>
+    <!-- Particles.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // --- Particles.js Initialization ---
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#b0e0e6" }, /* Light blue/cyan */
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#b0e0e6",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 3, /* Slightly slower speed for subtlety */
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" }, /* Grab effect on hover */
+                    "onclick": { "enable": true, "mode": "push" }, /* Push effect on click */
+                    "resize": true
+                },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+                    "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 },
+                    "repulse": { "distance": 200, "duration": 0.4 },
+                    "push": { "particles_nb": 4 },
+                    "remove": { "particles_nb": 2 }
+                }
+            },
+            "retina_detect": true
+        });
 
+        // --- Animation on Scroll Logic ---
+        const projectCards = document.querySelectorAll('.animate-on-scroll');
 
+        const observerOptions = {
+            root: null, /* viewport as root */
+            rootMargin: '0px',
+            threshold: 0.1 /* callback fires when 10% of item is visible */
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // observer.unobserve(entry.target); // Optional: stop observing once animated
+                }
+            });
+        }, observerOptions);
+
+        projectCards.forEach(card => {
+            observer.observe(card);
+        });
+
+        // --- Modal Logic ---
+        const projectModal = document.getElementById('projectModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalProjectImage = document.getElementById('modalProjectImage');
+        const modalProjectTitle = document.getElementById('modalProjectTitle');
+        const modalProjectDescription = document.getElementById('modalProjectDescription');
+        const modalTechnologies = document.getElementById('modalTechnologies');
+        const modalLiveDemoBtn = document.getElementById('modalLiveDemoBtn');
+        const modalGithubRepoBtn = document.getElementById('modalGithubRepoBtn');
+
+        // Function to open the modal
+        function openModal(projectData) {
+            modalProjectImage.src = projectData.image;
+            modalProjectTitle.textContent = projectData.title;
+            modalProjectDescription.textContent = projectData.description;
+
+            modalTechnologies.innerHTML = ''; // Clear previous technologies
+            projectData.technologies.forEach(tech => {
+                const span = document.createElement('span');
+                span.textContent = tech;
+                span.classList.add('bg-blue-100', 'text-blue-800', 'text-xs', 'font-medium', 'px-2.5', 'py-0.5', 'rounded-full', 'dark:bg-blue-900', 'dark:text-blue-300');
+                modalTechnologies.appendChild(span);
+            });
+
+            modalLiveDemoBtn.href = projectData.live_demo;
+            modalGithubRepoBtn.href = projectData.github_repo;
+
+            projectModal.classList.add('is-visible');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling of body
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            projectModal.classList.remove('is-visible');
+            document.body.style.overflow = ''; // Restore scrolling of body
+        }
+
+        // Event listeners for opening modal (now on the "View Project" button)
+        document.querySelectorAll('.view-project-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                // Get project data from the parent card's data-project attribute
+                const projectDataString = event.target.closest('.portfolio-card').dataset.project;
+                const projectData = JSON.parse(projectDataString);
+                openModal(projectData);
+            });
+        });
+
+        // Event listener for closing modal via button
+        closeModalBtn.addEventListener('click', closeModal);
+
+        // Event listener for closing modal by clicking outside content
+        projectModal.addEventListener('click', (event) => {
+            if (event.target === projectModal) { // Only close if clicked directly on overlay
+                closeModal();
+            }
+        });
+
+        // Event listener for closing modal with Escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && projectModal.classList.contains('is-visible')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
 </html>
