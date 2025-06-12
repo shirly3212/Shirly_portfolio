@@ -2,51 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Projects | Shirly Ben Nun</title>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
-    /* רקע רקע ופריימים */
-    body, html {
-      margin: 0; padding: 0; height: 100%;
-      font-family: "Manrope", sans-serif;
-      background: radial-gradient(circle at 30% 20%, #ccf2f4, #e5e9f0, #ffffff);
-      background-attachment: fixed;
-      color: #1a1a1a;
-      overflow-x: hidden;
-      text-align: center;
-      position: relative;
-      min-height: 100vh;
+    /* הסרנו את body::before הישן */
+    body::before {
+      content: none;
     }
-    /* קנבס רקע דינמי */
-    #background {
+    /* רקע דינמי עם particles.js */
+    #particles-js {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
-      background: #00000000;
-      pointer-events: none;
-    }
-    /* סגנונות קיים מהקוד שלך */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
       z-index: -2;
-      background: linear-gradient(135deg, rgba(0,188,212,0.1) 0%, rgba(124,77,255,0.08) 100%), url('https://cdn.jsdelivr.net/gh/shirlyweb/tech-grid.svg');
-      background-size: cover;
-      opacity: 0.8;
-      animation: backgroundMove 60s linear infinite;
+      background: radial-gradient(circle at 30% 20%, #ccf2f4, #e5e9f0, #ffffff);
     }
-    @keyframes backgroundMove {
-      0% { background-position: 0 0; }
-      100% { background-position: 1000px 1000px; }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: "Manrope", sans-serif;
+      color: #1a1a1a;
+      overflow-x: hidden;
+      text-align: center;
+      background: none;
     }
     .cursor {
       width: 20px;
@@ -121,7 +105,7 @@
       max-width: 1400px;
       margin: auto;
       position: relative;
-      z-index: 10;
+      z-index: 5;
     }
     .two-column-section .text {
       flex: 1 1 400px;
@@ -159,7 +143,7 @@
       overflow: hidden;
       background: #000;
       box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-      z-index: 10;
+      z-index: 5;
     }
     .phone-mockup iframe {
       width: 100%;
@@ -177,7 +161,7 @@
       text-align: center;
       flex: 1 1 200px;
       transition: transform 0.3s ease;
-      z-index: 10;
+      z-index: 5;
     }
     .metric-box:hover {
       transform: scale(1.05);
@@ -191,7 +175,6 @@
       height: 5px;
       background: linear-gradient(90deg, #00bcd4, #7c4dff);
       animation: scan 3s linear infinite;
-      border-radius: 1.5rem 1.5rem 0 0;
     }
     @keyframes scan {
       0% { transform: translateX(-100%); }
@@ -203,16 +186,14 @@
       background: #f5f5f5;
       font-size: 0.9rem;
       position: relative;
-      z-index: 10;
+      z-index: 5;
     }
   </style>
 </head>
 <body>
-  <canvas id="background"></canvas>
-
   <header>
     <div class="logo">
-      <img src="https://cdn.jsdelivr.net/gh/shirlyweb/icons/code.svg" alt="logo" />
+      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="logo" />
       <h1>Shirly Herscovici</h1>
     </div>
     <nav>
@@ -226,6 +207,7 @@
     </nav>
   </header>
 
+  <div id="particles-js"></div>
   <div class="cursor" id="cursor"></div>
   <h2 class="typewriter">Creating the Future with AI...</h2>
 
@@ -267,10 +249,6 @@
     <p>Shirly Ben Nun &copy; 2025</p>
   </footer>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
   <script>
     window.addEventListener("DOMContentLoaded", function () {
       if (typeof AOS !== 'undefined') {
@@ -295,78 +273,103 @@
         cursor.style.top = e.clientY + "px";
       });
       function countUp(id, endVal, suffix = "%") {
-        let obj = document.getElementById(id);
-        let current = 0;
-        let increment = endVal / 100;
+        let el = document.getElementById(id);
+        let i = 0;
         let interval = setInterval(() => {
-          current += increment;
-          if (current >= endVal) {
-            current = endVal;
+          if (i >= endVal) {
             clearInterval(interval);
+          } else {
+            i++;
+            el.innerText = i + suffix;
           }
-          obj.textContent = Math.floor(current) + suffix;
-        }, 25);
+        }, 20);
       }
-      countUp("count1", 70);
-      countUp("count2", 3, "X");
-      countUp("count3", 24, "");
-      countUp("count4", 50);
-    });
+      countUp("count1", 95);
+      countUp("count2", 4, "X");
+      countUp("count3", 24, "/7");
+      countUp("count4", 80);
 
-    // קנבס רקע דינמי - אפקט חלקיקים זורמים  
-    const canvas = document.getElementById('background');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function initCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', initCanvas);
-    initCanvas();
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.3;
-        this.vy = (Math.random() - 0.5) * 0.3;
-        this.radius = Math.random() * 2 + 1;
-        this.alpha = Math.random() * 0.5 + 0.1;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if(this.x > canvas.width) this.x = 0;
-        else if(this.x < 0) this.x = canvas.width;
-        if(this.y > canvas.height) this.y = 0;
-        else if(this.y < 0) this.y = canvas.height;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-        ctx.fillStyle = `rgba(0, 188, 212, ${this.alpha})`;
-        ctx.fill();
-      }
-    }
-
-    function createParticles(num) {
-      particles = [];
-      for(let i = 0; i < num; i++) {
-        particles.push(new Particle());
-      }
-    }
-    createParticles(120);
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
+      /* הפעלת particles.js */
+      particlesJS("particles-js", {
+        "particles": {
+          "number": {
+            "value": 80,
+            "density": {
+              "enable": true,
+              "value_area": 800
+            }
+          },
+          "color": {
+            "value": "#00bcd4"
+          },
+          "shape": {
+            "type": "circle",
+            "stroke": {
+              "width": 0,
+              "color": "#000000"
+            }
+          },
+          "opacity": {
+            "value": 0.5,
+            "random": true,
+            "anim": {
+              "enable": true,
+              "speed": 1,
+              "opacity_min": 0.1,
+              "sync": false
+            }
+          },
+          "size": {
+            "value": 4,
+            "random": true,
+            "anim": {
+              "enable": true,
+              "speed": 5,
+              "size_min": 0.1,
+              "sync": false
+            }
+          },
+          "move": {
+            "enable": true,
+            "speed": 2,
+            "direction": "none",
+            "random": true,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": false,
+            "attract": {
+              "enable": false
+            }
+          }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": {
+              "enable": true,
+              "mode": "grab"
+            },
+            "onclick": {
+              "enable": true,
+              "mode": "push"
+            },
+            "resize": true
+          },
+          "modes": {
+            "grab": {
+              "distance": 150,
+              "line_linked": {
+                "opacity": 0.6
+              }
+            },
+            "push": {
+              "particles_nb": 4
+            }
+          }
+        },
+        "retina_detect": true
       });
-      requestAnimationFrame(animate);
-    }
-    animate();
+    });
   </script>
 </body>
 </html>
