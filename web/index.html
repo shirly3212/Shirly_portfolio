@@ -47,35 +47,35 @@
             position: absolute;
             z-index: -1; /* Behind content, but in front of particles */
             border-radius: 50%;
-            opacity: 0.2; /* Increased opacity for more presence */
-            filter: blur(100px); /* Softer, larger blur effect */
+            opacity: 0.3; /* Increased opacity for more presence */
+            filter: blur(120px); /* Softer, larger blur effect */
             transition: all 0.5s ease-in-out; /* Smooth transitions */
         }
 
         body::before {
-            width: 350px; /* Slightly larger */
-            height: 350px; /* Slightly larger */
-            background: linear-gradient(45deg, #60a5fa, #3b82f6); /* Blueish gradient */
-            top: -70px; /* Adjusted position */
-            left: -70px; /* Adjusted position */
-            animation: floatShape 22s infinite ease-in-out alternate; /* Varied animation duration */
+            width: 450px; /* Larger size */
+            height: 450px; /* Larger size */
+            background: radial-gradient(circle at top left, #8dcef8, #3b82f6); /* Softer blue gradient */
+            top: -100px; /* Adjusted position */
+            left: -100px; /* Adjusted position */
+            animation: floatShape 24s infinite ease-in-out alternate; /* Varied animation duration */
         }
 
         body::after {
-            width: 450px; /* Slightly larger */
-            height: 450px; /* Slightly larger */
-            background: linear-gradient(135deg, #a78bfa, #8b5cf6); /* Purplish gradient */
-            bottom: -120px; /* Adjusted position */
-            right: -120px; /* Adjusted position */
-            animation: floatShape 28s infinite ease-in-out alternate-reverse; /* Varied animation duration */
+            width: 550px; /* Larger size */
+            height: 550px; /* Larger size */
+            background: radial-gradient(circle at bottom right, #e879f9, #a78bfa); /* Pink/purple gradient */
+            bottom: -150px; /* Adjusted position */
+            right: -150px; /* Adjusted position */
+            animation: floatShape 30s infinite ease-in-out alternate-reverse; /* Varied animation duration */
         }
 
         @keyframes floatShape {
             0% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(30px, -40px) rotate(60deg); }
-            50% { transform: translate(-10px, 60px) rotate(120deg); }
-            75% { transform: translate(-40px, 20px) rotate(180deg); }
-            100% { transform: translate(0, 0) rotate(240deg); } /* More rotation */
+            25% { transform: translate(40px, -50px) rotate(75deg); }
+            50% { transform: translate(-20px, 80px) rotate(150deg); }
+            75% { transform: translate(-60px, 30px) rotate(225deg); }
+            100% { transform: translate(0, 0) rotate(300deg); } /* More rotation */
         }
 
         /* Smooth scrolling for anchor links */
@@ -122,12 +122,13 @@
             border: 1px solid #e2e8f0; /* Very light gray border */
             border-radius: 0.75rem; /* Rounded corners */
             /* More defined default shadow */
-            box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.08), 0 3px 6px -3px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.08); /* Slightly more prominent initial shadow */
             transition: transform 0.15s ease, box-shadow 0.15s ease; /* Made transition faster */
+            cursor: pointer; /* Indicate the whole card is clickable */
         }
         .portfolio-card:hover {
             transform: translateY(-8px) scale(1.02); /* More pronounced lift AND slight scale */
-            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.18), 0 8px 12px -5px rgba(0, 0, 0, 0.08), 0 0 20px rgba(59, 130, 246, 0.5); /* Blue glow on hover */
+            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.18), 0 8px 12px -5px rgba(0, 0, 0, 0.08), 0 0 25px rgba(59, 130, 246, 0.6); /* Stronger blue glow on hover */
         }
         /* Responsive adjustments for header on small screens */
         @media (max-width: 768px) {
@@ -160,9 +161,9 @@
                 width: 100%;
             }
             body::before, body::after {
-                width: 150px;
-                height: 150px;
-                filter: blur(50px);
+                width: 200px; /* Adjusted size for mobile */
+                height: 200px; /* Adjusted size for mobile */
+                filter: blur(80px); /* Adjusted blur for mobile */
             }
             .section-title {
                 font-size: 2.5rem; /* Adjusted font size for small screens to help fit typing effect */
@@ -495,15 +496,31 @@
             document.body.style.overflow = ''; // Restore scrolling of body
         }
 
-        // Event listeners for opening modal (now on the "View Project" button)
-        document.querySelectorAll('.view-project-btn').forEach(button => {
-            button.addEventListener('click', (event) => {
-                // Get project data from the parent card's data-project attribute
-                const projectDataString = event.target.closest('.portfolio-card').dataset.project;
+        // Event listeners for opening modal: now on the entire card OR the "View Project" button
+        document.querySelectorAll('.portfolio-card').forEach(card => {
+            card.addEventListener('click', (event) => {
+                // If the click target is the button itself, or a child of the button,
+                // let the button's specific click handler (if any) or its default action take over.
+                // Otherwise, open the modal using the card's data.
+                if (event.target.closest('.view-project-btn')) {
+                    return; // Don't open modal via card click if button was specifically clicked.
+                }
+
+                const projectDataString = card.dataset.project;
                 const projectData = JSON.parse(projectDataString);
                 openModal(projectData);
             });
         });
+
+        // The button's own event listener (already present) will still work:
+        // document.querySelectorAll('.view-project-btn').forEach(button => {
+        //     button.addEventListener('click', (event) => {
+        //         const projectDataString = event.target.closest('.portfolio-card').dataset.project;
+        //         const projectData = JSON.parse(projectDataString);
+        //         openModal(projectData);
+        //     });
+        // });
+
 
         // Event listener for closing modal via button
         closeModalBtn.addEventListener('click', closeModal);
