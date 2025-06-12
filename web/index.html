@@ -127,8 +127,8 @@
             cursor: pointer; /* Indicate the whole card is clickable */
         }
         .portfolio-card:hover {
-            transform: translateY(-8px) scale(1.02); /* More pronounced lift AND slight scale */
-            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.18), 0 8px 12px -5px rgba(0, 0, 0, 0.08), 0 0 25px rgba(59, 130, 246, 0.6); /* Stronger blue glow on hover */
+            transform: translateY(-8px) scale(1.04); /* Increased scale on hover */
+            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.18), 0 8px 12px -5px rgba(0, 0, 0, 0.08), 0 0 30px rgba(59, 130, 246, 0.8); /* Stronger blue glow on hover */
         }
         /* Responsive adjustments for header on small screens */
         @media (max-width: 768px) {
@@ -291,10 +291,10 @@
 
     <!-- Main content area with adjusted top padding to prevent header overlap -->
     <main class="pt-36 pb-12"> <!-- Adjusted padding-top from pt-24 to pt-36 (9rem) -->
-        <div class="container mx-auto px-6 max-w-6xl text-center">
+        <div class="container mx-auto px-6 max-w-7xl text-center"> <!-- Changed max-w-6xl to max-w-7xl -->
             <h2 class="text-5xl section-title mx-auto text-gray-800 mb-10">Web Development Projects</h2>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="project-cards-container">
+            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8" id="project-cards-container"> <!-- Changed lg:grid-cols-3 to xl:grid-cols-3 and increased gap -->
                 <!-- Project Item 1: TRAVELLY -->
                 <div class="portfolio-card bg-white p-6 rounded-lg shadow-lg transition-all duration-300 border border-gray-100 animate-on-scroll"
                     data-project='{
@@ -306,9 +306,9 @@
                         "live_demo": "https://shirly3212.github.io/TRAVELLY/",
                         "github_repo": "https://github.com/shirly3212/TRAVELLY"
                     }'>
-                    <img src="../img/TRAVELLY_ME.png" alt="Travelly Website" class="rounded-md mb-4 w-full h-48 object-cover">
+                    <img src="../img/TRAVELLY_ME.png" alt="Travelly Website" class="rounded-md mb-4 w-full h-56 md:h-64 object-cover"> <!-- Increased image height -->
                     <h4 class="text-2xl font-semibold text-gray-800 mb-2">TRAVELLY - Travel Agency Website</h4>
-                    <p class="text-gray-600 mb-4">A modern and responsive website for a travel agency, featuring an attractive design and smooth user experience.</p>
+                    <p class="text-gray-600 text-lg mb-4">A modern and responsive website for a travel agency, featuring an attractive design and smooth user experience.</p> <!-- Increased text size -->
                     <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full text-sm transition duration-300 flex items-center justify-center w-full mt-4">
                         View Project <i class="fas fa-external-link-alt ml-2"></i>
                     </button>
@@ -325,9 +325,9 @@
                         "live_demo": "https://shirly3212.github.io/People-Counter/",
                         "github_repo": "https://github.com/shirly3212/People-Counter"
                     }'>
-                    <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" class="rounded-md mb-4 w-full h-48 object-cover">
+                    <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" class="rounded-md mb-4 w-full h-56 md:h-64 object-cover"> <!-- Increased image height -->
                     <h4 class="text-2xl font-semibold text-gray-800 mb-2">People Counter - Simple Counter App</h4>
-                    <p class="text-gray-600 mb-4">A straightforward application designed to count people, featuring a clean interface and clear functionality.</p>
+                    <p class="text-gray-600 text-lg mb-4">A straightforward application designed to count people, featuring a clean interface and clear functionality.</p> <!-- Increased text size -->
                     <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full text-sm transition duration-300 flex items-center justify-center w-full mt-4">
                         View Project <i class="fas fa-external-link-alt ml-2"></i>
                     </button>
@@ -344,9 +344,9 @@
                         "live_demo": "https://shirly3212.github.io/Photographer/",
                         "github_repo": "https://github.com/shirly3212/Photographer"
                     }'>
-                    <img src="../img/Photographer_me.png" alt="Photographer Portfolio" class="rounded-md mb-4 w-full h-48 object-cover">
+                    <img src="../img/Photographer_me.png" alt="Photographer Portfolio" class="rounded-md mb-4 w-full h-56 md:h-64 object-cover"> <!-- Increased image height -->
                     <h4 class="text-2xl font-semibold text-gray-800 mb-2">Photographer - Visual Portfolio</h4>
-                    <p class="text-gray-600 mb-4">A sleek visual portfolio for photographers, showcasing work in an elegant and modern style.</p>
+                    <p class="text-gray-600 text-lg mb-4">A sleek visual portfolio for photographers, showcasing work in an elegant and modern style.</p> <!-- Increased text size -->
                     <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full text-sm transition duration-300 flex items-center justify-center w-full mt-4">
                         View Project <i class="fas fa-external-link-alt ml-2"></i>
                     </button>
