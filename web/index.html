@@ -15,6 +15,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Custom font for a modern look - Inter is a good choice */
+        html {
+            height: 100%; /* Ensure html takes full height */
+        }
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8); /* Subtle gradient */
@@ -23,11 +26,15 @@
             color: #1a202c; /* Dark text color for readability */
             position: relative; /* Needed for pseudo-elements and particles */
             overflow-x: hidden; /* Prevent horizontal scroll from background elements */
+
+            display: flex; /* Flexbox for sticky footer */
+            flex-direction: column; /* Stack children vertically */
+            min-height: 100vh; /* Ensure body takes at least full viewport height */
         }
 
         /* Particles.js canvas styling */
         #particles-js {
-            position: absolute;
+            position: fixed; /* Changed to fixed to cover entire viewport regardless of scroll */
             width: 100%;
             height: 100%;
             top: 0;
@@ -44,7 +51,7 @@
         /* Abstract background shapes/particles */
         body::before, body::after {
             content: '';
-            position: absolute;
+            position: fixed; /* Changed to fixed to stay in viewport regardless of scroll */
             z-index: -1; /* Behind content, but in front of particles */
             border-radius: 50%;
             opacity: 0.3; /* Increased opacity for more presence */
@@ -290,11 +297,11 @@
     </header>
 
     <!-- Main content area with adjusted top padding to prevent header overlap -->
-    <main class="pt-36 pb-12"> <!-- Adjusted padding-top from pt-24 to pt-36 (9rem) -->
-        <div class="container mx-auto px-6 max-w-screen-2xl text-center"> <!-- Changed max-w-7xl to max-w-screen-2xl -->
+    <main class="pt-36 pb-12 flex-grow"> <!-- Added flex-grow here -->
+        <div class="container mx-auto px-6 max-w-screen-2xl text-center">
             <h2 class="text-5xl section-title mx-auto text-gray-800 mb-10">Web Development Projects</h2>
 
-            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-x-16 gap-y-12" id="project-cards-container"> <!-- Increased gap-x and gap-y -->
+            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-x-16 gap-y-12" id="project-cards-container">
                 <!-- Project Item 1: TRAVELLY -->
                 <div class="portfolio-card bg-white p-6 rounded-lg shadow-lg transition-all duration-300 border border-gray-100 animate-on-scroll"
                     data-project='{
@@ -306,9 +313,9 @@
                         "live_demo": "https://shirly3212.github.io/TRAVELLY/",
                         "github_repo": "https://github.com/shirly3212/TRAVELLY"
                     }'>
-                    <img src="../img/TRAVELLY_ME.png" alt="Travelly Website" class="rounded-md mb-4 w-full h-56 md:h-64 object-cover"> <!-- Increased image height -->
+                    <img src="../img/TRAVELLY_ME.png" alt="Travelly Website" class="rounded-md mb-4 w-full h-56 md:h-64 object-cover">
                     <h4 class="text-2xl font-semibold text-gray-800 mb-2">TRAVELLY - Travel Agency Website</h4>
-                    <p class="text-gray-600 text-lg mb-4">A modern and responsive website for a travel agency, featuring an attractive design and smooth user experience.</p> <!-- Increased text size -->
+                    <p class="text-gray-600 text-lg mb-4">A modern and responsive website for a travel agency, featuring an attractive design and smooth user experience.</p>
                     <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full text-sm transition duration-300 flex items-center justify-center w-full mt-4">
                         View Project <i class="fas fa-external-link-alt ml-2"></i>
                     </button>
@@ -325,9 +332,9 @@
                         "live_demo": "https://shirly3212.github.io/People-Counter/",
                         "github_repo": "https://github.com/shirly3212/People-Counter"
                     }'>
-                    <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" class="rounded-md mb-4 w-full h-56 md:h-64 object-cover"> <!-- Increased image height -->
+                    <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" class="rounded-md mb-4 w-full h-56 md:h-64 object-cover">
                     <h4 class="text-2xl font-semibold text-gray-800 mb-2">People Counter - Simple Counter App</h4>
-                    <p class="text-gray-600 text-lg mb-4">A straightforward application designed to count people, featuring a clean interface and clear functionality.</p> <!-- Increased text size -->
+                    <p class="text-gray-600 text-lg mb-4">A straightforward application designed to count people, featuring a clean interface and clear functionality.</p>
                     <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full text-sm transition duration-300 flex items-center justify-center w-full mt-4">
                         View Project <i class="fas fa-external-link-alt ml-2"></i>
                     </button>
@@ -344,9 +351,9 @@
                         "live_demo": "https://shirly3212.github.io/Photographer/",
                         "github_repo": "https://github.com/shirly3212/Photographer"
                     }'>
-                    <img src="../img/Photographer_me.png" alt="Photographer Portfolio" class="rounded-md mb-4 w-full h-56 md:h-64 object-cover"> <!-- Increased image height -->
+                    <img src="../img/Photographer_me.png" alt="Photographer Portfolio" class="rounded-md mb-4 w-full h-56 md:h-64 object-cover">
                     <h4 class="text-2xl font-semibold text-gray-800 mb-2">Photographer - Visual Portfolio</h4>
-                    <p class="text-gray-600 text-lg mb-4">A sleek visual portfolio for photographers, showcasing work in an elegant and modern style.</p> <!-- Increased text size -->
+                    <p class="text-gray-600 text-lg mb-4">A sleek visual portfolio for photographers, showcasing work in an elegant and modern style.</p>
                     <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full text-sm transition duration-300 flex items-center justify-center w-full mt-4">
                         View Project <i class="fas fa-external-link-alt ml-2"></i>
                     </button>
