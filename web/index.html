@@ -129,13 +129,13 @@
             border: 1px solid #e2e8f0; /* Very light gray border */
             border-radius: 0.75rem; /* Rounded corners */
             /* More defined default shadow */
-            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.08); /* Slightly more prominent initial shadow */
+            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.15), 0 4px 8px -4px rgba(0, 0, 0, 0.1); /* Stronger initial shadow */
             transition: transform 0.15s ease, box-shadow 0.15s ease; /* Made transition faster */
             cursor: pointer; /* Indicate the whole card is clickable */
         }
         .portfolio-card:hover {
             transform: translateY(-8px) scale(1.05); /* Increased scale on hover to 1.05 */
-            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.18), 0 8px 12px -5px rgba(0, 0, 0, 0.08), 0 0 40px rgba(59, 130, 246, 0.9); /* Stronger blue glow on hover */
+            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.25), 0 8px 12px -5px rgba(0, 0, 0, 0.15), 0 0 50px rgba(59, 130, 246, 1); /* Even stronger blue glow on hover */
         }
         /* Responsive adjustments for header on small screens */
         @media (max-width: 768px) {
@@ -298,31 +298,35 @@
 
     <!-- Main content area with adjusted top padding to prevent header overlap -->
     <main class="pt-36 pb-12 flex-grow"> <!-- Added flex-grow here -->
-        <div class="container mx-auto px-6 max-w-screen-2xl text-center">
+        <div class="container mx-auto px-6 w-full text-center"> <!-- Removed max-w-screen-2xl for full width -->
             <h2 class="text-5xl section-title mx-auto text-gray-800 mb-10">Web Development Projects</h2>
 
-            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-x-16 gap-y-12" id="project-cards-container">
+            <div class="flex flex-col gap-y-12" id="project-cards-container"> <!-- Changed to flex col and increased gap-y -->
                 <!-- Project Item 1: TRAVELLY -->
-                <div class="portfolio-card bg-white p-6 rounded-lg shadow-lg transition-all duration-300 border border-gray-100 animate-on-scroll"
+                <div class="portfolio-card flex flex-col md:flex-row items-center bg-white p-8 rounded-xl shadow-2xl animate-on-scroll"
                     data-project='{
                         "id": "travelly",
                         "title": "TRAVELLY - Travel Agency Website",
-                        "image": "../img/TRAVELLY_ME.png",
+                        "image": "uploaded:image_79a716.jpg-0152efb6-ad31-4da5-996f-95a5bc98e841",
                         "description": "This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.",
                         "technologies": ["HTML5", "CSS3", "JavaScript"],
                         "live_demo": "https://shirly3212.github.io/TRAVELLY/",
-                        "github_repo": "https://shirly3212/TRAVELLY"
+                        "github_repo": "https://github.com/shirly3212/TRAVELLY"
                     }'>
-                    <img src="../img/TRAVELLY_ME.png" alt="Travelly Website" class="rounded-md mb-4 w-full h-56 md:h-64 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                    <h4 class="text-2xl font-semibold text-gray-800 mb-2">TRAVELLY - Travel Agency Website</h4>
-                    <p class="text-gray-600 text-lg mb-4">A modern and responsive website for a travel agency, featuring an attractive design and smooth user experience.</p>
-                    <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full text-sm transition duration-300 flex items-center justify-center w-full mt-4">
-                        View Project <i class="fas fa-external-link-alt ml-2"></i>
-                    </button>
+                    <div class="md:w-1/2 flex justify-center items-center mb-6 md:mb-0 md:mr-8">
+                        <img src="uploaded:image_79a716.jpg-0152efb6-ad31-4da5-996f-95a5bc98e841" alt="Travelly Website" class="rounded-lg w-full h-64 md:h-80 object-cover shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    </div>
+                    <div class="md:w-1/2 flex flex-col justify-center text-center md:text-left">
+                        <h4 class="text-3xl font-bold text-gray-800 mb-3">TRAVELLY - Travel Agency Website</h4>
+                        <p class="text-gray-700 text-lg mb-6 leading-relaxed">A modern and responsive website for a travel agency, featuring an attractive design and smooth user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.</p>
+                        <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center w-full md:w-auto self-center md:self-start">
+                            View Project <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Project Item 2: People Counter -->
-                <div class="portfolio-card bg-white p-6 rounded-lg shadow-lg transition-all duration-300 border border-gray-100 animate-on-scroll"
+                <!-- Project Item 2: People Counter - Reversed Layout -->
+                <div class="portfolio-card flex flex-col md:flex-row-reverse items-center bg-white p-8 rounded-xl shadow-2xl animate-on-scroll"
                     data-project='{
                         "id": "people-counter",
                         "title": "People Counter - Simple Counter App",
@@ -332,16 +336,20 @@
                         "live_demo": "https://shirly3212.github.io/People-Counter/",
                         "github_repo": "https://github.com/shirly3212/People-Counter"
                     }'>
-                    <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" class="rounded-md mb-4 w-full h-56 md:h-64 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                    <h4 class="text-2xl font-semibold text-gray-800 mb-2">People Counter - Simple Counter App</h4>
-                    <p class="text-gray-600 text-lg mb-4">A straightforward application designed to count people, featuring a clean interface and clear functionality.</p>
-                    <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full text-sm transition duration-300 flex items-center justify-center w-full mt-4">
-                        View Project <i class="fas fa-external-link-alt ml-2"></i>
-                    </button>
+                    <div class="md:w-1/2 flex justify-center items-center mb-6 md:mb-0 md:ml-8">
+                        <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" class="rounded-lg w-full h-64 md:h-80 object-cover shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    </div>
+                    <div class="md:w-1/2 flex flex-col justify-center text-center md:text-right">
+                        <h4 class="text-3xl font-bold text-gray-800 mb-3">People Counter - Simple Counter App</h4>
+                        <p class="text-gray-700 text-lg mb-6 leading-relaxed">A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.</p>
+                        <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center w-full md:w-auto self-center md:self-end">
+                            View Project <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Project Item 3: Photographer -->
-                <div class="portfolio-card bg-white p-6 rounded-lg shadow-lg transition-all duration-300 border border-gray-100 animate-on-scroll"
+                <!-- Project Item 3: Photographer - Standard Layout -->
+                <div class="portfolio-card flex flex-col md:flex-row items-center bg-white p-8 rounded-xl shadow-2xl animate-on-scroll"
                     data-project='{
                         "id": "photographer",
                         "title": "Photographer - Visual Portfolio",
@@ -351,12 +359,16 @@
                         "live_demo": "https://shirly3212.github.io/Photographer/",
                         "github_repo": "https://github.com/shirly3212/Photographer"
                     }'>
-                    <img src="../img/Photographer_me.png" alt="Photographer Portfolio" class="rounded-md mb-4 w-full h-56 md:h-64 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                    <h4 class="text-2xl font-semibold text-gray-800 mb-2">Photographer - Visual Portfolio</h4>
-                    <p class="text-gray-600 text-lg mb-4">A sleek visual portfolio for photographers, showcasing work in an elegant and modern style.</p>
-                    <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full text-sm transition duration-300 flex items-center justify-center w-full mt-4">
-                        View Project <i class="fas fa-external-link-alt ml-2"></i>
-                    </button>
+                    <div class="md:w-1/2 flex justify-center items-center mb-6 md:mb-0 md:mr-8">
+                        <img src="../img/Photographer_me.png" alt="Photographer Portfolio" class="rounded-lg w-full h-64 md:h-80 object-cover shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    </div>
+                    <div class="md:w-1/2 flex flex-col justify-center text-center md:text-left">
+                        <h4 class="text-3xl font-bold text-gray-800 mb-3">Photographer - Visual Portfolio</h4>
+                        <p class="text-gray-700 text-lg mb-6 leading-relaxed">A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information, built using HTML and CSS to ensure aesthetic appeal across devices.</p>
+                        <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center w-full md:w-auto self-center md:self-start">
+                            View Project <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
