@@ -127,8 +127,8 @@
             cursor: pointer; /* Indicate the whole card is clickable */
         }
         .portfolio-card:hover {
-            transform: translateY(-8px) scale(1.04); /* Increased scale on hover */
-            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.18), 0 8px 12px -5px rgba(0, 0, 0, 0.08), 0 0 30px rgba(59, 130, 246, 0.8); /* Stronger blue glow on hover */
+            transform: translateY(-8px) scale(1.05); /* Increased scale on hover to 1.05 */
+            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.18), 0 8px 12px -5px rgba(0, 0, 0, 0.08), 0 0 40px rgba(59, 130, 246, 0.9); /* Stronger blue glow on hover */
         }
         /* Responsive adjustments for header on small screens */
         @media (max-width: 768px) {
@@ -291,10 +291,10 @@
 
     <!-- Main content area with adjusted top padding to prevent header overlap -->
     <main class="pt-36 pb-12"> <!-- Adjusted padding-top from pt-24 to pt-36 (9rem) -->
-        <div class="container mx-auto px-6 max-w-7xl text-center"> <!-- Changed max-w-6xl to max-w-7xl -->
+        <div class="container mx-auto px-6 max-w-screen-2xl text-center"> <!-- Changed max-w-7xl to max-w-screen-2xl -->
             <h2 class="text-5xl section-title mx-auto text-gray-800 mb-10">Web Development Projects</h2>
 
-            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8" id="project-cards-container"> <!-- Changed lg:grid-cols-3 to xl:grid-cols-3 and increased gap -->
+            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-x-16 gap-y-12" id="project-cards-container"> <!-- Increased gap-x and gap-y -->
                 <!-- Project Item 1: TRAVELLY -->
                 <div class="portfolio-card bg-white p-6 rounded-lg shadow-lg transition-all duration-300 border border-gray-100 animate-on-scroll"
                     data-project='{
