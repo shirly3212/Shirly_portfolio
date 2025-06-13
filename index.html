@@ -29,7 +29,7 @@
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            /* Removed min-height: 100vh from body */
         }
 
         /* Particles.js canvas styling */
@@ -193,6 +193,9 @@
             justify-content: space-between;
             align-items: center;
             flex-direction: row;
+            /* Ensure intro section takes up remaining space for footer visibility */
+            min-height: calc(100vh - 12rem - 7vh); /* Adjusted height (header height + footer height) */
+            padding-top: 8rem; /* Adjusted padding to push content below fixed header */
         }
         .intro h2 {
             font-size: 8rem; /* Explicit size, overrides Tailwind if present */
@@ -220,23 +223,47 @@
 
         /* Mobile specific styles */
         @media screen and (max-width: 754px) {
-            /* Remove the problematic override for header.main-head - keep it fixed! */
-            /* header.main-head {
-                display: block !important;
+            /* Ensure header.main-head is always visible and compact */
+            header.main-head {
+                display: flex; /* Must be flex to control internal layout */
+                flex-direction: column; /* Stack logo and nav items */
+                align-items: center; /* Center horizontally */
+                justify-content: center; /* Center vertically */
+                min-height: 80px; /* Ensure a consistent height for the header */
+                padding: 1rem; /* Adjust padding for mobile header */
+                position: fixed; /* Ensure it stays fixed */
+                top: 0;
+                left: 0;
                 width: 100%;
-                position: relative;
-                z-index: 999;
-            } */
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
 
             /* Ensure nav itself remains a row layout on mobile for logo and toggle */
             nav {
-                flex-direction: row !important; /* Force row direction for logo and toggle */
-                flex-wrap: nowrap !important; /* Prevent wrapping */
+                width: 100%; /* Ensure nav takes full width of header */
+                flex-direction: row; /* Keep logo and toggle side-by-side */
+                justify-content: space-between; /* Space between logo and toggle */
+                align-items: center; /* Vertically align them */
+                flex-wrap: nowrap; /* Prevent wrapping */
+                padding: 0; /* Remove internal padding on nav, handled by header */
+                min-height: auto; /* Let content define height */
             }
 
             /* Mobile nav toggle should be visible and positioned correctly */
             .nav-toggle {
                 display: block; /* Show hamburger icon */
+                /* No need for absolute positioning here, flex handles it */
+            }
+
+            nav .logo {
+                display: flex; /* Keep logo image and text in a row */
+                flex-direction: row;
+                align-items: center;
+                flex: none; /* Prevent logo from shrinking/growing excessively */
+                margin-top: 0; /* Reset mobile specific margin */
+            }
+            nav .logo h1 {
+                font-size: 2rem; /* Smaller font for logo text on mobile */
             }
 
             /* Mobile navigation list */
@@ -244,7 +271,7 @@
                 display: none; /* Hidden by default */
                 flex-direction: column;
                 background: white;
-                position: absolute; /* Position relative to the parent <nav> */
+                position: absolute; /* Position relative to its parent <nav> */
                 top: 100%; /* Position right below the nav bar */
                 left: 0;
                 width: 100%;
@@ -252,8 +279,7 @@
                 z-index: 1000;
                 padding-top: 1rem;
                 padding-bottom: 1rem;
-                /* Add transition for smooth reveal */
-                transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+                transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Smooth transition */
             }
 
             nav ul.show-nav {
@@ -262,7 +288,6 @@
                 visibility: visible;
             }
 
-            /* Hide with opacity and visibility for better transition */
             nav ul:not(.show-nav) {
                 opacity: 0;
                 visibility: hidden;
@@ -280,24 +305,15 @@
             /* Adjust padding-top of intro section to compensate for fixed header height */
             .intro {
                 padding-top: 10rem; /* Increased padding to ensure content is not hidden */
+                min-height: auto; /* Let content dictate height on mobile */
+                justify-content: flex-start; /* Align content to top instead of center */
             }
 
             /* Adjustments for general layout on mobile */
             .main-head {
                 width: 100%;
             }
-            nav .logo {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                flex: 1 1 auto; /* Allow it to take necessary space */
-                margin-top: 0; /* Reset margin */
-            }
-            nav ul { /* Re-added to allow flex: 1 1 60rem; */
-                flex: 1 1 auto; /* Allow it to take necessary space */
-                margin: 0; /* Reset margin */
-            }
+            /* nav .logo and nav ul flex properties handled above in more specific rules */
             .intro-text {
                 margin-top: 2rem; /* Adjusted margin */
                 text-align: center;
@@ -371,7 +387,7 @@
         </nav>
     </header>
 
-    <section class="intro flex-grow pt-36 pb-12">
+    <section class="intro flex-grow pb-12">
         <div class="intro-text text-center lg:text-left mx-auto max-w-4xl px-6">
             <h2 class="text-5xl md:text-6xl font-bold mb-4">Shirly Herscovici</h2>
             <!-- Adjusted h3 font size for responsiveness and line break -->
