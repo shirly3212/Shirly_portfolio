@@ -124,7 +124,8 @@
         line-height: 1.1;
         letter-spacing: -2px; /* Slightly tighter letter spacing */
         position: relative;
-        padding: 0 2rem; /* Adjusted padding to be less extreme, allowing more space for text */
+        padding: 0 1rem; /* Reduced padding further to ensure text doesn't clip */
+        white-space: nowrap; /* Keep text on one line if possible, will break on small screens with media query */
         z-index: 1; /* Ensure text is above the background effect */
     }
 
@@ -213,6 +214,8 @@
       height: auto;
       cursor: pointer;
       flex-shrink: 0;
+      max-width: 300px; /* NEW: Narrower max width for side project cards */
+      margin: 0 auto; /* Center individual cards when they are narrower than their container */
     }
 
     .project-card-item:hover {
@@ -223,7 +226,7 @@
 
     .project-card-item img {
       width: 100%;
-      height: 150px; /* Standard height for side project images */
+      height: 200px; /* Increased height for side project images to make them more elongated */
       object-fit: cover;
       border-radius: 0.75rem 0.75rem 0 0;
     }
@@ -382,6 +385,8 @@
       flex-grow: 1; /* Allow it to take available space */
       padding-bottom: 1.5rem; /* More padding at bottom of featured card */
       transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover effect */
+      max-width: 400px; /* NEW: Narrower max width for featured project card */
+      margin: 0 auto; /* Center individual cards when they are narrower than their container */
     }
 
     .featured-project:hover {
@@ -392,7 +397,7 @@
 
     .featured-project img {
       width: 100%;
-      height: 300px; /* Larger image for featured project */
+      height: 350px; /* Increased height for featured project to make it more elongated */
       object-fit: cover;
       border-radius: 0.75rem 0.75rem 0 0;
     }
@@ -464,15 +469,22 @@
       }
       .featured-projects-content {
         flex-direction: row; /* Featured project on left, side projects on right */
+        justify-content: center; /* Center the featured and side project grid */
+        align-items: flex-start; /* Align items to the top to prevent stretching */
       }
 
       .featured-project {
-        width: 65%; /* Featured project takes more width */
-        max-width: 750px; /* Max width for featured project */
+        /* Adjusted width for desktop to be narrower */
+        width: 45%; /* Adjusted width for desktop */
+        max-width: 400px; /* New max width for featured project */
+        margin-right: 1.5rem; /* Space between featured and side projects */
       }
 
       .side-projects-grid {
-        width: 35%; /* Side projects take remaining width */
+        /* Adjusted width for desktop to be narrower */
+        width: 45%; /* Adjusted width for desktop */
+        max-width: 300px; /* New max width for side project grid */
+        grid-template-columns: 1fr; /* Stack side projects vertically even on desktop */
       }
     }
 
@@ -593,7 +605,7 @@
         border-radius: 1rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         /* Adjusted max-width to make the modal narrower */
-        max-width: 500px; 
+        max-width: 400px; /* Reduced max-width further for a narrower look */
         width: 90%;
         position: relative;
         text-align: left;
@@ -698,6 +710,7 @@
           letter-spacing: -1px;
           line-height: 1.2;
           padding: 0 1rem; /* Adjusted padding for mobile to prevent clipping */
+          white-space: normal; /* Allow text to wrap on small mobile screens */
       }
       .title-bg-effect {
           width: 250px; /* Adjusted size for mobile */
@@ -803,20 +816,19 @@
         <i class="fas fa-bars text-2xl"></i>
       </button>
       <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
-        <li><a href="index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Home</a></li>
+        <li><a href="/Shirly_portfolio/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Home</a></li>
         
         <!-- Design with Sub-menu -->
         <li class="relative group">
             <a href="#" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700 block" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
             <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
-                <li><a href="design_projects_page.html#graphic-design-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-md">Graphic Projects</a></li>
-                <li><a href="graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View All Graphic Projects</a></li>
-                <!-- Updated link for Web Development to navigate and scroll -->
+                <!-- Removed the first li: <li><a href="design_projects_page.html#graphic-design-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-md">Graphic Projects</a></li> -->
+                <li><a href="graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-md">View All Graphic Projects</a></li>
                 <li><a href="design_projects_page.html#web-development-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-b-md">Web Development</a></li>
             </ul>
         </li>
-        <li><a href="ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
-        <li><a href="index.html#contact-section" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
+        <li><a href="/Shirly_portfolio/ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
+        <li><a href="/Shirly_portfolio/index.html#contact-section" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -824,16 +836,95 @@
   <main class="pt-20 pb-12 flex-grow">
     <!-- NEW: Animated Intro Title for Graphic Designs Page -->
     <section class="intro-graphic-design-header py-16 text-center">
-        <!-- Removed inline style for `white-space: nowrap;` and adjusted padding -->
+        <!-- Changed main title text as requested -->
         <h1 class="graphic-design-main-title">
-            Graphic Designs
+            Websites Graphic Design
         </h1>
         <div class="title-bg-effect"></div> <!-- Animated background graphic -->
     </section>
 
     <div class="page-content">
 
-      <!-- Graphic Design Projects Section (Featured Project Layout) -->
+      <!-- Web Development Section (Featured Project Layout) - Swapped with Graphic Design -->
+      <section id="web-development-section" class="py-12 mt-20">
+        <div class="featured-project-container text-center max-w-full mx-auto">
+            <div class="section-header">
+                <h2 class="section-title">Web Development</h2>
+            </div>
+            <div class="featured-projects-content">
+                <!-- Featured Project (TRAVELLY) -->
+                <div class="featured-project animate-on-scroll"
+                    data-project='{
+                        "id": "travelly",
+                        "title": "TRAVELLY - Travel Agency Website",
+                        "image": "../img/TRAVEELY_ME.png",
+                        "description": "This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.",
+                        "technologies": ["HTML5", "CSS3", "JavaScript"],
+                        "live_demo": "https://shirly3212.github.io/TRAVELLY/",
+                        "github_repo": "https://shirly3212.github.io/TRAVELLY",
+                        "type": "web"
+                    }'>
+                    <img src="../img/TRAVEELY_ME.png" alt="Travelly Website" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    <div class="featured-project-content">
+                        <h4>TRAVELLY - Travel Agency Website</h4>
+                        <p>This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.</p>
+                        <button class="view-project-btn">
+                            View Project <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Side Projects -->
+                <div class="side-projects-grid">
+                    <!-- Project Item 2: People Counter -->
+                    <div class="project-card-item animate-on-scroll"
+                        data-project='{
+                            "id": "people-counter",
+                            "title": "People Counter - Simple Counter App",
+                            "image": "../img/PEOPLE_COUNTER.png",
+                            "description": "A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.",
+                            "technologies": ["HTML5", "CSS3", "JavaScript"],
+                            "live_demo": "https://shirly3212.github.io/People-Counter/",
+                            "github_repo": "https://shirly3212.github.io/People-Counter",
+                            "type": "web"
+                        }'>
+                        <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <div class="project-card-item-content">
+                            <h4>People Counter - Simple Counter App</h4>
+                            <p>A straightforward web application designed to count people entering or exiting an area.</p>
+                            <button class="view-project-btn">
+                                View Project <i class="fas fa-external-link-alt ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project Item 3: Photographer -->
+                    <div class="project-card-item animate-on-scroll"
+                        data-project='{
+                            "id": "photographer",
+                            "title": "Photographer - Visual Portfolio",
+                            "image": "../img/Photographer_me.png",
+                            "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information.",
+                            "technologies": ["HTML5", "CSS3"],
+                            "live_demo": "https://shirly3212.github.io/Photographer/",
+                            "github_repo": "https://shirly3212.github.io/Photographer",
+                            "type": "web"
+                        }'>
+                        <img src="../img/Photographer_me.png" alt="Photographer Portfolio" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <div class="project-card-item-content">
+                            <h4>Photographer - Visual Portfolio</h4>
+                            <p>A sleek visual portfolio website for photographers to showcase their work in an elegant and modern style.</p>
+                            <button class="view-project-btn">
+                                View Project <i class="fas fa-external-link-alt ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <!-- Graphic Design Projects Section (Featured Project Layout) - Swapped with Web Development -->
       <section id="graphic-design-section" class="py-12 mt-20">
         <div class="featured-project-container text-center max-w-full mx-auto">
             <div class="section-header">
@@ -910,85 +1001,6 @@
                 <a href="graphic-all-projects.html" class="view-all-button">
                     View All Graphic Projects <i class="fas fa-arrow-right ml-2"></i>
                 </a>
-            </div>
-        </div>
-      </section>
-
-      <!-- Web Development Section (Featured Project Layout) -->
-      <section id="web-development-section" class="py-12 mt-20">
-        <div class="featured-project-container text-center max-w-full mx-auto">
-            <div class="section-header">
-                <h2 class="section-title">Web Development</h2>
-            </div>
-            <div class="featured-projects-content">
-                <!-- Featured Project (TRAVELLY) -->
-                <div class="featured-project animate-on-scroll"
-                    data-project='{
-                        "id": "travelly",
-                        "title": "TRAVELLY - Travel Agency Website",
-                        "image": "../img/TRAVEELY_ME.png",
-                        "description": "This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.",
-                        "technologies": ["HTML5", "CSS3", "JavaScript"],
-                        "live_demo": "https://shirly3212.github.io/TRAVELLY/",
-                        "github_repo": "https://shirly3212.github.io/TRAVELLY",
-                        "type": "web"
-                    }'>
-                    <img src="../img/TRAVEELY_ME.png" alt="Travelly Website" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                    <div class="featured-project-content">
-                        <h4>TRAVELLY - Travel Agency Website</h4>
-                        <p>This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.</p>
-                        <button class="view-project-btn">
-                            View Project <i class="fas fa-external-link-alt ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Side Projects -->
-                <div class="side-projects-grid">
-                    <!-- Project Item 2: People Counter -->
-                    <div class="project-card-item animate-on-scroll"
-                        data-project='{
-                            "id": "people-counter",
-                            "title": "People Counter - Simple Counter App",
-                            "image": "../img/PEOPLE_COUNTER.png",
-                            "description": "A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.",
-                            "technologies": ["HTML5", "CSS3", "JavaScript"],
-                            "live_demo": "https://shirly3212.github.io/People-Counter/",
-                            "github_repo": "https://shirly3212.github.io/People-Counter",
-                            "type": "web"
-                        }'>
-                        <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                        <div class="project-card-item-content">
-                            <h4>People Counter - Simple Counter App</h4>
-                            <p>A straightforward web application designed to count people entering or exiting an area.</p>
-                            <button class="view-project-btn">
-                                View Project <i class="fas fa-external-link-alt ml-2"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Project Item 3: Photographer -->
-                    <div class="project-card-item animate-on-scroll"
-                        data-project='{
-                            "id": "photographer",
-                            "title": "Photographer - Visual Portfolio",
-                            "image": "../img/Photographer_me.png",
-                            "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information.",
-                            "technologies": ["HTML5", "CSS3"],
-                            "live_demo": "https://shirly3212.github.io/Photographer/",
-                            "github_repo": "https://shirly3212.github.io/Photographer",
-                            "type": "web"
-                        }'>
-                        <img src="../img/Photographer_me.png" alt="Photographer Portfolio" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                        <div class="project-card-item-content">
-                            <h4>Photographer - Visual Portfolio</h4>
-                            <p>A sleek visual portfolio website for photographers to showcase their work in an elegant and modern style.</p>
-                            <button class="view-project-btn">
-                                View Project <i class="fas fa-external-link-alt ml-2"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
       </section>
