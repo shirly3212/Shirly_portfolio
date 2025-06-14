@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Shirly Ben Nun is a motion graphic designer, video editor, and a Junior website developer who specializes in HTML & CSS">
+        content="Shirly Herscovici is a motion graphic designer, video editor, and a Junior website developer who specializes in HTML & CSS">
     <meta name="robots" content="index,follow">
-    <title>Shirly Ben Nun | Web Development Projects</title>
+    <title>Shirly Herscovici | Web Development Projects</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for Icons -->
@@ -359,6 +359,42 @@
             .two-column-section p, .phone-section-container p {
                 font-size: 1.125rem; /* Standard mobile paragraph size */
                 line-height: 1.6; /* Adjusted line-height for mobile */
+            }
+
+            /* Modal adjustments for mobile */
+            .modal-content {
+                width: 95%; /* Make it take up more width on small screens */
+                padding: 1.5rem; /* Reduce padding to give more space for content */
+                max-height: 95vh; /* Allow it to be taller */
+                box-sizing: border-box; /* Include padding in width/height calculation */
+            }
+
+            .modal-content img {
+                height: 200px; /* Limit image height to prevent it from taking too much vertical space */
+                object-fit: contain; /* Ensure the whole image is visible, scale down if needed */
+            }
+
+            .modal-content .flex-wrap { /* For technologies and buttons */
+                justify-content: center; /* Center items if they wrap */
+            }
+
+            .modal-content .view-project-btn,
+            .modal-content #modalLiveDemoBtn,
+            .modal-content #modalGithubRepoBtn,
+            .modal-content #aiInsightBtn {
+                width: 100%; /* Make buttons take full width on mobile */
+                margin-bottom: 0.5rem; /* Add some space between stacked buttons */
+                font-size: 1rem; /* Smaller font size for buttons */
+                padding: 0.8rem 1rem; /* Adjust padding for smaller buttons */
+            }
+
+            .modal-content .flex.justify-center.gap-4.mt-6 {
+                flex-direction: column; /* Stack buttons vertically on mobile */
+                gap: 0.5rem; /* Smaller gap when stacked */
+            }
+
+            #aiInsightContainer {
+                padding: 1rem; /* Adjust padding for mobile insight section */
             }
         }
         /* Increased font size and line height for paragraphs on larger screens */
