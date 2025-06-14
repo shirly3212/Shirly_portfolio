@@ -7,7 +7,7 @@
     <meta name="description"
         content="Shirly Herscovici is a motion graphic designer, video editor, and a Junior website developer who specializes in HTML & CSS">
     <meta name="robots" content="index,follow">
-    <title>Shirly Ben Nun | Motion Graphic Designer & Website Developer</title>
+    <title>Shirly Herscovici | Motion Graphic Designer & Website Developer</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for Icons -->
@@ -236,6 +236,7 @@
                 left: 0;
                 width: 100%;
                 box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                z-index: 1000; /* Ensure header is on top */
             }
 
             /* Ensure nav itself remains a row layout on mobile for logo and toggle */
@@ -251,8 +252,8 @@
 
             /* Mobile nav toggle should be visible and positioned correctly */
             .nav-toggle {
-                display: block; /* Show hamburger icon */
-                /* No need for absolute positioning here, flex handles it */
+                display: block !important; /* Show hamburger icon - !important to override potential dynamic styles */
+                margin-left: auto; /* Push to the right */
             }
 
             nav .logo {
@@ -276,7 +277,7 @@
                 left: 0;
                 width: 100%;
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                z-index: 1000;
+                z-index: 999; /* Slightly lower than header but still high */
                 padding-top: 1rem;
                 padding-bottom: 1rem;
                 transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Smooth transition */
@@ -317,6 +318,10 @@
             .intro-text {
                 margin-top: 2rem; /* Adjusted margin */
                 text-align: center;
+            }
+            /* Shrink "Shirly Herscovici" text on mobile */
+            .intro-text h2 {
+                font-size: 4rem; /* Smaller font size for mobile */
             }
             .me {
                  text-align: center; /* Ensures content within 'me' is centered */
@@ -381,8 +386,8 @@
                 <li><a href="/" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700">Home</a></li>
                 <li><a href="Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Design</a></li>
                 <li><a href="web/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Web</a></li>
-                <li><a href="contact/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
                 <li><a href="ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
+                <li><a href="contact/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -600,7 +605,7 @@
             toggle.innerHTML = "☰";
             toggle.style.cursor = "pointer";
             toggle.style.fontSize = "3rem";
-            toggle.style.display = "none"; // Controlled by CSS media query
+            toggle.style.display = "none"; // This will be overridden by CSS media query
             toggle.style.userSelect = "none";
 
             // Insert toggle button inside the nav element, right after the logo div
@@ -614,52 +619,6 @@
             toggle.addEventListener("click", () => {
                 navUl.classList.toggle("show-nav"); // Toggle class on navUl
             });
-
-            // Dynamically inject mobile navigation CSS - most mobile specific styling moved here
-            const style = document.createElement("style");
-            style.innerHTML = `
-                @media screen and (max-width: 754px) {
-                    .nav-toggle {
-                        display: block; /* Show hamburger icon on mobile */
-                    }
-
-                    nav ul {
-                        display: none; /* Hidden by default on mobile */
-                        flex-direction: column;
-                        background: white;
-                        position: absolute; /* Position relative to its parent <nav> */
-                        top: 100%; /* Position right below the nav bar */
-                        left: 0;
-                        width: 100%;
-                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                        z-index: 1000;
-                        padding-top: 1rem;
-                        padding-bottom: 1rem;
-                        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Smooth transition */
-                    }
-
-                    nav ul.show-nav {
-                        display: flex; /* Show when active */
-                        opacity: 1;
-                        visibility: visible;
-                    }
-
-                    nav ul:not(.show-nav) {
-                        opacity: 0;
-                        visibility: hidden;
-                    }
-
-                    nav ul li {
-                        padding: 1rem 2rem;
-                        text-align: center;
-                        border-bottom: 1px solid #ddd;
-                    }
-                    nav ul li:last-child {
-                        border-bottom: none;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
         });
     </script>
 </body>
