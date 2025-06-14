@@ -190,6 +190,11 @@
             margin-right: 0; /* Remove margin to allow flex to position it */
             margin-left: auto; /* Push text to the right */
         }
+        /* Increased font size and line height for paragraphs on larger screens */
+        .two-column-section p, .phone-section-container p {
+            font-size: 1.5rem; /* Increased from 1.25rem (text-xl) to 1.5rem */
+            line-height: 1.75; /* Increased line-height for better readability */
+        }
     }
 
     .phone-mockup {
@@ -240,10 +245,10 @@
     }
 
     @keyframes pointer-bounce {
-        0%, 100% { transform: translate(-50%, 0); opacity: 1; }
-        25% { transform: translate(-50%, -15px); opacity: 0.8; }
-        50% { transform: translate(-50%, 0); opacity: 1; }
-        75% { transform: translate(-50%, -10px); opacity: 0.8; }
+        0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+        25% { transform: translateX(-50%) translateY(-15px); opacity: 0.8; }
+        50% { transform: translateX(-50%) translateY(0); opacity: 1; }
+        75% { transform: translateX(-50%) translateY(-10px); opacity: 0.8; }
     }
 
 
@@ -286,6 +291,63 @@
       position: relative;
       z-index: 5;
       box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); /* Darker shadow */
+    }
+
+    /* Mobile specific styles (max-width: 767px) */
+    @media (max-width: 767px) {
+        /* General adjustments for mobile sections */
+        .two-column-section, .phone-section-container {
+            flex-direction: column; /* Ensure stacking */
+            padding: 2rem 1rem; /* Adjust padding for smaller screens */
+            gap: 2rem; /* Consistent gap */
+        }
+
+        /* Adjustments for the "Smart Parking Promo" section */
+        .two-column-section .text, .two-column-section .media {
+            flex-basis: auto; /* Remove fixed basis on mobile */
+            width: 100%; /* Take full width */
+        }
+        .two-column-section .text {
+            text-align: center; /* Center text on mobile */
+        }
+
+        /* Adjustments for the "View All Projects" button */
+        .cta-button {
+            padding: 1rem 2.5rem; /* Slightly smaller horizontal padding */
+            font-size: 1.5rem; /* Smaller font size for mobile */
+            width: fit-content; /* Ensure it only takes content width */
+            margin-left: auto; /* Center button horizontally */
+            margin-right: auto; /* Center button horizontally */
+        }
+
+        /* Adjustments for the phone mockup and its text on mobile */
+        .phone-mockup {
+            width: 300px; /* Smaller width for mobile phone */
+            height: 600px; /* Corresponding height for mobile phone (2:1 aspect ratio) */
+            margin: auto; /* Center phone horizontally */
+        }
+
+        .phone-mockup iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        .interactive-hint {
+            top: 15%; /* Adjust hand position for smaller phone */
+            left: 20%;
+            font-size: 2.5rem; /* Smaller hand icon */
+        }
+
+        .phone-section-container .text-content {
+            max-width: 100%; /* Allow text to take full width on mobile */
+            text-align: center; /* Center text on mobile */
+        }
+
+        /* Increase font size for paragraphs on mobile */
+        .two-column-section p, .phone-section-container p {
+            font-size: 1.125rem; /* Standard mobile paragraph size */
+            line-height: 1.6; /* Adjusted line-height for mobile */
+        }
     }
   </style>
 </head>
