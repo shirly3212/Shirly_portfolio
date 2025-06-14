@@ -343,10 +343,24 @@
             text-align: center; /* Center text on mobile */
         }
 
-        /* Increase font size for paragraphs on mobile */
+        /* Decrease font size for paragraphs on mobile */
         .two-column-section p, .phone-section-container p {
             font-size: 1.125rem; /* Standard mobile paragraph size */
             line-height: 1.6; /* Adjusted line-height for mobile */
+        }
+
+        /* Decrease font size for .typewriter on mobile and re-enable animation */
+        .typewriter {
+            font-size: 1.8rem; /* Adjusted font size for small screens to fit on one line */
+            white-space: nowrap; /* Keep on a single line for typing effect */
+            overflow: hidden; /* Hide overflow for typing effect */
+            border-right: 0.15em solid; /* Re-enable blinking caret */
+            animation:
+                typing 4s steps(40, end), /* Re-enable typing animation */
+                blink-caret 0.75s step-end infinite,
+                gradient-animation 5s linear infinite; /* Re-enable gradient animation */
+            width: fit-content; /* Adjust width based on content */
+            margin: 2rem auto; /* Center the element */
         }
     }
   </style>
