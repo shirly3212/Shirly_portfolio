@@ -124,7 +124,7 @@
         line-height: 1.1;
         letter-spacing: -2px; /* Slightly tighter letter spacing */
         position: relative;
-        padding: 0 4rem; /* Adjusted padding to be less extreme, relying on new animation */
+        padding: 0 2rem; /* Adjusted padding to be less extreme, allowing more space for text */
         z-index: 1; /* Ensure text is above the background effect */
     }
 
@@ -592,7 +592,8 @@
         padding: 2rem;
         border-radius: 1rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        max-width: 900px; /* Increased max-width for larger images */
+        /* Adjusted max-width to make the modal narrower */
+        max-width: 500px; 
         width: 90%;
         position: relative;
         text-align: left;
@@ -696,7 +697,7 @@
           font-size: 2.8rem; /* Adjusted font size for mobile */
           letter-spacing: -1px;
           line-height: 1.2;
-          padding: 0 2rem; /* Adjusted padding for mobile */
+          padding: 0 1rem; /* Adjusted padding for mobile to prevent clipping */
       }
       .title-bg-effect {
           width: 250px; /* Adjusted size for mobile */
@@ -810,6 +811,7 @@
             <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
                 <li><a href="design_projects_page.html#graphic-design-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-md">Graphic Projects</a></li>
                 <li><a href="graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View All Graphic Projects</a></li>
+                <!-- Updated link for Web Development to navigate and scroll -->
                 <li><a href="design_projects_page.html#web-development-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-b-md">Web Development</a></li>
             </ul>
         </li>
@@ -822,6 +824,7 @@
   <main class="pt-20 pb-12 flex-grow">
     <!-- NEW: Animated Intro Title for Graphic Designs Page -->
     <section class="intro-graphic-design-header py-16 text-center">
+        <!-- Removed inline style for `white-space: nowrap;` and adjusted padding -->
         <h1 class="graphic-design-main-title">
             Graphic Designs
         </h1>
@@ -1096,6 +1099,7 @@
   <div id="projectModal" class="modal-overlay">
       <div class="modal-content">
           <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+          <!-- Changed image styling for narrower and taller appearance within the modal -->
           <img id="modalProjectImage" src="" alt="Project Image" class="rounded-md mb-4 w-full h-auto object-contain">
           <!-- These elements will be conditionally hidden by JS for carousel images -->
           <h3 id="modalProjectTitle" class="text-3xl font-bold text-gray-800 mb-4"></h3>
@@ -1245,7 +1249,7 @@
             modalGithubRepoBtn.classList.add('hidden');
             aiInsightBtn.classList.add('hidden');
             // For carousel items, ensure image takes up full width and is contained (not cropped)
-            modalProjectImage.classList.remove('h-64', 'object-cover'); // Remove fixed height and cropping
+            modalProjectImage.classList.remove('object-cover'); // Ensure object-cover is not interfering
             modalProjectImage.classList.add('w-full', 'h-auto', 'object-contain'); // Make it full width, auto height, contain
         } else {
             // For regular project cards, populate content
@@ -1285,8 +1289,8 @@
                 aiInsightBtn.classList.remove('hidden');
             }
             // Ensure regular project images also have appropriate sizing in modal
-            modalProjectImage.classList.add('h-64', 'object-cover'); // Restore fixed height and cropping for regular projects
-            modalProjectImage.classList.remove('h-auto', 'object-contain');
+            modalProjectImage.classList.add('w-full', 'h-auto', 'object-contain'); // Apply width full, auto height, contain
+            modalProjectImage.classList.remove('object-cover'); // Ensure object-cover is not interfering
         }
 
         projectModal.classList.add('is-visible');
