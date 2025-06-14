@@ -118,7 +118,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
+      align-items: center; /* Ensures vertical alignment */
       gap: 4rem;
       padding: 5rem 3rem;
       max-width: 1400px;
@@ -180,8 +180,8 @@
     }
 
     .phone-mockup {
-      width: 400px; /* Adjusted width based on new image for better proportion */
-      height: 800px; /* Adjusted height for new width, maintaining aspect ratio */
+      width: 450px; /* Adjusted width based on new image for better proportion */
+      height: 900px; /* Adjusted height for new width, maintaining aspect ratio */
       border: 16px solid #333;
       border-radius: 36px;
       position: relative;
@@ -217,7 +217,7 @@
     .interactive-hint {
         position: absolute;
         /* Adjusted positioning based on image and desired interaction area */
-        bottom: 250px; /* Moved up to be directly above the "Enter license" field */
+        bottom: 120px; /* Adjusted to be higher and more visible on wider screen */
         left: 50%;
         transform: translateX(-50%); /* Centered horizontally */
         font-size: 3rem; /* Size of the hand icon */
@@ -301,7 +301,7 @@
   <section class="two-column-section" data-aos="fade-up">
     <div class="text">
       <h3>Smart Parking Promo</h3>
-      <p>This AI-generated promotional video and app prototype presents a seamless solution to urban parking challenges through a smart system design.</p>
+      <p class="text-xl">This AI-generated promotional video and app prototype presents a seamless solution to urban parking challenges through a smart system design.</p>
       <a href="../Projects/index.html" class="cta-button">View All Projects</a>
     </div>
     <div class="media">
@@ -320,11 +320,11 @@
     </div>
     <div class="text-content flex-1 max-w-lg">
         <h3 class="text-3xl font-semibold mb-4">Smart Parking AI Project</h3>
-        <p class="text-lg leading-relaxed mb-4">
+        <p class="text-xl leading-relaxed mb-4">
             This project showcases an innovative smart parking lot prototype application developed using AI tools, including Lovable.
             The application operates by recognizing vehicle license plates, reserving a dedicated parking space for the user, and efficiently navigating them to the most suitable spot within the parking facility.
         </p>
-        <p class="text-lg leading-relaxed">
+        <p class="text-xl leading-relaxed">
             The parking space is automatically tailored to the vehicle's needs: electric cars are directed to charging stations, larger vehicles like trucks are guided to extended parking spots, and so on.
             This solution optimizes the parking experience and reduces congestion in a smart and efficient manner.
         </p>
@@ -472,6 +472,7 @@
               "particles_nb": 4
             }
           }
+          
         },
         "retina_detect": true
       });
