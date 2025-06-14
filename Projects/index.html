@@ -31,7 +31,7 @@
       overflow-x: hidden;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      min-height: 100vh; /* Ensure body takes full viewport height */
     }
 
     /* Particles.js canvas styling */
@@ -111,91 +111,25 @@
 
         margin-bottom: 2rem; /* Increased margin */
         position: relative;
-        display: inline-block;
-        overflow: hidden;
-        white-space: nowrap;
-        border-right: 3px solid #2563eb; /* Blinking cursor */
-        animation: typing 1.5s steps(var(--typing-steps, 7), end) forwards, /* Dynamic steps */
-                   blink-caret 0.75s step-end infinite;
-        width: 0; /* Start with 0 width */
+        display: block; /* Ensure it takes full width for text-align to work */
+        width: 100%; /* Ensure it takes full width for text-align to work */
+        text-align: center; /* Centered horizontally */
+        white-space: normal; /* Allow text to wrap naturally */
+        border-right: none; /* Remove blinking caret */
+        animation: none; /* Remove typing animation */
     }
 
-    /* Override for the Gallery title specific steps (if needed, but using var is better) */
-    .graphic-gallery-container h2 { /* Targeting the main image gallery title */
-      --typing-steps: 22; /* "Graphic Design Gallery" has 22 characters */
-    }
-
-    .graphic-projects-container h2 { /* Targeting the graphic project cards title */
-      --typing-steps: 22; /* "Graphic Design Projects" has 22 characters */
-    }
-
-    .web-projects-container h2 { /* Targeting the web project cards title */
-      --typing-steps: 26; /* "Web Development Projects" has 26 characters */
-    }
-
-    @keyframes typing {
-        from { width: 0 }
-        to { width: 100% }
-    }
-
-    @keyframes blink-caret {
-        from, to { border-color: transparent }
-        50% { border-color: #2563eb; }
-    }
-
-    /* --- Common Styles for Horizontal Scroll Sections (Galleries & Projects) --- */
-    .horizontal-scroll-container {
+    /* Adjust the section header to consistently center its content */
+    .featured-project-container .section-header {
       display: flex;
-      overflow-x: auto; /* Enable horizontal scrolling */
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-      scroll-snap-type: x mandatory; /* Snap to items */
-      padding-bottom: 1rem; /* Space for scrollbar */
-      scrollbar-width: thin; /* Firefox */
-      scrollbar-color: #3b82f6 #e2e8f0; /* Firefox: thumb and track colors */
-      border-radius: 0.75rem; /* Rounded corners for scroll container */
-      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
-      margin: 2rem auto; /* General margin for these sections */
-      max-width: 1200px; /* Max width */
-      padding-left: 1rem; /* Initial padding for the first item */
-      padding-right: 1rem; /* Padding for the last item */
+      flex-direction: column; /* Keep as column to stack content if multiple items */
+      align-items: center; /* Centers items horizontally in a column layout */
+      justify-content: center; /* Centers items vertically in a column layout (if space) */
+      margin-bottom: 2rem;
     }
 
-    /* Customize scrollbar for Webkit browsers */
-    .horizontal-scroll-container::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .horizontal-scroll-container::-webkit-scrollbar-track {
-      background: #e2e8f0;
-      border-radius: 10px;
-    }
-
-    .horizontal-scroll-container::-webkit-scrollbar-thumb {
-      background-color: #3b82f6;
-      border-radius: 10px;
-      border: 2px solid #e2e8f0;
-    }
-
-    /* --- Graphic Design Gallery Images --- */
-    .graphic-gallery-container img { /* Targeted specifically for the main image gallery */
-      flex-shrink: 0;
-      width: 90%; /* Adjust as needed */
-      max-width: 500px;
-      height: 350px;
-      object-fit: cover;
-      margin: 0 1rem; /* Space between images */
-      border-radius: 0.75rem;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-      scroll-snap-align: center;
-    }
-
-    .graphic-gallery-container img:hover {
-      transform: scale(1.02);
-    }
-
-    /* --- Project Item Cards (for both Graphic & Web projects) --- */
-    .project-card-item { /* New class for the individual project cards in horizontal scrolls */
+    /* --- Project Item Cards (for side projects in Featured Layout) --- */
+    .project-card-item {
       background-color: #ffffff;
       border-radius: 0.75rem;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -205,26 +139,24 @@
       flex-direction: column;
       height: auto;
       cursor: pointer;
-      flex-shrink: 0; /* Important for horizontal scroll */
-      width: 320px; /* Fixed width for consistent card size on desktop */
-      margin: 0 1rem; /* Space between cards */
-      scroll-snap-align: center;
+      flex-shrink: 0;
     }
 
     .project-card-item:hover {
       transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      /* Blue glow effect */
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2), 0 0 25px 5px rgba(37, 99, 235, 0.7);
     }
 
     .project-card-item img {
       width: 100%;
-      height: 200px; /* Slightly reduced height for project images */
+      height: 150px; /* Standard height for side project images */
       object-fit: cover;
       border-radius: 0.75rem 0.75rem 0 0;
     }
 
     .project-card-item-content {
-      padding: 1.5rem;
+      padding: 1rem; /* Standard padding for side project content */
       text-align: center;
       flex-grow: 1;
       display: flex;
@@ -233,24 +165,24 @@
     }
 
     .project-card-item h4 {
-      font-size: 1.5rem;
+      font-size: 1.2rem; /* Standard title size for side projects */
       font-weight: 600;
       color: #2d3748;
       margin-bottom: 0.5rem;
     }
 
     .project-card-item p {
-      font-size: 0.95rem;
+      font-size: 0.85rem; /* Standard text size for side projects */
       color: #4a5568;
       line-height: 1.5;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem; /* Reduced bottom margin */
       flex-grow: 1;
     }
 
     .project-card-item .view-project-btn {
       margin-top: auto;
       align-self: center;
-      background-color: #3b82f6;
+      background-color: #3b82f6; /* Blue color for view project buttons */
       color: white;
       padding: 0.75rem 1.5rem;
       border-radius: 9999px;
@@ -264,7 +196,36 @@
     .project-card-item .view-project-btn:hover {
       background-color: #2563eb;
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+      /* Blue glow effect */
+      box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3), 0 0 15px 3px rgba(37, 99, 235, 0.7);
+    }
+
+    /* Style for the "View All Projects" button (now only for Graphic) */
+    .view-all-button-container {
+        text-align: center;
+        margin-top: 2rem;
+        margin-bottom: 4rem; /* More space before next section or footer */
+    }
+
+    .view-all-button {
+        background-color: #3b82f6; /* Blue, matching view-project-btn */
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 9999px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2); /* Blue shadow */
+    }
+
+    .view-all-button:hover {
+        background-color: #2563eb; /* Darker blue on hover */
+        transform: translateY(-3px) scale(1.02);
+        /* Blue glow effect */
+        box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3), 0 0 20px 4px rgba(37, 99, 235, 0.7);
     }
 
     /* --- Header & Nav specific styles for dropdown --- */
@@ -273,20 +234,20 @@
     }
 
     nav ul li.group ul { /* The sub-menu itself */
-        /* Control visibility using opacity/visibility/pointer-events instead of display: none/block */
         position: absolute;
         top: 100%; /* Position right below parent link */
         left: 0;
         background-color: white;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         border-radius: 0.5rem;
-        min-width: 100%; /* Ensure it's wide enough */
-        z-index: 10; /* Above other content */
+        min-width: 100%;
+        z-index: 10;
         opacity: 0;
         visibility: hidden;
-        transform: translateY(10px); /* Slight animation start */
+        transform: translateY(10px);
         transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
         pointer-events: none; /* Crucial: allows clicks *through* when hidden */
+        display: block; /* Ensure it's a block for positioning, visibility handled by opacity */
     }
 
     /* Style for when the dropdown is explicitly shown by JS click on desktop */
@@ -297,13 +258,285 @@
         pointer-events: auto; /* Allows clicks on sub-menu items when visible */
     }
 
-    /* Style for when the dropdown is shown by CSS hover on desktop (no JS interaction) */
+    /* Style for when the dropdown is shown by CSS hover on desktop */
     nav ul li.group:hover ul {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
         pointer-events: auto;
     }
+
+    /* Footer bug fix consideration: Ensure main content takes available space */
+    main {
+        flex-grow: 1; /* Allows main to take up all available space */
+        padding-top: 5rem; /* Adjusted to 5rem to account for fixed header */
+        padding-bottom: 5rem; /* Ensure enough space at the bottom before footer */
+    }
+
+
+    /* --- Featured Project Layout (Common for both Graphic and Web) --- */
+    .featured-project-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    .featured-projects-content {
+      display: flex;
+      flex-direction: column; /* Default to column for mobile */
+      gap: 2rem; /* Gap between featured and side projects */
+      padding: 1rem; /* Padding inside the content area */
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 1rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      /* For vertical alignment of featured and side projects */
+      align-items: stretch; /* Stretch children to fill height of tallest sibling */
+    }
+
+    .featured-project {
+      background-color: #ffffff;
+      border-radius: 0.75rem;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1; /* Allow it to take available space */
+      padding-bottom: 1.5rem; /* More padding at bottom of featured card */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover effect */
+    }
+
+    .featured-project:hover {
+        transform: translateY(-5px) scale(1.01); /* Subtle lift */
+        /* Blue glow effect */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 25px 5px rgba(37, 99, 235, 0.7);
+    }
+
+    .featured-project img {
+      width: 100%;
+      height: 300px; /* Larger image for featured project */
+      object-fit: cover;
+      border-radius: 0.75rem 0.75rem 0 0;
+    }
+
+    .featured-project-content {
+      padding: 1.5rem;
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .featured-project-content h4 {
+      font-size: 2rem; /* Larger title for featured project */
+      font-weight: 700;
+      color: #2d3748;
+      margin-bottom: 0.75rem;
+    }
+
+    .featured-project-content p {
+      font-size: 1.1rem; /* Larger text for featured project */
+      color: #4a5568;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .side-projects-grid {
+      display: grid;
+      grid-template-columns: 1fr; /* Stack on mobile */
+      gap: 1.5rem;
+      flex-grow: 1; /* Allow side projects grid to grow and take available space */
+    }
+
+    @media (min-width: 768px) {
+      .featured-project-container .section-header {
+        flex-direction: column; /* Keep column for consistent centering */
+        justify-content: center; /* Keep centered */
+        align-items: center; /* Keep centered */
+      }
+      .featured-project-container .section-title {
+        margin-bottom: 0; /* No bottom margin when centered */
+      }
+      .featured-projects-content {
+        flex-direction: row; /* Featured project on left, side projects on right */
+      }
+
+      .featured-project {
+        width: 65%; /* Featured project takes more width */
+        max-width: 750px; /* Max width for featured project */
+      }
+
+      .side-projects-grid {
+        width: 35%; /* Side projects take remaining width */
+      }
+    }
+
+
+    /* --- Carousel Section Styling --- */
+    .carousel-section {
+        padding: 2rem 1rem;
+        max-width: 1200px;
+        margin: 4rem auto; /* Add more margin for spacing from other sections */
+        text-align: center;
+        /* Updated background and backdrop-filter for modern transparency */
+        background-color: rgba(255, 255, 255, 0.4); /* More transparent background */
+        border-radius: 1.5rem; /* Slightly larger border-radius for softer look */
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1); /* Softer, wider shadow */
+        backdrop-filter: blur(12px); /* Increased blur for stronger frosted effect */
+        -webkit-backdrop-filter: blur(12px);
+        position: relative;
+        border: none; /* Removed border */
+    }
+
+    .carousel-wrapper {
+        display: flex;
+        overflow-x: hidden; /* Hide scrollbar, control with JS */
+        scroll-behavior: smooth; /* Smooth scroll effect */
+        scroll-snap-type: x mandatory; /* Snap to items */
+        -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+        border-radius: 1rem; /* Rounded corners for the wrapper */
+        margin: 1rem 0;
+        align-items: stretch; /* Stretch items to fit the height of the tallest */
+        min-height: 250px; /* Minimum height for the carousel wrapper */
+        /* Removed background-color, border, and box-shadow from wrapper for cleaner look */
+    }
+
+    .carousel-item {
+        /* Adjusted flex basis to show multiple items */
+        flex: 0 0 calc(33.333% - 1.5rem); /* Show ~3 items with gap, 1.5rem is for gap */
+        margin: 0 0.75rem; /* Half of the gap on each side */
+        scroll-snap-align: center;
+        padding: 0.75rem; /* Slightly reduced padding inside each slide */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.6); /* Transparent white background for items */
+        border-radius: 1rem; /* Softer rounded corners for items */
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08); /* Lighter shadow for items */
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transition for items */
+        border: none; /* Removed border */
+    }
+
+    .carousel-item:hover {
+        transform: translateY(-5px) scale(1.01); /* Subtle lift and scale */
+        /* Blue glow effect */
+        box-shadow: 0 6px 15px rgba(0,0,0,0.15), 0 0 20px 4px rgba(37, 99, 235, 0.7);
+        background-color: rgba(255, 255, 255, 0.8); /* Slightly less transparent on hover */
+    }
+
+    .carousel-item img {
+        width: 100%; /* Occupy full width of the item */
+        height: 100%; /* Occupy full height of the item */
+        object-fit: cover; /* Cover the area, cropping if necessary */
+        border-radius: 0.75rem; /* Rounded corners for image, matching item */
+    }
+
+    .carousel-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(59, 130, 246, 0.6); /* Blue with more transparency */
+        color: white;
+        border: none;
+        padding: 1rem;
+        cursor: pointer;
+        font-size: 1.5rem;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Slightly more prominent shadow for buttons */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        z-index: 2; /* Above carousel items */
+    }
+
+    .carousel-nav-btn:hover {
+        background-color: #2563eb; /* Darker blue on hover */
+        transform: translateY(-50%) scale(1.1);
+        /* Blue glow effect */
+        box-shadow: 0 6px 15px rgba(0,0,0,0.3), 0 0 20px 4px rgba(37, 99, 235, 0.7);
+    }
+
+    .carousel-nav-btn.prev {
+        left: 1rem;
+    }
+
+    .carousel-nav-btn.next {
+        right: 1rem;
+    }
+
+    /* Project Details Modal specific styling */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none; /* Changed from flex, opacity:0, visibility:hidden */
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        /* Removed transitions here as display property cannot be transitioned */
+    }
+
+    .modal-overlay.is-visible {
+        display: flex; /* Changed from opacity:1, visibility:visible */
+    }
+
+    .modal-content {
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        max-width: 700px;
+        width: 90%;
+        position: relative;
+        text-align: left;
+        transform: scale(0.9);
+        opacity: 0;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+
+    .modal-overlay.is-visible .modal-content {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .modal-close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: #6b7280;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+        color: #3b82f6; /* Changed to blue on hover */
+    }
+    .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border-left-color: #3b82f6;
+        animation: spin 1s ease infinite;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
 
     /* Responsive adjustments for header and general sections */
     @media (max-width: 767px) {
@@ -354,7 +587,7 @@
         order: 2;
       }
       main {
-        padding-top: 8rem;
+        padding-top: 8rem; /* Higher padding for mobile to clear header */
       }
 
       /* Section titles on mobile */
@@ -365,79 +598,68 @@
         width: auto;
         border-right: none;
         animation: none;
-        /* Remove transparent text fill on mobile to ensure visibility if gradient not supported/wanted */
         -webkit-text-fill-color: initial;
         color: #2563eb; /* Use a solid color for mobile fallback */
         background: none; /* Remove background gradient on mobile */
       }
-
-      /* Horizontal scroll containers on mobile */
-      .horizontal-scroll-container {
-        padding-left: 1.5rem; /* More padding on sides for better visual */
-        padding-right: 1.5rem;
-        margin-top: 1.5rem; /* Reduced top margin for better flow */
-        margin-bottom: 1.5rem; /* Reduced bottom margin */
-      }
       
-      /* Individual graphic gallery images on mobile */
-      .graphic-gallery-container img {
-        width: 95%; /* Adjust for very small screens */
-        height: 250px;
-        margin: 0 0.75rem; /* Reduced margin for more items visible */
-      }
-
-      /* Individual project cards (graphic & web) on mobile */
+      /* Individual project cards (side web & side graphic) on mobile */
       .project-card-item {
-        width: 80%; /* Show more of next card */
-        height: auto; /* Adjust height based on content */
-        margin: 0 0.75rem; /* Consistent spacing */
+        width: 100%; /* Take full width on mobile */
+        height: auto;
+        margin: 0 auto; /* Center individual cards */
       }
-
       .project-card-item img {
-        height: 180px; /* Smaller image height on mobile cards */
+        height: 180px;
       }
       .project-card-item-content {
-        padding: 1rem; /* Smaller padding inside cards */
+        padding: 1rem;
       }
       .project-card-item h4 {
-        font-size: 1.25rem; /* Smaller title */
+        font-size: 1.25rem;
       }
       .project-card-item p {
-        font-size: 0.85rem; /* Smaller description text */
+        font-size: 0.85rem;
       }
       .project-card-item .view-project-btn {
-        padding: 0.6rem 1.2rem; /* Smaller button */
+        padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
       }
 
-      /* Web development section specific */
-      #web-development-section {
-        margin-top: 3rem; /* Adjusted margin between sections on mobile */
+      /* Featured project on mobile */
+      .featured-project img {
+        height: 200px; /* Adjust featured image height for mobile */
+      }
+      .featured-project-content h4 {
+        font-size: 1.5rem;
+      }
+      .featured-project-content p {
+        font-size: 0.95rem;
       }
 
-      /* Styles for mobile dropdown - when 'active' class is toggled by JS */
-      nav ul li.group ul { /* When main nav is active on mobile */
-          position: static; /* Remove absolute positioning */
-          display: none; /* Hide by default, shown by JS toggle */
-          flex-direction: column;
-          width: 100%;
-          margin-top: 0.5rem; /* Small margin below parent link */
-          box-shadow: none; /* No shadow for inline expansion */
-          border-radius: 0;
-          background-color: transparent; /* Transparent background */
-          opacity: 1; /* Always visible if parent is expanded */
-          visibility: visible;
-          transform: translateY(0);
-          padding: 0; /* No padding from parent ul */
-          pointer-events: auto; /* Ensure clickable */
+      /* Carousel adjustments on mobile */
+      .carousel-section {
+          padding: 1rem; /* Less padding on mobile */
+          margin: 2rem auto; /* Less margin */
+          border-radius: 1rem; /* Smaller border-radius on mobile */
       }
-      nav ul li.group ul.active { /* Explicitly show if 'active' class is on sub-menu */
-          display: flex;
+      .carousel-wrapper {
+          min-height: 200px; /* Smaller min-height for carousel on mobile */
       }
-
-      nav ul li.group ul li a {
-          padding-left: 2rem; /* Indent sub-menu items on mobile */
-          text-align: left; /* Align to left */
+      .carousel-item {
+          flex: 0 0 calc(80% - 1rem); /* Show ~1.2 items with gap */
+          margin: 0 0.5rem; /* Half of the gap on each side */
+          padding: 0.5rem; /* Less padding inside carousel items */
+          border-radius: 0.75rem; /* Smaller border-radius on mobile */
+      }
+      .carousel-item img {
+          max-height: 250px; /* Smaller max height for carousel images on mobile */
+      }
+      .carousel-nav-btn {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+          padding: 0.5rem;
       }
     }
   </style>
@@ -459,20 +681,19 @@
         <i class="fas fa-bars text-2xl"></i>
       </button>
       <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
-        <li><a href="../index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Home</a></li>
+        <li><a href="index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Home</a></li>
         
         <!-- Design with Sub-menu -->
         <li class="relative group">
             <a href="#" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700 block" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
             <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
-                <li><a href="#graphic-design-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-md">Graphic Design</a></li>
-                <li><a href="#web-development-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-b-md">Web Development</a></li>
+                <li><a href="design_projects_page.html#graphic-design-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-md">Graphic Design (Summary)</a></li>
+                <li><a href="graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View All Graphic Projects</a></li>
+                <li><a href="design_projects_page.html#web-development-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-b-md">Web Development</a></li>
             </ul>
         </li>
-        <!-- Removed original 'Web' link here -->
-
-        <li><a href="../ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
-        <li><a href="../index.html#contact-section" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
+        <li><a href="ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
+        <li><a href="index.html#contact-section" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -480,131 +701,96 @@
   <main class="pt-20 pb-12 flex-grow">
     <div class="page-content">
 
-      <!-- Graphic Design Gallery Section -->
-      <section id="graphic-design-section" class="pt-10">
-        <div class="graphic-gallery-container text-center max-w-full mx-auto"> <!-- Main Image Gallery -->
-          <h2 class="section-title">Graphic Design Gallery</h2>
-          <div class="horizontal-scroll-container">
-            <img src="../img/gallery1.jpg" alt="Dynamic Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-            <img src="../img/gallery2.jpg" alt="Abstract Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-            <img src="../img/gallery3.jpg" alt="Creative Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-            <img src="../img/gallery4.jpg" alt="Modern Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-            <img src="../img/gallery5.jpg" alt="Digital Art Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-            <img src="../img/gallery6.jpg" alt="Visual Identity Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-          </div>
-        </div>
-        
-        <!-- Graphic Design Projects Cards Section -->
-        <div class="graphic-projects-container text-center max-w-full mx-auto mt-10">
-          <h2 class="section-title">Graphic Design Projects</h2>
-          <div class="horizontal-scroll-container">
-            <div class="project-card-item animate-on-scroll" 
-                 data-project='{
-                   "id": "worldcup22",
-                   "title": "World Cup 22 Infographic",
-                   "image": "../img/thumbnail1.jpg",
-                   "description": "An engaging infographic designed for the 2022 World Cup, featuring key statistics and visual highlights of the tournament. This project demonstrates data visualization and compelling graphic storytelling.",
-                   "live_demo": "https://makospecial.co.il/worldcup22",
-                   "type": "graphic"
-                 }'>
-              <img src="../img/thumbnail1.jpg" alt="World Cup 22 Infographic" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';">
-              <div class="project-card-item-content">
-                <h4>World Cup 22 Infographic</h4>
-                <p>An engaging infographic designed for the 2022 World Cup, featuring key statistics and visual highlights of the tournament.</p>
-                <button class="view-project-btn">View Project</button>
-              </div>
+      <!-- Graphic Design Projects Section (Featured Project Layout) -->
+      <section id="graphic-design-section" class="py-12 mt-20">
+        <div class="featured-project-container text-center max-w-full mx-auto">
+            <div class="section-header">
+                <h2 class="section-title">Graphic Design Projects</h2>
             </div>
-            <div class="project-card-item animate-on-scroll" 
-                 data-project='{
-                   "id": "road-accidents",
-                   "title": "Road Accidents Data Visualization",
-                   "image": "../img/thumbnail2.jpg",
-                   "description": "A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information through clear and impactful graphics.",
-                   "live_demo": "https://specialprojects.mako.co.il/Road_Accidents",
-                   "type": "graphic"
-                 }'>
-              <img src="../img/thumbnail2.jpg" alt="Road Accidents Data Visualization" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';">
-              <div class="project-card-item-content">
-                <h4>Road Accidents Data Visualization</h4>
-                <p>A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information.</p>
-                <button class="view-project-btn">View Project</button>
-              </div>
+            <div class="featured-projects-content">
+                <!-- Featured Graphic Project (World Cup 22 Infographic) -->
+                <div class="featured-project animate-on-scroll"
+                    data-project='{
+                        "id": "worldcup22",
+                        "title": "World Cup 22 Infographic",
+                        "image": "../img/thumbnail1.jpg",
+                        "description": "An engaging infographic designed for the 2022 World Cup, featuring key statistics and visual highlights of the tournament. This project demonstrates data visualization and compelling graphic storytelling, transforming complex data into a visually appealing and easy-to-understand format for a broad audience.",
+                        "technologies": ["Adobe Illustrator", "Infographics", "Data Visualization"],
+                        "live_demo": "https://makospecial.co.il/worldcup22",
+                        "type": "graphic"
+                    }'>
+                    <img src="../img/thumbnail1.jpg" alt="World Cup 22 Infographic" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    <div class="featured-project-content">
+                        <h4>World Cup 22 Infographic</h4>
+                        <p>An engaging infographic designed for the 2022 World Cup, featuring key statistics and visual highlights of the tournament, transforming complex data into a visually appealing and easy-to-understand format.</p>
+                        <button class="view-project-btn">
+                            View Project <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Side Graphic Projects -->
+                <div class="side-projects-grid">
+                    <!-- Graphic Project Item 2: Road Accidents -->
+                    <div class="project-card-item animate-on-scroll"
+                        data-project='{
+                            "id": "road-accidents",
+                            "title": "Road Accidents Data Visualization",
+                            "image": "../img/thumbnail2.jpg",
+                            "description": "A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information through clear and impactful graphics. This project showcases the ability to communicate sensitive data effectively and visually.",
+                            "technologies": ["Adobe Photoshop", "Data Analysis", "Graphic Design"],
+                            "live_demo": "https://specialprojects.mako.co.il/Road_Accidents",
+                            "type": "graphic"
+                        }'>
+                        <img src="../img/thumbnail2.jpg" alt="Road Accidents Data Visualization" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <div class="project-card-item-content">
+                            <h4>Road Accidents Data Visualization</h4>
+                            <p>A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information through clear and impactful graphics.</p>
+                            <button class="view-project-btn">
+                                View Project <i class="fas fa-external-link-alt ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Graphic Project Item 3: Climate Change -->
+                    <div class="project-card-item animate-on-scroll"
+                        data-project='{
+                            "id": "climate-change",
+                            "title": "Climate Change Awareness Graphics",
+                            "image": "../img/thumbnail3.jpg",
+                            "description": "Graphics created to raise awareness about climate change, translating complex environmental data into easily understandable and visually compelling messages. This project emphasizes impactful visual communication for social awareness.",
+                            "technologies": ["Adobe InDesign", "Illustrations", "Environmental Design"],
+                            "live_demo": "https://makospecial.co.il/climate_change",
+                            "type": "graphic"
+                        }'>
+                        <img src="../img/thumbnail3.jpg" alt="Climate Change Awareness Graphics" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <div class="project-card-item-content">
+                            <h4>Climate Change Awareness Graphics</h4>
+                            <p>Graphics created to raise awareness about climate change, translating complex environmental data into easily understandable and visually compelling messages.</p>
+                            <button class="view-project-btn">
+                                View Project <i class="fas fa-external-link-alt ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="project-card-item animate-on-scroll" 
-                 data-project='{
-                   "id": "climate-change",
-                   "title": "Climate Change Awareness Graphics",
-                   "image": "../img/thumbnail3.jpg",
-                   "description": "Graphics created to raise awareness about climate change, translating complex environmental data into easily understandable and visually compelling messages.",
-                   "live_demo": "https://makospecial.co.il/climate_change",
-                   "type": "graphic"
-                 }'>
-              <img src="../img/thumbnail3.jpg" alt="Climate Change Awareness Graphics" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';">
-              <div class="project-card-item-content">
-                <h4>Climate Change Awareness Graphics</h4>
-                <p>Graphics created to raise awareness about climate change, translating complex environmental data into easily understandable messages.</p>
-                <button class="view-project-btn">View Project</button>
-              </div>
+            <div class="view-all-button-container">
+                <a href="graphic-all-projects.html" class="view-all-button">
+                    View All Graphic Projects <i class="fas fa-arrow-right ml-2"></i>
+                </a>
             </div>
-            <div class="project-card-item animate-on-scroll" 
-                 data-project='{
-                   "id": "britney-40",
-                   "title": "Britney Spears 40th Birthday Tribute",
-                   "image": "../img/thumbnail4.jpg",
-                   "description": "A unique graphic tribute celebrating Britney Spears' 40th birthday, showcasing creative design elements inspired by her iconic career and imagery.",
-                   "live_demo": "https://makospecial.co.il/40Britney",
-                   "type": "graphic"
-                 }'>
-              <img src="../img/thumbnail4.jpg" alt="Britney Spears 40th Birthday Tribute" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';">
-              <div class="project-card-item-content">
-                <h4>Britney Spears 40th Birthday Tribute</h4>
-                <p>A unique graphic tribute celebrating Britney Spears' 40th birthday, showcasing creative design elements inspired by her iconic career.</p>
-                <button class="view-project-btn">View Project</button>
-              </div>
-            </div>
-            <div class="project-card-item animate-on-scroll" 
-                 data-project='{
-                   "id": "israeli-politics",
-                   "title": "Israeli Politics Explainer Graphic",
-                   "image": "../img/thumbnail5.jpg",
-                   "description": "An illustrative graphic designed to simplify and explain complex aspects of Israeli politics, making it accessible and engaging for a broad audience.",
-                   "live_demo": "https://makospecial.co.il/israel_politics",
-                   "type": "graphic"
-                 }'>
-              <img src="../img/thumbnail5.jpg" alt="Israeli Politics Explainer Graphic" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';">
-              <div class="project-card-item-content">
-                <h4>Israeli Politics Explainer Graphic</h4>
-                <p>An illustrative graphic designed to simplify and explain complex aspects of Israeli politics, making it accessible and engaging.</p>
-                <button class="view-project-btn">View Project</button>
-              </div>
-            </div>
-            <div class="project-card-item animate-on-scroll" 
-                 data-project='{
-                   "id": "homat-magen",
-                   "title": "Operation Homat Magen Visuals",
-                   "image": "../img/thumbnail6.jpg",
-                   "description": "Visual content created for Operation Homat Magen, focusing on clear and concise communication of events and key messages during the operation.",
-                   "live_demo": "https://makospecial.co.il/homat_magen",
-                   "type": "graphic"
-                 }'>
-              <img src="../img/thumbnail6.jpg" alt="Operation Homat Magen Visuals" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';">
-              <div class="project-card-item-content">
-                <h4>Operation Homat Magen Visuals</h4>
-                <p>Visual content created for Operation Homat Magen, focusing on clear and concise communication of events and key messages.</p>
-                <button class="view-project-btn">View Project</button>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      <!-- Web Development Section -->
+      <!-- Web Development Section (Featured Project Layout) -->
       <section id="web-development-section" class="py-12 mt-20">
-        <div class="web-projects-container text-center max-w-full mx-auto">
-            <h2 class="section-title">Web Development Projects</h2>
-            <div class="horizontal-scroll-container"> <!-- Changed to horizontal scroll -->
-                <!-- Project Item 1: TRAVELLY -->
-                <div class="project-card-item animate-on-scroll"
+        <div class="featured-project-container text-center max-w-full mx-auto">
+            <div class="section-header">
+                <h2 class="section-title">Web Development Projects</h2>
+            </div>
+            <div class="featured-projects-content">
+                <!-- Featured Project (TRAVELLY) -->
+                <div class="featured-project animate-on-scroll"
                     data-project='{
                         "id": "travelly",
                         "title": "TRAVELLY - Travel Agency Website",
@@ -616,60 +802,150 @@
                         "type": "web"
                     }'>
                     <img src="../img/TRAVEELY_ME.png" alt="Travelly Website" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                    <div class="project-card-item-content">
+                    <div class="featured-project-content">
                         <h4>TRAVELLY - Travel Agency Website</h4>
-                        <p>A modern and responsive website for a travel agency, featuring an attractive design and smooth user experience.</p>
+                        <p>This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.</p>
                         <button class="view-project-btn">
                             View Project <i class="fas fa-external-link-alt ml-2"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Project Item 2: People Counter - Simple Counter App -->
-                <div class="project-card-item animate-on-scroll"
-                    data-project='{
-                        "id": "people-counter",
-                        "title": "People Counter - Simple Counter App",
-                        "image": "../img/PEOPLE_COUNTER.png",
-                        "description": "A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.",
-                        "technologies": ["HTML5", "CSS3", "JavaScript"],
-                        "live_demo": "https://shirly3212.github.io/People-Counter/",
-                        "github_repo": "https://shirly3212.github.io/People-Counter",
-                        "type": "web"
-                    }'>
-                    <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                    <div class="project-card-item-content">
-                        <h4>People Counter - Simple Counter App</h4>
-                        <p>A straightforward web application designed to count people entering or exiting an area, providing a clean, intuitive interface for basic tracking.</p>
-                        <button class="view-project-btn">
-                            View Project <i class="fas fa-external-link-alt ml-2"></i>
-                        </button>
+                <!-- Side Projects -->
+                <div class="side-projects-grid">
+                    <!-- Project Item 2: People Counter -->
+                    <div class="project-card-item animate-on-scroll"
+                        data-project='{
+                            "id": "people-counter",
+                            "title": "People Counter - Simple Counter App",
+                            "image": "../img/PEOPLE_COUNTER.png",
+                            "description": "A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.",
+                            "technologies": ["HTML5", "CSS3", "JavaScript"],
+                            "live_demo": "https://shirly3212.github.io/People-Counter/",
+                            "github_repo": "https://shirly3212.github.io/People-Counter",
+                            "type": "web"
+                        }'>
+                        <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <div class="project-card-item-content">
+                            <h4>People Counter - Simple Counter App</h4>
+                            <p>A straightforward web application designed to count people entering or exiting an area.</p>
+                            <button class="view-project-btn">
+                                View Project <i class="fas fa-external-link-alt ml-2"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Project Item 3: Photographer - Standard Layout -->
-                <div class="project-card-item animate-on-scroll"
-                    data-project='{
-                        "id": "photographer",
-                        "title": "Photographer - Visual Portfolio",
-                        "image": "../img/Photographer_me.png",
-                        "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information.",
-                        "technologies": ["HTML5", "CSS3"],
-                        "live_demo": "https://shirly3212.github.io/Photographer/",
-                        "github_repo": "https://shirly3212.github.io/Photographer",
-                        "type": "web"
-                    }'>
-                    <img src="../img/Photographer_me.png" alt="Photographer Portfolio" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                    <div class="project-card-item-content">
-                        <h4>Photographer - Visual Portfolio</h4>
-                        <p>A sleek visual portfolio website for photographers to showcase their work in an elegant and modern style with responsive layout and image galleries.</p>
-                        <button class="view-project-btn">
-                            View Project <i class="fas fa-external-link-alt ml-2"></i>
-                        </button>
+                    <!-- Project Item 3: Photographer -->
+                    <div class="project-card-item animate-on-scroll"
+                        data-project='{
+                            "id": "photographer",
+                            "title": "Photographer - Visual Portfolio",
+                            "image": "../img/Photographer_me.png",
+                            "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information.",
+                            "technologies": ["HTML5", "CSS3"],
+                            "live_demo": "https://shirly3212.github.io/Photographer/",
+                            "github_repo": "https://shirly3212.github.io/Photographer",
+                            "type": "web"
+                        }'>
+                        <img src="../img/Photographer_me.png" alt="Photographer Portfolio" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <div class="project-card-item-content">
+                            <h4>Photographer - Visual Portfolio</h4>
+                            <p>A sleek visual portfolio website for photographers to showcase their work in an elegant and modern style.</p>
+                            <button class="view-project-btn">
+                                View Project <i class="fas fa-external-link-alt ml-2"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+      </section>
+
+      <!-- Graphic Design Gallery Carousel Section -->
+      <section id="graphic-carousel-section" class="carousel-section">
+        <h2 class="section-title">Graphic Design Gallery</h2>
+        <div class="carousel-wrapper" id="carouselWrapper">
+            <div class="carousel-item"
+                 data-project='{
+                   "id": "gallery-item-1",
+                   "title": "Dynamic Graphic Design",
+                   "image": "../img/gallery1.jpg",
+                   "description": "This image represents a dynamic graphic design concept, combining vibrant colors and fluid shapes to create a sense of movement and energy.",
+                   "technologies": ["Adobe Illustrator", "Concept Art"],
+                   "live_demo": "../img/gallery1.jpg",
+                   "type": "graphic",
+                   "is_carousel_item": true
+                 }'>
+                <img src="../img/gallery1.jpg" alt="Dynamic Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+            </div>
+            <div class="carousel-item"
+                 data-project='{
+                   "id": "gallery-item-2",
+                   "title": "Abstract Graphic Design",
+                   "image": "../img/gallery2.jpg",
+                   "description": "An abstract graphic design piece, showcasing a unique blend of textures and minimalist forms, inviting interpretation and contemplation.",
+                   "technologies": ["Adobe Photoshop", "Digital Painting"],
+                   "live_demo": "../img/gallery2.jpg",
+                   "type": "graphic",
+                   "is_carousel_item": true
+                 }'>
+                <img src="../img/gallery2.jpg" alt="Abstract Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not +Found';">
+            </div>
+            <div class="carousel-item"
+                 data-project='{
+                   "id": "gallery-item-3",
+                   "title": "Creative Graphic Design",
+                   "image": "../img/gallery3.jpg",
+                   "description": "A highly creative graphic design project, demonstrating innovative use of typography and visual hierarchy to convey a powerful message.",
+                   "technologies": ["Adobe InDesign", "Typography"],
+                   "live_demo": "../img/gallery3.jpg",
+                   "type": "graphic",
+                   "is_carousel_item": true
+                 }'>
+                <img src="../img/gallery3.jpg" alt="Creative Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+            </div>
+            <div class="carousel-item"
+                 data-project='{
+                   "id": "gallery-item-4",
+                   "title": "Modern Graphic Design",
+                   "image": "../img/gallery4.jpg",
+                   "description": "This modern graphic design emphasizes clean lines, balanced composition, and a sophisticated color palette, suitable for contemporary branding.",
+                   "technologies": ["Adobe Illustrator", "Branding"],
+                   "live_demo": "../img/gallery4.jpg",
+                   "type": "graphic",
+                   "is_carousel_item": true
+                 }'>
+                <img src="../img/gallery4.jpg" alt="Modern Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+            </div>
+            <div class="carousel-item"
+                 data-project='{
+                   "id": "gallery-item-5",
+                   "title": "Digital Art Design",
+                   "image": "../img/gallery5.jpg",
+                   "description": "A vibrant piece of digital art, showcasing experimental techniques and a rich blend of colors to create an immersive visual experience.",
+                   "technologies": ["Procreate", "Digital Painting"],
+                   "live_demo": "../img/gallery5.jpg",
+                   "type": "graphic",
+                   "is_carousel_item": true
+                 }'>
+                <img src="../img/gallery5.jpg" alt="Digital Art Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+            </div>
+            <div class="carousel-item"
+                 data-project='{
+                   "id": "gallery-item-6",
+                   "title": "Visual Identity Design",
+                   "image": "../img/gallery6.jpg",
+                   "description": "A comprehensive visual identity design project, including logo, color scheme, and typography, crafted to represent a brand's core values.",
+                   "technologies": ["Adobe Illustrator", "Logo Design"],
+                   "live_demo": "../img/gallery6.jpg",
+                   "type": "graphic",
+                   "is_carousel_item": true
+                 }'>
+                <img src="../img/gallery6.jpg" alt="Visual Identity Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+            </div>
+        </div>
+        <button class="carousel-nav-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
       </section>
 
     </div>
@@ -692,6 +968,7 @@
       <div class="modal-content">
           <button class="modal-close-btn" id="closeModalBtn">&times;</button>
           <img id="modalProjectImage" src="" alt="Project Image" class="rounded-md mb-4 w-full h-64 object-cover">
+          <!-- These elements will be conditionally hidden by JS for carousel images -->
           <h3 id="modalProjectTitle" class="text-3xl font-bold text-gray-800 mb-4"></h3>
           <p id="modalProjectDescription" class="text-gray-700 mb-4"></p>
           <div class="flex flex-wrap gap-2 mb-4">
@@ -809,49 +1086,64 @@
     function openModal(projectData) {
         currentProjectData = projectData; // Store the data
         modalProjectImage.src = projectData.image;
-        modalProjectTitle.textContent = projectData.title;
-        modalProjectDescription.textContent = projectData.description;
 
-        modalTechnologies.innerHTML = ''; // Clear previous technologies
-        if (projectData.technologies && projectData.technologies.length > 0) {
-            modalTechnologies.parentElement.classList.remove('hidden'); // Show technologies section
-            projectData.technologies.forEach(tech => {
-                const span = document.createElement('span');
-                span.textContent = tech;
-                span.classList.add('bg-blue-100', 'text-blue-800', 'text-xs', 'font-medium', 'px-2.5', 'py-0.5', 'rounded-full', 'dark:bg-blue-900', 'dark:text-blue-300');
-                modalTechnologies.appendChild(span);
-            });
-        } else {
-            modalTechnologies.parentElement.classList.add('hidden'); // Hide technologies section if no tech
-        }
+        const isCarouselGalleryItem = projectData.is_carousel_item === true;
 
-        // Hide GitHub button if not available
-        if (projectData.github_repo) {
-            modalGithubRepoBtn.href = projectData.github_repo;
-            modalGithubRepoBtn.classList.remove('hidden');
-        } else {
-            modalGithubRepoBtn.classList.add('hidden');
-        }
+        // Reset all elements to their default (visible) state
+        modalProjectTitle.classList.remove('hidden');
+        modalProjectDescription.classList.remove('hidden');
+        modalTechnologies.parentElement.classList.remove('hidden'); // Parent div of technologies
+        modalLiveDemoBtn.classList.remove('hidden');
+        modalGithubRepoBtn.classList.remove('hidden');
+        aiInsightBtn.classList.remove('hidden');
+        aiInsightContainer.classList.add('hidden'); // AI insight content hidden by default
+        aiInsightText.textContent = ''; // Clear any previous AI insight text
+        aiInsightLoading.classList.add('hidden'); // Hide AI loading spinner
 
-        // Hide Live Demo button if not available
-        if (projectData.live_demo) {
-            modalLiveDemoBtn.href = projectData.live_demo;
-            modalLiveDemoBtn.classList.remove('hidden');
-        } else {
+        if (isCarouselGalleryItem) {
+            // If it's a carousel gallery item, hide all text and buttons
+            modalProjectTitle.classList.add('hidden');
+            modalProjectDescription.classList.add('hidden');
+            modalTechnologies.parentElement.classList.add('hidden');
             modalLiveDemoBtn.classList.add('hidden');
-        }
-
-        // Hide AI Insight button for graphic design projects
-        if (projectData.type === 'graphic') {
-             aiInsightBtn.classList.add('hidden');
+            modalGithubRepoBtn.classList.add('hidden');
+            aiInsightBtn.classList.add('hidden');
         } else {
-             aiInsightBtn.classList.remove('hidden');
-        }
+            // For regular project cards, populate content
+            modalProjectTitle.textContent = projectData.title;
+            modalProjectDescription.textContent = projectData.description;
 
-        // Reset and hide AI Insight section
-        aiInsightContainer.classList.add('hidden');
-        aiInsightText.textContent = '';
-        aiInsightLoading.classList.add('hidden');
+            modalTechnologies.innerHTML = ''; // Clear previous technologies
+            if (projectData.technologies && projectData.technologies.length > 0) {
+                projectData.technologies.forEach(tech => {
+                    const span = document.createElement('span');
+                    span.textContent = tech;
+                    span.classList.add('bg-blue-100', 'text-blue-800', 'text-xs', 'font-medium', 'px-2.5', 'py-0.5', 'rounded-full');
+                    modalTechnologies.appendChild(span);
+                });
+            } else {
+                modalTechnologies.parentElement.classList.add('hidden'); // Hide if no technologies
+            }
+
+            // Show/hide GitHub button based on data
+            if (projectData.github_repo) {
+                modalGithubRepoBtn.href = projectData.github_repo;
+            } else {
+                modalGithubRepoBtn.classList.add('hidden');
+            }
+
+            // Show/hide Live Demo button based on data
+            if (projectData.live_demo) {
+                modalLiveDemoBtn.href = projectData.live_demo;
+            } else {
+                modalLiveDemoBtn.classList.add('hidden');
+            }
+
+            // Hide AI button for graphic design projects (which are not carousel gallery items in this logic branch)
+            if (projectData.type === 'graphic') {
+                aiInsightBtn.classList.add('hidden');
+            }
+        }
 
         projectModal.classList.add('is-visible');
         document.body.style.overflow = 'hidden'; // Prevent scrolling of body
@@ -864,8 +1156,8 @@
         currentProjectData = null; // Clear current project data
     }
 
-    // Event listeners for opening modal: on any .project-card-item or .graphic-gallery-container img
-    document.querySelectorAll('.project-card-item, .graphic-gallery-container img').forEach(item => {
+    // Event listeners for opening modal: on any .project-card-item, .carousel-item or .featured-project
+    document.querySelectorAll('.project-card-item, .carousel-item, .featured-project').forEach(item => {
         item.addEventListener('click', (event) => {
             // Prevent opening modal if a child button (like View Project) was clicked, 
             // as those buttons have their own href or event listeners
@@ -874,30 +1166,17 @@
             }
 
             let projectData = null;
-            if (item.classList.contains('project-card-item')) {
-                const projectDataString = item.dataset.project;
-                if (!projectDataString || projectDataString === "undefined") {
-                    console.error("Invalid or undefined project data string for this card:", projectDataString);
-                    return;
-                }
-                try {
-                    projectData = JSON.parse(projectDataString);
-                } catch (e) {
-                    console.error("Error parsing JSON for project data:", projectDataString, e);
-                    return;
-                }
-            } else if (item.tagName === 'IMG' && item.closest('.graphic-gallery-container')) {
-                // For direct image clicks in the graphic gallery
-                projectData = {
-                    id: item.alt.replace(/\s/g, '-').toLowerCase(),
-                    title: item.alt,
-                    image: item.src,
-                    description: `This is a high-resolution image from the graphic design gallery, showcasing a project related to: ${item.alt}.`,
-                    technologies: [],
-                    live_demo: item.src, // Live demo can be the image itself or a placeholder link
-                    github_repo: null,
-                    type: 'graphic'
-                };
+            const projectDataString = item.dataset.project;
+
+            if (!projectDataString || projectDataString === "undefined") {
+                console.error("Invalid or undefined project data string for this item:", item);
+                return;
+            }
+            try {
+                projectData = JSON.parse(projectDataString);
+            } catch (e) {
+                console.error("Error parsing JSON for project data:", projectDataString, e);
+                return;
             }
             
             if (projectData) {
@@ -910,7 +1189,7 @@
     document.querySelectorAll('.view-project-btn').forEach(button => {
         button.addEventListener('click', (event) => {
             event.stopPropagation(); // Stop click from propagating to parent card
-            const card = event.target.closest('.project-card-item'); // Only target the new project-card-item
+            const card = event.target.closest('.project-card-item') || event.target.closest('.featured-project');
             if (card) {
                 const projectDataString = card.dataset.project;
                 if (!projectDataString || projectDataString === "undefined") {
@@ -947,8 +1226,8 @@
 
     // --- Gemini API Integration ---
     aiInsightBtn.addEventListener('click', async () => {
-        if (!currentProjectData || currentProjectData.type === 'graphic') { // Don't generate AI insight for graphic design
-            console.error("No project data available or not a web project to generate insight.");
+        if (!currentProjectData || currentProjectData.type === 'graphic' || currentProjectData.is_carousel_item) { // Don't generate AI insight for graphic design or carousel items
+            console.error("No project data available, not a web project, or is a carousel item to generate insight.");
             aiInsightContainer.classList.add('hidden'); // Ensure hidden if not applicable
             return;
         }
@@ -997,21 +1276,28 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
 
     // --- Mobile Navigation Toggle ---
     document.addEventListener("DOMContentLoaded", function () {
-      const nav = document.querySelector("nav");
       const mainNavUl = document.getElementById("main-nav-menu"); // Main ul
       const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
       const designMenuToggle = document.getElementById('design-menu-toggle'); // The "Design" link
       const designSubMenu = designMenuToggle.nextElementSibling; // The ul after "Design" link
 
+      // Function to close all menus (main and sub)
+      function closeAllMenus() {
+          mainNavUl.classList.remove('active'); // Close main mobile menu
+          if (designSubMenu) {
+              designSubMenu.classList.remove('active'); // Close mobile dropdown
+              designSubMenu.classList.remove('show-dropdown'); // Close desktop click dropdown
+              designMenuToggle.querySelector('i').classList.remove('rotate-180'); // Reset chevron
+          }
+      }
+
       // Main mobile menu toggle
       if (mobileMenuToggle) {
-          mobileMenuToggle.addEventListener('click', () => {
+          mobileMenuToggle.addEventListener('click', (event) => {
+              event.stopPropagation(); // Prevent immediate closing due to outer click listener
               mainNavUl.classList.toggle('active');
-              // Ensure design sub-menu is closed when main menu is toggled
-              if (!mainNavUl.classList.contains('active') && designSubMenu) {
-                  designSubMenu.classList.remove('active'); // Mobile dropdown state
-                  designSubMenu.classList.remove('show-dropdown'); // Desktop click state fallback
-                  designMenuToggle.querySelector('i').classList.remove('rotate-180'); // Reset chevron
+              if (!mainNavUl.classList.contains('active')) { // If closing main menu
+                  closeAllMenus(); // Close everything if hamburger is closing the main menu
               }
           });
       }
@@ -1020,13 +1306,12 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
       if (designMenuToggle && designSubMenu) {
           designMenuToggle.addEventListener('click', (event) => {
               event.preventDefault(); // ALWAYS prevent default link behavior for this specific toggle button
+              event.stopPropagation(); // Prevent immediate closing due to outer click listener
 
-              // Toggle the dropdown visibility class
-              designSubMenu.classList.toggle('show-dropdown'); // This handles desktop click state and general visibility
-              
-              // Also handle mobile specific 'active' class for styling if in mobile mode
-              if (window.innerWidth < 768) {
+              if (window.innerWidth < 768) { // Mobile behavior: toggle 'active' class
                   designSubMenu.classList.toggle('active');
+              } else { // Desktop behavior: toggle 'show-dropdown' class
+                  designSubMenu.classList.toggle('show-dropdown');
               }
               designMenuToggle.querySelector('i').classList.toggle('rotate-180'); // Rotate chevron
           });
@@ -1047,44 +1332,111 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
               }
           });
 
-          // Close all menus when a main nav link (not design parent) or sub-menu link is clicked
+          // Close all menus when a link inside main nav or sub-menu is clicked
           mainNavUl.querySelectorAll('a').forEach(link => {
-              link.addEventListener('click', (event) => { // Added event param
-                  // If it's a sub-menu item, it will close the dropdown and potentially main menu
-                  if (link.closest('.group ul')) {
-                      if (window.innerWidth < 768) { // Mobile
-                          mainNavUl.classList.remove('active'); // Close main mobile menu
-                          designSubMenu.classList.remove('active'); // Close mobile dropdown
-                      } else { // Desktop
-                          designSubMenu.classList.remove('show-dropdown'); // Close desktop dropdown
-                      }
-                      designMenuToggle.querySelector('i').classList.remove('rotate-180'); // Reset chevron
-                  } else if (!link.closest('.group')) { // If it's a non-Design main nav link
-                      if (mainNavUl.classList.contains('active')) { // Only if mobile main menu is open
-                           mainNavUl.classList.remove('active');
-                           if (designSubMenu) { // Ensure submenu is closed if main nav closes
-                               designSubMenu.classList.remove('active');
-                               designSubMenu.classList.remove('show-dropdown');
-                               designMenuToggle.querySelector('i').classList.remove('rotate-180');
-                           }
-                      }
+              link.addEventListener('click', (event) => {
+                  // If it's a sub-menu item or a non-group main nav link, close all menus
+                  if (link.closest('.group ul') || (!link.closest('.group') && link.href && link.href !== '#')) {
+                      closeAllMenus();
                   }
               });
           });
       }
 
-      // Close mobile menu or dropdown if resized to desktop view
+      // Close all menus if resized to desktop view (from mobile)
       window.addEventListener('resize', () => {
           if (window.innerWidth >= 768) {
-              mainNavUl.classList.remove('active'); // Ensure mobile menu is hidden
-              if (designSubMenu) {
-                  designSubMenu.classList.remove('active'); // Ensure mobile dropdown is hidden
-                  designSubMenu.classList.remove('show-dropdown'); // Ensure desktop click dropdown is hidden
-                  designMenuToggle.querySelector('i').classList.remove('rotate-180');
-              }
+              closeAllMenus();
           }
       });
     });
+
+    // --- Carousel Logic (New) ---
+    const carouselWrapper = document.getElementById('carouselWrapper');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        if (!carouselWrapper || carouselItems.length === 0) return;
+
+        // Calculate the scroll position for the current item based on showing multiple items
+        // We need to account for the margin between items.
+        // Get the actual width of one item including its margin.
+        const itemStyle = window.getComputedStyle(carouselItems[0]);
+        const itemMarginRight = parseFloat(itemStyle.marginRight);
+        const itemMarginLeft = parseFloat(itemStyle.marginLeft); // Get left margin too
+        // Total width for one item including its own margins
+        const itemWidthWithMargins = carouselItems[0].offsetWidth + itemMarginLeft + itemMarginRight;
+
+        const scrollAmount = itemWidthWithMargins * currentIndex;
+        carouselWrapper.scrollLeft = scrollAmount;
+
+        // Optional: Loop around
+        if (currentIndex >= carouselItems.length) {
+            currentIndex = 0;
+            carouselWrapper.scrollLeft = 0; // Snap back instantly
+        } else if (currentIndex < 0) {
+            currentIndex = carouselItems.length - 1;
+            carouselWrapper.scrollLeft = itemWidthWithMargins * (carouselItems.length - 1); // Snap back instantly
+        }
+    }
+
+    // Initialize carousel on load
+    window.addEventListener('load', updateCarousel);
+    // Also update on resize to ensure correct snapping if layout changes
+    window.addEventListener('resize', () => {
+        updateCarousel(); // Re-calculate and snap to nearest item on resize
+    });
+
+    // Navigation buttons
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            currentIndex--;
+            updateCarousel();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            currentIndex++;
+            updateCarousel();
+        });
+    }
+
+    // Optional: Add swipe functionality for touch devices
+    let startX;
+    let isSwiping = false;
+
+    if (carouselWrapper) {
+        carouselWrapper.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isSwiping = true;
+        });
+
+        carouselWrapper.addEventListener('touchmove', (e) => {
+            if (!isSwiping) return;
+            // Prevent vertical scrolling while swiping horizontally
+            // e.preventDefault(); // Commented out to allow vertical scroll if initial move is vertical
+        });
+
+        carouselWrapper.addEventListener('touchend', (e) => {
+            if (!isSwiping) return;
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+
+            if (Math.abs(diff) > 50) { // A threshold for a valid swipe
+                if (diff > 0) { // Swiped left (show next)
+                    currentIndex++;
+                } else { // Swiped right (show prev)
+                    currentIndex--;
+                }
+                updateCarousel();
+            }
+            isSwiping = false;
+        });
+    }
   </script>
 </body>
 
