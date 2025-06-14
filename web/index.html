@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Shirly Herscovici is a motion graphic designer, video editor, and a Junior website developer who specializes in HTML & CSS">
+        content="Shirly Ben Nun is a motion graphic designer, video editor, and a Junior website developer who specializes in HTML & CSS">
     <meta name="robots" content="index,follow">
     <title>Shirly Ben Nun | Web Development Projects</title>
     <!-- Tailwind CSS CDN -->
@@ -137,51 +137,7 @@
             transform: translateY(-8px) scale(1.05); /* Increased scale on hover to 1.05 */
             box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.25), 0 8px 12px -5px rgba(0, 0, 0, 0.15), 0 0 50px rgba(59, 130, 246, 1); /* Even stronger blue glow on hover */
         }
-        /* Responsive adjustments for header on small screens */
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                align-items: flex-start;
-                padding-left: 1.5rem; /* Add some padding on small screens */
-                padding-right: 1.5rem;
-            }
-            nav .logo {
-                margin-bottom: 1rem;
-            }
-            nav ul {
-                flex-direction: column;
-                width: 100%;
-                margin-top: 1rem;
-                align-items: flex-start; /* Align nav items to start */
-                background-color: rgba(241, 245, 249, 0.9); /* Slightly darker background for mobile nav with transparency */
-                border-radius: 0.5rem;
-                padding: 1rem;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            }
-            nav ul li {
-                width: 100%;
-                text-align: left; /* Align text to left for LTR */
-            }
-            nav ul li a {
-                display: block;
-                padding: 0.75rem 1rem;
-                width: 100%;
-            }
-            body::before, body::after {
-                width: 200px; /* Adjusted size for mobile */
-                height: 200px; /* Adjusted size for mobile */
-                filter: blur(80px); /* Adjusted blur for mobile */
-            }
-            .section-title {
-                font-size: 2.5rem; /* Adjusted font size for small screens to help fit typing effect */
-                white-space: nowrap; /* KEEP nowrap for precise typing effect */
-                overflow: hidden; /* KEEP hidden for precise typing effect */
-                text-align: center;
-                animation:
-                    typing 3.5s steps(26, end) forwards, /* Use the same typing animation */
-                    blink-caret 0.75s step-end infinite;
-            }
-        }
+
         /* Custom Footer Gradient - replicating original CSS */
         .custom-footer-gradient {
             background: linear-gradient(to right, #ff6600, #ff007b); /* Orange to Pink/Purple */
@@ -285,6 +241,123 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* Responsive adjustments for header and general sections */
+        @media (max-width: 767px) {
+            /* Adjust header to handle logo and button better */
+            header .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                position: relative; /* Make container relative for absolute positioning of menu */
+            }
+
+            /* Hide the regular nav items on small screens */
+            #main-nav-menu {
+                display: none; /* Hidden by default on mobile */
+                flex-direction: column; /* Stack vertically */
+                position: absolute; /* Position relative to parent nav */
+                top: 100%; /* Place right below the nav bar */
+                left: 0;
+                width: 100%;
+                background-color: rgba(241, 245, 249, 0.95); /* Light background for mobile menu */
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                z-index: 100; /* Ensure it's above content */
+                padding: 1rem 0; /* Add padding inside menu */
+                border-radius: 0 0 0.5rem 0.5rem; /* Rounded bottom corners */
+            }
+
+            /* Class to show the mobile menu */
+            #main-nav-menu.active {
+                display: flex; /* Show when active */
+            }
+
+            #main-nav-menu li {
+                width: 100%;
+                text-align: center; /* Center links in mobile menu */
+                border-bottom: 1px solid #e2e8f0; /* Subtle separator */
+            }
+            #main-nav-menu li:last-child {
+                border-bottom: none; /* No border on last item */
+            }
+            #main-nav-menu li a {
+                display: block;
+                padding: 0.75rem 1rem;
+                color: #4a5568; /* Dark text for readability on light background */
+                font-weight: 500;
+            }
+            #main-nav-menu li a.bg-blue-600 { /* Style for the active 'Web' link */
+                color: white; /* Keep text white for active button */
+                border-radius: 0; /* No rounded corners inside full-width menu items */
+            }
+
+            #mobile-menu-toggle {
+                display: block; /* Show hamburger button on mobile */
+                order: 2; /* Place it after logo but before nav links order: 1 for logo, 2 for button, 3 for menu in flexbox */
+            }
+
+            /* General adjustments for mobile sections */
+            .two-column-section, .phone-section-container {
+                flex-direction: column; /* Ensure stacking */
+                padding: 2rem 1rem; /* Adjust padding for smaller screens */
+                gap: 2rem; /* Consistent gap */
+            }
+
+            /* Adjustments for the "Smart Parking Promo" section */
+            .two-column-section .text, .two-column-section .media {
+                flex-basis: auto; /* Remove fixed basis on mobile */
+                width: 100%; /* Take full width */
+            }
+            .two-column-section .text {
+                text-align: center; /* Center text on mobile */
+            }
+
+            /* Adjustments for the "View All Projects" button */
+            .cta-button {
+                padding: 0.8rem 2rem; /* Slightly smaller horizontal padding */
+                font-size: 1.25rem; /* Smaller font size for mobile */
+                width: fit-content; /* Ensure it only takes content width */
+                margin-left: auto; /* Center button horizontally */
+                margin-right: auto; /* Center button horizontally */
+            }
+
+            /* Adjustments for the phone mockup and its text on mobile */
+            .phone-mockup {
+                width: 300px; /* Smaller width for mobile phone */
+                height: 600px; /* Corresponding height for mobile phone (2:1 aspect ratio) */
+                margin: auto; /* Center phone horizontally */
+            }
+
+            .phone-mockup iframe {
+                width: 100%;
+                height: 100%;
+            }
+
+            .interactive-hint {
+                top: 15%; /* Adjust hand position for smaller phone */
+                left: 20%;
+                font-size: 2.5rem; /* Smaller hand icon */
+            }
+
+            .phone-section-container .text-content {
+                max-width: 100%; /* Allow text to take full width on mobile */
+                text-align: center; /* Center text on mobile */
+            }
+
+            /* Increase font size for paragraphs on mobile */
+            .two-column-section p, .phone-section-container p {
+                font-size: 1.125rem; /* Standard mobile paragraph size */
+                line-height: 1.6; /* Adjusted line-height for mobile */
+            }
+        }
+        /* Increased font size and line height for paragraphs on larger screens */
+        @media (min-width: 768px) {
+            .two-column-section p, .phone-section-container p {
+                font-size: 1.5rem; /* Increased from 1.25rem (text-xl) to 1.5rem */
+                line-height: 1.75; /* Increased line-height for better readability */
+            }
+        }
     </style>
 </head>
 <body>
@@ -293,18 +366,22 @@
 
     <!-- Header -->
     <header class="header-frosted shadow-md fixed w-full z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap relative">
             <div class="logo flex items-center">
                 <!-- Using Font Awesome icon for a modern look -->
                 <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
                 <h1 class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition duration-300 rounded-lg p-2">Shirly Herscovici</h1>
             </div>
-            <ul class="flex space-x-8">
+            <!-- Hamburger menu button for mobile -->
+            <button id="mobile-menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
                 <li><a href="../index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Home</a></li>
                 <li><a href="../Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Design</a></li>
                 <li><a href="#" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700">Web</a></li>
-                <li><a href="../contact/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
                 <li><a href="../ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
+                <li><a href="../contact/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -389,7 +466,7 @@
 
     <!-- Footer -->
     <footer class="custom-footer-gradient text-white min-h-7vh py-8 flex justify-between items-center flex-wrap px-5">
-        <h4 class="text-xl font-medium mb-4 md:mb-0">Shirly Ben Nun © 2025</h4>
+        <h4 class="text-xl font-medium mb-4 md:mb-0">Shirly Herscovici © 2025</h4>
         <ul class="flex justify-center items-center flex-wrap gap-6">
             <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Instagram"><i class="fab fa-instagram text-2xl"></i></a></li>
             <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Twitter"><i class="fab fa-twitter text-2xl"></i></a></li>
@@ -646,6 +723,23 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
                 aiInsightLoading.classList.add('hidden'); // Hide loading spinner
             }
         });
+
+        // Hamburger menu toggle for mobile
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mainNavMenu = document.getElementById('main-nav-menu');
+
+        if (mobileMenuToggle && mainNavMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                mainNavMenu.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked (optional, but good for UX)
+            mainNavMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNavMenu.classList.remove('active');
+                });
+            });
+        }
     </script>
 </body>
 </html>
