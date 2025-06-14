@@ -129,6 +129,12 @@
     }
     .two-column-section .text {
       flex: 1 1 400px;
+      text-align: left; /* Align text to left */
+    }
+    .two-column-section .media {
+      flex: 1 1 700px; /* Adjust flex basis to ensure it aligns better */
+      display: flex;
+      justify-content: center; /* Center video within its flex item */
     }
     .two-column-section .media video {
       max-width: 100%;
@@ -170,18 +176,25 @@
         .phone-section-container {
             flex-direction: row; /* Side-by-side on desktop */
             align-items: center; /* Center align items for better visual */
+            justify-content: space-between; /* Distribute items horizontally */
             gap: 4rem; /* Restore gap for desktop */
         }
+        .phone-section-container .phone-mockup {
+            margin-left: 0; /* Remove margin to allow flex to position it */
+            margin-right: auto; /* Push phone to the left */
+        }
         .phone-section-container .text-content {
-            /* Adjusted max-width to control text spread */
-            max-width: 450px; /* Reduced max-width for narrower text column */
+            flex: 1 1 50%; /* Allow text to take up more space, adjust as needed */
+            max-width: 550px; /* Increased max-width for text column */
             text-align: left; /* Align text to left on desktop */
+            margin-right: 0; /* Remove margin to allow flex to position it */
+            margin-left: auto; /* Push text to the right */
         }
     }
 
     .phone-mockup {
-      width: 450px; /* Adjusted width based on new image for better proportion */
-      height: 900px; /* Adjusted height for new width, maintaining aspect ratio */
+      width: 480px; /* Adjusted width based on new image for better proportion */
+      height: 960px; /* Adjusted height for new width, maintaining aspect ratio (2:1) */
       border: 16px solid #333;
       border-radius: 36px;
       position: relative;
@@ -217,9 +230,8 @@
     .interactive-hint {
         position: absolute;
         /* Adjusted positioning based on image and desired interaction area */
-        bottom: 120px; /* Adjusted to be higher and more visible on wider screen */
-        left: 50%;
-        transform: translateX(-50%); /* Centered horizontally */
+        top: 25%; /* Roughly positioned over the "License Plate Number" field */
+        left: 20%; /* Positioned towards the input field */
         font-size: 3rem; /* Size of the hand icon */
         color: #ffffff; /* Changed hand color to white */
         z-index: 10; /* Ensure it's above the phone */
@@ -228,10 +240,10 @@
     }
 
     @keyframes pointer-bounce {
-        0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
-        25% { transform: translateX(-50%) translateY(-15px); opacity: 0.8; }
-        50% { transform: translateX(-50%) translateY(0); opacity: 1; }
-        75% { transform: translateX(-50%) translateY(-10px); opacity: 0.8; }
+        0%, 100% { transform: translate(-50%, 0); opacity: 1; }
+        25% { transform: translate(-50%, -15px); opacity: 0.8; }
+        50% { transform: translate(-50%, 0); opacity: 1; }
+        75% { transform: translate(-50%, -10px); opacity: 0.8; }
     }
 
 
