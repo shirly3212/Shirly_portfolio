@@ -9,28 +9,31 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
     /* הסרנו את body::before הישן */
+    /* Removed the old body::before */
     body::before {
       content: none;
     }
     /* רקע דינמי עם particles.js */
+    /* Dynamic background with particles.js */
     #particles-js {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
       z-index: -2;
-      background: radial-gradient(circle at 30% 20%, #ccf2f4, #e5e9f0, #ffffff);
+      /* Changed to dark gradient */
+      background: linear-gradient(135deg, #1a2a6c, #001f4c, #0d0c3d); /* Dark blue/purple gradient */
     }
     html, body {
       margin: 0; padding: 0;
       font-family: "Manrope", sans-serif;
-      color: #1a1a1a;
+      color: #e0e0e0; /* Adjusted text color for dark background */
       overflow-x: hidden;
       text-align: center;
-      background: none;
+      background: none; /* Ensure no other background interferes */
     }
     .cursor {
       width: 20px;
@@ -62,7 +65,7 @@
       50% { border-color: #00bcd4; }
     }
     header {
-      background: #ffffffcc;
+      background: #ffffff1a; /* Adjusted header background for dark theme */
       backdrop-filter: blur(10px);
       display: flex;
       justify-content: space-between;
@@ -71,6 +74,7 @@
       flex-wrap: wrap;
       position: relative;
       z-index: 10;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Darker shadow for contrast */
     }
     nav ul {
       list-style: none;
@@ -81,7 +85,7 @@
     }
     nav ul li a {
       text-decoration: none;
-      color: #1a1a1a;
+      color: #e0e0e0; /* Adjusted link color for dark background */
       font-weight: bold;
     }
     nav ul li a.active {
@@ -95,6 +99,9 @@
     .logo img {
       height: 40px;
     }
+    .logo h1 { /* Added styling for logo text */
+        color: #e0e0e0;
+    }
     .two-column-section {
       display: flex;
       flex-wrap: wrap;
@@ -106,6 +113,7 @@
       margin: auto;
       position: relative;
       z-index: 5;
+      color: #e0e0e0; /* Adjusted text color for dark background */
     }
     .two-column-section .text {
       flex: 1 1 400px;
@@ -134,9 +142,29 @@
       transform: scale(1.05);
       background: linear-gradient(135deg, #00acc1, #9575cd);
     }
+    /* New styling for phone section layout */
+    .phone-section-container {
+        display: flex;
+        flex-direction: column; /* Stack on mobile */
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+        padding: 4rem 2rem;
+        max-width: 1400px;
+        margin: auto;
+        color: #e0e0e0;
+    }
+    @media (min-width: 768px) {
+        .phone-section-container {
+            flex-direction: row; /* Side-by-side on desktop */
+        }
+        .phone-section-container .text-content {
+            text-align: left; /* Align text to left on desktop */
+        }
+    }
+
     .phone-mockup {
-      max-width: 360px;
-      margin: 4rem auto;
+      max-width: 400px; /* Adjusted width */
       border: 16px solid #333;
       border-radius: 36px;
       position: relative;
@@ -147,7 +175,7 @@
     }
     .phone-mockup iframe {
       width: 100%;
-      height: 640px;
+      height: 710px; /* Adjusted height to maintain aspect ratio with new width */
       border: none;
       display: block;
     }
@@ -162,6 +190,7 @@
       flex: 1 1 200px;
       transition: transform 0.3s ease;
       z-index: 5;
+      color: #e0e0e0; /* Adjusted text color for dark background */
     }
     .metric-box:hover {
       transform: scale(1.05);
@@ -183,10 +212,12 @@
     footer {
       margin-top: 4rem;
       padding: 2rem;
-      background: #f5f5f5;
+      background: #1a1a1a; /* Dark footer for consistency */
+      color: #e0e0e0; /* Adjusted footer text color */
       font-size: 0.9rem;
       position: relative;
       z-index: 5;
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); /* Darker shadow */
     }
   </style>
 </head>
@@ -201,8 +232,8 @@
        <li><a href="../index.html">Home</a></li>
         <li><a href="../Projects/index.html">Design</a></li>
         <li><a href="../web/index.html">Web</a></li>
-        <li><a href="../contact/index.html">Contact</a></li>
         <li><a class="active" href="#">AI</a></li>
+        <li><a href="../contact/index.html">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -222,8 +253,22 @@
     </div>
   </section>
 
-  <section class="phone-mockup" data-aos="fade-left">
-    <iframe src="https://preview--park-nexus-urban-flow.lovable.app/" title="Smart Parking App Demo"></iframe>
+  <!-- Section for phone mockup and text description -->
+  <section class="phone-section-container" data-aos="fade-left">
+    <div class="phone-mockup">
+      <iframe src="https://preview--park-nexus-urban-flow.lovable.app/" title="Smart Parking App Demo"></iframe>
+    </div>
+    <div class="text-content flex-1 max-w-lg">
+        <h3 class="text-3xl font-semibold mb-4">Smart Parking AI Project</h3>
+        <p class="text-lg leading-relaxed mb-4">
+            This project showcases an innovative smart parking lot prototype application developed using AI tools, including Lovable.
+            The application operates by recognizing vehicle license plates, reserving a dedicated parking space for the user, and efficiently navigating them to the most suitable spot within the parking facility.
+        </p>
+        <p class="text-lg leading-relaxed">
+            The parking space is automatically tailored to the vehicle's needs: electric cars are directed to charging stations, larger vehicles like trucks are guided to extended parking spots, and so on.
+            This solution optimizes the parking experience and reduces congestion in a smart and efficient manner.
+        </p>
+    </div>
   </section>
 
   <section class="ai-metrics" data-aos="fade-up" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; padding: 4rem 2rem;">
@@ -290,6 +335,7 @@
       countUp("count4", 80);
 
       /* הפעלת particles.js */
+      /* particles.js initialization */
       particlesJS("particles-js", {
         "particles": {
           "number": {
@@ -361,7 +407,8 @@
               "line_linked": {
                 "opacity": 0.6
               }
-            },
+            }
+            ,
             "push": {
               "particles_nb": 4
             }
