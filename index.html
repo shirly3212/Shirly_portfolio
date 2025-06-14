@@ -8,16 +8,15 @@
         content="Shirly Herscovici is a motion graphic designer, video editor, and a Junior website developer who specializes in HTML & CSS">
     <meta name="robots" content="index,follow">
     <title>Shirly Herscovici | Motion Graphic Designer & Website Developer</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts for 'Inter' (matching Web page) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Custom font for a modern look - Inter is a good choice */
         html {
             height: 100%;
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+            scroll-padding-top: 5rem; /* Added for fixed header compensation */
         }
         body {
             font-family: 'Inter', sans-serif; /* Changed from Manrope for consistency */
@@ -83,11 +82,6 @@
             50% { transform: translate(-20px, 80px) rotate(150deg); }
             75% { transform: translate(-60px, 30px) rotate(225deg); }
             100% { transform: translate(0, 0) rotate(300deg); }
-        }
-
-        /* Smooth scrolling for anchor links */
-        html {
-            scroll-behavior: smooth;
         }
 
         /* Custom Footer Gradient - replicating original CSS */
@@ -354,21 +348,16 @@
 </head>
 
 <body>
-    <!-- Particles.js Canvas -->
     <div id="particles-js"></div>
 
-    <!-- Splash image - Moved outside the intro section for fixed positioning -->
     <img class="splash" src="img/splash.svg" alt="Shirly Herscovici background splash graphic">
 
-    <!-- Header -->
     <header class="header-frosted shadow-md fixed w-full z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap relative">
             <div class="logo flex items-center">
-                <!-- Using Font Awesome icon for a modern look -->
                 <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
                 <h1 class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition duration-300 rounded-lg p-2">Shirly Herscovici</h1>
             </div>
-            <!-- Hamburger menu button for mobile -->
             <button id="mobile-menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
@@ -382,22 +371,17 @@
         </nav>
     </header>
 
-    <main class="pt-24 pb-12 flex-grow"> <!-- Adjusted pt for main -->
-        <section id="home-section" class="intro flex-grow pb-12"> <!-- Added id for home anchor -->
-            <div class="intro-text text-center lg:text-left mx-auto max-w-4xl px-6">
+    <main class="pt-20 pb-12 flex-grow"> <section id="home-section" class="intro flex-grow pb-12"> <div class="intro-text text-center lg:text-left mx-auto max-w-4xl px-6">
                 <h2 class="text-5xl md:text-6xl font-bold mb-4">Shirly Herscovici</h2>
-                <!-- Adjusted h3 font size for responsiveness and line break -->
                 <h3 class="text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 leading-tight">Motion Graphic Designer <br /> Webstie Developer </h3>
                 <p class="text-lg mb-8 leading-relaxed">Shirly Herscovici is a motion graphic designer, <br /> video editor, and a Junior website developer who
                     spechializes in Html & CSS.</p>
                 <div class="intro-social flex justify-center lg:justify-start space-x-6">
-                    <!-- Using Font Awesome icons for consistency -->
                     <a href="#" class="text-gray-700 hover:text-blue-600 transition duration-300" title="GitHub"><i class="fab fa-github text-4xl"></i></a>
                     <a href="https://www.linkedin.com/in/shirly-ben-nun-a93766278/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition duration-300" title="LinkedIn Profile"><i class="fab fa-linkedin-in text-4xl"></i></a>
                 </div>
             </div>
             <div class="me mt-12 flex justify-center items-center relative">
-                <!-- Your SVG content remains -->
                 <svg width="1124" height="923" viewBox="0 0 1124 923" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-3xl h-auto">
                     <path id="HAIR-NO-MOVEMENT"
                         d="M738.362 184.495C738.199 184.525 737.956 184.569 737.66 184.621C731.879 185.642 696.925 191.398 661.685 177.07C646.756 171.001 681.481 181.602 648.232 160.5C609.25 135.76 638.403 123.036 635.5 111.5C629.704 88.4646 600.014 72.1158 620.5 74.5C625.894 75.1277 623.522 59.4785 632.506 57.1513C634.48 56.6401 643.12 54.402 647.333 46.7682C651.09 39.9583 678.989 36.0851 680.5 30.5C704.081 30.5 686.452 7.48471 715.442 12.654C732.116 15.6271 745.085 23.744 770.342 39.8566C814.303 67.9008 836.284 81.923 841.224 103.406C845.906 123.769 834.668 132.543 842.841 154.34C850.452 174.636 842.868 171.083 847.028 187.501C853.721 213.922 848.549 245.117 838.2 257.196C826.853 270.439 816.002 277.708 801.596 287.357C783.513 299.469 781.212 453.117 770.342 452.501C750.635 451.384 618.264 337.407 617.5 320C617.5 326 615 257 635.704 180.773C639.994 172.158 730.028 181.36 731.137 176.411"
@@ -520,8 +504,7 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact-section" class="form-section flex justify-center items-center py-10 px-4 mt-20"> <!-- Added mt-20 here for spacing -->
+        <section id="contact-section" class="form-section flex justify-center items-center py-10 px-4 mt-20">
             <div class="bg-white p-8 md:p-12 rounded-xl shadow-lg w-full max-w-md">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Get in Touch</h2>
                 <form class="space-y-6">
@@ -549,20 +532,17 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="custom-footer-gradient text-white min-h-7vh py-8 flex justify-between items-center flex-wrap px-5 mt-auto">
         <h4 class="text-xl font-medium mb-4 md:mb-0">Shirly Herscovici © 2025</h4>
         <ul class="flex justify-center items-center flex-wrap gap-6">
             <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Instagram"><i class="fab fa-instagram text-2xl"></i></a></li>
             <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Twitter"><i class="fab fa-twitter text-2xl"></i></a></li>
             <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-200 transition duration-300" title="YouTube"><i class="fab fa-youtube text-2xl"></i></a></li>
-            <!-- Added LinkedIn and GitHub icons for professional portfolios -->
             <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="LinkedIn"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
             <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="GitHub"><i class="fab fa-github text-2xl"></i></a></li>
         </ul>
     </footer>
 
-    <!-- Particles.js library -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
         // --- Particles.js Initialization ---
