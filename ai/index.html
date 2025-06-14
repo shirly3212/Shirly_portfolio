@@ -173,38 +173,55 @@
             gap: 4rem; /* Restore gap for desktop */
         }
         .phone-section-container .text-content {
+            /* Adjusted max-width to control text spread */
+            max-width: 450px; /* Reduced max-width for narrower text column */
             text-align: left; /* Align text to left on desktop */
         }
     }
 
     .phone-mockup {
-      max-width: 400px; /* Adjusted width again based on image */
+      width: 400px; /* Adjusted width based on new image for better proportion */
+      height: 800px; /* Adjusted height for new width, maintaining aspect ratio */
       border: 16px solid #333;
       border-radius: 36px;
       position: relative;
       overflow: hidden;
       background: #000;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25); /* Base shadow */
       z-index: 5;
       cursor: pointer; /* Change cursor on hover for interactivity hint */
-      display: flex; /* To center the iframe if it's smaller than mockup */
+      display: flex; /* To center the iframe */
       justify-content: center;
       align-items: center;
+      animation: phone-pulse-glow 3s infinite alternate ease-in-out; /* Continuous pulse */
+      transition: box-shadow 0.3s ease-in-out; /* Smooth transition for hover glow */
     }
+    /* Pulsating glow animation (default) */
+    @keyframes phone-pulse-glow {
+        0% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); } /* Light turquoise base glow */
+        50% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 40px rgba(124, 77, 255, 0.6); } /* Brighter, mixed glow */
+        100% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); }
+    }
+    /* Add hover glow effect */
+    .phone-mockup:hover {
+        box-shadow: 0 0 40px rgba(255, 100, 200, 0.9), 0 0 60px rgba(255, 0, 100, 0.7); /* A more vibrant pink/reddish glow */
+    }
+
     .phone-mockup iframe {
-      width: 360px; /* Specific width for inner frame */
-      height: 720px; /* Specific height for inner frame */
+      width: 100%; /* Iframe takes full width of mockup */
+      height: 100%; /* Iframe takes full height of mockup */
       border: none;
       display: block;
     }
 
     .interactive-hint {
         position: absolute;
-        bottom: 5%; /* Positioned lower to be more natural */
+        /* Adjusted positioning based on image and desired interaction area */
+        bottom: 250px; /* Moved up to be directly above the "Enter license" field */
         left: 50%;
-        transform: translateX(-50%); /* Only X transform for horizontal centering */
+        transform: translateX(-50%); /* Centered horizontally */
         font-size: 3rem; /* Size of the hand icon */
-        color: #00e0ff; /* Bright turquoise color */
+        color: #ffffff; /* Changed hand color to white */
         z-index: 10; /* Ensure it's above the phone */
         animation: pointer-bounce 2s infinite ease-in-out; /* More pronounced bounce */
         pointer-events: none; /* Do not interfere with iframe clicks */
