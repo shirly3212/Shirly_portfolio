@@ -1,556 +1,745 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Projects | Shirly Herscovici</title>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <style>
-    /* Removed the old body::before */
-    body::before {
-      content: none;
-    }
-    /* Dynamic background with particles.js */
-    #particles-js {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      /* Changed to dark gradient */
-      background: linear-gradient(135deg, #1a2a6c, #001f4c, #0d0c3d); /* Dark blue/purple gradient */
-    }
-    html, body {
-      margin: 0; padding: 0;
-      font-family: "Manrope", sans-serif;
-      color: #e0e0e0; /* Adjusted text color for dark background */
-      overflow-x: hidden;
-      text-align: center;
-      background: none; /* Ensure no other background interferes */
-    }
-    .cursor {
-      width: 20px;
-      height: 20px;
-      border: 2px solid #00bcd4;
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 1000;
-      transition: transform 0.1s ease;
-    }
-    .typewriter {
-      font-size: 3.8rem;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 0.15em solid; /* Border color will be set by blink-caret */
-      /* Changed to lighter turquoise gradient text, starting with white */
-      background-image: linear-gradient(90deg, #ffffff, #00e0ff); /* Gradient from white to bright turquoise */
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent; /* Makes text transparent, showing background */
-      background-size: 200% auto; /* For gradient animation */
-      animation:
-        typing 4s steps(40, end),
-        blink-caret 0.75s step-end infinite,
-        gradient-animation 5s linear infinite; /* New gradient animation */
-      width: fit-content;
-      margin: 2rem auto;
-    }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: #00e0ff; } /* Blinking caret matches bright turquoise */
-    }
-    /* New keyframes for gradient animation */
-    @keyframes gradient-animation {
-        0% { background-position: 0% center; }
-        100% { background-position: 200% center; }
-    }
-
-    header {
-      background: #ffffff1a; /* Adjusted header background for dark theme */
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 10;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Darker shadow for contrast */
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: #e0e0e0; /* Adjusted link color for dark background */
-      font-weight: bold;
-    }
-    nav ul li a.active {
-      color: #00bcd4;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .logo img {
-      height: 40px;
-    }
-    .logo h1 { /* Added styling for logo text */
-        color: #e0e0e0;
-    }
-    .two-column-section {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center; /* Ensures vertical alignment */
-      gap: 4rem;
-      padding: 5rem 3rem;
-      max-width: 1400px;
-      margin: auto;
-      position: relative;
-      z-index: 5;
-      color: #e0e0e0; /* Adjusted text color for dark background */
-    }
-    .two-column-section .text {
-      flex: 1 1 400px;
-      text-align: left; /* Align text to left */
-    }
-    .two-column-section .media {
-      flex: 1 1 700px; /* Adjust flex basis to ensure it aligns better */
-      display: flex;
-      justify-content: center; /* Center video within its flex item */
-    }
-    .two-column-section .media video {
-      max-width: 100%;
-      width: 700px;
-      border-radius: 1rem;
-      box-shadow: 0 0 15px rgba(0, 188, 212, 0.4);
-    }
-    .cta-button {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 1.2rem 3rem;
-      font-size: 2rem;
-      background: linear-gradient(135deg, #00bcd4, #7c4dff);
-      color: white;
-      border-radius: 3rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      box-shadow: 0 0 15px rgba(0,229,255,0.6);
-      transition: all 0.3s ease-in-out;
-      text-decoration: none;
-    }
-    .cta-button:hover {
-      transform: scale(1.05);
-      background: linear-gradient(135deg, #00acc1, #9575cd);
-    }
-    /* New styling for phone section layout */
-    .phone-section-container {
-        display: flex;
-        flex-direction: column; /* Stack on mobile */
-        justify-content: center;
-        align-items: center;
-        gap: 2rem; /* Reduced gap to bring elements closer */
-        padding: 4rem 2rem;
-        max-width: 1400px;
-        margin: auto;
-        color: #e0e0e0;
-    }
-    @media (min-width: 768px) {
-        .phone-section-container {
-            flex-direction: row; /* Side-by-side on desktop */
-            align-items: center; /* Center align items for better visual */
-            justify-content: space-between; /* Distribute items horizontally */
-            gap: 4rem; /* Restore gap for desktop */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Shirly Ben Nun is a motion graphic designer, video editor, and a Junior website developer who specializes in HTML & CSS">
+    <meta name="robots" content="index,follow">
+    <title>Shirly Ben Nun | Web Development Projects</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts for 'Inter' -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom font for a modern look - Inter is a good choice */
+        html {
+            height: 100%; /* Ensure html takes full height */
         }
-        .phone-section-container .phone-mockup {
-            margin-left: 0; /* Remove margin to allow flex to position it */
-            margin-right: auto; /* Push phone to the left */
-        }
-        .phone-section-container .text-content {
-            flex: 1 1 50%; /* Allow text to take up more space, adjust as needed */
-            max-width: 550px; /* Increased max-width for text column */
-            text-align: left; /* Align text to left on desktop */
-            margin-right: 0; /* Remove margin to allow flex to position it */
-            margin-left: auto; /* Push text to the right */
-        }
-        /* Increased font size and line height for paragraphs on larger screens */
-        .two-column-section p, .phone-section-container p {
-            font-size: 1.5rem; /* Increased from 1.25rem (text-xl) to 1.5rem */
-            line-height: 1.75; /* Increased line-height for better readability */
-        }
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8); /* Subtle gradient */
+            background-size: 400% 400%; /* For animation */
+            animation: gradientBackground 15s ease infinite alternate; /* Background animation */
+            color: #1a202c; /* Dark text color for readability */
+            position: relative; /* Needed for pseudo-elements and particles */
+            overflow-x: hidden; /* Prevent horizontal scroll from background elements */
 
-    .phone-mockup {
-      width: 480px; /* Adjusted width based on new image for better proportion */
-      height: 960px; /* Adjusted height for new width, maintaining aspect ratio (2:1) */
-      border: 16px solid #333;
-      border-radius: 36px;
-      position: relative;
-      overflow: hidden;
-      background: #000;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.25); /* Base shadow */
-      z-index: 5;
-      cursor: pointer; /* Change cursor on hover for interactivity hint */
-      display: flex; /* To center the iframe */
-      justify-content: center;
-      align-items: center;
-      animation: phone-pulse-glow 3s infinite alternate ease-in-out; /* Continuous pulse */
-      transition: box-shadow 0.3s ease-in-out; /* Smooth transition for hover glow */
-    }
-    /* Pulsating glow animation (default) */
-    @keyframes phone-pulse-glow {
-        0% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); } /* Light turquoise base glow */
-        50% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 40px rgba(124, 77, 255, 0.6); } /* Brighter, mixed glow */
-        100% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); }
-    }
-    /* Add hover glow effect */
-    .phone-mockup:hover {
-        box-shadow: 0 0 40px rgba(255, 100, 200, 0.9), 0 0 60px rgba(255, 0, 100, 0.7); /* A more vibrant pink/reddish glow */
-    }
-
-    .phone-mockup iframe {
-      width: 100%; /* Iframe takes full width of mockup */
-      height: 100%; /* Iframe takes full height of mockup */
-      border: none;
-      display: block;
-    }
-
-    .interactive-hint {
-        position: absolute;
-        /* Adjusted positioning based on image and desired interaction area */
-        top: 25%; /* Roughly positioned over the "License Plate Number" field */
-        left: 20%; /* Positioned towards the input field */
-        font-size: 3rem; /* Size of the hand icon */
-        color: #ffffff; /* Changed hand color to white */
-        z-index: 10; /* Ensure it's above the phone */
-        animation: pointer-bounce 2s infinite ease-in-out; /* More pronounced bounce */
-        pointer-events: none; /* Do not interfere with iframe clicks */
-    }
-
-    @keyframes pointer-bounce {
-        0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
-        25% { transform: translateX(-50%) translateY(-15px); opacity: 0.8; }
-        50% { transform: translateX(-50%) translateY(0); opacity: 1; }
-        75% { transform: translateX(-50%) translateY(-10px); opacity: 0.8; }
-    }
-
-
-    .metric-box {
-      position: relative;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      padding: 2rem;
-      border-radius: 1.5rem;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      text-align: center;
-      flex: 1 1 200px;
-      transition: transform 0.3s ease;
-      z-index: 5;
-      color: #e0e0e0; /* Adjusted text color for dark background */
-    }
-    .metric-box:hover {
-      transform: scale(1.05);
-    }
-    .metric-box::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, #00bcd4, #7c4dff);
-      animation: scan 3s linear infinite;
-    }
-    @keyframes scan {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-    footer {
-      margin-top: 4rem;
-      padding: 2rem;
-      background: #1a1a1a; /* Dark footer for consistency */
-      color: #e0e0e0; /* Adjusted footer text color */
-      font-size: 0.9rem;
-      position: relative;
-      z-index: 5;
-      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); /* Darker shadow */
-    }
-
-    /* Mobile specific styles (max-width: 767px) */
-    @media (max-width: 767px) {
-        /* General adjustments for mobile sections */
-        .two-column-section, .phone-section-container {
-            flex-direction: column; /* Ensure stacking */
-            padding: 2rem 1rem; /* Adjust padding for smaller screens */
-            gap: 2rem; /* Consistent gap */
+            display: flex; /* Flexbox for sticky footer */
+            flex-direction: column; /* Stack children vertically */
+            min-height: 100vh; /* Ensure body takes at least full viewport height */
         }
 
-        /* Adjustments for the "Smart Parking Promo" section */
-        .two-column-section .text, .two-column-section .media {
-            flex-basis: auto; /* Remove fixed basis on mobile */
-            width: 100%; /* Take full width */
-        }
-        .two-column-section .text {
-            text-align: center; /* Center text on mobile */
-        }
-
-        /* Adjustments for the "View All Projects" button */
-        .cta-button {
-            padding: 1rem 2.5rem; /* Slightly smaller horizontal padding */
-            font-size: 1.5rem; /* Smaller font size for mobile */
-            width: fit-content; /* Ensure it only takes content width */
-            margin-left: auto; /* Center button horizontally */
-            margin-right: auto; /* Center button horizontally */
-        }
-
-        /* Adjustments for the phone mockup and its text on mobile */
-        .phone-mockup {
-            width: 300px; /* Smaller width for mobile phone */
-            height: 600px; /* Corresponding height for mobile phone (2:1 aspect ratio) */
-            margin: auto; /* Center phone horizontally */
-        }
-
-        .phone-mockup iframe {
+        /* Particles.js canvas styling */
+        #particles-js {
+            position: fixed; /* Changed to fixed to cover entire viewport regardless of scroll */
             width: 100%;
             height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -2; /* Ensure it's behind other background elements and content */
         }
 
-        .interactive-hint {
-            top: 15%; /* Adjust hand position for smaller phone */
-            left: 20%;
-            font-size: 2.5rem; /* Smaller hand icon */
+        /* Keyframes for background gradient animation */
+        @keyframes gradientBackground {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
         }
 
-        .phone-section-container .text-content {
-            max-width: 100%; /* Allow text to take full width on mobile */
-            text-align: center; /* Center text on mobile */
+        /* Abstract background shapes/particles */
+        body::before, body::after {
+            content: '';
+            position: fixed; /* Changed to fixed to stay in viewport regardless of scroll */
+            z-index: -1; /* Behind content, but in front of particles */
+            border-radius: 50%;
+            opacity: 0.3; /* Increased opacity for more presence */
+            filter: blur(120px); /* Softer, larger blur effect */
+            transition: all 0.5s ease-in-out; /* Smooth transitions */
         }
 
-        /* Increase font size for paragraphs on mobile */
-        .two-column-section p, .phone-section-container p {
-            font-size: 1.125rem; /* Standard mobile paragraph size */
-            line-height: 1.6; /* Adjusted line-height for mobile */
+        body::before {
+            width: 450px; /* Larger size */
+            height: 450px; /* Larger size */
+            background: radial-gradient(circle at top left, #8dcef8, #3b82f6); /* Softer blue gradient */
+            top: -100px; /* Adjusted position */
+            left: -100px; /* Adjusted position */
+            animation: floatShape 24s infinite ease-in-out alternate; /* Varied animation duration */
         }
-    }
-  </style>
+
+        body::after {
+            width: 550px; /* Larger size */
+            height: 550px; /* Larger size */
+            background: radial-gradient(circle at bottom right, #e879f9, #a78bfa); /* Pink/purple gradient */
+            bottom: -150px; /* Adjusted position */
+            right: -150px; /* Adjusted position */
+            animation: floatShape 30s infinite ease-in-out alternate-reverse; /* Varied animation duration */
+        }
+
+        @keyframes floatShape {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(40px, -50px) rotate(75deg); }
+            50% { transform: translate(-20px, 80px) rotate(150deg); }
+            75% { transform: translate(-60px, 30px) rotate(225deg); }
+            100% { transform: translate(0, 0) rotate(300deg); } /* More rotation */
+        }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom styles for section titles */
+        .section-title {
+            position: relative;
+            display: inline-block; /* Essential for typing effect on width */
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            color: #2563eb; /* Vibrant blue for titles */
+            /* Typing animation properties */
+            overflow: hidden; /* Ensures text is hidden until typed */
+            white-space: nowrap; /* Keeps text on a single line for typing effect */
+            border-right: 3px solid #2563eb; /* Blinking cursor */
+            animation:
+                typing 3.5s steps(26, end) forwards, /* 26 characters for "Web Development Projects" */
+                blink-caret 0.75s step-end infinite;
+            width: 0; /* Start with 0 width */
+        }
+        /* Remove the ::after rule that creates the underline */
+        .section-title::after {
+            content: none; /* Explicitly remove the pseudo-element content */
+        }
+
+        /* Keyframes for typing animation */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% } /* Animate to full width */
+        }
+
+        /* Keyframes for blinking caret */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #2563eb; }
+        }
+
+        /* Card hover effect for portfolio items */
+        .portfolio-card {
+            background-color: #ffffff; /* White background for cards */
+            border: 1px solid #e2e8f0; /* Very light gray border */
+            border-radius: 0.75rem; /* Rounded corners */
+            /* More defined default shadow */
+            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.15), 0 4px 8px -4px rgba(0, 0, 0, 0.1); /* Stronger initial shadow */
+            transition: transform 0.15s ease, box-shadow 0.15s ease; /* Made transition faster */
+            cursor: pointer; /* Indicate the whole card is clickable */
+        }
+        .portfolio-card:hover {
+            transform: translateY(-8px) scale(1.05); /* Increased scale on hover to 1.05 */
+            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.25), 0 8px 12px -5px rgba(0, 0, 0, 0.15), 0 0 50px rgba(59, 130, 246, 1); /* Even stronger blue glow on hover */
+        }
+
+        /* Custom Footer Gradient - replicating original CSS */
+        .custom-footer-gradient {
+            background: linear-gradient(to right, #ff6600, #ff007b); /* Orange to Pink/Purple */
+        }
+        /* Frosted glass effect for header */
+        .header-frosted {
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+            backdrop-filter: blur(10px); /* Blur effect */
+            -webkit-backdrop-filter: blur(10px); /* Safari support */
+        }
+
+        /* --- Animation for elements on scroll --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Add delays for staggered effect */
+        .animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+        .animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+        .animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+        .animate-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+        .animate-on-scroll:nth-child(5) { transition-delay: 0.5s; }
+        .animate-on-scroll:nth-child(6) { transition-delay: 0.6s; }
+
+
+        /* --- Modal Styles --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh; /* Limit height to prevent overflow */
+            overflow-y: auto; /* Enable scrolling for long content */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .modal-overlay.is-visible .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #4a5568;
+            transition: color 0.2s ease;
+        }
+        .modal-close-btn:hover {
+            color: #ef4444; /* Red for close */
+        }
+
+        /* Specific hover effect for view-project-btn */
+        .view-project-btn:hover {
+            transform: translateY(-2px); /* Slight lift */
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4); /* Blue glow on button hover */
+        }
+
+        /* Loading spinner for AI insight */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #2563eb;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments for header and general sections */
+        @media (max-width: 767px) {
+            /* Adjust header to handle logo and button better */
+            header .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                position: relative; /* Make container relative for absolute positioning of menu */
+            }
+
+            /* Hide the regular nav items on small screens */
+            #main-nav-menu {
+                display: none; /* Hidden by default on mobile */
+                flex-direction: column; /* Stack vertically */
+                position: absolute; /* Position relative to parent nav */
+                top: 100%; /* Place right below the nav bar */
+                left: 0;
+                width: 100%;
+                background-color: rgba(241, 245, 249, 0.95); /* Light background for mobile menu */
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                z-index: 100; /* Ensure it's above content */
+                padding: 1rem 0; /* Add padding inside menu */
+                border-radius: 0 0 0.5rem 0.5rem; /* Rounded bottom corners */
+            }
+
+            /* Class to show the mobile menu */
+            #main-nav-menu.active {
+                display: flex; /* Show when active */
+            }
+
+            #main-nav-menu li {
+                width: 100%;
+                text-align: center; /* Center links in mobile menu */
+                border-bottom: 1px solid #e2e8f0; /* Subtle separator */
+            }
+            #main-nav-menu li:last-child {
+                border-bottom: none; /* No border on last item */
+            }
+            #main-nav-menu li a {
+                display: block;
+                padding: 0.75rem 1rem;
+                color: #4a5568; /* Dark text for readability on light background */
+                font-weight: 500;
+            }
+            #main-nav-menu li a.bg-blue-600 { /* Style for the active 'Web' link */
+                color: white; /* Keep text white for active button */
+                border-radius: 0; /* No rounded corners inside full-width menu items */
+            }
+
+            #mobile-menu-toggle {
+                display: block; /* Show hamburger button on mobile */
+                order: 2; /* Place it after logo but before nav links order: 1 for logo, 2 for button, 3 for menu in flexbox */
+            }
+
+            /* General adjustments for mobile sections */
+            .two-column-section, .phone-section-container {
+                flex-direction: column; /* Ensure stacking */
+                padding: 2rem 1rem; /* Adjust padding for smaller screens */
+                gap: 2rem; /* Consistent gap */
+            }
+
+            /* Adjustments for the "Smart Parking Promo" section */
+            .two-column-section .text, .two-column-section .media {
+                flex-basis: auto; /* Remove fixed basis on mobile */
+                width: 100%; /* Take full width */
+            }
+            .two-column-section .text {
+                text-align: center; /* Center text on mobile */
+            }
+
+            /* Adjustments for the "View All Projects" button */
+            .cta-button {
+                padding: 0.8rem 2rem; /* Slightly smaller horizontal padding */
+                font-size: 1.25rem; /* Smaller font size for mobile */
+                width: fit-content; /* Ensure it only takes content width */
+                margin-left: auto; /* Center button horizontally */
+                margin-right: auto; /* Center button horizontally */
+            }
+
+            /* Adjustments for the phone mockup and its text on mobile */
+            .phone-mockup {
+                width: 300px; /* Smaller width for mobile phone */
+                height: 600px; /* Corresponding height for mobile phone (2:1 aspect ratio) */
+                margin: auto; /* Center phone horizontally */
+            }
+
+            .phone-mockup iframe {
+                width: 100%;
+                height: 100%;
+            }
+
+            .interactive-hint {
+                top: 15%; /* Adjust hand position for smaller phone */
+                left: 20%;
+                font-size: 2.5rem; /* Smaller hand icon */
+            }
+
+            .phone-section-container .text-content {
+                max-width: 100%; /* Allow text to take full width on mobile */
+                text-align: center; /* Center text on mobile */
+            }
+
+            /* Increase font size for paragraphs on mobile */
+            .two-column-section p, .phone-section-container p {
+                font-size: 1.125rem; /* Standard mobile paragraph size */
+                line-height: 1.6; /* Adjusted line-height for mobile */
+            }
+        }
+        /* Increased font size and line height for paragraphs on larger screens */
+        @media (min-width: 768px) {
+            .two-column-section p, .phone-section-container p {
+                font-size: 1.5rem; /* Increased from 1.25rem (text-xl) to 1.5rem */
+                line-height: 1.75; /* Increased line-height for better readability */
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="../icons/code.svg" alt="logo" />
-      <h1>Shirly Herscovici</h1>
-    </div>
-    <nav>
-      <ul>
-       <li><a href="../index.html">Home</a></li>
-        <li><a href="../Projects/index.html">Design</a></li>
-        <li><a href="../web/index.html">Web</a></li>
-        <li><a class="active" href="#">AI</a></li>
-        <li><a href="../contact/index.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Particles.js Canvas -->
+    <div id="particles-js"></div>
 
-  <div id="particles-js"></div>
-  <div class="cursor" id="cursor"></div>
-  <h2 class="typewriter">Creating the Future with AI...</h2>
+    <!-- Header -->
+    <header class="header-frosted shadow-md fixed w-full z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap relative">
+            <div class="logo flex items-center">
+                <!-- Using Font Awesome icon for a modern look -->
+                <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
+                <h1 class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition duration-300 rounded-lg p-2">Shirly Herscovici</h1>
+            </div>
+            <!-- Hamburger menu button for mobile -->
+            <button id="mobile-menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
+                <li><a href="../index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Home</a></li>
+                <li><a href="../Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Design</a></li>
+                <li><a href="#" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700">Web</a></li>
+                <li><a href="../ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
+                <li><a href="../contact/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <section class="two-column-section" data-aos="fade-up">
-    <div class="text">
-      <h3>Smart Parking Promo</h3>
-      <p class="text-xl">This AI-generated promotional video and app prototype presents a seamless solution to urban parking challenges through a smart system design.</p>
-      <a href="../Projects/index.html" class="cta-button">View All Projects</a>
-    </div>
-    <div class="media">
-      <video src="../videos/smart_parking_promo.mp4" controls autoplay muted loop></video>
-    </div>
-  </section>
+    <!-- Main content area with adjusted top padding to prevent header overlap -->
+    <main class="pt-36 pb-12 flex-grow"> <!-- Added flex-grow here -->
+        <div class="container mx-auto px-6 w-full text-center">
+            <h2 class="text-5xl section-title mx-auto text-gray-800 mb-10">Web Development Projects</h2>
 
-  <!-- Section for phone mockup and text description -->
-  <section class="phone-section-container" data-aos="fade-left">
-    <div class="phone-mockup">
-        <!-- Hand icon for interactive hint -->
-        <div class="interactive-hint">
-            <i class="fas fa-hand-point-up"></i>
+            <div class="flex flex-col gap-y-20" id="project-cards-container"> <!-- Increased gap-y to gap-y-20 -->
+                <!-- Project Item 1: TRAVELLY -->
+                <div class="portfolio-card flex flex-col md:flex-row items-center bg-white p-10 rounded-xl shadow-2xl animate-on-scroll"
+                    data-project='{
+                        "id": "travelly",
+                        "title": "TRAVELLY - Travel Agency Website",
+                        "image": "../img/TRAVEELY_ME.png",
+                        "description": "This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.",
+                        "technologies": ["HTML5", "CSS3", "JavaScript"],
+                        "live_demo": "https://shirly3212.github.io/TRAVELLY/",
+                        "github_repo": "https://github.com/shirly3212/TRAVELLY"
+                    }'>
+                    <div class="md:w-1/2 flex justify-center items-center mb-6 md:mb-0 md:mr-8">
+                        <img src="../img/TRAVEELY_ME.png" alt="Travelly Website" class="rounded-lg w-full h-64 md:h-96 object-cover shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    </div>
+                    <div class="md:w-1/2 flex flex-col justify-center text-center md:text-left md:max-w-[45%]"> <!-- Adjusted max-w for text -->
+                        <h4 class="text-3xl font-bold text-gray-800 mb-3">TRAVELLY - Travel Agency Website</h4>
+                        <p class="text-gray-700 text-base mb-6 leading-relaxed">A modern and responsive website for a travel agency, featuring an attractive design and smooth user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.</p>
+                        <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center w-full md:w-auto self-center md:self-start">
+                            View Project <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project Item 2: People Counter - Reversed Layout -->
+                <div class="portfolio-card flex flex-col md:flex-row-reverse items-center bg-white p-10 rounded-xl shadow-2xl animate-on-scroll"
+                    data-project='{
+                        "id": "people-counter",
+                        "title": "People Counter - Simple Counter App",
+                        "image": "../img/PEOPLE_COUNTER.png",
+                        "description": "A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.",
+                        "technologies": ["HTML5", "CSS3", "JavaScript"],
+                        "live_demo": "https://shirly3212.github.io/People-Counter/",
+                        "github_repo": "https://github.com/shirly3212/People-Counter"
+                    }'>
+                    <div class="md:w-1/2 flex justify-center items-center mb-6 md:mb-0 md:ml-8">
+                        <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" class="rounded-lg w-full h-64 md:h-96 object-cover shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    </div>
+                    <div class="md:w-1/2 flex flex-col justify-center text-center md:text-right md:max-w-[45%]"> <!-- Adjusted max-w for text -->
+                        <h4 class="text-3xl font-bold text-gray-800 mb-3">People Counter - Simple Counter App</h4>
+                        <p class="text-gray-700 text-base mb-6 leading-relaxed">A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.</p>
+                        <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center w-full md:w-auto self-center md:self-end">
+                            View Project <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project Item 3: Photographer - Standard Layout -->
+                <div class="portfolio-card flex flex-col md:flex-row items-center bg-white p-10 rounded-xl shadow-2xl animate-on-scroll"
+                    data-project='{
+                        "id": "photographer",
+                        "title": "Photographer - Visual Portfolio",
+                        "image": "img/Photographer_me.png",
+                        "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information, built using HTML and CSS to ensure aesthetic appeal across devices.",
+                        "technologies": ["HTML5", "CSS3"],
+                        "live_demo": "https://shirly3212.github.io/Photographer/",
+                        "github_repo": "https://github.com/shirly3212/Photographer"
+                    }'>
+                    <div class="md:w-1/2 flex justify-center items-center mb-6 md:mb-0 md:mr-8">
+                        <img src="../img/Photographer_me.png" alt="Photographer Portfolio" class="rounded-lg w-full h-64 md:h-96 object-cover shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    </div>
+                    <div class="md:w-1/2 flex flex-col justify-center text-center md:text-left md:max-w-[45%]"> <!-- Adjusted max-w for text -->
+                        <h4 class="text-3xl font-bold text-gray-800 mb-3">Photographer - Visual Portfolio</h4>
+                        <p class="text-gray-700 text-base mb-6 leading-relaxed">A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information, built using HTML and CSS to ensure aesthetic appeal across devices.</p>
+                        <button class="view-project-btn inline-block bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center w-full md:w-auto self-center md:self-start">
+                            View Project <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-      <iframe src="https://preview--park-nexus-urban-flow.lovable.app/" title="Smart Parking App Demo"></iframe>
-    </div>
-    <div class="text-content flex-1 max-w-lg">
-        <h3 class="text-3xl font-semibold mb-4">Smart Parking AI Project</h3>
-        <p class="text-xl leading-relaxed mb-4">
-            This project showcases an innovative smart parking lot prototype application developed using AI tools, including Lovable.
-            The application operates by recognizing vehicle license plates, reserving a dedicated parking space for the user, and efficiently navigating them to the most suitable spot within the parking facility.
-        </p>
-        <p class="text-xl leading-relaxed">
-            The parking space is automatically tailored to the vehicle's needs: electric cars are directed to charging stations, larger vehicles like trucks are guided to extended parking spots, and so on.
-            This solution optimizes the parking experience and reduces congestion in a smart and efficient manner.
-        </p>
-    </div>
-  </section>
+    </main>
 
-  <section class="ai-metrics" data-aos="fade-up" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; padding: 4rem 2rem;">
-    <div class="metric-box">
-      <h4 id="count1">0%</h4>
-      <p>Faster Parking Detection</p>
-    </div>
-    <div class="metric-box">
-      <h4 id="count2">0X</h4>
-      <p>Efficiency with AI Routing</p>
-    </div>
-    <div class="metric-box">
-      <h4 id="count3">0</h4>
-      <p>Real-Time Availability</p>
-    </div>
-    <div class="metric-box">
-      <h4 id="count4">0%</h4>
-      <p>Reduction in Urban Congestion</p>
-    </div>
-  </section>
+    <!-- Footer -->
+    <footer class="custom-footer-gradient text-white min-h-7vh py-8 flex justify-between items-center flex-wrap px-5">
+        <h4 class="text-xl font-medium mb-4 md:mb-0">Shirly Herscovici © 2025</h4>
+        <ul class="flex justify-center items-center flex-wrap gap-6">
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Instagram"><i class="fab fa-instagram text-2xl"></i></a></li>
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Twitter"><i class="fab fa-twitter text-2xl"></i></a></li>
+            <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-200 transition duration-300" title="YouTube"><i class="fab fa-youtube text-2xl"></i></a></li>
+            <!-- Added LinkedIn and GitHub icons for professional portfolios -->
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="LinkedIn"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="GitHub"><i class="fab fa-github text-2xl"></i></a></li>
+        </ul>
+    </footer>
 
-  <footer>
-    <p>Shirly Herscovici &copy; 2025</p>
-  </footer>
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+            <img id="modalProjectImage" src="" alt="Project Image" class="rounded-md mb-4 w-full h-64 object-cover">
+            <h3 id="modalProjectTitle" class="text-3xl font-bold text-gray-800 mb-4"></h3>
+            <p id="modalProjectDescription" class="text-gray-700 mb-4"></p>
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-gray-600 font-semibold">Technologies Used:</span>
+                <div id="modalTechnologies" class="flex flex-wrap gap-2"></div>
+            </div>
+            <div id="aiInsightContainer" class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-blue-800 text-left hidden">
+                <p class="font-semibold mb-2">✨ AI Insight:</p>
+                <div id="aiInsightText"></div>
+                <div id="aiInsightLoading" class="flex items-center justify-center mt-2 hidden">
+                    <div class="spinner mr-2"></div>
+                    <span>Generating insight...</span>
+                </div>
+            </div>
+            <div class="flex justify-center gap-4 mt-6">
+                <a id="modalLiveDemoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
+                    Live Demo <i class="fas fa-external-link-alt ml-2"></i>
+                </a>
+                <a id="modalGithubRepoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
+                    GitHub Repo <i class="fab fa-github ml-2"></i>
+                </a>
+                <button id="aiInsightBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center">
+                    ✨ AI Insight
+                </button>
+            </div>
+        </div>
+    </div>
 
-  <script>
-    window.addEventListener("DOMContentLoaded", function () {
-      if (typeof AOS !== 'undefined') {
-        AOS.init({ once: true, duration: 1000 });
-      }
-      gsap.registerPlugin(ScrollTrigger);
-      gsap.from(".metric-box", {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".ai-metrics",
-          start: "top 80%",
-          toggleActions: "play none none none"
+    <!-- Particles.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // --- Particles.js Initialization ---
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#b0e0e6" }, /* Light blue/cyan */
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#b0e0e6",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 3, /* Slightly slower speed for subtlety */
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" }, /* Grab effect on hover */
+                    "onclick": { "enable": true, "mode": "push" }, /* Push effect on click */
+                    "resize": true
+                },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+                    "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 },
+                    "repulse": { "distance": 200, "duration": 0.4 },
+                    "push": { "particles_nb": 4 },
+                    "remove": { "particles_nb": 2 }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // --- Animation on Scroll Logic ---
+        const projectCards = document.querySelectorAll('.animate-on-scroll');
+
+        const observerOptions = {
+            root: null, /* viewport as root */
+            rootMargin: '0px',
+            threshold: 0.1 /* callback fires when 10% of item is visible */
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // observer.unobserve(entry.target); // Optional: stop observing once animated
+                }
+            });
+        }, observerOptions);
+
+        projectCards.forEach(card => {
+            observer.observe(card);
+        });
+
+        // --- Modal Logic ---
+        const projectModal = document.getElementById('projectModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalProjectImage = document.getElementById('modalProjectImage');
+        const modalProjectTitle = document.getElementById('modalProjectTitle');
+        const modalProjectDescription = document.getElementById('modalProjectDescription');
+        const modalTechnologies = document.getElementById('modalTechnologies');
+        const modalLiveDemoBtn = document.getElementById('modalLiveDemoBtn');
+        const modalGithubRepoBtn = document.getElementById('modalGithubRepoBtn');
+        const aiInsightBtn = document.getElementById('aiInsightBtn');
+        const aiInsightContainer = document.getElementById('aiInsightContainer');
+        const aiInsightText = document.getElementById('aiInsightText');
+        const aiInsightLoading = document.getElementById('aiInsightLoading');
+
+        let currentProjectData = null; // Store data of the currently opened project
+
+        // Function to open the modal
+        function openModal(projectData) {
+            currentProjectData = projectData; // Store the data
+            modalProjectImage.src = projectData.image;
+            modalProjectTitle.textContent = projectData.title;
+            modalProjectDescription.textContent = projectData.description;
+
+            modalTechnologies.innerHTML = ''; // Clear previous technologies
+            projectData.technologies.forEach(tech => {
+                const span = document.createElement('span');
+                span.textContent = tech;
+                span.classList.add('bg-blue-100', 'text-blue-800', 'text-xs', 'font-medium', 'px-2.5', 'py-0.5', 'rounded-full', 'dark:bg-blue-900', 'dark:text-blue-300');
+                modalTechnologies.appendChild(span);
+            });
+
+            modalLiveDemoBtn.href = projectData.live_demo;
+            modalGithubRepoBtn.href = projectData.github_repo;
+
+            // Reset and hide AI Insight section
+            aiInsightContainer.classList.add('hidden');
+            aiInsightText.textContent = '';
+            aiInsightLoading.classList.add('hidden');
+
+            projectModal.classList.add('is-visible');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling of body
         }
-      });
-      const cursor = document.getElementById("cursor");
-      document.addEventListener("mousemove", e => {
-        cursor.style.left = e.clientX + "px";
-        cursor.style.top = e.clientY + "px";
-      });
-      function countUp(id, endVal, suffix = "%") {
-        let el = document.getElementById(id);
-        let i = 0;
-        let interval = setInterval(() => {
-          if (i >= endVal) {
-            clearInterval(interval);
-          } else {
-            i++;
-            el.innerText = i + suffix;
-          }
-        }, 20);
-      }
-      countUp("count1", 95);
-      countUp("count2", 4, "X");
-      countUp("count3", 24, "/7");
-      countUp("count4", 80);
 
-      /* particles.js initialization */
-      particlesJS("particles-js", {
-        "particles": {
-          "number": {
-            "value": 80,
-            "density": {
-              "enable": true,
-              "value_area": 800
+        // Function to close the modal
+        function closeModal() {
+            projectModal.classList.remove('is-visible');
+            document.body.style.overflow = ''; // Restore scrolling of body
+            currentProjectData = null; // Clear current project data
+        }
+
+        // Event listeners for opening modal: now on the entire card OR the "View Project" button
+        document.querySelectorAll('.portfolio-card').forEach(card => {
+            card.addEventListener('click', (event) => {
+                // If the click target is the button itself, or a child of the button,
+                // let the button's specific click handler (if any) or its default action take over.
+                // Otherwise, open the modal using the card's data.
+                if (event.target.closest('.view-project-btn')) {
+                    return; // Don't open modal via card click if button was specifically clicked.
+                }
+
+                const projectDataString = card.dataset.project;
+                console.log("projectDataString:", projectDataString); // Debugging line
+
+                // Check for null/undefined or the literal string "undefined"
+                if (!projectDataString || projectDataString === "undefined") {
+                    console.error("Invalid or undefined project data string for this card:", projectDataString);
+                    // Optionally display a message to the user or skip opening modal
+                    return;
+                }
+
+                try {
+                    const projectData = JSON.parse(projectDataString);
+                    openModal(projectData);
+                } catch (e) {
+                    console.error("Error parsing JSON for project data:", projectDataString, e);
+                }
+            });
+        });
+
+        // Event listener for closing modal via button
+        closeModalBtn.addEventListener('click', closeModal);
+
+        // Event listener for closing modal by clicking outside content
+        projectModal.addEventListener('click', (event) => {
+            if (event.target === projectModal) { // Only close if clicked directly on overlay
+                closeModal();
             }
-          },
-          "color": {
-            "value": "#00bcd4"
-          },
-          "shape": {
-            "type": "circle",
-            "stroke": {
-              "width": 0,
-              "color": "#000000"
+        });
+
+        // Event listener for closing modal with Escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && projectModal.classList.contains('is-visible')) {
+                closeModal();
             }
-          },
-          "opacity": {
-            "value": 0.5,
-            "random": true,
-            "anim": {
-              "enable": true,
-              "speed": 1,
-              "opacity_min": 0.1,
-              "sync": false
+        });
+
+        // --- Gemini API Integration ---
+        aiInsightBtn.addEventListener('click', async () => {
+            if (!currentProjectData) {
+                console.error("No project data available to generate insight.");
+                return;
             }
-          },
-          "size": {
-            "value": 4,
-            "random": true,
-            "anim": {
-              "enable": true,
-              "speed": 5,
-              "size_min": 0.1,
-              "sync": false
+
+            aiInsightContainer.classList.remove('hidden'); // Show container
+            aiInsightText.textContent = ''; // Clear previous text
+            aiInsightLoading.classList.remove('hidden'); // Show loading spinner
+
+            const prompt = `Given the following web development project:
+Title: ${currentProjectData.title}
+Description: ${currentProjectData.description}
+Technologies: ${currentProjectData.technologies.join(', ')}
+
+Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting the unique aspect or impact of this project. Focus on what makes it stand out or its practical value. Do not include a title for the summary. Return only the summary text.`;
+
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    aiInsightText.textContent = text;
+                } else {
+                    aiInsightText.textContent = "Failed to generate insight. Please try again.";
+                    console.error("Unexpected API response structure:", result);
+                }
+            } catch (error) {
+                aiInsightText.textContent = "Error generating insight. " + error.message;
+                console.error("Error calling Gemini API:", error);
+            } finally {
+                aiInsightLoading.classList.add('hidden'); // Hide loading spinner
             }
-          },
-          "move": {
-            "enable": true,
-            "speed": 2,
-            "direction": "none",
-            "random": true,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false,
-            "attract": {
-              "enable": false
-            }
-          }
-        },
-        "interactivity": {
-          "detect_on": "canvas",
-          "events": {
-            "onhover": {
-              "enable": true,
-              "mode": "grab"
-            },
-            "onclick": {
-              "enable": true,
-              "mode": "push"
-            },
-            "resize": true
-          },
-          "modes": {
-            "grab": {
-              "distance": 150,
-              "line_linked": {
-                "opacity": 0.6
-              }
-            }
-            ,
-            "push": {
-              "particles_nb": 4
-            }
-          }
-          
-        },
-        "retina_detect": true
-      });
-    });
-  </script>
+        });
+
+        // Hamburger menu toggle for mobile
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mainNavMenu = document.getElementById('main-nav-menu');
+
+        if (mobileMenuToggle && mainNavMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                mainNavMenu.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked (optional, but good for UX)
+            mainNavMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNavMenu.classList.remove('active');
+                });
+            });
+        }
+    </script>
 </body>
 </html>
