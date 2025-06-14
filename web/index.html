@@ -297,6 +297,11 @@
                 order: 2; /* Place it after logo but before nav links order: 1 for logo, 2 for button, 3 for menu in flexbox */
             }
 
+            /* Adjust padding-top for main content on mobile screens */
+            main {
+                padding-top: 12rem; /* Increased padding-top for mobile to accommodate potentially taller header */
+            }
+
             /* General adjustments for mobile sections */
             .two-column-section, .phone-section-container {
                 flex-direction: column; /* Ensure stacking */
@@ -345,6 +350,11 @@
                 text-align: center; /* Center text on mobile */
             }
 
+            /* Decrease font size for section title on mobile to prevent cutting */
+            .section-title {
+                font-size: 2rem; /* Adjusted font size for small screens */
+            }
+
             /* Increase font size for paragraphs on mobile */
             .two-column-section p, .phone-section-container p {
                 font-size: 1.125rem; /* Standard mobile paragraph size */
@@ -366,7 +376,7 @@
 
     <!-- Header -->
     <header class="header-frosted shadow-md fixed w-full z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap relative">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
             <div class="logo flex items-center">
                 <!-- Using Font Awesome icon for a modern look -->
                 <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
