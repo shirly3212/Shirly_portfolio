@@ -29,7 +29,7 @@
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            /* Removed min-height: 100vh from body */
+            min-height: 100vh; /* Ensure body takes at least full viewport height */
         }
 
         /* Particles.js canvas styling */
@@ -221,121 +221,108 @@
             }
         }
 
-        /* Mobile specific styles */
-        @media screen and (max-width: 754px) {
-            /* Ensure header.main-head is always visible and compact */
-            header.main-head {
-                display: flex; /* Must be flex to control internal layout */
-                flex-direction: column; /* Stack logo and nav items */
-                align-items: center; /* Center horizontally */
-                justify-content: center; /* Center vertically */
-                min-height: 80px; /* Ensure a consistent height for the header */
-                padding: 1rem; /* Adjust padding for mobile header */
-                position: fixed; /* Ensure it stays fixed */
-                top: 0;
-                left: 0;
-                width: 100%;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-                z-index: 1000; /* Ensure header is on top */
+        /* Mobile specific styles for header, nav, and intro section */
+        @media screen and (max-width: 767px) { /* Changed from 754px for consistency with other pages */
+            /* Header adjustments */
+            header.header-frosted { /* Use the specific class for clarity */
+                padding: 1rem 1.5rem; /* Adjusted padding for mobile header */
             }
-
-            /* Ensure nav itself remains a row layout on mobile for logo and toggle */
-            nav {
-                width: 100%; /* Ensure nav takes full width of header */
+            header .container {
                 flex-direction: row; /* Keep logo and toggle side-by-side */
                 justify-content: space-between; /* Space between logo and toggle */
-                align-items: center; /* Vertically align them */
-                flex-wrap: nowrap; /* Prevent wrapping */
-                padding: 0; /* Remove internal padding on nav, handled by header */
-                min-height: auto; /* Let content define height */
-            }
-
-            /* Mobile nav toggle should be visible and positioned correctly */
-            .nav-toggle {
-                display: block !important; /* Show hamburger icon - !important to override potential dynamic styles */
-                margin-left: auto; /* Push to the right */
-            }
-
-            nav .logo {
-                display: flex; /* Keep logo image and text in a row */
-                flex-direction: row;
                 align-items: center;
-                flex: none; /* Prevent logo from shrinking/growing excessively */
-                margin-top: 0; /* Reset mobile specific margin */
-            }
-            nav .logo h1 {
-                font-size: 2rem; /* Smaller font for logo text on mobile */
             }
 
-            /* Mobile navigation list */
-            nav ul {
-                display: none; /* Hidden by default */
+            .logo h1 {
+                font-size: 1.8rem; /* Smaller font for logo text on mobile */
+            }
+
+            /* Hamburger toggle styles (consistent with other pages) */
+            #mobile-menu-toggle {
+                display: block; /* Show hamburger button on mobile */
+            }
+            /* Hide the regular nav items on small screens by default */
+            #main-nav-menu {
+                display: none; /* Hidden by default on mobile */
                 flex-direction: column;
-                background: white;
-                position: absolute; /* Position relative to its parent <nav> */
-                top: 100%; /* Position right below the nav bar */
+                position: absolute;
+                top: 100%;
                 left: 0;
                 width: 100%;
+                background-color: rgba(241, 245, 249, 0.95);
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                z-index: 999; /* Slightly lower than header but still high */
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-                transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Smooth transition */
+                z-index: 100;
+                padding: 1rem 0;
+                border-radius: 0 0 0.5rem 0.5rem;
             }
-
-            nav ul.show-nav {
+            #main-nav-menu.active {
                 display: flex; /* Show when active */
-                opacity: 1;
-                visibility: visible;
             }
-
-            nav ul:not(.show-nav) {
-                opacity: 0;
-                visibility: hidden;
-            }
-
-            nav ul li {
-                padding: 1rem 2rem;
+            #main-nav-menu li {
+                width: 100%;
                 text-align: center;
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid #e2e8f0;
             }
-            nav ul li:last-child {
+            #main-nav-menu li:last-child {
                 border-bottom: none;
             }
+            #main-nav-menu li a {
+                display: block;
+                padding: 0.75rem 1rem;
+                color: #4a5568;
+                font-weight: 500;
+            }
+            #main-nav-menu li a.bg-blue-600 {
+                color: white;
+                border-radius: 0;
+            }
 
-            /* Adjust padding-top of intro section to compensate for fixed header height */
+            /* Intro Section adjustments */
             .intro {
-                padding-top: 10rem; /* Increased padding to ensure content is not hidden */
+                padding-top: 10rem; /* Adjusted padding to ensure content is not hidden */
                 min-height: auto; /* Let content dictate height on mobile */
                 justify-content: flex-start; /* Align content to top instead of center */
+                flex-direction: column; /* Stack intro content vertically */
+                text-align: center; /* Center align text */
             }
-
-            /* Adjustments for general layout on mobile */
-            .main-head {
-                width: 100%;
+            .intro h2 {
+                font-size: 3.5rem; /* Adjusted size for mobile */
+                padding-top: 0;
+                margin-bottom: 1rem;
             }
-            /* nav .logo and nav ul flex properties handled above in more specific rules */
-            .intro-text {
-                margin-top: 2rem; /* Adjusted margin */
-                text-align: center;
+            .intro h3 {
+                font-size: 2rem; /* Adjusted size for mobile */
+                padding: 1rem 0;
             }
-            /* Shrink "Shirly Herscovici" text on mobile */
-            .intro-text h2 {
-                font-size: 4rem; /* Smaller font size for mobile */
-            }
-            .me {
-                 text-align: center; /* Ensures content within 'me' is centered */
+            .intro p {
+                font-size: 1rem; /* Smaller paragraph text for mobile */
             }
             .intro-social {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: row;
+                justify-content: center; /* Center social icons */
+                margin-top: 2rem;
             }
             .intro-social a {
-                margin: 2rem;
+                margin: 0 1.5rem; /* Adjust spacing */
+            }
+            .me {
+                margin-top: 2rem;
+                width: 100%;
+            }
+            svg {
+                width: 90%; /* Adjust SVG size for mobile */
+                height: auto;
+            }
+
+            /* Form section adjustments on mobile */
+            .form-section {
+                padding: 2rem 1rem; /* Adjusted padding for small screens */
+            }
+            .form-section > div { /* The white container around the form */
+                width: 100%; /* Make it take full width */
+                padding: 1.5rem; /* Adjust padding */
             }
         }
+
 
         /* SVG Line Drawing Animation */
         #LINEPAINT {
@@ -371,167 +358,200 @@
     <div id="particles-js"></div>
 
     <!-- Splash image - Moved outside the intro section for fixed positioning -->
-    <img class="splash" src="img/splash.svg" alt="Shirly Ben Nun background splash graphic">
+    <img class="splash" src="img/splash.svg" alt="Shirly Herscovici background splash graphic">
 
     <!-- Header -->
-    <header class="header-frosted shadow-md fixed w-full z-50 main-head">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap relative"> <!-- Added relative to nav for absolute positioning of ul -->
+    <header class="header-frosted shadow-md fixed w-full z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap relative">
             <div class="logo flex items-center">
                 <!-- Using Font Awesome icon for a modern look -->
                 <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
                 <h1 class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition duration-300 rounded-lg p-2">Shirly Herscovici</h1>
             </div>
-            <!-- Mobile toggle will be inserted here by JS -->
-            <ul class="flex space-x-8">
-                <li><a href="/" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700">Home</a></li>
+            <!-- Hamburger menu button for mobile -->
+            <button id="mobile-menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
+                <li><a href="#home-section" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700">Home</a></li>
                 <li><a href="Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Design</a></li>
                 <li><a href="web/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Web</a></li>
                 <li><a href="ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
-                <li><a href="contact/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
+                <li><a href="#contact-section" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="intro flex-grow pb-12">
-        <div class="intro-text text-center lg:text-left mx-auto max-w-4xl px-6">
-            <h2 class="text-5xl md:text-6xl font-bold mb-4">Shirly Herscovici</h2>
-            <!-- Adjusted h3 font size for responsiveness and line break -->
-            <h3 class="text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 leading-tight">Motion Graphic Designer <br /> Webstie Developer </h3>
-            <p class="text-lg mb-8 leading-relaxed">Shirly Herscovici is a motion graphic designer, <br /> video editor, and a Junior website developer who
-                spechializes in Html & CSS.</p>
-            <div class="intro-social flex justify-center lg:justify-start space-x-6">
-                <!-- Using Font Awesome icons for consistency -->
-                <a href="#" class="text-gray-700 hover:text-blue-600 transition duration-300" title="GitHub"><i class="fab fa-github text-4xl"></i></a>
-                <a href="https://www.linkedin.com/in/shirly-ben-nun-a93766278/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition duration-300" title="LinkedIn Profile"><i class="fab fa-linkedin-in text-4xl"></i></a>
+    <main class="pt-24 pb-12 flex-grow"> <!-- Adjusted pt for main -->
+        <section id="home-section" class="intro flex-grow pb-12"> <!-- Added id for home anchor -->
+            <div class="intro-text text-center lg:text-left mx-auto max-w-4xl px-6">
+                <h2 class="text-5xl md:text-6xl font-bold mb-4">Shirly Herscovici</h2>
+                <!-- Adjusted h3 font size for responsiveness and line break -->
+                <h3 class="text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 leading-tight">Motion Graphic Designer <br /> Webstie Developer </h3>
+                <p class="text-lg mb-8 leading-relaxed">Shirly Herscovici is a motion graphic designer, <br /> video editor, and a Junior website developer who
+                    spechializes in Html & CSS.</p>
+                <div class="intro-social flex justify-center lg:justify-start space-x-6">
+                    <!-- Using Font Awesome icons for consistency -->
+                    <a href="#" class="text-gray-700 hover:text-blue-600 transition duration-300" title="GitHub"><i class="fab fa-github text-4xl"></i></a>
+                    <a href="https://www.linkedin.com/in/shirly-ben-nun-a93766278/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition duration-300" title="LinkedIn Profile"><i class="fab fa-linkedin-in text-4xl"></i></a>
+                </div>
             </div>
-        </div>
-        <div class="me mt-12 flex justify-center items-center relative">
-            <!-- Your SVG content remains -->
-            <svg width="1124" height="923" viewBox="0 0 1124 923" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-3xl h-auto">
-                <path id="HAIR-NO-MOVEMENT"
-                    d="M738.362 184.495C738.199 184.525 737.956 184.569 737.66 184.621C731.879 185.642 696.925 191.398 661.685 177.07C646.756 171.001 681.481 181.602 648.232 160.5C609.25 135.76 638.403 123.036 635.5 111.5C629.704 88.4646 600.014 72.1158 620.5 74.5C625.894 75.1277 623.522 59.4785 632.506 57.1513C634.48 56.6401 643.12 54.402 647.333 46.7682C651.09 39.9583 678.989 36.0851 680.5 30.5C704.081 30.5 686.452 7.48471 715.442 12.654C732.116 15.6271 745.085 23.744 770.342 39.8566C814.303 67.9008 836.284 81.923 841.224 103.406C845.906 123.769 834.668 132.543 842.841 154.34C850.452 174.636 842.868 171.083 847.028 187.501C853.721 213.922 848.549 245.117 838.2 257.196C826.853 270.439 816.002 277.708 801.596 287.357C783.513 299.469 781.212 453.117 770.342 452.501C750.635 451.384 618.264 337.407 617.5 320C617.5 326 615 257 635.704 180.773C639.994 172.158 730.028 181.36 731.137 176.411"
-                    fill="url(#paint0_linear_0_1)" />
-                <g id="NECK">
-                    <path id="Vector" d="M776.347 229.935L836.752 326.102L663.36 363.527L674.404 243.13L776.347 229.935Z"
-                        fill="#FFB6B6" />
-                    <path id="NECK_2" opacity="0.1"
-                        d="M776.347 229.935L836.752 326.102L663.36 363.527L674.404 243.13L776.347 229.935Z" fill="black" />
-                </g>
-                <path id="SHIRTBODY"
-                    d="M668 314L672 271L805.314 278L804.314 314L879.5 382L912.314 674L1001.93 829.266L547.994 762L581.154 642L581.154 327.488L625 314H668Z"
-                    fill="#38A5D2" />
-                <g id="TABLE">
-                    <path id="TABLE_2"
-                        d="M5.03646 907.032C-0.934059 896.987 -1.63916 884.576 3.15068 873.833L74.3285 714.213C79.6407 702.3 91.0605 694.602 103.422 694.602H1002.45C1014.47 694.602 1025.4 701.658 1030.98 713.017L1107.28 868.238C1112.55 878.968 1112.2 891.57 1106.35 901.95C1100.49 912.33 1090.22 918.555 1078.87 918.603L32.3703 923H32.2393C21.1454 923 10.9828 917.038 5.03646 907.032Z"
-                        fill="white" />
-                    <path id="Vector_2"
-                        d="M5.03646 907.032C-0.934059 896.987 -1.63916 884.576 3.15068 873.833L74.3285 714.213C79.6407 702.3 91.0605 694.602 103.422 694.602H1002.45C1014.47 694.602 1025.4 701.658 1030.98 713.017L1107.28 868.238C1112.55 878.968 1112.2 891.57 1106.35 901.95C1100.49 912.33 1090.22 918.555 1078.87 918.603L32.3703 923H32.2393C21.1454 923 10.9828 917.038 5.03646 907.032ZM103.422 698.212C92.3579 698.212 82.1369 705.102 77.3823 715.764L6.20447 875.384C1.91717 884.999 2.54797 896.107 7.8921 905.099C13.2148 914.055 22.3095 919.391 32.2398 919.391H32.3571L1078.86 914.994C1089.02 914.951 1098.21 909.379 1103.45 900.088C1108.69 890.798 1109 879.518 1104.28 869.916L1027.99 714.692C1022.99 704.527 1013.21 698.212 1002.45 698.212H103.422Z"
-                        fill="#3F3D56" />
-                </g>
-                <g id="TABLET">
-                    <path id="Vector_3"
-                        d="M918.751 861.978L547.745 834.754C542.268 834.352 537.899 830.41 536.616 824.713C535.333 819.015 537.546 813.385 542.254 810.371L624.294 757.832C626.377 756.497 628.766 755.849 631.189 755.974L952.106 771.543C956.349 771.747 960.138 774.221 962.243 778.158C964.348 782.095 964.415 786.835 962.422 790.838L930.471 855.032C928.326 859.34 924.122 862.01 919.596 862.01C919.315 862.01 919.033 861.999 918.751 861.978Z"
-                        fill="#3F3D56" />
-                    <path id="Vector_4" d="M544.528 818.87L914.009 845.9L943.23 778.673L626.416 765.412L544.528 818.87Z"
-                        fill="white" />
-                    <path id="LINEPAINT"
-                        d="M826.649 790.16C833.773 790.756 838.923 797.805 839.011 805.216C839.102 812.908 833.81 819.771 827.653 823.177C820.439 827.167 811.628 827.491 803.735 826.427C796.635 825.47 788.979 822.784 784.653 816.313C781.012 810.869 779.922 802.825 783.452 796.961C786.952 791.148 793.94 789.791 799.63 792.417C805.652 795.197 809.258 801.302 809.006 808.331C808.727 816.122 804.215 823.145 798.122 827.207C791.551 831.589 783.460 832.751 775.868 832.419C767.595 832.056 759.434 829.862 751.965 826.106C744.967 822.587 738.034 817.643 733.197 811.114C728.661 804.994 726.139 796.657 729.110 789.084C731.547 782.873 737.205 779.238 743.479 780.032C749.224 780.758 754.907 784.570 757.231 790.361C759.853 796.894 758.238 804.537 754.327 810.120C749.812 816.566 742.952 820.010 735.484 820.240C727.535 820.485 719.811 817.154 713.484 812.239C707.625 807.687 702.548 801.960 696.214 798.113C693.166 796.262 689.818 795.026 686.286 794.885C681.789 794.705 681.496 807.080 677.085 807.814C673.347 808.436 665.413 797.752 661.808 796.337C658.723 795.126 655.024 806.902 652.941 810.820C646.430 823.061 644.614 817.177 645.802 814.028C646.734 811.558 655.282 790.499 660.321 789.656C665.360 788.814 666.235 791.852 666.235 791.852C668.642 794.156 672.466 800.966 675.896 800.258C679.471 799.521 683.381 790.513 687.036 790.760C699.984 791.636 708.064 803.816 718.249 810.664C728.958 817.863 745.029 818.999 752.311 805.872C754.956 801.105 755.728 794.654 752.559 789.967C749.919 786.062 745.044 783.590 740.511 784.138C734.817 784.827 731.763 790.459 731.732 796.183C731.695 803.188 736.027 809.059 740.726 813.450C751.184 823.223 765.368 828.568 779.272 828.307C785.795 828.185 792.786 826.662 798.032 822.247C802.565 818.432 805.815 812.058 805.022 805.790C804.337 800.366 800.273 796.106 795.181 795.352C789.972 794.581 785.720 798.377 785.256 803.945C784.734 810.207 788.011 815.588 792.953 818.654C798.552 822.128 805.482 822.816 811.850 822.726C818.610 822.630 825.717 821.023 830.663 815.736C834.882 811.227 836.695 804.352 833.209 798.789C831.670 796.333 829.277 794.549 826.477 794.315C823.985 794.106 824.144 789.950 826.649 790.16Z"
-                        fill="#38A5D2" />
-                </g>
-                <g id="HANDPENCIL">
-                    <path id="Vector_5"
-                        d="M673.141 780.791L674.713 767.626L777.794 539.406C779.502 535.626 783.779 534.045 787.328 535.883C790.878 537.72 792.376 542.292 790.669 546.071L687.633 774.191L678.924 783.785C677.893 784.915 676.365 785.199 675.030 784.508C673.696 783.817 672.955 782.358 673.141 780.791Z"
-                        fill="#3F3D56" />
-                    <path id="Vector_6"
-                        d="M746.119 640.978C758.738 642.258 770.924 646.739 781.658 654.044L782.229 654.118L782.284 653.513L903.797 661.85L878.595 492.955L964.049 431.153L970.589 720.158C967.736 738.934 950.962 751.371 933.366 747.759L776.610 715.863L776.796 713.827L776.249 713.726C764.426 718.413 751.686 719.998 739.096 718.349C707.558 714.688 683.561 694.394 685.498 673.026C687.435 651.658 714.569 637.310 746.119 640.978Z"
-                        fill="#FFB6B6" />
-                </g>
-                <path id="SHIRT"
-                    d="M795.279 370.64L845 327C845 327 945.657 340 963.555 410.098C964.914 415.422 994.602 667.1 993.067 673.897C981.694 724.25 881.457 656.824 881.457 656.824L795.279 370.64Z"
-                    fill="#38A5D2" />
-                <path id="HAND-L"
-                    d="M259.804 517.356C271.551 522.377 282.001 530.328 290.279 540.543L290.806 540.786L291.025 540.224L405.242 584.75L527.194 374L594.612 418.596L453.212 660.607C445.301 677.706 425.788 684.556 409.911 675.808L268.397 598.15L269.136 596.258L268.639 595.997C256.011 596.923 243.358 594.608 231.740 589.243C202.509 576.254 185.093 549.627 192.841 529.773C200.589 509.919 230.563 504.358 259.804 517.356Z"
-                    fill="#FFB6B6" />
-                <path id="SHIRT-L"
-                    d="M655.283 407.573L601.343 321.481C601.343 321.481 537.155 335.041 510.714 371.701C507.409 376.283 393.878 552.022 393.147 559.691C388.027 613.377 518.509 638.531 518.509 638.531L655.283 407.573Z"
-                    fill="#38A5D2" />
-                <g id="COMPUTER">
-                    <path id="Vector_7"
-                        d="M378.965 827.832L368.329 818.102C366.746 816.653 364.820 815.693 362.761 815.326L125.770 773.168C120.361 772.206 116.365 768.037 115.342 762.286C114.319 756.536 116.604 751.093 121.307 748.081L205.854 693.938C208.680 692.128 212.006 691.559 215.222 692.334L515.708 764.792C521.549 766.200 525.448 771.238 525.639 777.627C525.831 784.016 522.242 789.310 516.495 791.115L390.858 830.554C389.666 830.929 388.450 831.112 387.245 831.112C384.246 831.112 381.311 829.979 378.965 827.832Z"
-                        fill="#3F3D56" />
-                    <path id="Vector_8"
-                        d="M373.095 830.419L101.431 790.343C92.3386 789.003 84.8343 782.049 82.3117 772.629L19.9176 539.549C17.8034 531.649 19.3818 523.469 24.2481 517.104C29.1144 510.739 36.3042 507.450 43.9816 508.075L317.684 530.456C327.585 531.266 335.898 538.708 338.369 548.974L398.725 799.750C400.651 807.752 398.725 816.211 393.572 822.377C389.135 827.687 382.843 830.653 376.284 830.653C375.227 830.653 374.161 830.576 373.095 830.419Z"
-                        fill="#3F3D56" />
-                </g>
-                <g id="PLANT-R">
-                    <path id="Vector_33"
-                        d="M1123.52 739.428C1124.98 789.324 1095.83 807.609 1059.24 808.677C1058.39 808.702 1057.54 808.718 1056.70 808.723C1055.01 808.737 1053.32 808.709 1051.66 808.638C1018.57 807.266 992.379 789.700 991.024 743.298C989.622 695.277 1049.230 632.883 1053.700 628.269L1053.710 628.264C1053.880 628.087 1053.960 628 1053.960 628C1053.960 628 1122.070 689.538 1123.520 739.428Z"
-                        fill="#D0CDE1" />
-                    <path id="Vector_34"
-                        d="M1056.610 801.116L1079.850 766.555L1056.650 804.834L1056.700 808.723C1055.010 808.737 1053.320 808.709 1051.660 808.638L1052.810 758.646L1052.780 758.260L1052.820 758.187L1052.930 753.463L1027.480 716.509L1052.900 749.927L1053.000 750.925L1053.870 713.155L1031.880 674.842L1053.930 706.519L1053.700 628.269V628.008L1053.710 628.264L1055.160 689.936L1075.200 664.885L1055.230 695.249L1055.670 729.034L1074.100 696.061L1055.740 734.002L1055.980 752.787L1082.790 706.857L1056.060 759.341L1056.610 801.116Z"
-                        fill="#3F3D56" />
-                </g>
-                <g id="PLANT-L">
-                    <path id="Vector_33_2"
-                        d="M20.0127 742.239C20.6885 792.151 50.5979 809.174 87.1969 808.678C88.0468 808.667 88.8931 808.646 89.7343 808.615C91.4293 808.557 93.1069 808.457 94.7671 808.316C127.7670 805.531 153.1850 786.862 152.5560 740.445C151.9060 692.407 89.6913 632.617 85.0256 628.197L85.0176 628.193C84.840 628.024 84.7489 627.940 84.7489 627.940C84.7489 627.940 19.3371 692.331 20.0127 742.239Z"
-                        fill="#D0CDE1" />
-                    <path id="Vector_34_2"
-                        d="M89.5044 801.011L64.8084 767.474L89.6164 804.728L89.7342 808.615C91.4292 808.557 93.1068 808.457 94.7671 808.316L91.4799 758.418L91.4947 758.032L91.4494 757.960L91.1368 753.245L114.9870 715.238L91.0154 749.711L90.9676 750.712L88.4849 713.013L108.8110 673.797L88.1391 706.387L85.0255 628.197L85.0144 627.937L85.0175 628.193L86.1949 689.871L65.1068 665.699L86.3563 695.249L87.3628 728.955L67.5339 696.800L87.5063 733.921L88.0654 752.700L59.3155 707.957L88.2643 759.251L89.5044 801.011Z"
-                        fill="#3F3D56" />
-                </g>
-                <g id="SQUARE">
-                    <path id="Vector_17" d="M1069 842H1028V883H1069V842Z" fill="#D0CDE1" />
-                    <path id="Vector_18" d="M1045 809V859H1095V809H1045ZM1092.82 856.823H1047.16V811.176H1092.82V856.823Z"
-                        fill="#3F3D56" />
-                </g>
-                <g id="SQUARE_2">
-                    <path id="Vector_17_2" d="M74 842H115V883H74V842Z" fill="#D0CDE1" />
-                    <path id="Vector_18_2" d="M98 809V859H48V809H98ZM50.1765 856.823H95.8383V811.176H50.1765V856.823Z"
-                        fill="#3F3D56" />
-                </g>
-                <g id="HEAD">
-                    <g id="HEAD_2">
-                        <path
-                            d="M720.654 262.373C781.405 270.7 837.858 224.885 846.745 160.044C855.631 95.2029 813.586 35.8891 752.835 27.5631C692.083 19.237 635.631 65.0515 626.744 129.893C617.857 194.734 659.902 254.047 720.654 262.373Z"
+            <div class="me mt-12 flex justify-center items-center relative">
+                <!-- Your SVG content remains -->
+                <svg width="1124" height="923" viewBox="0 0 1124 923" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-3xl h-auto">
+                    <path id="HAIR-NO-MOVEMENT"
+                        d="M738.362 184.495C738.199 184.525 737.956 184.569 737.66 184.621C731.879 185.642 696.925 191.398 661.685 177.07C646.756 171.001 681.481 181.602 648.232 160.5C609.25 135.76 638.403 123.036 635.5 111.5C629.704 88.4646 600.014 72.1158 620.5 74.5C625.894 75.1277 623.522 59.4785 632.506 57.1513C634.48 56.6401 643.12 54.402 647.333 46.7682C651.09 39.9583 678.989 36.0851 680.5 30.5C704.081 30.5 686.452 7.48471 715.442 12.654C732.116 15.6271 745.085 23.744 770.342 39.8566C814.303 67.9008 836.284 81.923 841.224 103.406C845.906 123.769 834.668 132.543 842.841 154.34C850.452 174.636 842.868 171.083 847.028 187.501C853.721 213.922 848.549 245.117 838.2 257.196C826.853 270.439 816.002 277.708 801.596 287.357C783.513 299.469 781.212 453.117 770.342 452.501C750.635 451.384 618.264 337.407 617.5 320C617.5 326 615 257 635.704 180.773C639.994 172.158 730.028 181.36 731.137 176.411"
+                        fill="url(#paint0_linear_0_1)" />
+                    <g id="NECK">
+                        <path id="Vector" d="M776.347 229.935L836.752 326.102L663.36 363.527L674.404 243.13L776.347 229.935Z"
                             fill="#FFB6B6" />
-                        <path
-                            d="M794.439 152.54C789.764 138.778 772.271 143.393 771.971 143.405C766.105 143.632 766.796 157.157 733.828 138.177C719.861 130.137 700.925 124.182 670.849 98.7607C635.588 68.9566 628.681 142.27 626.744 129.893C554 98.7607 621.799 42.6815 646.083 31.1986C646.083 31.1986 665.5 17.5 680.766 12.2265L696.959 7.37104C707.186 2.71654 712.892 3.74043 722.627 2.24717C756.835 -3 760.454 3.76212 788.474 12.8198C804.590 18.0295 812.277 25.0526 835.112 44.4453C851.560 64.3631 863.735 89.8054 865.712 111.761C867.586 132.570 869.668 123.486 870.197 144.755C870.727 166.024 871.132 174.352 870.342 192.214C868.699 229.335 867.409 238.747 865.712 251.131C863.200 269.460 849.332 451.614 833.749 459.218C814.189 468.762 783.410 464.043 772.724 461.957C753.351 458.174 755.029 341.849 756.635 324.500C757.238 317.998 747.339 227.683 756.635 206.322C760.509 197.423 789.294 167.985 793.081 162.448"
-                            fill="url(#paint1_linear_0_1)" />
+                        <path id="NECK_2" opacity="0.1"
+                            d="M776.347 229.935L836.752 326.102L663.36 363.527L674.404 243.13L776.347 229.935Z" fill="black" />
                     </g>
-                    <path id="GLASESS"
-                        d="M694.527 145.439C699.378 146.519 697.573 149.878 697.573 150.357C697.573 150.837 699.378 178.665 722.722 185.982C746.068 193.299 760.053 178.905 764.113 171.708C768.173 164.510 771.557 147.358 772.572 146.039C773.586 144.720 778.436 142.441 778.436 142.441L779 135.724L772.910 133.805C772.910 133.805 757.571 126.369 735.016 126.008C712.460 125.648 699.715 139.442 699.715 139.442C693.366 137.287 685.467 137.003 678.285 139.442C678.285 139.442 665.540 125.648 642.984 126.007C620.429 126.366 605.090 133.804 605.090 133.804L599 135.723L599.564 142.441C599.564 142.441 604.414 144.720 605.428 146.039C606.443 147.358 609.826 164.511 613.886 171.708C617.946 178.905 631.931 193.299 655.277 185.982C678.622 178.665 680.427 150.838 680.427 150.357C680.427 149.877 678.624 146.519 683.473 145.439ZM750.579 180.224C732.760 191.620 711.444 180.105 705.016 165.111C698.587 150.118 704.001 142.201 704.001 142.201C714.759 123.548 758.138 122.774 765.580 142.921C766.820 146.279 768.398 168.829 750.579 180.224ZM612.419 142.919C619.876 122.734 663.260 123.584 673.998 142.201C673.998 142.201 679.412 150.118 672.983 165.111C666.555 180.104 645.238 191.619 627.420 180.224C609.599 168.828 611.179 146.278 612.419 142.919Z"
-                        fill="#211615" />
-                    <path id="Vector 1"
-                        d="M706.5 124L716 128.655L748 145.964L758 148H769.567L772.881 145.964L778.5 142.4H784.478H790L776.746 122.036L740.5 116L706.5 124Z"
-                        fill="url(#paint2_linear_0_1)" />
-                </g>
-                <defs>
-                    <linearGradient id="paint0_linear_0_1" x1="716.609" y1="11" x2="716.609" y2="452.503"
-                        gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#897718" />
-                        <stop offset="0.0001" stop-color="#897718" />
-                        <stop offset="1" stop-color="#FFFB91" />
-                    </linearGradient>
-                    <linearGradient id="paint1_linear_0_1" x1="761.808" y1="-7.54058" x2="698.815" y2="452.087"
-                        gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#897718" />
-                        <stop offset="0.0001" stop-color="#897718" />
-                        <stop offset="1" stop-color="#FFFB91" />
-                    </linearGradient>
-                    <linearGradient id="paint2_linear_0_1" x1="748.25" y1="116" x2="748.25" y2="148"
-                        gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#A99A39" />
-                        <stop offset="1" stop-color="#AEA13E" />
-                    </linearGradient>
-                    <text x="1000" y="100" font-size="40" fill="black">me</text>
-                </defs>
-            </svg>
-        </div>
-    </section>
+                    <path id="SHIRTBODY"
+                        d="M668 314L672 271L805.314 278L804.314 314L879.5 382L912.314 674L1001.93 829.266L547.994 762L581.154 642L581.154 327.488L625 314H668Z"
+                        fill="#38A5D2" />
+                    <g id="TABLE">
+                        <path id="TABLE_2"
+                            d="M5.03646 907.032C-0.934059 896.987 -1.63916 884.576 3.15068 873.833L74.3285 714.213C79.6407 702.3 91.0605 694.602 103.422 694.602H1002.45C1014.47 694.602 1025.4 701.658 1030.98 713.017L1107.28 868.238C1112.55 878.968 1112.2 891.57 1106.35 901.95C1100.49 912.33 1090.22 918.555 1078.87 918.603L32.3703 923H32.2393C21.1454 923 10.9828 917.038 5.03646 907.032Z"
+                            fill="white" />
+                        <path id="Vector_2"
+                            d="M5.03646 907.032C-0.934059 896.987 -1.63916 884.576 3.15068 873.833L74.3285 714.213C79.6407 702.3 91.0605 694.602 103.422 694.602H1002.45C1014.47 694.602 1025.4 701.658 1030.98 713.017L1107.28 868.238C1112.55 878.968 1112.2 891.57 1106.35 901.95C1100.49 912.33 1090.22 918.555 1078.87 918.603L32.3703 923H32.2393C21.1454 923 10.9828 917.038 5.03646 907.032ZM103.422 698.212C92.3579 698.212 82.1369 705.102 77.3823 715.764L6.20447 875.384C1.91717 884.999 2.54797 896.107 7.8921 905.099C13.2148 914.055 22.3095 919.391 32.2398 919.391H32.3571L1078.86 914.994C1089.02 914.951 1098.21 909.379 1103.45 900.088C1108.69 890.798 1109 879.518 1104.28 869.916L1027.99 714.692C1022.99 704.527 1013.21 698.212 1002.45 698.212H103.422Z"
+                            fill="#3F3D56" />
+                    </g>
+                    <g id="TABLET">
+                        <path id="Vector_3"
+                            d="M918.751 861.978L547.745 834.754C542.268 834.352 537.899 830.41 536.616 824.713C535.333 819.015 537.546 813.385 542.254 810.371L624.294 757.832C626.377 756.497 628.766 755.849 631.189 755.974L952.106 771.543C956.349 771.747 960.138 774.221 962.243 778.158C964.348 782.095 964.415 786.835 962.422 790.838L930.471 855.032C928.326 859.34 924.122 862.01 919.596 862.01C919.315 862.01 919.033 861.999 918.751 861.978Z"
+                            fill="#3F3D56" />
+                        <path id="Vector_4" d="M544.528 818.87L914.009 845.9L943.23 778.673L626.416 765.412L544.528 818.87Z"
+                            fill="white" />
+                        <path id="LINEPAINT"
+                            d="M826.649 790.16C833.773 790.756 838.923 797.805 839.011 805.216C839.102 812.908 833.81 819.771 827.653 823.177C820.439 827.167 811.628 827.491 803.735 826.427C796.635 825.47 788.979 822.784 784.653 816.313C781.012 810.869 779.922 802.825 783.452 796.961C786.952 791.148 793.94 789.791 799.63 792.417C805.652 795.197 809.258 801.302 809.006 808.331C808.727 816.122 804.215 823.145 798.122 827.207C791.551 831.589 783.460 832.751 775.868 832.419C767.595 832.056 759.434 829.862 751.965 826.106C744.967 822.587 738.034 817.643 733.197 811.114C728.661 804.994 726.139 796.657 729.110 789.084C731.547 782.873 737.205 779.238 743.479 780.032C749.224 780.758 754.907 784.570 757.231 790.361C759.853 796.894 758.238 804.537 754.327 810.120C749.812 816.566 742.952 820.010 735.484 820.240C727.535 820.485 719.811 817.154 713.484 812.239C707.625 807.687 702.548 801.960 696.214 798.113C693.166 796.262 689.818 795.026 686.286 794.885C681.789 794.705 681.496 807.080 677.085 807.814C673.347 808.436 665.413 797.752 661.808 796.337C658.723 795.126 655.024 806.902 652.941 810.820C646.430 823.061 644.614 817.177 645.802 814.028C646.734 811.558 655.282 790.499 660.321 789.656C665.360 788.814 666.235 791.852 666.235 791.852C668.642 794.156 672.466 800.966 675.896 800.258C679.471 799.521 683.381 790.513 687.036 790.760C699.984 791.636 708.064 803.816 718.249 810.664C728.958 817.863 745.029 818.999 752.311 805.872C754.956 801.105 755.728 794.654 752.559 789.967C749.919 786.062 745.044 783.590 740.511 784.138C734.817 784.827 731.763 790.459 731.732 796.183C731.695 803.188 736.027 809.059 740.726 813.450C751.184 823.223 765.368 828.568 779.272 828.307C785.795 828.185 792.786 826.662 798.032 822.247C802.565 818.432 805.815 812.058 805.022 805.790C804.337 800.366 800.273 796.106 795.181 795.352C789.972 794.581 785.720 798.377 785.256 803.945C784.734 810.207 788.011 815.588 792.953 818.654C798.552 822.128 805.482 822.816 811.850 822.726C818.610 822.630 825.717 821.023 830.663 815.736C834.882 811.227 836.695 804.352 833.209 798.789C831.670 796.333 829.277 794.549 826.477 794.315C823.985 794.106 824.144 789.950 826.649 790.16Z"
+                            fill="#38A5D2" />
+                    </g>
+                    <g id="HANDPENCIL">
+                        <path id="Vector_5"
+                            d="M673.141 780.791L674.713 767.626L777.794 539.406C779.502 535.626 783.779 534.045 787.328 535.883C790.878 537.72 792.376 542.292 790.669 546.071L687.633 774.191L678.924 783.785C677.893 784.915 676.365 785.199 675.030 784.508C673.696 783.817 672.955 782.358 673.141 780.791Z"
+                            fill="#3F3D56" />
+                        <path id="Vector_6"
+                            d="M746.119 640.978C758.738 642.258 770.924 646.739 781.658 654.044L782.229 654.118L782.284 653.513L903.797 661.85L878.595 492.955L964.049 431.153L970.589 720.158C967.736 738.934 950.962 751.371 933.366 747.759L776.610 715.863L776.796 713.827L776.249 713.726C764.426 718.413 751.686 719.998 739.096 718.349C707.558 714.688 683.561 694.394 685.498 673.026C687.435 651.658 714.569 637.310 746.119 640.978Z"
+                            fill="#FFB6B6" />
+                    </g>
+                    <path id="SHIRT"
+                        d="M795.279 370.64L845 327C845 327 945.657 340 963.555 410.098C964.914 415.422 994.602 667.1 993.067 673.897C981.694 724.25 881.457 656.824 881.457 656.824L795.279 370.64Z"
+                        fill="#38A5D2" />
+                    <path id="HAND-L"
+                        d="M259.804 517.356C271.551 522.377 282.001 530.328 290.279 540.543L290.806 540.786L291.025 540.224L405.242 584.75L527.194 374L594.612 418.596L453.212 660.607C445.301 677.706 425.788 684.556 409.911 675.808L268.397 598.15L269.136 596.258L268.639 595.997C256.011 596.923 243.358 594.608 231.740 589.243C202.509 576.254 185.093 549.627 192.841 529.773C200.589 509.919 230.563 504.358 259.804 517.356Z"
+                        fill="#FFB6B6" />
+                    <path id="SHIRT-L"
+                        d="M655.283 407.573L601.343 321.481C601.343 321.481 537.155 335.041 510.714 371.701C507.409 376.283 393.878 552.022 393.147 559.691C388.027 613.377 518.509 638.531 518.509 638.531L655.283 407.573Z"
+                        fill="#38A5D2" />
+                    <g id="COMPUTER">
+                        <path id="Vector_7"
+                            d="M378.965 827.832L368.329 818.102C366.746 816.653 364.820 815.693 362.761 815.326L125.770 773.168C120.361 772.206 116.365 768.037 115.342 762.286C114.319 756.536 116.604 751.093 121.307 748.081L205.854 693.938C208.680 692.128 212.006 691.559 215.222 692.334L515.708 764.792C521.549 766.200 525.448 771.238 525.639 777.627C525.831 784.016 522.242 789.310 516.495 791.115L390.858 830.554C389.666 830.929 388.450 831.112 387.245 831.112C384.246 831.112 381.311 829.979 378.965 827.832Z"
+                            fill="#3F3D56" />
+                        <path id="Vector_8"
+                            d="M373.095 830.419L101.431 790.343C92.3386 789.003 84.8343 782.049 82.3117 772.629L19.9176 539.549C17.8034 531.649 19.3818 523.469 24.2481 517.104C29.1144 510.739 36.3042 507.450 43.9816 508.075L317.684 530.456C327.585 531.266 335.898 538.708 338.369 548.974L398.725 799.750C400.651 807.752 398.725 816.211 393.572 822.377C389.135 827.687 382.843 830.653 376.284 830.653C375.227 830.653 374.161 830.576 373.095 830.419Z"
+                            fill="#3F3D56" />
+                    </g>
+                    <g id="PLANT-R">
+                        <path id="Vector_33"
+                            d="M1123.52 739.428C1124.98 789.324 1095.83 807.609 1059.24 808.677C1058.39 808.702 1057.54 808.718 1056.70 808.723C1055.01 808.737 1053.32 808.709 1051.66 808.638C1018.57 807.266 992.379 789.700 991.024 743.298C989.622 695.277 1049.230 632.883 1053.700 628.269L1053.710 628.264C1053.880 628.087 1053.960 628 1053.960 628C1053.960 628 1122.070 689.538 1123.520 739.428Z"
+                            fill="#D0CDE1" />
+                        <path id="Vector_34"
+                            d="M1056.610 801.116L1079.850 766.555L1056.650 804.834L1056.700 808.723C1055.010 808.737 1053.320 808.709 1051.660 808.638L1052.810 758.646L1052.780 758.260L1052.820 758.187L1052.930 753.463L1027.480 716.509L1052.900 749.927L1053.000 750.925L1053.870 713.155L1031.880 674.842L1053.930 706.519L1053.700 628.269V628.008L1053.710 628.264L1055.160 689.936L1075.200 664.885L1055.230 695.249L1055.670 729.034L1074.100 696.061L1055.740 734.002L1055.980 752.787L1082.790 706.857L1056.060 759.341L1056.610 801.116Z"
+                            fill="#3F3D56" />
+                    </g>
+                    <g id="PLANT-L">
+                        <path id="Vector_33_2"
+                            d="M20.0127 742.239C20.6885 792.151 50.5979 809.174 87.1969 808.678C88.0468 808.667 88.8931 808.646 89.7343 808.615C91.4293 808.557 93.1069 808.457 94.7671 808.316C127.7670 805.531 153.1850 786.862 152.5560 740.445C151.9060 692.407 89.6913 632.617 85.0256 628.197L85.0176 628.193C84.840 628.024 84.7489 627.940 84.7489 627.940C84.7489 627.940 19.3371 692.331 20.0127 742.239Z"
+                            fill="#D0CDE1" />
+                        <path id="Vector_34_2"
+                            d="M89.5044 801.011L64.8084 767.474L89.6164 804.728L89.7342 808.615C91.4292 808.557 93.1068 808.457 94.7671 808.316L91.4799 758.418L91.4947 758.032L91.4494 757.960L91.1368 753.245L114.9870 715.238L91.0154 749.711L90.9676 750.712L88.4849 713.013L108.8110 673.797L88.1391 706.387L85.0255 628.197L85.0144 627.937L85.0175 628.193L86.1949 689.871L65.1068 665.699L86.3563 695.249L87.3628 728.955L67.5339 696.800L87.5063 733.921L88.0654 752.700L59.3155 707.957L88.2643 759.251L89.5044 801.011Z"
+                            fill="#3F3D56" />
+                    </g>
+                    <g id="SQUARE">
+                        <path id="Vector_17" d="M1069 842H1028V883H1069V842Z" fill="#D0CDE1" />
+                        <path id="Vector_18" d="M1045 809V859H1095V809H1045ZM1092.82 856.823H1047.16V811.176H1092.82V856.823Z"
+                            fill="#3F3D56" />
+                    </g>
+                    <g id="SQUARE_2">
+                        <path id="Vector_17_2" d="M74 842H115V883H74V842Z" fill="#D0CDE1" />
+                        <path id="Vector_18_2" d="M98 809V859H48V809H98ZM50.1765 856.823H95.8383V811.176H50.1765V856.823Z"
+                            fill="#3F3D56" />
+                    </g>
+                    <g id="HEAD">
+                        <g id="HEAD_2">
+                            <path
+                                d="M720.654 262.373C781.405 270.7 837.858 224.885 846.745 160.044C855.631 95.2029 813.586 35.8891 752.835 27.5631C692.083 19.237 635.631 65.0515 626.744 129.893C617.857 194.734 659.902 254.047 720.654 262.373Z"
+                                fill="#FFB6B6" />
+                            <path
+                                d="M794.439 152.54C789.764 138.778 772.271 143.393 771.971 143.405C766.105 143.632 766.796 157.157 733.828 138.177C719.861 130.137 700.925 124.182 670.849 98.7607C635.588 68.9566 628.681 142.27 626.744 129.893C554 98.7607 621.799 42.6815 646.083 31.1986C646.083 31.1986 665.5 17.5 680.766 12.2265L696.959 7.37104C707.186 2.71654 712.892 3.74043 722.627 2.24717C756.835 -3 760.454 3.76212 788.474 12.8198C804.590 18.0295 812.277 25.0526 835.112 44.4453C851.560 64.3631 863.735 89.8054 865.712 111.761C867.586 132.570 869.668 123.486 870.197 144.755C870.727 166.024 871.132 174.352 870.342 192.214C868.699 229.335 867.409 238.747 865.712 251.131C863.200 269.460 849.332 451.614 833.749 459.218C814.189 468.762 783.410 464.043 772.724 461.957C753.351 458.174 755.029 341.849 756.635 324.500C757.238 317.998 747.339 227.683 756.635 206.322C760.509 197.423 789.294 167.985 793.081 162.448"
+                                fill="url(#paint1_linear_0_1)" />
+                        </g>
+                        <path id="GLASESS"
+                            d="M694.527 145.439C699.378 146.519 697.573 149.878 697.573 150.357C697.573 150.837 699.378 178.665 722.722 185.982C746.068 193.299 760.053 178.905 764.113 171.708C768.173 164.510 771.557 147.358 772.572 146.039C773.586 144.720 778.436 142.441 778.436 142.441L779 135.724L772.910 133.805C772.910 133.805 757.571 126.369 735.016 126.008C712.460 125.648 699.715 139.442 699.715 139.442C693.366 137.287 685.467 137.003 678.285 139.442C678.285 139.442 665.540 125.648 642.984 126.007C620.429 126.366 605.090 133.804 605.090 133.804L599 135.723L599.564 142.441C599.564 142.441 604.414 144.720 605.428 146.039C606.443 147.358 609.826 164.511 613.886 171.708C617.946 178.905 631.931 193.299 655.277 185.982C678.622 178.665 680.427 150.838 680.427 150.357C680.427 149.877 678.624 146.519 683.473 145.439ZM750.579 180.224C732.760 191.620 711.444 180.105 705.016 165.111C698.587 150.118 704.001 142.201 704.001 142.201C714.759 123.548 758.138 122.774 765.580 142.921C766.820 146.279 768.398 168.829 750.579 180.224ZM612.419 142.919C619.876 122.734 663.260 123.584 673.998 142.201C673.998 142.201 679.412 150.118 672.983 165.111C666.555 180.104 645.238 191.619 627.420 180.224C609.599 168.828 611.179 146.278 612.419 142.919Z"
+                            fill="#211615" />
+                        <path id="Vector 1"
+                            d="M706.5 124L716 128.655L748 145.964L758 148H769.567L772.881 145.964L778.5 142.4H784.478H790L776.746 122.036L740.5 116L706.5 124Z"
+                            fill="url(#paint2_linear_0_1)" />
+                    </g>
+                    <defs>
+                        <linearGradient id="paint0_linear_0_1" x1="716.609" y1="11" x2="716.609" y2="452.503"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#897718" />
+                            <stop offset="0.0001" stop-color="#897718" />
+                            <stop offset="1" stop-color="#FFFB91" />
+                        </linearGradient>
+                        <linearGradient id="paint1_linear_0_1" x1="761.808" y1="-7.54058" x2="698.815" y2="452.087"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#897718" />
+                            <stop offset="0.0001" stop-color="#897718" />
+                            <stop offset="1" stop-color="#FFFB91" />
+                        </linearGradient>
+                        <linearGradient id="paint2_linear_0_1" x1="748.25" y1="116" x2="748.25" y2="148"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#A99A39" />
+                            <stop offset="1" stop-color="#AEA13E" />
+                        </linearGradient>
+                        <text x="1000" y="100" font-size="40" fill="black">me</text>
+                    </defs>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact-section" class="form-section flex justify-center items-center py-10 px-4 mt-20"> <!-- Added mt-20 here for spacing -->
+            <div class="bg-white p-8 md:p-12 rounded-xl shadow-lg w-full max-w-md">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Get in Touch</h2>
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Full Name</label>
+                        <input type="text" name="name" id="name" required
+                               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                    </div>
+                    <div>
+                        <label for="Email" class="block text-gray-700 text-sm font-medium mb-2">Email Address</label>
+                        <input type="email" name="Email" id="Email" required
+                               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 text-sm font-medium mb-2">Message</label>
+                        <textarea name="message" id="message" cols="30" rows="6"
+                                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 resize-y"></textarea>
+                    </div>
+                    <button type="submit"
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="custom-footer-gradient text-white min-h-7vh py-8 flex justify-between items-center flex-wrap px-5 mt-auto">
-        <h4 class="text-xl font-medium mb-4 md:mb-0">Shirly Ben Nun © 2025</h4>
+        <h4 class="text-xl font-medium mb-4 md:mb-0">Shirly Herscovici © 2025</h4>
         <ul class="flex justify-center items-center flex-wrap gap-6">
             <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Instagram"><i class="fab fa-instagram text-2xl"></i></a></li>
             <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Twitter"><i class="fab fa-twitter text-2xl"></i></a></li>
@@ -592,7 +612,7 @@
         // --- Mobile Navigation Toggle ---
         document.addEventListener("DOMContentLoaded", function () {
             const nav = document.querySelector("nav"); // Select the nav element
-            const navUl = document.querySelector("nav ul"); // Select the ul for toggling
+            const navUl = document.getElementById("main-nav-menu"); // Select the ul by its ID
 
             // Check if nav and navUl exist
             if (!nav || !navUl) {
@@ -600,25 +620,20 @@
                 return;
             }
 
-            const toggle = document.createElement("div");
-            toggle.classList.add("nav-toggle");
-            toggle.innerHTML = "☰";
-            toggle.style.cursor = "pointer";
-            toggle.style.fontSize = "3rem";
-            toggle.style.display = "none"; // This will be overridden by CSS media query
-            toggle.style.userSelect = "none";
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
 
-            // Insert toggle button inside the nav element, right after the logo div
-            const logoDiv = nav.querySelector(".logo");
-            if (logoDiv) {
-                nav.insertBefore(toggle, navUl); // Insert before the ul, but inside nav
-            } else {
-                nav.prepend(toggle); // Fallback: prepend to nav if logo not found
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    navUl.classList.toggle('active');
+                });
+
+                // Close menu when a link is clicked (optional, but good for UX)
+                navUl.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navUl.classList.remove('active');
+                    });
+                });
             }
-
-            toggle.addEventListener("click", () => {
-                navUl.classList.toggle("show-nav"); // Toggle class on navUl
-            });
         });
     </script>
 </body>
