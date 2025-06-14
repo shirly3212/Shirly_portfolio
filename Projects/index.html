@@ -98,6 +98,82 @@
       -webkit-backdrop-filter: blur(10px);
     }
 
+    /* NEW: Main Title for Graphic Designs Page */
+    .intro-graphic-design-header {
+        margin-top: 5rem; /* Push down below header */
+        padding-bottom: 2rem;
+        overflow: hidden; /* Hide overflow during animation */
+        position: relative; /* Needed for absolute positioning of child elements */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 200px; /* Give some space for the animation */
+    }
+
+    .graphic-design-main-title {
+        font-size: 4rem; /* Adjusted font size slightly smaller again */
+        font-weight: 800; /* Extra bold */
+        text-align: center;
+        background: linear-gradient(to right, #2563eb, #7c3aed, #ef4444); /* Blue-Purple-Red gradient */
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent; /* Fallback */
+        animation: textClipReveal 2.5s ease-out forwards; /* More complex animation */
+        display: inline-block; /* Essential for background-clip */
+        line-height: 1.1;
+        letter-spacing: -2px; /* Slightly tighter letter spacing */
+        position: relative;
+        padding: 0 10rem; /* Increased padding significantly to prevent clipping of 'G' */
+        z-index: 1; /* Ensure text is above the background effect */
+    }
+
+    /* Specific animation for the main graphic design title */
+    @keyframes textClipReveal {
+        0% {
+            opacity: 0;
+            transform: translateY(50px) scale(0.8);
+            filter: blur(10px);
+            clip-path: inset(0 100% 0 0); /* Start clipped from right */
+        }
+        50% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+            clip-path: inset(0 0% 0 0); /* Fully revealed */
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+            clip-path: inset(0 0% 0 0);
+        }
+    }
+
+    /* NEW: Animated background element behind the main title */
+    .title-bg-effect {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 800px; /* Increased size */
+        height: 800px; /* Increased size */
+        background: radial-gradient(circle, rgba(124,58,237,0.4) 0%, rgba(37,99,235,0.4) 100%); /* Purple to blue gradient */
+        border-radius: 50%;
+        filter: blur(200px); /* Increased blur */
+        transform: translate(-50%, -50%) scale(0.7) rotate(0deg); /* Center and initial scale/rotation */
+        animation: backgroundFloatRotate 25s ease-in-out infinite alternate;
+        z-index: 0; /* Behind the text, above particles */
+    }
+
+    @keyframes backgroundFloatRotate {
+        0% { transform: translate(-50%, -50%) scale(0.7) rotate(0deg); opacity: 0.8; }
+        25% { transform: translate(-45%, -55%) scale(0.8) rotate(45deg); opacity: 0.7; }
+        50% { transform: translate(-50%, -45%) scale(0.9) rotate(90deg); opacity: 0.8; }
+        75% { transform: translate(-55%, -50%) scale(0.8) rotate(135deg); opacity: 0.7; }
+        100% { transform: translate(-50%, -50%) scale(0.7) rotate(180deg); opacity: 0.8; }
+    }
+
+
     /* --- General Section Title Styles (for both graphic and web) --- */
     .section-title {
         font-size: 3rem; /* Increased font size */
@@ -116,7 +192,13 @@
         text-align: center; /* Centered horizontally */
         white-space: normal; /* Allow text to wrap naturally */
         border-right: none; /* Remove blinking caret */
-        animation: none; /* Remove typing animation */
+        /* Changed animation for these titles to simple opacity */
+        opacity: 0; /* Start invisible for animation */
+        transition: opacity 1s ease-out; /* Simple opacity transition */
+    }
+    /* Class to trigger opacity animation */
+    .section-title.is-visible {
+        opacity: 1;
     }
 
     /* Adjust the section header to consistently center its content */
@@ -182,11 +264,14 @@
     .project-card-item .view-project-btn {
       margin-top: auto;
       align-self: center;
-      background-color: #3b82f6; /* Blue color for view project buttons */
+      /* Gradient background for button: Blue -> Purple -> Blue */
+      background-image: linear-gradient(to right, #3b82f6, #7c3aed, #3b82f6);
+      background-size: 200% auto; /* For gradient animation */
+      background-position: left center; /* Start from left */
       color: white;
       padding: 0.75rem 1.5rem;
       border-radius: 9999px;
-      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -194,7 +279,7 @@
     }
 
     .project-card-item .view-project-btn:hover {
-      background-color: #2563eb;
+      background-position: right center; /* Slide gradient to right */
       transform: translateY(-2px);
       /* Blue glow effect */
       box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3), 0 0 15px 3px rgba(37, 99, 235, 0.7);
@@ -284,8 +369,9 @@
     .featured-projects-content {
       display: flex;
       flex-direction: column; /* Default to column for mobile */
-      gap: 2rem; /* Gap between featured and side projects */
-      padding: 1rem; /* Padding inside the content area */
+      /* Increased spacing */
+      gap: 3rem; /* Increased gap between featured and side projects */
+      padding: 2rem; /* Increased padding inside the content area */
       background-color: rgba(255, 255, 255, 0.6);
       border-radius: 1rem;
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
@@ -343,11 +429,36 @@
       margin-bottom: 1.5rem;
       flex-grow: 1;
     }
+    
+    /* Apply the same button style to the featured project buttons */
+    .featured-project .view-project-btn {
+        margin-top: auto;
+        align-self: center;
+        background-image: linear-gradient(to right, #3b82f6, #7c3aed, #3b82f6); /* Blue -> Purple -> Blue */
+        background-size: 200% auto;
+        background-position: left center;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 9999px;
+        transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+    }
+
+    .project-card-item .view-project-btn:hover {
+      background-position: right center; /* Slide gradient to right */
+      transform: translateY(-2px);
+      /* Blue glow effect */
+      box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3), 0 0 15px 3px rgba(37, 99, 235, 0.7);
+    }
+
 
     .side-projects-grid {
       display: grid;
       grid-template-columns: 1fr; /* Stack on mobile */
-      gap: 1.5rem;
+      gap: 2rem; /* Increased gap for side projects */
       flex-grow: 1; /* Allow side projects grid to grow and take available space */
     }
 
@@ -378,67 +489,64 @@
     /* --- Carousel Section Styling --- */
     .carousel-section {
         padding: 2rem 1rem;
-        max-width: 1200px;
-        margin: 4rem auto; /* Add more margin for spacing from other sections */
+        width: 100%; /* Ensures it takes full width */
+        margin: 4rem 0; /* Changed margin-left/right to 0 for full width */
         text-align: center;
-        /* Updated background and backdrop-filter for modern transparency */
-        background-color: rgba(255, 255, 255, 0.4); /* More transparent background */
-        border-radius: 1.5rem; /* Slightly larger border-radius for softer look */
-        box-shadow: 0 8px 24px rgba(0,0,0,0.1); /* Softer, wider shadow */
-        backdrop-filter: blur(12px); /* Increased blur for stronger frosted effect */
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         position: relative;
-        border: none; /* Removed border */
+        border: none;
     }
 
     .carousel-wrapper {
         display: flex;
-        overflow-x: hidden; /* Hide scrollbar, control with JS */
-        scroll-behavior: smooth; /* Smooth scroll effect */
-        scroll-snap-type: x mandatory; /* Snap to items */
-        -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
-        border-radius: 1rem; /* Rounded corners for the wrapper */
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 1rem;
         margin: 1rem 0;
-        align-items: stretch; /* Stretch items to fit the height of the tallest */
-        min-height: 250px; /* Minimum height for the carousel wrapper */
-        /* Removed background-color, border, and box-shadow from wrapper for cleaner look */
+        align-items: stretch;
+        min-height: 250px;
     }
 
     .carousel-item {
-        /* Adjusted flex basis to show multiple items */
-        flex: 0 0 calc(33.333% - 1.5rem); /* Show ~3 items with gap, 1.5rem is for gap */
-        margin: 0 0.75rem; /* Half of the gap on each side */
+        flex: 0 0 calc(33.333% - 1.5rem);
+        margin: 0 0.75rem;
         scroll-snap-align: center;
-        padding: 0.75rem; /* Slightly reduced padding inside each slide */
+        padding: 0.75rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: rgba(255, 255, 255, 0.6); /* Transparent white background for items */
-        border-radius: 1rem; /* Softer rounded corners for items */
-        box-shadow: 0 2px 10px rgba(0,0,0,0.08); /* Lighter shadow for items */
-        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transition for items */
-        border: none; /* Removed border */
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius: 1rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        border: none;
     }
 
     .carousel-item:hover {
-        transform: translateY(-5px) scale(1.01); /* Subtle lift and scale */
+        transform: translateY(-5px) scale(1.01);
         /* Blue glow effect */
         box-shadow: 0 6px 15px rgba(0,0,0,0.15), 0 0 20px 4px rgba(37, 99, 235, 0.7);
-        background-color: rgba(255, 255, 255, 0.8); /* Slightly less transparent on hover */
+        background-color: rgba(255, 255, 255, 0.8);
     }
 
     .carousel-item img {
-        width: 100%; /* Occupy full width of the item */
-        height: 100%; /* Occupy full height of the item */
-        object-fit: cover; /* Cover the area, cropping if necessary */
-        border-radius: 0.75rem; /* Rounded corners for image, matching item */
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0.75rem;
     }
 
     .carousel-nav-btn {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background-color: rgba(59, 130, 246, 0.6); /* Blue with more transparency */
+        background-color: rgba(59, 130, 246, 0.6);
         color: white;
         border: none;
         padding: 1rem;
@@ -450,14 +558,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        /* Slightly more prominent shadow for buttons */
         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        z-index: 2; /* Above carousel items */
+        z-index: 2;
     }
 
     .carousel-nav-btn:hover {
-        background-color: #2563eb; /* Darker blue on hover */
+        background-color: #2563eb;
         transform: translateY(-50%) scale(1.1);
         /* Blue glow effect */
         box-shadow: 0 6px 15px rgba(0,0,0,0.3), 0 0 20px 4px rgba(37, 99, 235, 0.7);
@@ -479,15 +586,14 @@
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.7);
-        display: none; /* Changed from flex, opacity:0, visibility:hidden */
+        display: none;
         justify-content: center;
         align-items: center;
         z-index: 1000;
-        /* Removed transitions here as display property cannot be transitioned */
     }
 
     .modal-overlay.is-visible {
-        display: flex; /* Changed from opacity:1, visibility:visible */
+        display: flex;
     }
 
     .modal-content {
@@ -495,7 +601,7 @@
         padding: 2rem;
         border-radius: 1rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        max-width: 700px;
+        max-width: 900px; /* Increased max-width for larger images */
         width: 90%;
         position: relative;
         text-align: left;
@@ -590,6 +696,23 @@
         padding-top: 8rem; /* Higher padding for mobile to clear header */
       }
 
+      /* New Main Title on Mobile */
+      .intro-graphic-design-header {
+        margin-top: 6rem; /* Adjust margin for mobile fixed header */
+        min-height: 150px;
+      }
+      .graphic-design-main-title {
+          font-size: 2.5rem; /* Adjusted font size for mobile even smaller */
+          letter-spacing: -1px;
+          line-height: 1.2;
+          padding: 0 1rem; /* Adjusted padding for mobile */
+      }
+      .title-bg-effect {
+          width: 300px; /* Adjusted size for mobile */
+          height: 300px; /* Adjusted size for mobile */
+          filter: blur(100px); /* Adjusted blur for mobile */
+      }
+
       /* Section titles on mobile */
       .section-title {
         font-size: 2rem;
@@ -601,6 +724,7 @@
         -webkit-text-fill-color: initial;
         color: #2563eb; /* Use a solid color for mobile fallback */
         background: none; /* Remove background gradient on mobile */
+        text-align: center; /* Ensure centered on mobile */
       }
       
       /* Individual project cards (side web & side graphic) on mobile */
@@ -640,7 +764,7 @@
       /* Carousel adjustments on mobile */
       .carousel-section {
           padding: 1rem; /* Less padding on mobile */
-          margin: 2rem auto; /* Less margin */
+          margin: 2rem 0; /* Full width on mobile as well */
           border-radius: 1rem; /* Smaller border-radius on mobile */
       }
       .carousel-wrapper {
@@ -687,7 +811,7 @@
         <li class="relative group">
             <a href="#" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700 block" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
             <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
-                <li><a href="design_projects_page.html#graphic-design-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-md">Graphic Design (Summary)</a></li>
+                <li><a href="design_projects_page.html#graphic-design-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-md">Graphic Projects</a></li>
                 <li><a href="graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View All Graphic Projects</a></li>
                 <li><a href="design_projects_page.html#web-development-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-b-md">Web Development</a></li>
             </ul>
@@ -699,13 +823,21 @@
   </header>
 
   <main class="pt-20 pb-12 flex-grow">
+    <!-- NEW: Animated Intro Title for Graphic Designs Page -->
+    <section class="intro-graphic-design-header py-16 text-center">
+        <h1 class="graphic-design-main-title">
+            Graphic Designs
+        </h1>
+        <div class="title-bg-effect"></div> <!-- Animated background graphic -->
+    </section>
+
     <div class="page-content">
 
       <!-- Graphic Design Projects Section (Featured Project Layout) -->
       <section id="graphic-design-section" class="py-12 mt-20">
         <div class="featured-project-container text-center max-w-full mx-auto">
             <div class="section-header">
-                <h2 class="section-title">Graphic Design Projects</h2>
+                <h2 class="section-title">Graphic Design</h2>
             </div>
             <div class="featured-projects-content">
                 <!-- Featured Graphic Project (World Cup 22 Infographic) -->
@@ -786,7 +918,7 @@
       <section id="web-development-section" class="py-12 mt-20">
         <div class="featured-project-container text-center max-w-full mx-auto">
             <div class="section-header">
-                <h2 class="section-title">Web Development Projects</h2>
+                <h2 class="section-title">Web Development</h2>
             </div>
             <div class="featured-projects-content">
                 <!-- Featured Project (TRAVELLY) -->
@@ -863,7 +995,7 @@
 
       <!-- Graphic Design Gallery Carousel Section -->
       <section id="graphic-carousel-section" class="carousel-section">
-        <h2 class="section-title">Graphic Design Gallery</h2>
+        <h2 class="section-title">Gallery</h2>
         <div class="carousel-wrapper" id="carouselWrapper">
             <div class="carousel-item"
                  data-project='{
@@ -967,7 +1099,7 @@
   <div id="projectModal" class="modal-overlay">
       <div class="modal-content">
           <button class="modal-close-btn" id="closeModalBtn">&times;</button>
-          <img id="modalProjectImage" src="" alt="Project Image" class="rounded-md mb-4 w-full h-64 object-cover">
+          <img id="modalProjectImage" src="" alt="Project Image" class="rounded-md mb-4 w-full h-auto object-contain">
           <!-- These elements will be conditionally hidden by JS for carousel images -->
           <h3 id="modalProjectTitle" class="text-3xl font-bold text-gray-800 mb-4"></h3>
           <p id="modalProjectDescription" class="text-gray-700 mb-4"></p>
@@ -1044,8 +1176,9 @@
       "retina_detect": true
     });
 
-    // --- Animation on Scroll Logic ---
-    const allProjectCards = document.querySelectorAll('.animate-on-scroll'); 
+    // --- Animation on Scroll Logic (UPDATED for section-title) ---
+    // Select all elements that need animation, including section titles
+    const allAnimatedElements = document.querySelectorAll('.animate-on-scroll, .section-title');
 
     const observerOptions = {
         root: null, /* viewport as root */
@@ -1057,13 +1190,19 @@
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                // observer.unobserve(entry.target); // Optional: stop observing once animated
+                // Optional: stop observing once animated if it's a one-time animation
+                // if (entry.target.classList.contains('animate-on-scroll') || entry.target.classList.contains('section-title')) {
+                //     observer.unobserve(entry.target);
+                // }
+            } else {
+                // Optional: remove is-visible when out of view if animation should repeat on re-entry
+                // entry.target.classList.remove('is-visible');
             }
         });
     }, observerOptions);
 
-    allProjectCards.forEach(card => {
-        observer.observe(card);
+    allAnimatedElements.forEach(element => {
+        observer.observe(element);
     });
 
     // --- Modal Logic ---
@@ -1108,6 +1247,9 @@
             modalLiveDemoBtn.classList.add('hidden');
             modalGithubRepoBtn.classList.add('hidden');
             aiInsightBtn.classList.add('hidden');
+            // For carousel items, ensure image takes up full width and is contained (not cropped)
+            modalProjectImage.classList.remove('h-64', 'object-cover'); // Remove fixed height and cropping
+            modalProjectImage.classList.add('w-full', 'h-auto', 'object-contain'); // Make it full width, auto height, contain
         } else {
             // For regular project cards, populate content
             modalProjectTitle.textContent = projectData.title;
@@ -1139,10 +1281,15 @@
                 modalLiveDemoBtn.classList.add('hidden');
             }
 
-            // Hide AI button for graphic design projects (which are not carousel gallery items in this logic branch)
+            // AI Insight button should only be visible for Web projects (not graphic)
             if (projectData.type === 'graphic') {
                 aiInsightBtn.classList.add('hidden');
+            } else {
+                aiInsightBtn.classList.remove('hidden');
             }
+            // Ensure regular project images also have appropriate sizing in modal
+            modalProjectImage.classList.add('h-64', 'object-cover'); // Restore fixed height and cropping for regular projects
+            modalProjectImage.classList.remove('h-auto', 'object-contain');
         }
 
         projectModal.classList.add('is-visible');
@@ -1226,9 +1373,10 @@
 
     // --- Gemini API Integration ---
     aiInsightBtn.addEventListener('click', async () => {
-        if (!currentProjectData || currentProjectData.type === 'graphic' || currentProjectData.is_carousel_item) { // Don't generate AI insight for graphic design or carousel items
-            console.error("No project data available, not a web project, or is a carousel item to generate insight.");
+        // AI Insight should only be available for 'web' type projects and not carousel gallery items
+        if (!currentProjectData || currentProjectData.type !== 'web' || currentProjectData.is_carousel_item === true) { 
             aiInsightContainer.classList.add('hidden'); // Ensure hidden if not applicable
+            console.error("AI Insight is only available for Web Development projects (and not for gallery images).");
             return;
         }
 
