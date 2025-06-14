@@ -1,92 +1,1091 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Shirly Ben Nun is a motion graphic designer, video editor, and a Junior website developer who specializes in HTML & CSS">
+    content="Shirly Herscovici is a motion graphic designer, video editor, and a Junior website developer who specializes in HTML & CSS">
   <meta name="robots" content="index,follow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
- <link rel="stylesheet" href="../Styles/styles.css">
-  <title> Shirly Ben Nun| Motion Graphic Designer & Website Developer </title>
+  <title>Shirly Herscovici | Design & Web Projects</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts for 'Inter' (matching Homepage) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Custom font for a modern look - Inter is a good choice */
+    html {
+      height: 100%;
+      scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+      scroll-padding-top: 5rem; /* Added for fixed header compensation */
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8);
+      background-size: 400% 400%;
+      animation: gradientBackground 15s ease infinite alternate;
+      color: #1a202c;
+      position: relative;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Particles.js canvas styling */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -2;
+    }
+
+    /* Keyframes for background gradient animation */
+    @keyframes gradientBackground {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    /* Abstract background shapes/particles */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      z-index: -2;
+      border-radius: 50%;
+      opacity: 0.3;
+      filter: blur(120px);
+      transition: all 0.5s ease-in-out;
+    }
+
+    body::before {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle at top left, #8dcef8, #3b82f6);
+      top: -100px;
+      left: -100px;
+      animation: floatShape 24s infinite ease-in-out alternate;
+    }
+
+    body::after {
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle at bottom right, #e879f9, #a78bfa);
+      bottom: -150px;
+      right: -150px;
+      animation: floatShape 30s infinite ease-in-out alternate-reverse;
+    }
+
+    @keyframes floatShape {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(40px, -50px) rotate(75deg); }
+      50% { transform: translate(-20px, 80px) rotate(150deg); }
+      75% { transform: translate(-60px, 30px) rotate(225deg); }
+      100% { transform: translate(0, 0) rotate(300deg); }
+    }
+
+    /* Custom Footer Gradient - replicating original CSS */
+    .custom-footer-gradient {
+      background: linear-gradient(to right, #ff6600, #ff007b);
+    }
+    /* Frosted glass effect for header */
+    .header-frosted {
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* --- General Section Title Styles (for both graphic and web) --- */
+    .section-title {
+        font-size: 3rem; /* Increased font size */
+        font-weight: 700;
+        /* Gradient background for text */
+        background: linear-gradient(to right, #2563eb, #7c3aed); /* Blue to Purple gradient */
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent; /* Fallback for browsers that don't support text fill color */
+
+        margin-bottom: 2rem; /* Increased margin */
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 3px solid #2563eb; /* Blinking cursor */
+        animation: typing 1.5s steps(var(--typing-steps, 7), end) forwards, /* Dynamic steps */
+                   blink-caret 0.75s step-end infinite;
+        width: 0; /* Start with 0 width */
+    }
+
+    /* Override for the Gallery title specific steps (if needed, but using var is better) */
+    .graphic-gallery-container h2 { /* Targeting the main image gallery title */
+      --typing-steps: 22; /* "Graphic Design Gallery" has 22 characters */
+    }
+
+    .graphic-projects-container h2 { /* Targeting the graphic project cards title */
+      --typing-steps: 22; /* "Graphic Design Projects" has 22 characters */
+    }
+
+    .web-projects-container h2 { /* Targeting the web project cards title */
+      --typing-steps: 26; /* "Web Development Projects" has 26 characters */
+    }
+
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: #2563eb; }
+    }
+
+    /* --- Common Styles for Horizontal Scroll Sections (Galleries & Projects) --- */
+    .horizontal-scroll-container {
+      display: flex;
+      overflow-x: auto; /* Enable horizontal scrolling */
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+      scroll-snap-type: x mandatory; /* Snap to items */
+      padding-bottom: 1rem; /* Space for scrollbar */
+      scrollbar-width: thin; /* Firefox */
+      scrollbar-color: #3b82f6 #e2e8f0; /* Firefox: thumb and track colors */
+      border-radius: 0.75rem; /* Rounded corners for scroll container */
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+      margin: 2rem auto; /* General margin for these sections */
+      max-width: 1200px; /* Max width */
+      padding-left: 1rem; /* Initial padding for the first item */
+      padding-right: 1rem; /* Padding for the last item */
+    }
+
+    /* Customize scrollbar for Webkit browsers */
+    .horizontal-scroll-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .horizontal-scroll-container::-webkit-scrollbar-track {
+      background: #e2e8f0;
+      border-radius: 10px;
+    }
+
+    .horizontal-scroll-container::-webkit-scrollbar-thumb {
+      background-color: #3b82f6;
+      border-radius: 10px;
+      border: 2px solid #e2e8f0;
+    }
+
+    /* --- Graphic Design Gallery Images --- */
+    .graphic-gallery-container img { /* Targeted specifically for the main image gallery */
+      flex-shrink: 0;
+      width: 90%; /* Adjust as needed */
+      max-width: 500px;
+      height: 350px;
+      object-fit: cover;
+      margin: 0 1rem; /* Space between images */
+      border-radius: 0.75rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      scroll-snap-align: center;
+    }
+
+    .graphic-gallery-container img:hover {
+      transform: scale(1.02);
+    }
+
+    /* --- Project Item Cards (for both Graphic & Web projects) --- */
+    .project-card-item { /* New class for the individual project cards in horizontal scrolls */
+      background-color: #ffffff;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      cursor: pointer;
+      flex-shrink: 0; /* Important for horizontal scroll */
+      width: 320px; /* Fixed width for consistent card size on desktop */
+      margin: 0 1rem; /* Space between cards */
+      scroll-snap-align: center;
+    }
+
+    .project-card-item:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-card-item img {
+      width: 100%;
+      height: 200px; /* Slightly reduced height for project images */
+      object-fit: cover;
+      border-radius: 0.75rem 0.75rem 0 0;
+    }
+
+    .project-card-item-content {
+      padding: 1.5rem;
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-card-item h4 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card-item p {
+      font-size: 0.95rem;
+      color: #4a5568;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .project-card-item .view-project-btn {
+      margin-top: auto;
+      align-self: center;
+      background-color: #3b82f6;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+    }
+
+    .project-card-item .view-project-btn:hover {
+      background-color: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+    }
+
+    /* --- Header & Nav specific styles for dropdown --- */
+    nav ul li.group { /* Parent li for dropdown */
+        position: relative;
+    }
+
+    nav ul li.group ul { /* The sub-menu itself */
+        /* Control visibility using opacity/visibility/pointer-events instead of display: none/block */
+        position: absolute;
+        top: 100%; /* Position right below parent link */
+        left: 0;
+        background-color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 0.5rem;
+        min-width: 100%; /* Ensure it's wide enough */
+        z-index: 10; /* Above other content */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px); /* Slight animation start */
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+        pointer-events: none; /* Crucial: allows clicks *through* when hidden */
+    }
+
+    /* Style for when the dropdown is explicitly shown by JS click on desktop */
+    nav ul li.group ul.show-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto; /* Allows clicks on sub-menu items when visible */
+    }
+
+    /* Style for when the dropdown is shown by CSS hover on desktop (no JS interaction) */
+    nav ul li.group:hover ul {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    /* Responsive adjustments for header and general sections */
+    @media (max-width: 767px) {
+      /* Header, nav, and main padding adjustments */
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        position: relative;
+      }
+      #main-nav-menu {
+        display: none; /* Controlled by JS active class */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(241, 245, 249, 0.95);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        padding: 1rem 0;
+        border-radius: 0 0 0.5rem 0.5rem;
+      }
+      #main-nav-menu.active {
+        display: flex; /* Show main menu on mobile */
+      }
+      #main-nav-menu li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      #main-nav-menu li:last-child {
+        border-bottom: none;
+      }
+      #main-nav-menu li a {
+        display: block;
+        padding: 0.75rem 1rem;
+        color: #4a5568;
+        font-weight: 500;
+      }
+      #main-nav-menu li a.bg-blue-600 {
+        color: white;
+        border-radius: 0;
+      }
+      #mobile-menu-toggle {
+        display: block;
+        order: 2;
+      }
+      main {
+        padding-top: 8rem;
+      }
+
+      /* Section titles on mobile */
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        white-space: normal;
+        width: auto;
+        border-right: none;
+        animation: none;
+        /* Remove transparent text fill on mobile to ensure visibility if gradient not supported/wanted */
+        -webkit-text-fill-color: initial;
+        color: #2563eb; /* Use a solid color for mobile fallback */
+        background: none; /* Remove background gradient on mobile */
+      }
+
+      /* Horizontal scroll containers on mobile */
+      .horizontal-scroll-container {
+        padding-left: 1.5rem; /* More padding on sides for better visual */
+        padding-right: 1.5rem;
+        margin-top: 1.5rem; /* Reduced top margin for better flow */
+        margin-bottom: 1.5rem; /* Reduced bottom margin */
+      }
+      
+      /* Individual graphic gallery images on mobile */
+      .graphic-gallery-container img {
+        width: 95%; /* Adjust for very small screens */
+        height: 250px;
+        margin: 0 0.75rem; /* Reduced margin for more items visible */
+      }
+
+      /* Individual project cards (graphic & web) on mobile */
+      .project-card-item {
+        width: 80%; /* Show more of next card */
+        height: auto; /* Adjust height based on content */
+        margin: 0 0.75rem; /* Consistent spacing */
+      }
+
+      .project-card-item img {
+        height: 180px; /* Smaller image height on mobile cards */
+      }
+      .project-card-item-content {
+        padding: 1rem; /* Smaller padding inside cards */
+      }
+      .project-card-item h4 {
+        font-size: 1.25rem; /* Smaller title */
+      }
+      .project-card-item p {
+        font-size: 0.85rem; /* Smaller description text */
+      }
+      .project-card-item .view-project-btn {
+        padding: 0.6rem 1.2rem; /* Smaller button */
+        font-size: 0.9rem;
+      }
+
+      /* Web development section specific */
+      #web-development-section {
+        margin-top: 3rem; /* Adjusted margin between sections on mobile */
+      }
+
+      /* Styles for mobile dropdown - when 'active' class is toggled by JS */
+      nav ul li.group ul { /* When main nav is active on mobile */
+          position: static; /* Remove absolute positioning */
+          display: none; /* Hide by default, shown by JS toggle */
+          flex-direction: column;
+          width: 100%;
+          margin-top: 0.5rem; /* Small margin below parent link */
+          box-shadow: none; /* No shadow for inline expansion */
+          border-radius: 0;
+          background-color: transparent; /* Transparent background */
+          opacity: 1; /* Always visible if parent is expanded */
+          visibility: visible;
+          transform: translateY(0);
+          padding: 0; /* No padding from parent ul */
+          pointer-events: auto; /* Ensure clickable */
+      }
+      nav ul li.group ul.active { /* Explicitly show if 'active' class is on sub-menu */
+          display: flex;
+      }
+
+      nav ul li.group ul li a {
+          padding-left: 2rem; /* Indent sub-menu items on mobile */
+          text-align: left; /* Align to left */
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header class="main-head">
-    <nav>
-      <div class="logo">
-        <img src="../icons/code.svg" alt="logo">
-        <h1> Shirly Ben Nun</h1>
+  <!-- Particles.js Canvas -->
+  <div id="particles-js"></div>
+
+  <!-- Header -->
+  <header class="header-frosted shadow-md fixed w-full z-50">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
+      <div class="logo flex items-center">
+        <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
+        <h1 class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition duration-300 rounded-lg p-2">Shirly Herscovici</h1>
       </div>
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a class="active" href="#">Design</a></li>
-        <li><a href="../web/index.html">Web</a></li>
-        <li><a href="../contact/index.html">Contact</a></li>
-        <li><a href="../ai/index.html">AI</a></li>
+      <!-- Hamburger menu button for mobile -->
+      <button id="mobile-menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+      <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
+        <li><a href="../index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Home</a></li>
+        
+        <!-- Design with Sub-menu -->
+        <li class="relative group">
+            <a href="#" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700 block" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
+            <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
+                <li><a href="#graphic-design-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-md">Graphic Design</a></li>
+                <li><a href="#web-development-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-b-md">Web Development</a></li>
+            </ul>
+        </li>
+        <!-- Removed original 'Web' link here -->
+
+        <li><a href="../ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
+        <li><a href="../index.html#contact-section" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
       </ul>
     </nav>
   </header>
 
+  <main class="pt-20 pb-12 flex-grow">
     <div class="page-content">
-<div class="gallery-container">
-  <h2>Gallery</h2>
-   <div class="gallery-nav">
-    <div class="gallery-scroll" id="galleryScroll">
-    <img src="../img/gallery1.jpg" alt="Gallery Image 1">
-    <img src="../img/gallery2.jpg" alt="Gallery Image 2">
-    <img src="../img/gallery3.jpg" alt="Gallery Image 3">
-    <img src="../img/gallery4.jpg" alt="Gallery Image 4">
-    <img src="../img/gallery5.jpg" alt="Gallery Image 5">
-    <img src="../img/gallery6.jpg" alt="Gallery Image 5">
-  </div>
-  </div>
-</div>
 
-    
-        <section class="projects">
-        <div class="project-item">
-            <a href="https://makospecial.co.il/worldcup22" target="_blank">
-                <img src="../img/thumbnail1.jpg" alt="World Cup 22">
-            </a>
+      <!-- Graphic Design Gallery Section -->
+      <section id="graphic-design-section" class="pt-10">
+        <div class="graphic-gallery-container text-center max-w-full mx-auto"> <!-- Main Image Gallery -->
+          <h2 class="section-title">Graphic Design Gallery</h2>
+          <div class="horizontal-scroll-container">
+            <img src="../img/gallery1.jpg" alt="Dynamic Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+            <img src="../img/gallery2.jpg" alt="Abstract Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+            <img src="../img/gallery3.jpg" alt="Creative Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+            <img src="../img/gallery4.jpg" alt="Modern Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+            <img src="../img/gallery5.jpg" alt="Digital Art Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+            <img src="../img/gallery6.jpg" alt="Visual Identity Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+          </div>
         </div>
-        <div class="project-item">
-            <a href="https://specialprojects.mako.co.il/Road_Accidents" target="_blank">
-                <img src="../img/thumbnail2.jpg" alt="Road Accidents">
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="https://makospecial.co.il/climate_change" target="_blank">
-                <img src="../img/thumbnail3.jpg" alt="Climate Change">
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="https://makospecial.co.il/40Britney" target="_blank">
-                <img src="../img/thumbnail4.jpg" alt="Britney 40">
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="https://makospecial.co.il/israel_politics" target="_blank">
-                <img src="../img/thumbnail5.jpg" alt="Israeli Politics">
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="https://makospecial.co.il/homat_magen" target="_blank">
-                <img src="../img/thumbnail6.jpg" alt="Homat Magen">
-            </a>
+        
+        <!-- Graphic Design Projects Cards Section -->
+        <div class="graphic-projects-container text-center max-w-full mx-auto mt-10">
+          <h2 class="section-title">Graphic Design Projects</h2>
+          <div class="horizontal-scroll-container">
+            <div class="project-card-item animate-on-scroll" 
+                 data-project='{
+                   "id": "worldcup22",
+                   "title": "World Cup 22 Infographic",
+                   "image": "../img/thumbnail1.jpg",
+                   "description": "An engaging infographic designed for the 2022 World Cup, featuring key statistics and visual highlights of the tournament. This project demonstrates data visualization and compelling graphic storytelling.",
+                   "live_demo": "https://makospecial.co.il/worldcup22",
+                   "type": "graphic"
+                 }'>
+              <img src="../img/thumbnail1.jpg" alt="World Cup 22 Infographic" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';">
+              <div class="project-card-item-content">
+                <h4>World Cup 22 Infographic</h4>
+                <p>An engaging infographic designed for the 2022 World Cup, featuring key statistics and visual highlights of the tournament.</p>
+                <button class="view-project-btn">View Project</button>
+              </div>
+            </div>
+            <div class="project-card-item animate-on-scroll" 
+                 data-project='{
+                   "id": "road-accidents",
+                   "title": "Road Accidents Data Visualization",
+                   "image": "../img/thumbnail2.jpg",
+                   "description": "A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information through clear and impactful graphics.",
+                   "live_demo": "https://specialprojects.mako.co.il/Road_Accidents",
+                   "type": "graphic"
+                 }'>
+              <img src="../img/thumbnail2.jpg" alt="Road Accidents Data Visualization" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';">
+              <div class="project-card-item-content">
+                <h4>Road Accidents Data Visualization</h4>
+                <p>A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information.</p>
+                <button class="view-project-btn">View Project</button>
+              </div>
+            </div>
+            <div class="project-card-item animate-on-scroll" 
+                 data-project='{
+                   "id": "climate-change",
+                   "title": "Climate Change Awareness Graphics",
+                   "image": "../img/thumbnail3.jpg",
+                   "description": "Graphics created to raise awareness about climate change, translating complex environmental data into easily understandable and visually compelling messages.",
+                   "live_demo": "https://makospecial.co.il/climate_change",
+                   "type": "graphic"
+                 }'>
+              <img src="../img/thumbnail3.jpg" alt="Climate Change Awareness Graphics" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';">
+              <div class="project-card-item-content">
+                <h4>Climate Change Awareness Graphics</h4>
+                <p>Graphics created to raise awareness about climate change, translating complex environmental data into easily understandable messages.</p>
+                <button class="view-project-btn">View Project</button>
+              </div>
+            </div>
+            <div class="project-card-item animate-on-scroll" 
+                 data-project='{
+                   "id": "britney-40",
+                   "title": "Britney Spears 40th Birthday Tribute",
+                   "image": "../img/thumbnail4.jpg",
+                   "description": "A unique graphic tribute celebrating Britney Spears' 40th birthday, showcasing creative design elements inspired by her iconic career and imagery.",
+                   "live_demo": "https://makospecial.co.il/40Britney",
+                   "type": "graphic"
+                 }'>
+              <img src="../img/thumbnail4.jpg" alt="Britney Spears 40th Birthday Tribute" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';">
+              <div class="project-card-item-content">
+                <h4>Britney Spears 40th Birthday Tribute</h4>
+                <p>A unique graphic tribute celebrating Britney Spears' 40th birthday, showcasing creative design elements inspired by her iconic career.</p>
+                <button class="view-project-btn">View Project</button>
+              </div>
+            </div>
+            <div class="project-card-item animate-on-scroll" 
+                 data-project='{
+                   "id": "israeli-politics",
+                   "title": "Israeli Politics Explainer Graphic",
+                   "image": "../img/thumbnail5.jpg",
+                   "description": "An illustrative graphic designed to simplify and explain complex aspects of Israeli politics, making it accessible and engaging for a broad audience.",
+                   "live_demo": "https://makospecial.co.il/israel_politics",
+                   "type": "graphic"
+                 }'>
+              <img src="../img/thumbnail5.jpg" alt="Israeli Politics Explainer Graphic" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';">
+              <div class="project-card-item-content">
+                <h4>Israeli Politics Explainer Graphic</h4>
+                <p>An illustrative graphic designed to simplify and explain complex aspects of Israeli politics, making it accessible and engaging.</p>
+                <button class="view-project-btn">View Project</button>
+              </div>
+            </div>
+            <div class="project-card-item animate-on-scroll" 
+                 data-project='{
+                   "id": "homat-magen",
+                   "title": "Operation Homat Magen Visuals",
+                   "image": "../img/thumbnail6.jpg",
+                   "description": "Visual content created for Operation Homat Magen, focusing on clear and concise communication of events and key messages during the operation.",
+                   "live_demo": "https://makospecial.co.il/homat_magen",
+                   "type": "graphic"
+                 }'>
+              <img src="../img/thumbnail6.jpg" alt="Operation Homat Magen Visuals" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';">
+              <div class="project-card-item-content">
+                <h4>Operation Homat Magen Visuals</h4>
+                <p>Visual content created for Operation Homat Magen, focusing on clear and concise communication of events and key messages.</p>
+                <button class="view-project-btn">View Project</button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
- <footer>
-    <h4> Shirly Ben Nun &copy; 2025 </h4>
-    <li><a href="#"><img src="../icons/instagram 1.svg" alt="instagram"></a></li>
-    <li><a href="#"><img src="../icons/twitter 1.svg" alt="twitter"></a></li>
-    <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w"><img src="../icons/youtube-symbol 1.svg" alt="youtube-social"></a></li>
+      <!-- Web Development Section -->
+      <section id="web-development-section" class="py-12 mt-20">
+        <div class="web-projects-container text-center max-w-full mx-auto">
+            <h2 class="section-title">Web Development Projects</h2>
+            <div class="horizontal-scroll-container"> <!-- Changed to horizontal scroll -->
+                <!-- Project Item 1: TRAVELLY -->
+                <div class="project-card-item animate-on-scroll"
+                    data-project='{
+                        "id": "travelly",
+                        "title": "TRAVELLY - Travel Agency Website",
+                        "image": "../img/TRAVEELY_ME.png",
+                        "description": "This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.",
+                        "technologies": ["HTML5", "CSS3", "JavaScript"],
+                        "live_demo": "https://shirly3212.github.io/TRAVELLY/",
+                        "github_repo": "https://shirly3212.github.io/TRAVELLY",
+                        "type": "web"
+                    }'>
+                    <img src="../img/TRAVEELY_ME.png" alt="Travelly Website" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    <div class="project-card-item-content">
+                        <h4>TRAVELLY - Travel Agency Website</h4>
+                        <p>A modern and responsive website for a travel agency, featuring an attractive design and smooth user experience.</p>
+                        <button class="view-project-btn">
+                            View Project <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project Item 2: People Counter - Simple Counter App -->
+                <div class="project-card-item animate-on-scroll"
+                    data-project='{
+                        "id": "people-counter",
+                        "title": "People Counter - Simple Counter App",
+                        "image": "../img/PEOPLE_COUNTER.png",
+                        "description": "A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.",
+                        "technologies": ["HTML5", "CSS3", "JavaScript"],
+                        "live_demo": "https://shirly3212.github.io/People-Counter/",
+                        "github_repo": "https://shirly3212.github.io/People-Counter",
+                        "type": "web"
+                    }'>
+                    <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    <div class="project-card-item-content">
+                        <h4>People Counter - Simple Counter App</h4>
+                        <p>A straightforward web application designed to count people entering or exiting an area, providing a clean, intuitive interface for basic tracking.</p>
+                        <button class="view-project-btn">
+                            View Project <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project Item 3: Photographer - Standard Layout -->
+                <div class="project-card-item animate-on-scroll"
+                    data-project='{
+                        "id": "photographer",
+                        "title": "Photographer - Visual Portfolio",
+                        "image": "../img/Photographer_me.png",
+                        "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information.",
+                        "technologies": ["HTML5", "CSS3"],
+                        "live_demo": "https://shirly3212.github.io/Photographer/",
+                        "github_repo": "https://shirly3212.github.io/Photographer",
+                        "type": "web"
+                    }'>
+                    <img src="../img/Photographer_me.png" alt="Photographer Portfolio" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    <div class="project-card-item-content">
+                        <h4>Photographer - Visual Portfolio</h4>
+                        <p>A sleek visual portfolio website for photographers to showcase their work in an elegant and modern style with responsive layout and image galleries.</p>
+                        <button class="view-project-btn">
+                            View Project <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="custom-footer-gradient text-white min-h-7vh py-8 flex justify-between items-center flex-wrap px-5 mt-auto">
+    <h4 class="text-xl font-medium mb-4 md:mb-0">Shirly Herscovici © 2025</h4>
+    <ul class="flex justify-center items-center flex-wrap gap-6">
+      <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Instagram"><i class="fab fa-instagram text-2xl"></i></a></li>
+      <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Twitter"><i class="fab fa-twitter text-2xl"></i></a></li>
+      <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-200 transition duration-300" title="YouTube"><i class="fab fa-youtube text-2xl"></i></a></li>
+      <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="LinkedIn"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
+      <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="GitHub"><i class="fab fa-github text-2xl"></i></a></li>
+    </ul>
   </footer>
+
+  <!-- Project Details Modal -->
+  <div id="projectModal" class="modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+          <img id="modalProjectImage" src="" alt="Project Image" class="rounded-md mb-4 w-full h-64 object-cover">
+          <h3 id="modalProjectTitle" class="text-3xl font-bold text-gray-800 mb-4"></h3>
+          <p id="modalProjectDescription" class="text-gray-700 mb-4"></p>
+          <div class="flex flex-wrap gap-2 mb-4">
+              <span class="text-gray-600 font-semibold">Technologies Used:</span>
+              <div id="modalTechnologies" class="flex flex-wrap gap-2"></div>
+          </div>
+          <div id="aiInsightContainer" class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-blue-800 text-left hidden">
+              <p class="font-semibold mb-2">✨ AI Insight:</p>
+              <div id="aiInsightText"></div>
+              <div id="aiInsightLoading" class="flex items-center justify-center mt-2 hidden">
+                  <div class="spinner mr-2"></div>
+                  <span>Generating insight...</span>
+              </div>
+          </div>
+          <div class="flex justify-center gap-4 mt-6">
+              <a id="modalLiveDemoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
+                  Live Demo <i class="fas fa-external-link-alt ml-2"></i>
+              </a>
+              <a id="modalGithubRepoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
+                  GitHub Repo <i class="fab fa-github ml-2"></i>
+              </a>
+              <button id="aiInsightBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center">
+                  ✨ AI Insight
+              </button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Particles.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    // --- Particles.js Initialization ---
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#b0e0e6" }, /* Light blue/cyan */
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5, "random": false },
+        "size": { "value": 3, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#b0e0e6",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 3, /* Slightly slower speed for subtlety */
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" }, /* Grab effect on hover */
+          "onclick": { "enable": true, "mode": "push" }, /* Push effect on click */
+          "resize": true
+        },
+        "modes": {
+          "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+          "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 },
+          "repulse": { "distance": 200, "duration": 0.4 },
+          "push": { "particles_nb": 4 },
+          "remove": { "particles_nb": 2 }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // --- Animation on Scroll Logic ---
+    const allProjectCards = document.querySelectorAll('.animate-on-scroll'); 
+
+    const observerOptions = {
+        root: null, /* viewport as root */
+        rootMargin: '0px',
+        threshold: 0.1 /* callback fires when 10% of item is visible */
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                // observer.unobserve(entry.target); // Optional: stop observing once animated
+            }
+        });
+    }, observerOptions);
+
+    allProjectCards.forEach(card => {
+        observer.observe(card);
+    });
+
+    // --- Modal Logic ---
+    const projectModal = document.getElementById('projectModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalProjectImage = document.getElementById('modalProjectImage');
+    const modalProjectTitle = document.getElementById('modalProjectTitle');
+    const modalProjectDescription = document.getElementById('modalProjectDescription');
+    const modalTechnologies = document.getElementById('modalTechnologies');
+    const modalLiveDemoBtn = document.getElementById('modalLiveDemoBtn');
+    const modalGithubRepoBtn = document.getElementById('modalGithubRepoBtn');
+    const aiInsightBtn = document.getElementById('aiInsightBtn');
+    const aiInsightContainer = document.getElementById('aiInsightContainer');
+    const aiInsightText = document.getElementById('aiInsightText');
+    const aiInsightLoading = document.getElementById('aiInsightLoading');
+
+    let currentProjectData = null; // Store data of the currently opened project
+
+    // Function to open the modal
+    function openModal(projectData) {
+        currentProjectData = projectData; // Store the data
+        modalProjectImage.src = projectData.image;
+        modalProjectTitle.textContent = projectData.title;
+        modalProjectDescription.textContent = projectData.description;
+
+        modalTechnologies.innerHTML = ''; // Clear previous technologies
+        if (projectData.technologies && projectData.technologies.length > 0) {
+            modalTechnologies.parentElement.classList.remove('hidden'); // Show technologies section
+            projectData.technologies.forEach(tech => {
+                const span = document.createElement('span');
+                span.textContent = tech;
+                span.classList.add('bg-blue-100', 'text-blue-800', 'text-xs', 'font-medium', 'px-2.5', 'py-0.5', 'rounded-full', 'dark:bg-blue-900', 'dark:text-blue-300');
+                modalTechnologies.appendChild(span);
+            });
+        } else {
+            modalTechnologies.parentElement.classList.add('hidden'); // Hide technologies section if no tech
+        }
+
+        // Hide GitHub button if not available
+        if (projectData.github_repo) {
+            modalGithubRepoBtn.href = projectData.github_repo;
+            modalGithubRepoBtn.classList.remove('hidden');
+        } else {
+            modalGithubRepoBtn.classList.add('hidden');
+        }
+
+        // Hide Live Demo button if not available
+        if (projectData.live_demo) {
+            modalLiveDemoBtn.href = projectData.live_demo;
+            modalLiveDemoBtn.classList.remove('hidden');
+        } else {
+            modalLiveDemoBtn.classList.add('hidden');
+        }
+
+        // Hide AI Insight button for graphic design projects
+        if (projectData.type === 'graphic') {
+             aiInsightBtn.classList.add('hidden');
+        } else {
+             aiInsightBtn.classList.remove('hidden');
+        }
+
+        // Reset and hide AI Insight section
+        aiInsightContainer.classList.add('hidden');
+        aiInsightText.textContent = '';
+        aiInsightLoading.classList.add('hidden');
+
+        projectModal.classList.add('is-visible');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling of body
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        projectModal.classList.remove('is-visible');
+        document.body.style.overflow = ''; // Restore scrolling of body
+        currentProjectData = null; // Clear current project data
+    }
+
+    // Event listeners for opening modal: on any .project-card-item or .graphic-gallery-container img
+    document.querySelectorAll('.project-card-item, .graphic-gallery-container img').forEach(item => {
+        item.addEventListener('click', (event) => {
+            // Prevent opening modal if a child button (like View Project) was clicked, 
+            // as those buttons have their own href or event listeners
+            if (event.target.closest('.view-project-btn')) {
+                return;
+            }
+
+            let projectData = null;
+            if (item.classList.contains('project-card-item')) {
+                const projectDataString = item.dataset.project;
+                if (!projectDataString || projectDataString === "undefined") {
+                    console.error("Invalid or undefined project data string for this card:", projectDataString);
+                    return;
+                }
+                try {
+                    projectData = JSON.parse(projectDataString);
+                } catch (e) {
+                    console.error("Error parsing JSON for project data:", projectDataString, e);
+                    return;
+                }
+            } else if (item.tagName === 'IMG' && item.closest('.graphic-gallery-container')) {
+                // For direct image clicks in the graphic gallery
+                projectData = {
+                    id: item.alt.replace(/\s/g, '-').toLowerCase(),
+                    title: item.alt,
+                    image: item.src,
+                    description: `This is a high-resolution image from the graphic design gallery, showcasing a project related to: ${item.alt}.`,
+                    technologies: [],
+                    live_demo: item.src, // Live demo can be the image itself or a placeholder link
+                    github_repo: null,
+                    type: 'graphic'
+                };
+            }
+            
+            if (projectData) {
+                openModal(projectData);
+            }
+        });
+    });
+
+    // Handle clicks on "View Project" buttons *inside* the project cards
+    document.querySelectorAll('.view-project-btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.stopPropagation(); // Stop click from propagating to parent card
+            const card = event.target.closest('.project-card-item'); // Only target the new project-card-item
+            if (card) {
+                const projectDataString = card.dataset.project;
+                if (!projectDataString || projectDataString === "undefined") {
+                    console.error("Invalid or undefined project data string for this card:", projectDataString);
+                    return;
+                }
+                try {
+                    const projectData = JSON.parse(projectDataString);
+                    openModal(projectData);
+                } catch (e) {
+                    console.error("Error parsing JSON for project data:", projectDataString, e);
+                }
+            }
+        });
+    });
+
+
+    // Event listener for closing modal via button
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // Event listener for closing modal by clicking outside content
+    projectModal.addEventListener('click', (event) => {
+        if (event.target === projectModal) { // Only close if clicked directly on overlay
+            closeModal();
+        }
+    });
+
+    // Event listener for closing modal with Escape key
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && projectModal.classList.contains('is-visible')) {
+            closeModal();
+        }
+    });
+
+    // --- Gemini API Integration ---
+    aiInsightBtn.addEventListener('click', async () => {
+        if (!currentProjectData || currentProjectData.type === 'graphic') { // Don't generate AI insight for graphic design
+            console.error("No project data available or not a web project to generate insight.");
+            aiInsightContainer.classList.add('hidden'); // Ensure hidden if not applicable
+            return;
+        }
+
+        aiInsightContainer.classList.remove('hidden'); // Show container
+        aiInsightText.textContent = ''; // Clear previous text
+        aiInsightLoading.classList.remove('hidden'); // Show loading spinner
+
+        const prompt = `Given the following web development project:
+Title: ${currentProjectData.title}
+Description: ${currentProjectData.description}
+Technologies: ${currentProjectData.technologies ? currentProjectData.technologies.join(', ') : 'N/A'}
+
+Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting the unique aspect or impact of this project. Focus on what makes it stand out or its practical value. Do not include a title for the summary. Return only the summary text.`;
+
+        let chatHistory = [];
+        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+        const payload = { contents: chatHistory };
+        const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const result = await response.json();
+
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                aiInsightText.textContent = text;
+            } else {
+                aiInsightText.textContent = "Failed to generate insight. Please try again.";
+                console.error("Unexpected API response structure:", result);
+            }
+        } catch (error) {
+            aiInsightText.textContent = "Error generating insight. " + error.message;
+            console.error("Error calling Gemini API:", error);
+        } finally {
+            aiInsightLoading.classList.add('hidden'); // Hide loading spinner
+        }
+    });
+
+    // --- Mobile Navigation Toggle ---
+    document.addEventListener("DOMContentLoaded", function () {
+      const nav = document.querySelector("nav");
+      const mainNavUl = document.getElementById("main-nav-menu"); // Main ul
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const designMenuToggle = document.getElementById('design-menu-toggle'); // The "Design" link
+      const designSubMenu = designMenuToggle.nextElementSibling; // The ul after "Design" link
+
+      // Main mobile menu toggle
+      if (mobileMenuToggle) {
+          mobileMenuToggle.addEventListener('click', () => {
+              mainNavUl.classList.toggle('active');
+              // Ensure design sub-menu is closed when main menu is toggled
+              if (!mainNavUl.classList.contains('active') && designSubMenu) {
+                  designSubMenu.classList.remove('active'); // Mobile dropdown state
+                  designSubMenu.classList.remove('show-dropdown'); // Desktop click state fallback
+                  designMenuToggle.querySelector('i').classList.remove('rotate-180'); // Reset chevron
+              }
+          });
+      }
+
+      // Design sub-menu toggle (for mobile and click scenarios on desktop)
+      if (designMenuToggle && designSubMenu) {
+          designMenuToggle.addEventListener('click', (event) => {
+              event.preventDefault(); // ALWAYS prevent default link behavior for this specific toggle button
+
+              // Toggle the dropdown visibility class
+              designSubMenu.classList.toggle('show-dropdown'); // This handles desktop click state and general visibility
+              
+              // Also handle mobile specific 'active' class for styling if in mobile mode
+              if (window.innerWidth < 768) {
+                  designSubMenu.classList.toggle('active');
+              }
+              designMenuToggle.querySelector('i').classList.toggle('rotate-180'); // Rotate chevron
+          });
+
+          // Close sub-menu if clicking outside on desktop
+          document.addEventListener('click', (event) => {
+              // Only apply this logic on desktop sizes
+              if (window.innerWidth >= 768) {
+                  const isClickInsideDesignToggle = designMenuToggle.contains(event.target);
+                  const isClickInsideDesignSubMenu = designSubMenu.contains(event.target);
+
+                  // If the dropdown is currently shown by JS (show-dropdown)
+                  // and the click was outside both the toggle button and the dropdown itself
+                  if (designSubMenu.classList.contains('show-dropdown') && !isClickInsideDesignToggle && !isClickInsideDesignSubMenu) {
+                      designSubMenu.classList.remove('show-dropdown');
+                      designMenuToggle.querySelector('i').classList.remove('rotate-180');
+                  }
+              }
+          });
+
+          // Close all menus when a main nav link (not design parent) or sub-menu link is clicked
+          mainNavUl.querySelectorAll('a').forEach(link => {
+              link.addEventListener('click', (event) => { // Added event param
+                  // If it's a sub-menu item, it will close the dropdown and potentially main menu
+                  if (link.closest('.group ul')) {
+                      if (window.innerWidth < 768) { // Mobile
+                          mainNavUl.classList.remove('active'); // Close main mobile menu
+                          designSubMenu.classList.remove('active'); // Close mobile dropdown
+                      } else { // Desktop
+                          designSubMenu.classList.remove('show-dropdown'); // Close desktop dropdown
+                      }
+                      designMenuToggle.querySelector('i').classList.remove('rotate-180'); // Reset chevron
+                  } else if (!link.closest('.group')) { // If it's a non-Design main nav link
+                      if (mainNavUl.classList.contains('active')) { // Only if mobile main menu is open
+                           mainNavUl.classList.remove('active');
+                           if (designSubMenu) { // Ensure submenu is closed if main nav closes
+                               designSubMenu.classList.remove('active');
+                               designSubMenu.classList.remove('show-dropdown');
+                               designMenuToggle.querySelector('i').classList.remove('rotate-180');
+                           }
+                      }
+                  }
+              });
+          });
+      }
+
+      // Close mobile menu or dropdown if resized to desktop view
+      window.addEventListener('resize', () => {
+          if (window.innerWidth >= 768) {
+              mainNavUl.classList.remove('active'); // Ensure mobile menu is hidden
+              if (designSubMenu) {
+                  designSubMenu.classList.remove('active'); // Ensure mobile dropdown is hidden
+                  designSubMenu.classList.remove('show-dropdown'); // Ensure desktop click dropdown is hidden
+                  designMenuToggle.querySelector('i').classList.remove('rotate-180');
+              }
+          }
+      });
+    });
+  </script>
 </body>
- 
+
 </html>
