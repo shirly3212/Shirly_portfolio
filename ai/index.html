@@ -11,12 +11,10 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
-    /* הסרנו את body::before הישן */
     /* Removed the old body::before */
     body::before {
       content: none;
     }
-    /* רקע דינמי עם particles.js */
     /* Dynamic background with particles.js */
     #particles-js {
       position: fixed;
@@ -50,11 +48,19 @@
       font-size: 3.8rem;
       white-space: nowrap;
       overflow: hidden;
-      border-right: 0.15em solid #00bcd4;
-      color: #00bcd4;
+      border-right: 0.15em solid; /* Border color will be set by blink-caret */
+      /* Changed to lighter turquoise gradient text, starting with white */
+      background-image: linear-gradient(90deg, #ffffff, #00e0ff); /* Gradient from white to bright turquoise */
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent; /* Makes text transparent, showing background */
+      background-size: 200% auto; /* For gradient animation */
+      animation:
+        typing 4s steps(40, end),
+        blink-caret 0.75s step-end infinite,
+        gradient-animation 5s linear infinite; /* New gradient animation */
       width: fit-content;
       margin: 2rem auto;
-      animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
     }
     @keyframes typing {
       from { width: 0 }
@@ -62,8 +68,14 @@
     }
     @keyframes blink-caret {
       from, to { border-color: transparent }
-      50% { border-color: #00bcd4; }
+      50% { border-color: #00e0ff; } /* Blinking caret matches bright turquoise */
     }
+    /* New keyframes for gradient animation */
+    @keyframes gradient-animation {
+        0% { background-position: 0% center; }
+        100% { background-position: 200% center; }
+    }
+
     header {
       background: #ffffff1a; /* Adjusted header background for dark theme */
       backdrop-filter: blur(10px);
@@ -148,7 +160,7 @@
         flex-direction: column; /* Stack on mobile */
         justify-content: center;
         align-items: center;
-        gap: 4rem;
+        gap: 2rem; /* Reduced gap to bring elements closer */
         padding: 4rem 2rem;
         max-width: 1400px;
         margin: auto;
@@ -157,6 +169,8 @@
     @media (min-width: 768px) {
         .phone-section-container {
             flex-direction: row; /* Side-by-side on desktop */
+            align-items: center; /* Center align items for better visual */
+            gap: 4rem; /* Restore gap for desktop */
         }
         .phone-section-container .text-content {
             text-align: left; /* Align text to left on desktop */
@@ -164,7 +178,7 @@
     }
 
     .phone-mockup {
-      max-width: 400px; /* Adjusted width */
+      max-width: 400px; /* Adjusted width again based on image */
       border: 16px solid #333;
       border-radius: 36px;
       position: relative;
@@ -172,13 +186,38 @@
       background: #000;
       box-shadow: 0 15px 30px rgba(0,0,0,0.25);
       z-index: 5;
+      cursor: pointer; /* Change cursor on hover for interactivity hint */
+      display: flex; /* To center the iframe if it's smaller than mockup */
+      justify-content: center;
+      align-items: center;
     }
     .phone-mockup iframe {
-      width: 100%;
-      height: 710px; /* Adjusted height to maintain aspect ratio with new width */
+      width: 360px; /* Specific width for inner frame */
+      height: 720px; /* Specific height for inner frame */
       border: none;
       display: block;
     }
+
+    .interactive-hint {
+        position: absolute;
+        bottom: 5%; /* Positioned lower to be more natural */
+        left: 50%;
+        transform: translateX(-50%); /* Only X transform for horizontal centering */
+        font-size: 3rem; /* Size of the hand icon */
+        color: #00e0ff; /* Bright turquoise color */
+        z-index: 10; /* Ensure it's above the phone */
+        animation: pointer-bounce 2s infinite ease-in-out; /* More pronounced bounce */
+        pointer-events: none; /* Do not interfere with iframe clicks */
+    }
+
+    @keyframes pointer-bounce {
+        0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+        25% { transform: translateX(-50%) translateY(-15px); opacity: 0.8; }
+        50% { transform: translateX(-50%) translateY(0); opacity: 1; }
+        75% { transform: translateX(-50%) translateY(-10px); opacity: 0.8; }
+    }
+
+
     .metric-box {
       position: relative;
       background: rgba(255, 255, 255, 0.1);
@@ -256,6 +295,10 @@
   <!-- Section for phone mockup and text description -->
   <section class="phone-section-container" data-aos="fade-left">
     <div class="phone-mockup">
+        <!-- Hand icon for interactive hint -->
+        <div class="interactive-hint">
+            <i class="fas fa-hand-point-up"></i>
+        </div>
       <iframe src="https://preview--park-nexus-urban-flow.lovable.app/" title="Smart Parking App Demo"></iframe>
     </div>
     <div class="text-content flex-1 max-w-lg">
@@ -334,7 +377,6 @@
       countUp("count3", 24, "/7");
       countUp("count4", 80);
 
-      /* הפעלת particles.js */
       /* particles.js initialization */
       particlesJS("particles-js", {
         "particles": {
