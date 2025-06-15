@@ -1059,12 +1059,13 @@
         
         <!-- Design with Sub-menu -->
         <li class="relative group">
-            <a href="https://shirly3212.github.io/Shirly_portfolio/Projects/index.html" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700 block" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
+            <a href="https://shirly3212.github.io/Shirly_portfolio/Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
             <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
                 <li><a href="https://shirly3212.github.io/Shirly_portfolio/Projects/graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Graphic Projects</a></li>
             </ul>
         </li>
-        <li><a href="https://shirly3212.github.io/Shirly_portfolio/ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
+        <li><a href="https://shirly3212.github.io/Shirly_portfolio/Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Video</a></li> <!-- Added Video Link -->
+        <li><a href="https://shirly3212.github.io/Shirly_portfolio/ai/index.html" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700">AI</a></li>
         <li><a href="https://shirly3212.github.io/Shirly_portfolio/index.html#contact-section" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
       </ul>
     </nav>
@@ -1250,7 +1251,7 @@
                                 <img src="../img/thumbnail3.jpg" alt="Climate Change Awareness Graphics" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
                                 <h4 class="project-card-item-title-overlay">Climate Change Awareness Graphics</h4>
                             </div>
-                            <div class="project-card-content">
+                            <div class="project-card-item-content">
                                 <p>Graphics created to raise awareness about climate change.</p>
                                 <button class="view-project-btn">
                                     View Image <i class="fas fa-eye ml-2"></i>
@@ -1758,7 +1759,6 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
           }
       }
 
-      // Main mobile menu toggle
       if (mobileMenuToggle) {
           mobileMenuToggle.addEventListener('click', (event) => {
               event.stopPropagation(); // Prevent immediate closing due to outer click listener
