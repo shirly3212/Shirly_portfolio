@@ -694,14 +694,14 @@
 
     .carousel-wrapper {
         display: flex;
-        overflow-x: hidden;
+        overflow-x: scroll; /* Changed to scroll to allow smooth scrolling and position tracking */
         scroll-behavior: smooth;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         border-radius: 1rem;
         margin: 1rem 0;
         align-items: stretch;
-        min-height: 250px;
+        min-height: 300px; /* Increased min-height for carousel */
     }
 
     .carousel-item {
@@ -715,8 +715,15 @@
         background-color: rgba(255, 255, 255, 0.6);
         border-radius: 1rem;
         box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Added opacity to transition */
         border: none;
+        opacity: 1; /* Default opacity */
+        transform: scale(1); /* Default scale */
+    }
+
+    .carousel-item-faded {
+        opacity: 0.4; /* Faded items */
+        transform: scale(0.9); /* Slightly smaller */
     }
 
     .carousel-item:hover {
@@ -728,8 +735,8 @@
 
     .carousel-item img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: 250px; /* Increased height for carousel images and object-contain */
+        object-fit: contain; /* Ensure full image is visible */
         border-radius: 0.75rem;
     }
 
@@ -1303,6 +1310,98 @@
                  }'>
                 <img src="../img/gallery6.jpg" alt="Visual Identity Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
             </div>
+            <!-- NEW GALLERY IMAGES -->
+            <div class="carousel-item"
+                 data-project='{
+                   "id": "gallery-item-7",
+                   "title": "Israel Defense Forces Project",
+                   "image": "WhatsApp Image 2025-04-03 at 22.42.53.jpg",
+                   "description": "A graphic design project related to the Israel Defense Forces, focusing on a report of an event.",
+                   "technologies": ["Graphic Design", "Social Media"],
+                   "live_demo": "WhatsApp Image 2025-04-03 at 22.42.53.jpg",
+                   "type": "graphic",
+                   "is_carousel_item": true
+                 }'>
+                <img src="WhatsApp Image 2025-04-03 at 22.42.53.jpg" alt="Israel Defense Forces Project" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+            </div>
+            <div class="carousel-item"
+                 data-project='{
+                   "id": "gallery-item-8",
+                   "title": "Political Leaders Graphic",
+                   "image": "WhatsApp Image 2025-04-03 at 23.04.33.jpeg",
+                   "description": "A graphic featuring political leaders, likely for news or commentary purposes.",
+                   "technologies": ["Graphic Design", "Political Commentary"],
+                   "live_demo": "WhatsApp Image 2025-04-03 at 23.04.33.jpeg",
+                   "type": "graphic",
+                   "is_carousel_item": true
+                 }'>
+                <img src="WhatsApp Image 2025-04-03 at 23.04.33.jpeg" alt="Political Leaders Graphic" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+            </div>
+            <div class="carousel-item"
+                 data-project='{
+                   "id": "gallery-item-9",
+                   "title": "Olympic Games 2024 Candidates",
+                   "image": "WhatsApp Image 2025-04-03 at 23.04.44.jpeg",
+                   "description": "A graphic presenting candidates for the 2024 Olympic Games, showcasing athletic profiles.",
+                   "technologies": ["Graphic Design", "Sports Marketing"],
+                   "live_demo": "WhatsApp Image 2025-04-03 at 23.04.44.jpeg",
+                   "type": "graphic",
+                   "is_carousel_item": true
+                 }'>
+                <img src="WhatsApp Image 2025-04-03 at 23.04.44.jpeg" alt="Olympic Games 2024 Candidates" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+            </div>
+            <div class="carousel-item"
+                 data-project='{
+                   "id": "gallery-item-10",
+                   "title": "Military Personnel Graphic",
+                   "image": "WhatsApp Image 2025-04-03 at 23.04.55.jpeg",
+                   "description": "A compelling graphic featuring military personnel, possibly for recruitment or awareness campaigns.",
+                   "technologies": ["Graphic Design", "Public Awareness"],
+                   "live_demo": "WhatsApp Image 2025-04-03 at 23.04.55.jpeg",
+                   "type": "graphic",
+                   "is_carousel_item": true
+                 }'>
+                <img src="WhatsApp Image 2025-04-03 at 23.04.55.jpeg" alt="Military Personnel Graphic" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+            </div>
+            <div class="carousel-item"
+                 data-project='{
+                   "id": "gallery-item-11",
+                   "title": "Movie Night Promotion",
+                   "image": "Screenshot_1.jpg",
+                   "description": "A vibrant promotional graphic for a movie night, incorporating neon elements and cinema motifs.",
+                   "technologies": ["Graphic Design", "Promotional Material"],
+                   "live_demo": "Screenshot_1.jpg",
+                   "type": "graphic",
+                   "is_carousel_item": true
+                 }'>
+                <img src="Screenshot_1.jpg" alt="Movie Night Promotion" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+            </div>
+            <div class="carousel-item"
+                 data-project='{
+                   "id": "gallery-item-12",
+                   "title": "Interview Promotion Graphic",
+                   "image": "WhatsApp Image 2025-04-03 at 23.05.05.jpeg",
+                   "description": "A graphic designed to promote an interview or news segment, featuring a speaker and thematic background.",
+                   "technologies": ["Graphic Design", "Media Promotion"],
+                   "live_demo": "WhatsApp Image 2025-04-03 at 23.05.05.jpeg",
+                   "type": "graphic",
+                   "is_carousel_item": true
+                 }'>
+                <img src="WhatsApp Image 2025-04-03 at 23.05.05.jpeg" alt="Interview Promotion Graphic" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+            </div>
+            <div class="carousel-item"
+                 data-project='{
+                   "id": "gallery-item-13",
+                   "title": "Public Awareness Campaign",
+                   "image": "צילום מסך 2023-08-08 184220.jpg",
+                   "description": "A graphic for a public awareness campaign, using striking visuals to convey an important message.",
+                   "technologies": ["Graphic Design", "Public Awareness"],
+                   "live_demo": "צילום מסך 2023-08-08 184220.jpg",
+                   "type": "graphic",
+                   "is_carousel_item": true
+                 }'>
+                <img src="צילום מסך 2023-08-08 184220.jpg" alt="Public Awareness Campaign" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+            </div>
         </div>
         <button class="carousel-nav-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
         <button class="carousel-nav-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
@@ -1734,52 +1833,97 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
     const carouselWrapper = document.getElementById('carouselWrapper');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const carouselItems = document.querySelectorAll('.carousel-item');
+    let carouselItems = document.querySelectorAll('.carousel-item'); // Re-query to get all items including new ones
     let currentIndex = 0;
 
     function updateCarousel() {
         if (!carouselWrapper || carouselItems.length === 0) return;
 
-        // Calculate the scroll position for the current item based on showing multiple items
-        // We need to account for the margin between items.
-        // Get the actual width of one item including its margin.
-        const itemStyle = window.getComputedStyle(carouselItems[0]);
-        const itemMarginRight = parseFloat(itemStyle.marginRight);
-        const itemMarginLeft = parseFloat(itemStyle.marginLeft); // Get left margin too
-        // Total width for one item including its own margins
-        const itemWidthWithMargins = carouselItems[0].offsetWidth + itemMarginLeft + itemMarginRight;
+        const containerWidth = carouselWrapper.offsetWidth;
+        const itemWidth = carouselItems[0].offsetWidth;
+        const itemMargin = parseFloat(window.getComputedStyle(carouselItems[0]).marginLeft) + parseFloat(window.getComputedStyle(carouselItems[0]).marginRight);
+        const itemTotalWidth = itemWidth + itemMargin;
 
-        const scrollAmount = itemWidthWithMargins * currentIndex;
-        carouselWrapper.scrollLeft = scrollAmount;
+        const centerIndex = Math.floor(carouselItems.length / 2);
+        // Calculate the ideal scroll position to center the current item
+        let scrollPosition = currentIndex * itemTotalWidth - (containerWidth / 2) + (itemWidth / 2);
+        carouselWrapper.scrollLeft = scrollPosition;
 
-        // Optional: Loop around
-        if (currentIndex >= carouselItems.length) {
-            currentIndex = 0;
-            carouselWrapper.scrollLeft = 0; // Snap back instantly
-        } else if (currentIndex < 0) {
-            currentIndex = carouselItems.length - 1;
-            carouselWrapper.scrollLeft = itemWidthWithMargins * (carouselItems.length - 1); // Snap back instantly
-        }
+        // Apply fade effect based on distance from current (centered) item
+        carouselItems.forEach((item, index) => {
+            if (index === currentIndex) {
+                item.classList.remove('carousel-item-faded');
+            } else {
+                item.classList.add('carousel-item-faded');
+            }
+        });
+    }
+
+    // Function to handle automatic centering of carousel items on scroll
+    function onCarouselScroll() {
+        if (!carouselWrapper || carouselItems.length === 0) return;
+
+        const scrollLeft = carouselWrapper.scrollLeft;
+        const containerWidth = carouselWrapper.offsetWidth;
+        const itemWidth = carouselItems[0].offsetWidth;
+        const itemMargin = parseFloat(window.getComputedStyle(carouselItems[0]).marginLeft) + parseFloat(window.getComputedStyle(carouselItems[0]).marginRight);
+        const itemTotalWidth = itemWidth + itemMargin;
+
+        // Calculate which item is currently closest to the center
+        // Adjust for half container width to find the "center" of the visible area
+        const centralScrollPoint = scrollLeft + (containerWidth / 2);
+        let closestIndex = 0;
+        let minDistance = Infinity;
+
+        carouselItems.forEach((item, index) => {
+            const itemCenter = (index * itemTotalWidth) + (itemWidth / 2);
+            const distance = Math.abs(itemCenter - centralScrollPoint);
+
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestIndex = index;
+            }
+        });
+        currentIndex = closestIndex; // Update global currentIndex
+
+        // Apply fade effect based on distance from the closest item to the center
+        carouselItems.forEach((item, index) => {
+            // A more dynamic fading could be implemented here, but for now,
+            // we'll just check if it's the `currentIndex` or not.
+            if (index === currentIndex) {
+                item.classList.remove('carousel-item-faded');
+            } else {
+                item.classList.add('carousel-item-faded');
+            }
+        });
     }
 
     // Initialize carousel on load
-    window.addEventListener('load', updateCarousel);
+    window.addEventListener('load', () => {
+        carouselItems = document.querySelectorAll('.carousel-item'); // Re-query items in case of dynamic content
+        updateCarousel(); // Position correctly and apply initial fades
+    });
     // Also update on resize to ensure correct snapping if layout changes
     window.addEventListener('resize', () => {
         updateCarousel(); // Re-calculate and snap to nearest item on resize
     });
 
+    // Add scroll event listener to apply fade effect dynamically
+    if (carouselWrapper) {
+        carouselWrapper.addEventListener('scroll', onCarouselScroll);
+    }
+
     // Navigation buttons
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            currentIndex--;
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1; // Loop around
             updateCarousel();
         });
     }
 
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            currentIndex++;
+            currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0; // Loop around
             updateCarousel();
         });
     }
@@ -1796,8 +1940,7 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
 
         carouselWrapper.addEventListener('touchmove', (e) => {
             if (!isSwiping) return;
-            // Prevent vertical scrolling while swiping horizontally
-            // e.preventDefault(); // Commented out to allow vertical scroll if initial move is vertical
+            // Allow native scrolling for touchmove, the touchend will handle snap
         });
 
         carouselWrapper.addEventListener('touchend', (e) => {
@@ -1805,13 +1948,17 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
             const endX = e.changedTouches[0].clientX;
             const diff = startX - endX;
 
+            // Trigger a manual snap to center if a swipe gesture is detected
             if (Math.abs(diff) > 50) { // A threshold for a valid swipe
                 if (diff > 0) { // Swiped left (show next)
-                    currentIndex++;
+                    currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0;
                 } else { // Swiped right (show prev)
-                    currentIndex--;
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1;
                 }
-                updateCarousel();
+                updateCarousel(); // Trigger snap to new current index
+            } else {
+                // If no significant swipe, ensure it snaps to the nearest item
+                onCarouselScroll(); // This will determine the closest item and potentially trigger a snap via smooth scroll if not perfectly aligned
             }
             isSwiping = false;
         });
