@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <!-- Google Fonts for 'Inter' (matching Homepage) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Particles.js CDN (for background effects) -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <style>
     /* Custom font for a modern look - Inter is a good choice */
     html {
@@ -822,9 +824,9 @@
         <li class="relative group">
             <a href="#" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700 block" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
             <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
-                <!-- Removed the first li: <li><a href="design_projects_page.html#graphic-design-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-md">Graphic Projects</a></li> -->
                 <li><a href="graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-md">View All Graphic Projects</a></li>
-                <li><a href="design_projects_page.html#web-development-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-b-md">Web Development</a></li>
+                <li><a href="#web-development-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Web Development</a></li>
+                <li><a href="#graphic-design-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-b-md">Graphic Design</a></li>
             </ul>
         </li>
         <li><a href="/Shirly_portfolio/ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
@@ -843,7 +845,7 @@
         <div class="title-bg-effect"></div> <!-- Animated background graphic -->
     </section>
 
-    <div class="page-content">
+    <div class="page-content container mx-auto px-4">
 
       <!-- Web Development Section (Featured Project Layout) - Now first as requested -->
       <section id="web-development-section" class="py-12 mt-20">
@@ -857,747 +859,482 @@
                     data-project='{
                         "id": "travelly",
                         "title": "TRAVELLY - Travel Agency Website",
-                        "image": "../img/TRAVEELY_ME.png",
+                        "image": "https://placehold.co/800x600/add8e6/000000?text=TRAVELLY",
                         "description": "This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.",
                         "technologies": ["HTML5", "CSS3", "JavaScript"],
                         "live_demo": "https://shirly3212.github.io/TRAVELLY/",
                         "github_repo": "https://shirly3212.github.io/TRAVELLY",
                         "type": "web"
                     }'>
-                    <img src="../img/TRAVEELY_ME.png" alt="Travelly Website" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    <img src="https://placehold.co/800x600/add8e6/000000?text=TRAVELLY" alt="Travelly Website" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
                     <div class="featured-project-content">
                         <h4>TRAVELLY - Travel Agency Website</h4>
                         <p>This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.</p>
-                        <button class="view-project-btn">
-                            View Project <i class="fas fa-external-link-alt ml-2"></i>
-                        </button>
+                        <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
                     </div>
                 </div>
 
-                <!-- Side Projects -->
                 <div class="side-projects-grid">
-                    <!-- Project Item 2: People Counter -->
+                    <!-- Side Project 1 (Web Development) -->
                     <div class="project-card-item animate-on-scroll"
                         data-project='{
-                            "id": "people-counter",
-                            "title": "People Counter - Simple Counter App",
-                            "image": "../img/PEOPLE_COUNTER.png",
-                            "description": "A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.",
-                            "technologies": ["HTML5", "CSS3", "JavaScript"],
-                            "live_demo": "https://shirly3212.github.io/People-Counter/",
-                            "github_repo": "https://shirly3212.github.io/People-Counter",
+                            "id": "web-proj-1",
+                            "title": "E-commerce Product Page",
+                            "image": "https://placehold.co/800x600/87ceeb/000000?text=E-Commerce+Page",
+                            "description": "A clean and functional e-commerce product page built with modern HTML and Tailwind CSS. Features include responsive design, interactive product gallery, and a clear call-to-action.",
+                            "technologies": ["HTML5", "CSS3", "TailwindCSS"],
+                            "live_demo": "#",
+                            "github_repo": "#",
                             "type": "web"
                         }'>
-                        <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <img src="https://placehold.co/800x600/87ceeb/000000?text=E-Commerce+Page" alt="E-commerce Product Page" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
                         <div class="project-card-item-content">
-                            <h4>People Counter - Simple Counter App</h4>
-                            <p>A straightforward web application designed to count people entering or exiting an area.</p>
-                            <button class="view-project-btn">
-                                View Project <i class="fas fa-external-link-alt ml-2"></i>
-                            </button>
+                            <h4>E-commerce Product Page</h4>
+                            <p>A clean and functional e-commerce product page built with modern HTML and Tailwind CSS.</p>
+                            <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
                         </div>
                     </div>
 
-                    <!-- Project Item 3: Photographer -->
+                    <!-- Side Project 2 (Web Development) -->
                     <div class="project-card-item animate-on-scroll"
                         data-project='{
-                            "id": "photographer",
-                            "title": "Photographer - Visual Portfolio",
-                            "image": "../img/Photographer_me.png",
-                            "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information.",
-                            "technologies": ["HTML5", "CSS3"],
-                            "live_demo": "https://shirly3212.github.io/Photographer/",
-                            "github_repo": "https://shirly3212.github.io/Photographer",
+                            "id": "web-proj-2",
+                            "title": "Interactive To-Do List",
+                            "image": "https://placehold.co/800x600/98fb98/000000?text=To-Do+List",
+                            "description": "A simple yet effective to-do list application, allowing users to add, mark as complete, and delete tasks. Implemented using vanilla JavaScript for dynamic interactions and local storage for persistence.",
+                            "technologies": ["HTML5", "CSS3", "JavaScript", "LocalStorage"],
+                            "live_demo": "#",
+                            "github_repo": "#",
                             "type": "web"
                         }'>
-                        <img src="../img/Photographer_me.png" alt="Photographer Portfolio" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <img src="https://placehold.co/800x600/98fb98/000000?text=To-Do+List" alt="Interactive To-Do List" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
                         <div class="project-card-item-content">
-                            <h4>Photographer - Visual Portfolio</h4>
-                            <p>A sleek visual portfolio website for photographers to showcase their work in an elegant and modern style.</p>
-                            <button class="view-project-btn">
-                                View Project <i class="fas fa-external-link-alt ml-2"></i>
-                            </button>
+                            <h4>Interactive To-Do List</h4>
+                            <p>A simple yet effective to-do list application, allowing users to add, mark as complete, and delete tasks.</p>
+                            <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="view-all-button-container">
+                <a href="web-all-projects.html" class="view-all-button">View All Web Projects <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
         </div>
       </section>
 
-      <!-- Graphic Design Projects Section (Featured Project Layout) - Now second as requested -->
+      <!-- Graphic Design Section (Featured Project Layout) -->
       <section id="graphic-design-section" class="py-12 mt-20">
         <div class="featured-project-container text-center max-w-full mx-auto">
             <div class="section-header">
                 <h2 class="section-title">Graphic Design</h2>
             </div>
             <div class="featured-projects-content">
-                <!-- Featured Graphic Project (World Cup 22 Infographic) -->
+                <!-- Featured Project (Brand Identity Design) -->
                 <div class="featured-project animate-on-scroll"
                     data-project='{
-                        "id": "worldcup22",
-                        "title": "World Cup 22 Infographic",
-                        "image": "../img/thumbnail1.jpg",
-                        "description": "An engaging infographic designed for the 2022 World Cup, featuring key statistics and visual highlights of the tournament. This project demonstrates data visualization and compelling graphic storytelling, transforming complex data into a visually appealing and easy-to-understand format for a broad audience.",
-                        "technologies": ["Adobe Illustrator", "Infographics", "Data Visualization"],
-                        "live_demo": "https://makospecial.co.il/worldcup22",
+                        "id": "graphic-brand-identity",
+                        "title": "Brand Identity Redesign",
+                        "image": "https://placehold.co/800x600/ffb6c1/000000?text=Brand+Identity",
+                        "description": "A comprehensive brand identity redesign project, including logo, color palette, typography, and visual guidelines. Focused on creating a modern and cohesive brand presence across all touchpoints.",
+                        "technologies": ["Adobe Illustrator", "Adobe Photoshop", "Branding"],
+                        "live_demo": "#",
+                        "github_repo": "#",
                         "type": "graphic"
                     }'>
-                    <img src="../img/thumbnail1.jpg" alt="World Cup 22 Infographic" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    <img src="https://placehold.co/800x600/ffb6c1/000000?text=Brand+Identity" alt="Brand Identity Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
                     <div class="featured-project-content">
-                        <h4>World Cup 22 Infographic</h4>
-                        <p>An engaging infographic designed for the 2022 World Cup, featuring key statistics and visual highlights of the tournament, transforming complex data into a visually appealing and easy-to-understand format.</p>
-                        <button class="view-project-btn">
-                            View Project <i class="fas fa-external-link-alt ml-2"></i>
-                        </button>
+                        <h4>Brand Identity Redesign</h4>
+                        <p>A comprehensive brand identity redesign, including logo, color palette, typography, and visual guidelines.</p>
+                        <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
                     </div>
                 </div>
 
-                <!-- Side Graphic Projects -->
                 <div class="side-projects-grid">
-                    <!-- Graphic Project Item 2: Road Accidents -->
+                    <!-- Side Project 1 (Graphic Design) -->
                     <div class="project-card-item animate-on-scroll"
                         data-project='{
-                            "id": "road-accidents",
-                            "title": "Road Accidents Data Visualization",
-                            "image": "../img/thumbnail2.jpg",
-                            "description": "A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information through clear and impactful graphics. This project showcases the ability to communicate sensitive data effectively and visually.",
-                            "technologies": ["Adobe Photoshop", "Data Analysis", "Graphic Design"],
-                            "live_demo": "https://specialprojects.mako.co.il/Road_Accidents",
+                            "id": "graphic-social-media",
+                            "title": "Social Media Campaign",
+                            "image": "https://placehold.co/800x600/ffe4b5/000000?text=Social+Media",
+                            "description": "Designed a series of engaging graphics for a social media marketing campaign, focusing on visual storytelling and brand consistency across platforms like Instagram, Facebook, and Twitter.",
+                            "technologies": ["Adobe Photoshop", "Social Media"],
+                            "live_demo": "#",
+                            "github_repo": "#",
                             "type": "graphic"
                         }'>
-                        <img src="../img/thumbnail2.jpg" alt="Road Accidents Data Visualization" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <img src="https://placehold.co/800x600/ffe4b5/000000?text=Social+Media" alt="Social Media Campaign" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
                         <div class="project-card-item-content">
-                            <h4>Road Accidents Data Visualization</h4>
-                            <p>A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information through clear and impactful graphics.</p>
-                            <button class="view-project-btn">
-                                View Project <i class="fas fa-external-link-alt ml-2"></i>
-                            </button>
+                            <h4>Social Media Campaign</h4>
+                            <p>Designed engaging graphics for a social media marketing campaign, focusing on visual storytelling.</p>
+                            <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
                         </div>
                     </div>
 
-                    <!-- Graphic Project Item 3: Climate Change -->
+                    <!-- Side Project 2 (Graphic Design) -->
                     <div class="project-card-item animate-on-scroll"
                         data-project='{
-                            "id": "climate-change",
-                            "title": "Climate Change Awareness Graphics",
-                            "image": "../img/thumbnail3.jpg",
-                            "description": "Graphics created to raise awareness about climate change, translating complex environmental data into easily understandable and visually compelling messages. This project emphasizes impactful visual communication for social awareness.",
-                            "technologies": ["Adobe InDesign", "Illustrations", "Environmental Design"],
-                            "live_demo": "https://makospecial.co.il/climate_change",
+                            "id": "graphic-web-banners",
+                            "title": "Website Banner Ads",
+                            "image": "https://placehold.co/800x600/afeeee/000000?text=Web+Banners",
+                            "description": "Creation of various web banner ads for different online campaigns, optimizing for both aesthetic appeal and click-through rates. Designed with a focus on clear messaging and brand integration.",
+                            "technologies": ["Adobe Photoshop", "Web Design"],
+                            "live_demo": "#",
+                            "github_repo": "#",
                             "type": "graphic"
                         }'>
-                        <img src="../img/thumbnail3.jpg" alt="Climate Change Awareness Graphics" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <img src="https://placehold.co/800x600/afeeee/000000?text=Web+Banners" alt="Website Banner Ads" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
                         <div class="project-card-item-content">
-                            <h4>Climate Change Awareness Graphics</h4>
-                            <p>Graphics created to raise awareness about climate change, translating complex environmental data into easily understandable and visually compelling messages.</p>
-                            <button class="view-project-btn">
-                                View Project <i class="fas fa-external-link-alt ml-2"></i>
-                            </button>
+                            <h4>Website Banner Ads</h4>
+                            <p>Creation of various web banner ads for different online campaigns, optimizing for both aesthetic appeal and click-through rates.</p>
+                            <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="view-all-button-container">
-                <a href="graphic-all-projects.html" class="view-all-button">
-                    View All Graphic Projects <i class="fas fa-arrow-right ml-2"></i>
-                </a>
+                <a href="graphic-all-projects.html" class="view-all-button">View All Graphic Projects <i class="fas fa-arrow-right ml-2"></i></a>
             </div>
         </div>
       </section>
 
-      <!-- Graphic Design Gallery Carousel Section -->
-      <section id="graphic-carousel-section" class="carousel-section">
-        <h2 class="section-title">Gallery</h2>
-        <div class="carousel-wrapper" id="carouselWrapper">
-            <div class="carousel-item"
-                 data-project='{
-                   "id": "gallery-item-1",
-                   "title": "Dynamic Graphic Design",
-                   "image": "../img/gallery1.jpg",
-                   "description": "This image represents a dynamic graphic design concept, combining vibrant colors and fluid shapes to create a sense of movement and energy.",
-                   "technologies": ["Adobe Illustrator", "Concept Art"],
-                   "live_demo": "../img/gallery1.jpg",
-                   "type": "graphic",
-                   "is_carousel_item": true
-                 }'>
-                <img src="../img/gallery1.jpg" alt="Dynamic Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+      <!-- Carousel Section (Example for a generic gallery/skills) -->
+      <section class="carousel-section container mx-auto">
+        <h2 class="section-title">Design Highlights</h2>
+        <div class="carousel-wrapper" id="graphicCarousel">
+            <!-- Carousel Item 1 -->
+            <div class="carousel-item">
+                <img src="https://placehold.co/600x400/DDA0DD/000000?text=Highlight+1" alt="Design Highlight 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
             </div>
-            <div class="carousel-item"
-                 data-project='{
-                   "id": "gallery-item-2",
-                   "title": "Abstract Graphic Design",
-                   "image": "../img/gallery2.jpg",
-                   "description": "An abstract graphic design piece, showcasing a unique blend of textures and minimalist forms, inviting interpretation and contemplation.",
-                   "technologies": ["Adobe Photoshop", "Digital Painting"],
-                   "live_demo": "../img/gallery2.jpg",
-                   "type": "graphic",
-                   "is_carousel_item": true
-                 }'>
-                <img src="../img/gallery2.jpg" alt="Abstract Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not +Found';">
+            <!-- Carousel Item 2 -->
+            <div class="carousel-item">
+                <img src="https://placehold.co/600x400/BA55D3/000000?text=Highlight+2" alt="Design Highlight 2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
             </div>
-            <div class="carousel-item"
-                 data-project='{
-                   "id": "gallery-item-3",
-                   "title": "Creative Graphic Design",
-                   "image": "../img/gallery3.jpg",
-                   "description": "A highly creative graphic design project, demonstrating innovative use of typography and visual hierarchy to convey a powerful message.",
-                   "technologies": ["Adobe InDesign", "Typography"],
-                   "live_demo": "../img/gallery3.jpg",
-                   "type": "graphic",
-                   "is_carousel_item": true
-                 }'>
-                <img src="../img/gallery3.jpg" alt="Creative Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+            <!-- Carousel Item 3 -->
+            <div class="carousel-item">
+                <img src="https://placehold.co/600x400/8A2BE2/000000?text=Highlight+3" alt="Design Highlight 3" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
             </div>
-            <div class="carousel-item"
-                 data-project='{
-                   "id": "gallery-item-4",
-                   "title": "Modern Graphic Design",
-                   "image": "../img/gallery4.jpg",
-                   "description": "This modern graphic design emphasizes clean lines, balanced composition, and a sophisticated color palette, suitable for contemporary branding.",
-                   "technologies": ["Adobe Illustrator", "Branding"],
-                   "live_demo": "../img/gallery4.jpg",
-                   "type": "graphic",
-                   "is_carousel_item": true
-                 }'>
-                <img src="../img/gallery4.jpg" alt="Modern Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-            </div>
-            <div class="carousel-item"
-                 data-project='{
-                   "id": "gallery-item-5",
-                   "title": "Digital Art Design",
-                   "image": "../img/gallery5.jpg",
-                   "description": "A vibrant piece of digital art, showcasing experimental techniques and a rich blend of colors to create an immersive visual experience.",
-                   "technologies": ["Procreate", "Digital Painting"],
-                   "live_demo": "../img/gallery5.jpg",
-                   "type": "graphic",
-                   "is_carousel_item": true
-                 }'>
-                <img src="../img/gallery5.jpg" alt="Digital Art Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-            </div>
-            <div class="carousel-item"
-                 data-project='{
-                   "id": "gallery-item-6",
-                   "title": "Visual Identity Design",
-                   "image": "../img/gallery6.jpg",
-                   "description": "A comprehensive visual identity design project, including logo, color scheme, and typography, crafted to represent a brand's core values.",
-                   "technologies": ["Adobe Illustrator", "Logo Design"],
-                   "live_demo": "../img/gallery6.jpg",
-                   "type": "graphic",
-                   "is_carousel_item": true
-                 }'>
-                <img src="../img/gallery6.jpg" alt="Visual Identity Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+            <!-- Carousel Item 4 -->
+            <div class="carousel-item">
+                <img src="https://placehold.co/600x400/4B0082/FFFFFF?text=Highlight+4" alt="Design Highlight 4" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
             </div>
         </div>
-        <button class="carousel-nav-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-        <button class="carousel-nav-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+        <button class="carousel-nav-btn prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav-btn next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
       </section>
 
-    </div>
+    </div> <!-- End page-content -->
   </main>
 
-  <!-- Footer -->
-  <footer class="custom-footer-gradient text-white min-h-7vh py-8 flex justify-between items-center flex-wrap px-5 mt-auto">
-    <h4 class="text-xl font-medium mb-4 md:mb-0">Shirly Herscovici © 2025</h4>
-    <ul class="flex justify-center items-center flex-wrap gap-6">
-      <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Instagram"><i class="fab fa-instagram text-2xl"></i></a></li>
-      <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Twitter"><i class="fab fa-twitter text-2xl"></i></a></li>
-      <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-200 transition duration-300" title="YouTube"><i class="fab fa-youtube text-2xl"></i></a></li>
-      <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="LinkedIn"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
-      <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="GitHub"><i class="fab fa-github text-2xl"></i></a></li>
-    </ul>
-  </footer>
-
   <!-- Project Details Modal -->
-  <div id="projectModal" class="modal-overlay">
-      <div class="modal-content">
-          <button class="modal-close-btn" id="closeModalBtn">&times;</button>
-          <!-- Changed image styling for narrower and taller appearance within the modal -->
-          <img id="modalProjectImage" src="" alt="Project Image" class="rounded-md mb-4 w-full h-auto object-contain">
-          <!-- These elements will be conditionally hidden by JS for carousel images -->
-          <h3 id="modalProjectTitle" class="text-3xl font-bold text-gray-800 mb-4"></h3>
-          <p id="modalProjectDescription" class="text-gray-700 mb-4"></p>
-          <div class="flex flex-wrap gap-2 mb-4">
-              <span class="text-gray-600 font-semibold">Technologies Used:</span>
-              <div id="modalTechnologies" class="flex flex-wrap gap-2"></div>
-          </div>
-          <div id="aiInsightContainer" class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-blue-800 text-left hidden">
-              <p class="font-semibold mb-2">✨ AI Insight:</p>
-              <div id="aiInsightText"></div>
-              <div id="aiInsightLoading" class="flex items-center justify-center mt-2 hidden">
-                  <div class="spinner mr-2"></div>
-                  <span>Generating insight...</span>
-              </div>
-          </div>
-          <div class="flex justify-center gap-4 mt-6">
-              <a id="modalLiveDemoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
-                  Live Demo <i class="fas fa-external-link-alt ml-2"></i>
-              </a>
-              <a id="modalGithubRepoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
-                  GitHub Repo <i class="fab fa-github ml-2"></i>
-              </a>
-              <button id="aiInsightBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center">
-                  ✨ AI Insight
-              </button>
-          </div>
+  <div id="project-details-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close-btn">&times;</button>
+      <h3 id="modal-title" class="text-2xl font-bold text-gray-800 mb-4"></h3>
+      <img id="modal-image" src="" alt="Project Image" class="w-full h-auto rounded-lg mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+      <p id="modal-description" class="text-gray-700 mb-4"></p>
+      <div id="modal-technologies" class="mb-4">
+        <h5 class="font-semibold text-gray-800 mb-2">Technologies Used:</h5>
+        <div id="tech-list" class="flex flex-wrap gap-2"></div>
       </div>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a id="modal-live-demo" href="#" target="_blank" class="bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition duration-300 flex items-center justify-center">
+          <i class="fas fa-play-circle mr-2"></i> Live Demo
+        </a>
+        <a id="modal-github-repo" href="#" target="_blank" class="bg-gray-800 text-white py-2 px-4 rounded-full hover:bg-gray-700 transition duration-300 flex items-center justify-center">
+          <i class="fab fa-github mr-2"></i> GitHub Repo
+        </a>
+      </div>
+    </div>
   </div>
 
-  <!-- Particles.js library -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- Footer -->
+  <footer class="custom-footer-gradient text-white py-8 mt-auto">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2025 Shirly Herscovici. All rights reserved.</p>
+    </div>
+  </footer>
+
   <script>
-    // --- Particles.js Initialization ---
-    particlesJS("particles-js", {
+    // Initialize Particles.js background
+    particlesJS('particles-js', {
       "particles": {
-        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": "#b0e0e6" }, /* Light blue/cyan */
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5, "random": false },
-        "size": { "value": 3, "random": true },
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          },
+          "image": {
+            "src": "img/github.svg",
+            "width": 100,
+            "height": 100
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
         "line_linked": {
           "enable": true,
           "distance": 150,
-          "color": "#b0e0e6",
+          "color": "#ffffff",
           "opacity": 0.4,
           "width": 1
         },
         "move": {
           "enable": true,
-          "speed": 3, /* Slightly slower speed for subtlety */
+          "speed": 6,
           "direction": "none",
           "random": false,
           "straight": false,
           "out_mode": "out",
           "bounce": false,
-          "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 }
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
         }
       },
       "interactivity": {
         "detect_on": "canvas",
         "events": {
-          "onhover": { "enable": true, "mode": "grab" }, /* Grab effect on hover */
-          "onclick": { "enable": true, "mode": "push" }, /* Push effect on click */
+          "onhover": {
+            "enable": true,
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
           "resize": true
         },
         "modes": {
-          "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
-          "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 },
-          "repulse": { "distance": 200, "duration": 0.4 },
-          "push": { "particles_nb": 4 },
-          "remove": { "particles_nb": 2 }
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
         }
       },
       "retina_detect": true
     });
 
-    // --- Animation on Scroll Logic (UPDATED for section-title) ---
-    // Select all elements that need animation, including section titles
-    const allAnimatedElements = document.querySelectorAll('.animate-on-scroll, .section-title');
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mainNavMenu = document.getElementById('main-nav-menu');
+    const designMenuToggle = document.getElementById('design-menu-toggle');
+    const designDropdownMenu = designMenuToggle.nextElementSibling; // The <ul> element for the dropdown
 
-    const observerOptions = {
-        root: null, /* viewport as root */
-        rootMargin: '0px',
-        threshold: 0.1 /* callback fires when 10% of item is visible */
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                // Optional: stop observing once animated if it's a one-time animation
-                // if (entry.target.classList.contains('animate-on-scroll') || entry.target.classList.contains('section-title')) {
-                //     observer.unobserve(entry.target);
-                // }
-            } else {
-                // Optional: remove is-visible when out of view if animation should repeat on re-entry
-                // entry.target.classList.remove('is-visible');
-            }
-        });
-    }, observerOptions);
-
-    allAnimatedElements.forEach(element => {
-        observer.observe(element);
+    // Toggle main navigation menu on mobile
+    mobileMenuToggle.addEventListener('click', () => {
+      mainNavMenu.classList.toggle('active');
     });
 
-    // --- Modal Logic ---
-    const projectModal = document.getElementById('projectModal');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const modalProjectImage = document.getElementById('modalProjectImage');
-    const modalProjectTitle = document.getElementById('modalProjectTitle');
-    const modalProjectDescription = document.getElementById('modalProjectDescription');
-    const modalTechnologies = document.getElementById('modalTechnologies');
-    const modalLiveDemoBtn = document.getElementById('modalLiveDemoBtn');
-    const modalGithubRepoBtn = document.getElementById('modalGithubRepoBtn');
-    const aiInsightBtn = document.getElementById('aiInsightBtn');
-    const aiInsightContainer = document.getElementById('aiInsightContainer');
-    const aiInsightText = document.getElementById('aiInsightText');
-    const aiInsightLoading = document.getElementById('aiInsightLoading');
-
-    let currentProjectData = null; // Store data of the currently opened project
-
-    // Function to open the modal
-    function openModal(projectData) {
-        currentProjectData = projectData; // Store the data
-        modalProjectImage.src = projectData.image;
-
-        const isCarouselGalleryItem = projectData.is_carousel_item === true;
-
-        // Reset all elements to their default (visible) state
-        modalProjectTitle.classList.remove('hidden');
-        modalProjectDescription.classList.remove('hidden');
-        modalTechnologies.parentElement.classList.remove('hidden'); // Parent div of technologies
-        modalLiveDemoBtn.classList.remove('hidden');
-        modalGithubRepoBtn.classList.remove('hidden');
-        aiInsightBtn.classList.remove('hidden');
-        aiInsightContainer.classList.add('hidden'); // AI insight content hidden by default
-        aiInsightText.textContent = ''; // Clear any previous AI insight text
-        aiInsightLoading.classList.add('hidden'); // Hide AI loading spinner
-
-        if (isCarouselGalleryItem) {
-            // If it's a carousel gallery item, hide all text and buttons
-            modalProjectTitle.classList.add('hidden');
-            modalProjectDescription.classList.add('hidden');
-            modalTechnologies.parentElement.classList.add('hidden');
-            modalLiveDemoBtn.classList.add('hidden');
-            modalGithubRepoBtn.classList.add('hidden');
-            aiInsightBtn.classList.add('hidden');
-            // For carousel items, ensure image takes up full width and is contained (not cropped)
-            modalProjectImage.classList.remove('object-cover'); // Ensure object-cover is not interfering
-            modalProjectImage.classList.add('w-full', 'h-auto', 'object-contain'); // Make it full width, auto height, contain
-        } else {
-            // For regular project cards, populate content
-            modalProjectTitle.textContent = projectData.title;
-            modalProjectDescription.textContent = projectData.description;
-
-            modalTechnologies.innerHTML = ''; // Clear previous technologies
-            if (projectData.technologies && projectData.technologies.length > 0) {
-                projectData.technologies.forEach(tech => {
-                    const span = document.createElement('span');
-                    span.textContent = tech;
-                    span.classList.add('bg-blue-100', 'text-blue-800', 'text-xs', 'font-medium', 'px-2.5', 'py-0.5', 'rounded-full');
-                    modalTechnologies.appendChild(span);
-                });
-            } else {
-                modalTechnologies.parentElement.classList.add('hidden'); // Hide if no technologies
+    // Close mobile menu when a nav link is clicked
+    mainNavMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (mainNavMenu.classList.contains('active') && !link.closest('.group')) { // Only close if not a dropdown parent
+                mainNavMenu.classList.remove('active');
             }
+        });
+    });
 
-            // Show/hide GitHub button based on data
-            if (projectData.github_repo) {
-                modalGithubRepoBtn.href = projectData.github_repo;
-            } else {
-                modalGithubRepoBtn.classList.add('hidden');
-            }
-
-            // Show/hide Live Demo button based on data
-            if (projectData.live_demo) {
-                modalLiveDemoBtn.href = projectData.live_demo;
-            } else {
-                modalLiveDemoBtn.classList.add('hidden');
-            }
-
-            // AI Insight button should only be visible for Web projects (not graphic)
-            if (projectData.type === 'graphic') {
-                aiInsightBtn.classList.add('hidden');
-            } else {
-                aiInsightBtn.classList.remove('hidden');
-            }
-            // Ensure regular project images also have appropriate sizing in modal
-            modalProjectImage.classList.add('w-full', 'h-auto', 'object-contain'); // Apply width full, auto height, contain
-            modalProjectImage.classList.remove('object-cover'); // Ensure object-cover is not interfering
+    // Toggle Design dropdown menu
+    designMenuToggle.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default link behavior
+        // Check if on mobile or if dropdown is already visible on desktop
+        if (window.innerWidth <= 767) { // Mobile breakpoint
+            designDropdownMenu.classList.toggle('show-dropdown');
+        } else { // Desktop behavior
+            // On desktop, clicking can also toggle if not hovering
+            designDropdownMenu.classList.toggle('show-dropdown');
         }
+        // Close other dropdowns if any
+        document.querySelectorAll('nav ul li.group ul').forEach(dropdown => {
+            if (dropdown !== designDropdownMenu) {
+                dropdown.classList.remove('show-dropdown');
+            }
+        });
+        event.stopPropagation(); // Stop propagation to prevent immediate close from document click
+    });
 
-        projectModal.classList.add('is-visible');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling of body
+    // Close dropdowns when clicking anywhere else on the document
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest('.group')) {
+            document.querySelectorAll('nav ul li.group ul').forEach(dropdown => {
+                dropdown.classList.remove('show-dropdown');
+            });
+        }
+    });
+
+    // Project Modal Logic
+    const modalOverlay = document.getElementById('project-details-modal');
+    const modalCloseBtn = document.querySelector('.modal-close-btn');
+    const modalTitle = document.getElementById('modal-title');
+    const modalImage = document.getElementById('modal-image');
+    const modalDescription = document.getElementById('modal-description');
+    const techList = document.getElementById('tech-list');
+    const modalLiveDemo = document.getElementById('modal-live-demo');
+    const modalGithubRepo = document.getElementById('modal-github-repo');
+
+    // Function to open the modal with project details
+    function openModal(projectData) {
+      modalTitle.textContent = projectData.title;
+      modalImage.src = projectData.image;
+      modalImage.alt = projectData.title;
+      modalDescription.textContent = projectData.description;
+
+      // Clear previous technologies
+      techList.innerHTML = '';
+      projectData.technologies.forEach(tech => {
+        const span = document.createElement('span');
+        span.className = 'bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full';
+        span.textContent = tech;
+        techList.appendChild(span);
+      });
+
+      modalLiveDemo.href = projectData.live_demo;
+      // Hide GitHub link if not available
+      if (projectData.github_repo && projectData.github_repo !== '#') {
+        modalGithubRepo.href = projectData.github_repo;
+        modalGithubRepo.style.display = 'flex'; // Show it
+      } else {
+        modalGithubRepo.style.display = 'none'; // Hide it
+      }
+
+      modalOverlay.classList.add('is-visible');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling background
     }
 
     // Function to close the modal
     function closeModal() {
-        projectModal.classList.remove('is-visible');
-        document.body.style.overflow = ''; // Restore scrolling of body
-        currentProjectData = null; // Clear current project data
+      modalOverlay.classList.remove('is-visible');
+      document.body.style.overflow = ''; // Restore scrolling
     }
 
-    // Event listeners for opening modal: on any .project-card-item, .carousel-item or .featured-project
-    document.querySelectorAll('.project-card-item, .carousel-item, .featured-project').forEach(item => {
-        item.addEventListener('click', (event) => {
-            // Prevent opening modal if a child button (like View Project) was clicked, 
-            // as those buttons have their own href or event listeners
-            if (event.target.closest('.view-project-btn')) {
-                return;
-            }
-
-            let projectData = null;
-            const projectDataString = item.dataset.project;
-
-            if (!projectDataString || projectDataString === "undefined") {
-                console.error("Invalid or undefined project data string for this item:", item);
-                return;
-            }
-            try {
-                projectData = JSON.parse(projectDataString);
-            } catch (e) {
-                console.error("Error parsing JSON for project data:", projectDataString, e);
-                return;
-            }
-            
-            if (projectData) {
-                openModal(projectData);
-            }
-        });
-    });
-
-    // Handle clicks on "View Project" buttons *inside* the project cards
-    document.querySelectorAll('.view-project-btn').forEach(button => {
-        button.addEventListener('click', (event) => {
-            event.stopPropagation(); // Stop click from propagating to parent card
-            const card = event.target.closest('.project-card-item') || event.target.closest('.featured-project');
-            if (card) {
-                const projectDataString = card.dataset.project;
-                if (!projectDataString || projectDataString === "undefined") {
-                    console.error("Invalid or undefined project data string for this card:", projectDataString);
-                    return;
-                }
-                try {
-                    const projectData = JSON.parse(projectDataString);
-                    openModal(projectData);
-                } catch (e) {
-                    console.error("Error parsing JSON for project data:", projectDataString, e);
-                }
-            }
-        });
-    });
-
-
-    // Event listener for closing modal via button
-    closeModalBtn.addEventListener('click', closeModal);
-
-    // Event listener for closing modal by clicking outside content
-    projectModal.addEventListener('click', (event) => {
-        if (event.target === projectModal) { // Only close if clicked directly on overlay
-            closeModal();
+    // Event listeners for opening modal (on both featured and side project cards)
+    document.querySelectorAll('.featured-project, .project-card-item').forEach(card => {
+      card.addEventListener('click', (event) => {
+        // Only open modal if the click target is not the view-project-btn or its child
+        if (!event.target.closest('.view-project-btn')) {
+            const projectData = JSON.parse(card.dataset.project);
+            openModal(projectData);
         }
-    });
-
-    // Event listener for closing modal with Escape key
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && projectModal.classList.contains('is-visible')) {
-            closeModal();
-        }
-    });
-
-    // --- Gemini API Integration ---
-    aiInsightBtn.addEventListener('click', async () => {
-        // AI Insight should only be available for 'web' type projects and not carousel gallery items
-        if (!currentProjectData || currentProjectData.type !== 'web' || currentProjectData.is_carousel_item === true) { 
-            aiInsightContainer.classList.add('hidden'); // Ensure hidden if not applicable
-            console.error("AI Insight is only available for Web Development projects (and not for gallery images).");
-            return;
-        }
-
-        aiInsightContainer.classList.remove('hidden'); // Show container
-        aiInsightText.textContent = ''; // Clear previous text
-        aiInsightLoading.classList.remove('hidden'); // Show loading spinner
-
-        const prompt = `Given the following web development project:
-Title: ${currentProjectData.title}
-Description: ${currentProjectData.description}
-Technologies: ${currentProjectData.technologies ? currentProjectData.technologies.join(', ') : 'N/A'}
-
-Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting the unique aspect or impact of this project. Focus on what makes it stand out or its practical value. Do not include a title for the summary. Return only the summary text.`;
-
-        let chatHistory = [];
-        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-        const payload = { contents: chatHistory };
-        const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            const result = await response.json();
-
-            if (result.candidates && result.candidates.length > 0 &&
-                result.candidates[0].content && result.candidates[0].content.parts &&
-                result.candidates[0].content.parts.length > 0) {
-                const text = result.candidates[0].content.parts[0].text;
-                aiInsightText.textContent = text;
-            } else {
-                aiInsightText.textContent = "Failed to generate insight. Please try again.";
-                console.error("Unexpected API response structure:", result);
-            }
-        } catch (error) {
-            aiInsightText.textContent = "Error generating insight. " + error.message;
-            console.error("Error calling Gemini API:", error);
-        } finally {
-            aiInsightLoading.classList.add('hidden'); // Hide loading spinner
-        }
-    });
-
-    // --- Mobile Navigation Toggle ---
-    document.addEventListener("DOMContentLoaded", function () {
-      const mainNavUl = document.getElementById("main-nav-menu"); // Main ul
-      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-      const designMenuToggle = document.getElementById('design-menu-toggle'); // The "Design" link
-      const designSubMenu = designMenuToggle.nextElementSibling; // The ul after "Design" link
-
-      // Function to close all menus (main and sub)
-      function closeAllMenus() {
-          mainNavUl.classList.remove('active'); // Close main mobile menu
-          if (designSubMenu) {
-              designSubMenu.classList.remove('active'); // Close mobile dropdown
-              designSubMenu.classList.remove('show-dropdown'); // Close desktop click dropdown
-              designMenuToggle.querySelector('i').classList.remove('rotate-180'); // Reset chevron
-          }
-      }
-
-      // Main mobile menu toggle
-      if (mobileMenuToggle) {
-          mobileMenuToggle.addEventListener('click', (event) => {
-              event.stopPropagation(); // Prevent immediate closing due to outer click listener
-              mainNavUl.classList.toggle('active');
-              if (!mainNavUl.classList.contains('active')) { // If closing main menu
-                  closeAllMenus(); // Close everything if hamburger is closing the main menu
-              }
-          });
-      }
-
-      // Design sub-menu toggle (for mobile and click scenarios on desktop)
-      if (designMenuToggle && designSubMenu) {
-          designMenuToggle.addEventListener('click', (event) => {
-              event.preventDefault(); // ALWAYS prevent default link behavior for this specific toggle button
-              event.stopPropagation(); // Prevent immediate closing due to outer click listener
-
-              if (window.innerWidth < 768) { // Mobile behavior: toggle 'active' class
-                  designSubMenu.classList.toggle('active');
-              } else { // Desktop behavior: toggle 'show-dropdown' class
-                  designSubMenu.classList.toggle('show-dropdown');
-              }
-              designMenuToggle.querySelector('i').classList.toggle('rotate-180'); // Rotate chevron
-          });
-
-          // Close sub-menu if clicking outside on desktop
-          document.addEventListener('click', (event) => {
-              // Only apply this logic on desktop sizes
-              if (window.innerWidth >= 768) {
-                  const isClickInsideDesignToggle = designMenuToggle.contains(event.target);
-                  const isClickInsideDesignSubMenu = designSubMenu.contains(event.target);
-
-                  // If the dropdown is currently shown by JS (show-dropdown)
-                  // and the click was outside both the toggle button and the dropdown itself
-                  if (designSubMenu.classList.contains('show-dropdown') && !isClickInsideDesignToggle && !isClickInsideDesignSubMenu) {
-                      designSubMenu.classList.remove('show-dropdown');
-                      designMenuToggle.querySelector('i').classList.remove('rotate-180');
-                  }
-              }
-          });
-
-          // Close all menus when a link inside main nav or sub-menu is clicked
-          mainNavUl.querySelectorAll('a').forEach(link => {
-              link.addEventListener('click', (event) => {
-                  // If it's a sub-menu item or a non-group main nav link, close all menus
-                  if (link.closest('.group ul') || (!link.closest('.group') && link.href && link.href !== '#')) {
-                      closeAllMenus();
-                  }
-              });
-          });
-      }
-
-      // Close all menus if resized to desktop view (from mobile)
-      window.addEventListener('resize', () => {
-          if (window.innerWidth >= 768) {
-              closeAllMenus();
-          }
+      });
+      // Add click listener specifically for the "View Project" button
+      card.querySelector('.view-project-btn').addEventListener('click', (event) => {
+          event.stopPropagation(); // Prevent card click from firing as well
+          const projectData = JSON.parse(card.dataset.project);
+          openModal(projectData);
       });
     });
 
-    // --- Carousel Logic (New) ---
-    const carouselWrapper = document.getElementById('carouselWrapper');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const carouselItems = document.querySelectorAll('.carousel-item');
-    let currentIndex = 0;
-
-    function updateCarousel() {
-        if (!carouselWrapper || carouselItems.length === 0) return;
-
-        // Calculate the scroll position for the current item based on showing multiple items
-        // We need to account for the margin between items.
-        // Get the actual width of one item including its margin.
-        const itemStyle = window.getComputedStyle(carouselItems[0]);
-        const itemMarginRight = parseFloat(itemStyle.marginRight);
-        const itemMarginLeft = parseFloat(itemStyle.marginLeft); // Get left margin too
-        // Total width for one item including its own margins
-        const itemWidthWithMargins = carouselItems[0].offsetWidth + itemMarginLeft + itemMarginRight;
-
-        const scrollAmount = itemWidthWithMargins * currentIndex;
-        carouselWrapper.scrollLeft = scrollAmount;
-
-        // Optional: Loop around
-        if (currentIndex >= carouselItems.length) {
-            currentIndex = 0;
-            carouselWrapper.scrollLeft = 0; // Snap back instantly
-        } else if (currentIndex < 0) {
-            currentIndex = carouselItems.length - 1;
-            carouselWrapper.scrollLeft = itemWidthWithMargins * (carouselItems.length - 1); // Snap back instantly
-        }
-    }
-
-    // Initialize carousel on load
-    window.addEventListener('load', updateCarousel);
-    // Also update on resize to ensure correct snapping if layout changes
-    window.addEventListener('resize', () => {
-        updateCarousel(); // Re-calculate and snap to nearest item on resize
+    // Event listener for closing modal
+    modalCloseBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (event) => {
+      // Close if clicked outside the modal content
+      if (event.target === modalOverlay) {
+        closeModal();
+      }
+    });
+    // Close modal with Escape key
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modalOverlay.classList.contains('is-visible')) {
+        closeModal();
+      }
     });
 
-    // Navigation buttons
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            currentIndex--;
-            updateCarousel();
+    // Intersection Observer for section titles animation
+    const sectionTitles = document.querySelectorAll('.section-title');
+    const options = {
+      root: null, // viewport
+      rootMargin: '0px',
+      threshold: 0.5 // 50% of the element must be visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          // Optionally, unobserve after animation to prevent re-triggering
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+
+    sectionTitles.forEach(title => {
+      observer.observe(title);
+    });
+
+    // Carousel functionality
+    const carousel = document.getElementById('graphicCarousel');
+    const prevBtn = document.querySelector('.carousel-nav-btn.prev');
+    const nextBtn = document.querySelector('.carousel-nav-btn.next');
+
+    if (carousel && prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({
+          left: -carousel.offsetWidth / 3, // Scroll by one third of the carousel width
+          behavior: 'smooth'
         });
+      });
+
+      nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({
+          left: carousel.offsetWidth / 3, // Scroll by one third of the carousel width
+          behavior: 'smooth'
+        });
+      });
     }
 
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            currentIndex++;
-            updateCarousel();
-        });
-    }
-
-    // Optional: Add swipe functionality for touch devices
-    let startX;
-    let isSwiping = false;
-
-    if (carouselWrapper) {
-        carouselWrapper.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            isSwiping = true;
-        });
-
-        carouselWrapper.addEventListener('touchmove', (e) => {
-            if (!isSwiping) return;
-            // Prevent vertical scrolling while swiping horizontally
-            // e.preventDefault(); // Commented out to allow vertical scroll if initial move is vertical
-        });
-
-        carouselWrapper.addEventListener('touchend', (e) => {
-            if (!isSwiping) return;
-            const endX = e.changedTouches[0].clientX;
-            const diff = startX - endX;
-
-            if (Math.abs(diff) > 50) { // A threshold for a valid swipe
-                if (diff > 0) { // Swiped left (show next)
-                    currentIndex++;
-                } else { // Swiped right (show prev)
-                    currentIndex--;
-                }
-                updateCarousel();
-            }
-            isSwiping = false;
-        });
-    }
   </script>
 </body>
 
