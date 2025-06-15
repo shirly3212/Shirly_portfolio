@@ -380,22 +380,44 @@
       position: relative; /* Needed for positioning the absolute title and background effect */
     }
 
-    /* NEW: Decorative background for side title */
+    /* Decorative background for side title */
     .side-title-bg-effect {
         position: absolute;
-        top: 0; /* Will be adjusted by media query */
-        left: 0; /* Will be adjusted by media query */
-        width: 100%; /* Default for mobile, will change for desktop */
-        height: 100%; /* Default for mobile, will change for desktop */
-        background: linear-gradient(to right, rgba(124,58,237,0.1), rgba(37,99,235,0.1), transparent); /* Horizontal gradient, more subtle */
-        filter: blur(60px); /* Apply blur */
-        border-radius: 1rem; /* Softer edges */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8); /* Initial state for animation */
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(124,58,237,0.4) 0%, rgba(37,99,235,0.4) 100%); /* Radial gradient with increased opacity */
+        filter: blur(120px); /* Increased blur */
+        border-radius: 50%; /* Circular blur */
         z-index: 0; /* Behind the title */
         display: none; /* Hidden by default, shown on desktop */
-        opacity: 0.3; /* Increased opacity */
+        opacity: 0.1; /* Adjusted initial opacity for animation */
+        animation: pulseLight 4s infinite ease-in-out alternate; /* Apply new animation */
     }
 
-    /* NEW: Abstract pattern overlay */
+    /* ANIMATION FOR FLASH EFFECT */
+    @keyframes pulseLight {
+        0% {
+            opacity: 0.1;
+            transform: translate(-50%, -50%) scale(0.8);
+            filter: blur(120px);
+        }
+        50% {
+            opacity: 0.65; /* Stronger flash (was 0.6) */
+            transform: translate(-50%, -50%) scale(1.1); /* Slightly bigger */
+            filter: blur(140px); /* More blur at peak */
+        }
+        100% {
+            opacity: 0.1;
+            transform: translate(-50%, -50%) scale(0.8);
+            filter: blur(120px);
+        }
+    }
+
+
+    /* Abstract pattern overlay */
     .abstract-pattern-overlay {
         position: absolute;
         top: 50%;
@@ -404,9 +426,9 @@
         width: 90%; /* Adjust size as needed */
         height: 90%; /* Adjust size as needed */
         /* Updated SVG: changed stroke color for better visibility */
-        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='diagonal-lines' x='0' y='0' width='10' height='10' patternUnits='userSpaceOnUse'%3E%3Cpath d='M-1 1 l2 -2 M0 10 l10 -10 M9 11 l2 -2' stroke='%234A5568' stroke-width='1' opacity='0.1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect x='0' y='0' width='100' height='100' fill='url(%23diagonal-lines)' /%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='diagonal-lines' x='0' y='0' width='10' height='10' patternUnits='userSpaceOnUse'%3E%3Cpath d='M-1 1 l2 -2 M0 10 l10 -10 M9 11 l2 -2' stroke='%23333333' stroke-width='1' opacity='0.1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect x='0' y='0' width='100' height='100' fill='url(%23diagonal-lines)' /%3E%3C/svg%3E");
         background-repeat: repeat;
-        opacity: 0.2; /* Increased opacity */
+        opacity: 0.15; /* Adjusted opacity to be a bit more noticeable (was 0.1) */
         pointer-events: none; /* Ensure it doesn't block clicks */
         z-index: 0; /* Behind the title, same as side-title-bg-effect */
         display: none; /* Hidden by default, shown on desktop */
@@ -532,14 +554,15 @@
 
     /* NEW: Styles for section titles when placed as "side titles" in desktop view */
     .section-title-side {
-        font-size: 2.5rem; /* Adjusted for horizontal placement */
+        font-size: 3.4rem; /* Adjusted for horizontal placement - INCREASED SIZE */
         font-weight: 700;
         background: linear-gradient(to right, #2563eb, #7c3aed);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
         color: transparent;
-        position: static; /* No longer absolute by default */
+        position: relative; /* Ensure it stays above brush stroke if needed */
+        z-index: 2; /* To be above brush stroke */
         white-space: normal; /* Allow text to wrap if it's very long */
         text-align: center; /* Align text to the center within its space */
         line-height: 1.2;
@@ -547,6 +570,23 @@
         padding-left: 0; /* Reset padding if any */
         margin-bottom: 0.5rem; /* Small margin below title */
         display: none; /* Hidden by default, shown on desktop */
+    }
+
+    /* NEW: Animated Brush Stroke for side titles */
+    .side-title-brush-stroke {
+        display: none; /* Hidden by default for mobile */
+    }
+
+    /* ANIMATION FOR BRUSH STROKE */
+    @keyframes drawBrush {
+        0% {
+            transform: scaleX(0);
+            opacity: 0;
+        }
+        100% {
+            transform: scaleX(1);
+            opacity: 1;
+        }
     }
 
     @media (min-width: 768px) {
@@ -588,9 +628,9 @@
         transform: translate(-50%, -50%); /* Use translate to perfectly center based on its own size */
         width: 100%; /* Keep it within its parent's width */
         height: 100%;
-        border-radius: 1rem;
-        background: linear-gradient(to right, rgba(124,58,237,0.1), rgba(37,99,235,0.1), transparent);
-        filter: blur(60px);
+        border-radius: 50%; /* Circular blur */
+        background: radial-gradient(circle, rgba(124,58,237,0.4) 0%, rgba(37,99,235,0.4) 100%); /* Radial gradient with increased opacity */
+        filter: blur(120px); /* Increased blur */
         z-index: 0;
       }
       .abstract-pattern-overlay {
@@ -619,6 +659,21 @@
           grid-template-columns: 1fr;
           margin: 0; /* Override auto margin from mobile */
       }
+
+      .side-title-brush-stroke {
+        display: block; /* Show on desktop */
+        width: 80%; /* Percentage of parent width */
+        max-width: 180px; /* Max width to visually match "Development" (was 250px) */
+        height: 4px; /* Thinner line (was 6px) */
+        background: linear-gradient(to right, #3b82f6, #7c3aed);
+        border-radius: 3px;
+        margin: 10px auto 0 auto; /* Centers it horizontally, adds space below title */
+        opacity: 0; /* Initially invisible */
+        transform: scaleX(0); /* Start with zero width via scale */
+        transform-origin: left center; /* Scale from left to right */
+        animation: drawBrush 1.5s ease-out forwards 0.8s; /* Animate over 1.5s, delayed by 0.8s */
+        z-index: 1; /* To be above background effects */
+    }
     }
 
 
@@ -871,8 +926,8 @@
         text-align: center; /* Ensure centered on mobile */
       }
       
-      /* Hide side title on mobile */
-      .section-title-side, .side-title-bg-effect, .abstract-pattern-overlay {
+      /* Hide side title and brush stroke on mobile */
+      .section-title-side, .side-title-bg-effect, .abstract-pattern-overlay, .side-title-brush-stroke {
         display: none;
       }
 
@@ -990,6 +1045,7 @@
             <div class="featured-projects-content">
                 <div class="left-section-header"> <!-- New wrapper for side title and effect -->
                     <h2 class="section-title-side">Web Development</h2>
+                    <div class="side-title-brush-stroke"></div> <!-- NEW ELEMENT HERE -->
                     <div class="side-title-bg-effect"></div>
                     <div class="abstract-pattern-overlay"></div> <!-- New abstract pattern -->
                 </div>
@@ -1079,6 +1135,7 @@
             <div class="featured-projects-content">
                 <div class="left-section-header"> <!-- New wrapper for side title and effect -->
                     <h2 class="section-title-side">Graphic Design</h2>
+                    <div class="side-title-brush-stroke"></div> <!-- NEW ELEMENT HERE -->
                     <div class="side-title-bg-effect"></div>
                     <div class="abstract-pattern-overlay"></div> <!-- New abstract pattern -->
                 </div>
@@ -1114,7 +1171,7 @@
                                 "id": "road-accidents",
                                 "title": "Road Accidents Data Visualization",
                                 "image": "../img/thumbnail2.jpg",
-                                "description": "A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information through clear and impactful graphics. This project showcases the ability to communicate sensitive data effectively and visually.",
+                                "description": "A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information through clear and impactful graphics. This relentlessly showcases the ability to communicate sensitive data effectively and visually.",
                                 "technologies": ["Adobe Photoshop", "Data Analysis", "Graphic Design"],
                                 "live_demo": "https://specialprojects.mako.co.il/Road_Accidents",
                                 "type": "graphic"
@@ -1411,6 +1468,10 @@
         aiInsightText.textContent = ''; // Clear any previous AI insight text
         aiInsightLoading.classList.add('hidden'); // Hide AI loading spinner
 
+        // Set default object-fit for modal image
+        modalProjectImage.classList.add('object-contain');
+        modalProjectImage.classList.remove('h-64', 'object-cover'); // Ensure these are removed by default
+
         if (isCarouselGalleryItem) {
             // If it's a carousel gallery item, hide text and buttons
             modalProjectTitle.classList.add('hidden');
@@ -1420,7 +1481,6 @@
             modalGithubRepoBtn.classList.add('hidden');
             aiInsightBtn.classList.add('hidden');
             // For carousel items, ensure image takes up full width and is contained (not cropped)
-            modalProjectImage.classList.remove('h-64', 'object-cover'); // Remove fixed height and cropping
             modalProjectImage.classList.add('w-full', 'h-auto', 'object-contain'); // Make it full width, auto height, contain
         } else {
             // For regular project cards, populate content
@@ -1460,7 +1520,6 @@
                 aiInsightBtn.classList.remove('hidden');
             }
             // Ensure regular project images also have appropriate sizing in modal
-            modalProjectImage.classList.remove('w-full', 'h-auto', 'object-contain');
             modalProjectImage.classList.add('h-64', 'object-cover'); // Restore fixed height and cropping for regular projects
         }
 
