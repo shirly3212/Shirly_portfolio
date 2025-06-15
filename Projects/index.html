@@ -640,7 +640,7 @@
 
       .right-projects-wrapper {
           display: grid; /* Changed to grid for finer control */
-          grid-template-columns: 1.5fr 1fr; /* Featured project is 1.5 times wider than side projects */
+          grid-template-columns: 1.2fr 1fr; /* Featured project is now 1.2 times wider than side projects (was 1.5fr) */
           grid-template-rows: repeat(2, minmax(min-content, 1fr)); /* Two rows, each occupying equal space, but at least content height */
           gap: 2rem; /* Gap between the two columns and rows */
           align-items: stretch; /* Stretch items to fill their grid cells */
@@ -1062,11 +1062,9 @@
         
         <!-- Design with Sub-menu -->
         <li class="relative group">
-            <a href="#" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700 block" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
+            <a href="graphic-all-projects.html" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700 block" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
             <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
-                <li><a href="design_projects_page.html#graphic-design-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-md">Graphic Projects</a></li>
-                <li><a href="graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View All Graphic Projects</a></li>
-                <li><a href="design_projects_page.html#web-development-section" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-b-md">Web Development</a></li>
+                <li><a href="graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Graphic Projects</a></li>
             </ul>
         </li>
         <li><a href="ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
