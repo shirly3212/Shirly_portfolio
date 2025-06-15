@@ -445,7 +445,7 @@
       flex-grow: 1; /* Allow it to take available space */
       /* No padding-bottom here, rely on content for spacing */
       transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover effect */
-      max-width: 400px; /* Narrower max width for side project card */
+      max-width: 400px; /* Narrower max width for side project cards */
       margin: 0 auto; /* Center individual cards when they are narrower than their container */
     }
 
@@ -533,6 +533,7 @@
     }
 
 
+    /* We will remove this grid definition for mobile to allow flex-direction column to work */
     .side-projects-grid {
       display: grid;
       grid-template-columns: 1fr; /* Stack on mobile */
@@ -640,25 +641,53 @@
       .right-projects-wrapper {
           display: grid; /* Changed to grid for finer control */
           grid-template-columns: 1.5fr 1fr; /* Featured project is 1.5 times wider than side projects */
-          gap: 2rem; /* Gap between the two columns */
-          align-items: flex-start; /* Align items to the top */
+          grid-template-rows: repeat(2, minmax(min-content, 1fr)); /* Two rows, each occupying equal space, but at least content height */
+          gap: 2rem; /* Gap between the two columns and rows */
+          align-items: stretch; /* Stretch items to fill their grid cells */
           flex-grow: 1; /* Allow this wrapper to take remaining space */
-          /* No longer need flex-direction or justify-content here as grid handles it */
       }
 
       .featured-project {
+          grid-row: 1 / span 2; /* Span both rows */
+          grid-column: 1; /* First column */
           max-width: none; /* Remove max-width to allow grid to control width */
           margin: 0; /* Remove auto margin */
+          height: auto; /* Allow height to be determined by grid */
+          min-height: 0; /* Override any potential default min-height */
       }
 
       .featured-project img {
-        height: 400px; /* Increased height for featured project image */
+        height: 350px; /* Maintain fixed height for featured image */
+        object-fit: cover;
+      }
+      
+      .featured-project-content {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
       }
 
+      /* Update side-projects-grid for grid layout */
       .side-projects-grid {
-          max-width: none; /* Remove max-width to allow grid to control width */
-          margin: 0; /* Remove auto margin */
+          display: flex; /* Use flex for internal stacking of side projects */
+          flex-direction: column;
+          gap: 2rem; /* Maintain gap between side projects */
+          grid-column: 2; /* Place in the second column of the main grid */
+          grid-row: 1 / span 2; /* Also span both rows, ensuring vertical alignment */
+          max-width: none;
+          margin: 0;
+          height: auto; /* Allow height to be determined by grid */
+          min-height: 0;
       }
+      
+      .project-card-item {
+        /* Reset any conflicting mobile styles for desktop */
+        width: auto;
+        height: auto; /* Allow height to be flexible */
+        flex-grow: 1; /* Each card takes equal space within side-projects-grid */
+      }
+
 
       .side-title-brush-stroke {
         display: block; /* Show on desktop */
@@ -964,6 +993,20 @@
         font-size: 0.95rem;
       }
 
+      /* Mobile: Ensure projects stack correctly without grid issues */
+      .right-projects-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem; /* Consistent gap */
+      }
+
+      .side-projects-grid {
+          display: flex; /* Ensure side projects remain a flex column on mobile */
+          flex-direction: column;
+          gap: 2rem;
+          width: 100%; /* Take full width on mobile */
+      }
+
       /* Carousel adjustments on mobile */
       .carousel-section {
           padding: 1rem; /* Less padding on mobile */
@@ -1080,6 +1123,7 @@
                         </div>
                     </div>
 
+                    <!-- Side Projects Grid Container -->
                     <div class="side-projects-grid">
                         <!-- Project Item 2: People Counter -->
                         <div class="project-card-item animate-on-scroll"
@@ -1171,7 +1215,7 @@
                         </div>
                     </div>
 
-                    <!-- Side Graphic Projects -->
+                    <!-- Side Graphic Projects Grid Container -->
                     <div class="side-projects-grid">
                         <!-- Graphic Project Item 2: Road Accidents -->
                         <div class="project-card-item animate-on-scroll"
@@ -1600,7 +1644,8 @@
             }
             try {
                 projectData = JSON.parse(projectDataString);
-            } catch (e) {
+            }
+            catch (e) {
                 console.error("Error parsing JSON for project data:", projectDataString, e);
                 return;
             }
