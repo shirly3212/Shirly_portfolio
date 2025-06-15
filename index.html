@@ -344,6 +344,44 @@
             object-fit: cover; /* Cover the area, cropping if necessary, to avoid gaps */
             z-index: -1; /* Behind content but in front of particles and other background elements */
         }
+
+        /* Header & Nav specific styles for dropdown */
+        nav ul li.group { /* Parent li for dropdown */
+            position: relative;
+        }
+
+        nav ul li.group ul { /* The sub-menu itself */
+            position: absolute;
+            top: 100%; /* Position right below parent link */
+            left: 0;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            min-width: 100%;
+            z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            pointer-events: none; /* Crucial: allows clicks *through* when hidden */
+            display: block; /* Ensure it's a block for positioning, visibility handled by opacity */
+        }
+
+        /* Style for when the dropdown is explicitly shown by JS click on desktop */
+        nav ul li.group ul.show-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto; /* Allows clicks on sub-menu items when visible */
+        }
+
+        /* Style for when the dropdown is shown by CSS hover on desktop */
+        nav ul li.group:hover ul {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
     </style>
 </head>
 
@@ -363,8 +401,15 @@
             </button>
             <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
                 <li><a href="#home-section" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700">Home</a></li>
-                <li><a href="Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Design</a></li>
-                <li><a href="web/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Web</a></li>
+                
+                <!-- Design with Sub-menu -->
+                <li class="relative group">
+                    <a href="Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
+                    <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
+                        <li><a href="Projects/graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Graphic Projects</a></li>
+                    </ul>
+                </li>
+                <li><a href="Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Video</a></li>
                 <li><a href="ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
                 <li><a href="#contact-section" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
             </ul>
@@ -592,28 +637,84 @@
         // --- Mobile Navigation Toggle ---
         document.addEventListener("DOMContentLoaded", function () {
             const nav = document.querySelector("nav"); // Select the nav element
-            const navUl = document.getElementById("main-nav-menu"); // Select the ul by its ID
-
-            // Check if nav and navUl exist
-            if (!nav || !navUl) {
-                console.warn("Navigation elements (nav or nav ul) not found. Mobile toggle may not work.");
-                return;
-            }
-
+            const mainNavUl = document.getElementById("main-nav-menu"); // Select the ul by its ID
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const designMenuToggle = document.getElementById('design-menu-toggle'); // The "Design" link
+            const designSubMenu = designMenuToggle ? designMenuToggle.nextElementSibling : null; // The ul after "Design" link
+
+            // Function to close all menus (main and sub)
+            function closeAllMenus() {
+                if (mainNavUl) {
+                    mainNavUl.classList.remove('active'); // Close main mobile menu
+                }
+                if (designSubMenu) {
+                    designSubMenu.classList.remove('active'); // Close mobile dropdown
+                    designSubMenu.classList.remove('show-dropdown'); // Close desktop click dropdown
+                    designMenuToggle.querySelector('i').classList.remove('rotate-180'); // Reset chevron
+                }
+            }
 
             if (mobileMenuToggle) {
-                mobileMenuToggle.addEventListener('click', () => {
-                    navUl.classList.toggle('active');
-                });
-
-                // Close menu when a link is clicked (optional, but good for UX)
-                navUl.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navUl.classList.remove('active');
-                    });
+                mobileMenuToggle.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Prevent immediate closing due to outer click listener
+                    if (mainNavUl) {
+                        mainNavUl.classList.toggle('active');
+                        if (!mainNavUl.classList.contains('active')) { // If closing main menu
+                            closeAllMenus(); // Close everything if hamburger is closing the main menu
+                        }
+                    }
                 });
             }
+
+            // Design sub-menu toggle (for mobile and click scenarios on desktop)
+            if (designMenuToggle && designSubMenu) {
+                designMenuToggle.addEventListener('click', (event) => {
+                    event.preventDefault(); // ALWAYS prevent default link behavior for this specific toggle button
+                    event.stopPropagation(); // Prevent immediate closing due to outer click listener
+
+                    if (window.innerWidth < 768) { // Mobile behavior: toggle 'active' class
+                        designSubMenu.classList.toggle('active');
+                    } else { // Desktop behavior: toggle 'show-dropdown' class
+                        designSubMenu.classList.toggle('show-dropdown');
+                    }
+                    designMenuToggle.querySelector('i').classList.toggle('rotate-180'); // Rotate chevron
+                });
+
+                // Close sub-menu if clicking outside on desktop
+                document.addEventListener('click', (event) => {
+                    // Only apply this logic on desktop sizes
+                    if (window.innerWidth >= 768) {
+                        const isClickInsideDesignToggle = designMenuToggle.contains(event.target);
+                        const isClickInsideDesignSubMenu = designSubMenu.contains(event.target);
+
+                        // If the dropdown is currently shown by JS (show-dropdown)
+                        // and the click was outside both the toggle button and the dropdown itself
+                        if (designSubMenu.classList.contains('show-dropdown') && !isClickInsideDesignToggle && !isClickInsideDesignSubMenu) {
+                            designSubMenu.classList.remove('show-dropdown');
+                            designMenuToggle.querySelector('i').classList.remove('rotate-180');
+                        }
+                    }
+                });
+
+                // Close all menus when a link inside main nav or sub-menu is clicked
+                if (mainNavUl) {
+                    mainNavUl.querySelectorAll('a').forEach(link => {
+                        link.addEventListener('click', (event) => {
+                            // If it's a sub-menu item or a non-group main nav link, close all menus
+                            if (link.closest('.group ul') || (!link.closest('.group') && link.href && link.href !== '#')) {
+                                closeAllMenus();
+                            }
+                        });
+                    });
+                }
+            }
+
+            // Close all menus if resized to desktop view (from mobile)
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) {
+                    closeAllMenus();
+                }
+            });
         });
     </script>
 </body>
