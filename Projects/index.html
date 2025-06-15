@@ -377,7 +377,23 @@
       -webkit-backdrop-filter: blur(5px);
       /* For vertical alignment of featured and side projects */
       align-items: stretch; /* Stretch children to fill height of tallest sibling */
+      position: relative; /* Needed for positioning the absolute title and background effect */
     }
+
+    /* NEW: Decorative background for side title */
+    .side-title-bg-effect {
+        position: absolute;
+        top: 0; /* Will be adjusted by media query */
+        left: 0; /* Will be adjusted by media query */
+        width: 100%; /* Default for mobile, will change for desktop */
+        height: 100%; /* Default for mobile, will change for desktop */
+        background: linear-gradient(to right, rgba(124,58,237,0.1), rgba(37,99,235,0.1), transparent); /* Horizontal gradient, more subtle */
+        filter: blur(60px); /* Apply blur */
+        border-radius: 1rem; /* Softer edges */
+        z-index: 0; /* Behind the title */
+        display: none; /* Hidden by default, shown on desktop */
+    }
+
 
     .featured-project {
       background-color: #ffffff;
@@ -484,61 +500,101 @@
       flex-grow: 1; /* Allow side projects grid to grow and take available space */
     }
 
+    /* NEW: Styles for the left side containing the title and its effect */
+    .left-section-header {
+        display: none; /* Hidden by default (mobile) */
+    }
+
+    /* NEW: Styles for the wrapper containing all projects on the right */
+    .right-projects-wrapper {
+        display: flex;
+        flex-direction: column; /* Stacks featured and side projects on mobile */
+        gap: 3rem; /* Spacing between featured and side projects */
+    }
+
     /* NEW: Styles for section titles when placed as "side titles" in desktop view */
     .section-title-side {
-        font-size: 3rem; /* Same large font size */
+        font-size: 2.5rem; /* Adjusted for horizontal placement */
         font-weight: 700;
         background: linear-gradient(to right, #2563eb, #7c3aed);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
         color: transparent;
-        position: absolute; /* Position absolutely within its relative container */
-        top: 50%; /* Center vertically */
-        left: 0; /* Align to the left of its container */
-        transform: translateY(-50%) rotate(-90deg); /* Rotate 90 degrees counter-clockwise */
-        transform-origin: left center; /* Rotate around its left-center point */
-        white-space: nowrap; /* Keep text on one line */
-        z-index: 1; /* Ensure it's above other content if overlapping */
-        /* Make it visible for desktop only */
-        display: none;
+        position: static; /* No longer absolute by default */
+        white-space: normal; /* Allow text to wrap if it's very long */
+        text-align: center; /* Align text to the center within its space */
+        line-height: 1.2;
+        padding-top: 0; /* Reset padding if any */
+        padding-left: 0; /* Reset padding if any */
+        margin-bottom: 0.5rem; /* Small margin below title */
+        display: none; /* Hidden by default, shown on desktop */
     }
 
     @media (min-width: 768px) {
       .featured-project-container .section-header {
-        /* Remove original centering for the section header, as title moves inside */
-        display: block; /* Revert to block to not interfere with flex */
-        margin-bottom: 0; /* No external margin when title is repositioned */
+        /* Hide the original section-header which contains the mobile title */
+        display: none;
       }
       .featured-project-container .section-title {
         /* Hide the original section title in desktop view */
         display: none;
       }
       .featured-projects-content {
-        flex-direction: row; /* Featured project on right, side projects on left */
-        justify-content: flex-start; /* Align content to the start */
-        align-items: flex-start; /* Align items to the top to prevent stretching */
-        position: relative; /* Needed for positioning the absolute title */
-        padding-left: 100px; /* Make space for the vertical title */
+        display: grid; /* Use grid for side-by-side title and projects */
+        grid-template-columns: 250px 1fr; /* Adjusted for more space for the title */
+        gap: 2rem; /* Gap between the left title area and the right projects area */
+        padding: 2rem; /* Overall padding for the content area */
+        align-items: flex-start; /* Align content to the top of the grid rows */
       }
 
-      /* Show the side title for desktop */
+      /* Show the side title and its background for desktop */
+      .left-section-header {
+        display: flex; /* Show the left container */
+        flex-direction: column; /* Stack title and effect vertically */
+        justify-content: center; /* Center vertically within the container */
+        align-items: center; /* Center horizontally within the container for text */
+        position: relative; /* For absolute positioning of its background effect */
+        padding-top: 0; /* Reset this, as justify-content will handle vertical centering */
+        padding-left: 0; /* Reset this, as align-items will handle horizontal centering */
+      }
       .section-title-side {
-        display: block; /* Show for desktop */
+        display: block; /* Show the horizontal title on desktop */
+      }
+      .side-title-bg-effect {
+        display: block; /* Show the background effect on desktop */
+        position: absolute;
+        top: 50%; /* Center vertically within .left-section-header */
+        left: 50%; /* Center horizontally within .left-section-header */
+        transform: translate(-50%, -50%); /* Use translate to perfectly center based on its own size */
+        width: 100%; /* Keep it within its parent's width */
+        height: 100%;
+        border-radius: 1rem;
+        background: linear-gradient(to right, rgba(124,58,237,0.1), rgba(37,99,235,0.1), transparent);
+        filter: blur(60px);
+        z-index: 0;
+      }
+
+      .right-projects-wrapper {
+          flex-direction: row; /* For desktop, place featured and side grid side by side */
+          justify-content: center; /* Center them within the right column */
+          align-items: flex-start; /* Align them to the top */
       }
 
       .featured-project {
-        /* Adjusted width for desktop to be narrower */
-        width: 45%; /* Adjusted width for desktop */
-        max-width: 400px; /* New max width for featured project */
-        margin-right: 1.5rem; /* Space between featured and side projects */
+          width: 45%; /* Keep existing width */
+          max-width: 400px;
+          margin-right: 1.5rem; /* Keep space */
+          margin-left: 0; /* Override auto margin from mobile */
+          margin-top: 0;
+          margin-bottom: 0;
       }
 
       .side-projects-grid {
-        /* Adjusted width for desktop to be narrower */
-        width: 45%; /* Adjusted width for desktop */
-        max-width: 300px; /* New max width for side project grid */
-        grid-template-columns: 1fr; /* Stack side projects vertically even on desktop */
+          width: 45%; /* Keep existing width */
+          max-width: 300px;
+          grid-template-columns: 1fr;
+          margin: 0; /* Override auto margin from mobile */
       }
     }
 
@@ -793,7 +849,7 @@
       }
       
       /* Hide side title on mobile */
-      .section-title-side {
+      .section-title-side, .side-title-bg-effect {
         display: none;
       }
 
@@ -909,72 +965,76 @@
                 <h2 class="section-title">Web Development</h2>
             </div>
             <div class="featured-projects-content">
-                <!-- New vertical title for desktop -->
-                <h2 class="section-title-side">Web Development</h2>
-                <!-- Featured Project (TRAVELLY) -->
-                <div class="featured-project animate-on-scroll"
-                    data-project='{
-                        "id": "travelly",
-                        "title": "TRAVELLY - Travel Agency Website",
-                        "image": "../img/TRAVEELY_ME.png",
-                        "description": "This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.",
-                        "technologies": ["HTML5", "CSS3", "JavaScript"],
-                        "live_demo": "https://shirly3212.github.io/TRAVELLY/",
-                        "github_repo": "https://shirly3212.github.io/TRAVELLY",
-                        "type": "web"
-                    }'>
-                    <div class="featured-project-image-wrapper">
-                        <img src="../img/TRAVEELY_ME.png" alt="Travelly Website" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                        <h4 class="featured-project-title-overlay">TRAVELLY - Travel Agency Website</h4>
-                    </div>
-                    <div class="featured-project-content">
-                        <p>This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.</p>
-                        <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
-                    </div>
+                <div class="left-section-header"> <!-- New wrapper for side title and effect -->
+                    <h2 class="section-title-side">Web Development</h2>
+                    <div class="side-title-bg-effect"></div>
                 </div>
-
-                <div class="side-projects-grid">
-                    <!-- Project Item 2: People Counter -->
-                    <div class="project-card-item animate-on-scroll"
+                <div class="right-projects-wrapper"> <!-- New wrapper for project cards -->
+                    <!-- Featured Project (TRAVELLY) -->
+                    <div class="featured-project animate-on-scroll"
                         data-project='{
-                            "id": "people-counter",
-                            "title": "People Counter - Simple Counter App",
-                            "image": "../img/PEOPLE_COUNTER.png",
-                            "description": "A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.",
+                            "id": "travelly",
+                            "title": "TRAVELLY - Travel Agency Website",
+                            "image": "../img/TRAVEELY_ME.png",
+                            "description": "This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.",
                             "technologies": ["HTML5", "CSS3", "JavaScript"],
-                            "live_demo": "https://shirly3212.github.io/People-Counter/",
-                            "github_repo": "https://shirly3212.github.io/People-Counter",
+                            "live_demo": "https://shirly3212.github.io/TRAVELLY/",
+                            "github_repo": "https://shirly3212.github.io/TRAVELLY",
                             "type": "web"
                         }'>
-                        <div class="project-card-item-image-wrapper">
-                            <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                            <h4 class="project-card-item-title-overlay">People Counter - Simple Counter App</h4>
+                        <div class="featured-project-image-wrapper">
+                            <img src="../img/TRAVEELY_ME.png" alt="Travelly Website" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                            <h4 class="featured-project-title-overlay">TRAVELLY - Travel Agency Website</h4>
                         </div>
-                        <div class="project-card-item-content">
-                            <p>A straightforward web application designed to count people entering or exiting an area.</p>
+                        <div class="featured-project-content">
+                            <p>This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.</p>
                             <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
                         </div>
                     </div>
 
-                    <!-- Project Item 3: Photographer -->
-                    <div class="project-card-item animate-on-scroll"
-                        data-project='{
-                            "id": "photographer",
-                            "title": "Photographer - Visual Portfolio",
-                            "image": "../img/Photographer_me.png",
-                            "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information.",
-                            "technologies": ["HTML5", "CSS3"],
-                            "live_demo": "https://shirly3212.github.io/Photographer/",
-                            "github_repo": "https://shirly3212.github.io/Photographer",
-                            "type": "web"
-                        }'>
-                        <div class="project-card-item-image-wrapper">
-                            <img src="../img/Photographer_me.png" alt="Photographer Portfolio" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                            <h4 class="project-card-item-title-overlay">Photographer - Visual Portfolio</h4>
+                    <div class="side-projects-grid">
+                        <!-- Project Item 2: People Counter -->
+                        <div class="project-card-item animate-on-scroll"
+                            data-project='{
+                                "id": "people-counter",
+                                "title": "People Counter - Simple Counter App",
+                                "image": "../img/PEOPLE_COUNTER.png",
+                                "description": "A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface for basic tracking. This project demonstrates fundamental front-end development skills and event handling.",
+                                "technologies": ["HTML5", "CSS3", "JavaScript"],
+                                "live_demo": "https://shirly3212.github.io/People-Counter/",
+                                "github_repo": "https://shirly3212.github.io/People-Counter",
+                                "type": "web"
+                            }'>
+                            <div class="project-card-item-image-wrapper">
+                                <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                                <h4 class="project-card-item-title-overlay">People Counter - Simple Counter App</h4>
+                            </div>
+                            <div class="project-card-item-content">
+                                <p>A straightforward web application designed to count people entering or exiting an area.</p>
+                                <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
+                            </div>
                         </div>
-                        <div class="project-card-item-content">
-                            <p>A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information.</p>
-                            <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
+
+                        <!-- Project Item 3: Photographer -->
+                        <div class="project-card-item animate-on-scroll"
+                            data-project='{
+                                "id": "photographer",
+                                "title": "Photographer - Visual Portfolio",
+                                "image": "../img/Photographer_me.png",
+                                "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information.",
+                                "technologies": ["HTML5", "CSS3"],
+                                "live_demo": "https://shirly3212.github.io/Photographer/",
+                                "github_repo": "https://shirly3212.github.io/Photographer",
+                                "type": "web"
+                            }'>
+                            <div class="project-card-item-image-wrapper">
+                                <img src="../img/Photographer_me.png" alt="Photographer Portfolio" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                                <h4 class="project-card-item-title-overlay">Photographer - Visual Portfolio</h4>
+                            </div>
+                            <div class="project-card-item-content">
+                                <p>A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout, image galleries, and contact information.</p>
+                                <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -993,76 +1053,80 @@
                 <h2 class="section-title">Graphic Design</h2>
             </div>
             <div class="featured-projects-content">
-                <!-- New vertical title for desktop -->
-                <h2 class="section-title-side">Graphic Design</h2>
-                <!-- Featured Graphic Project (World Cup 22 Infographic) -->
-                <div class="featured-project animate-on-scroll"
-                    data-project='{
-                        "id": "worldcup22",
-                        "title": "World Cup 22 Infographic",
-                        "image": "../img/thumbnail1.jpg",
-                        "description": "An engaging infographic designed for the 2022 World Cup, featuring key statistics and visual highlights of the tournament. This project demonstrates data visualization and compelling graphic storytelling, transforming complex data into a visually appealing and easy-to-understand format for a broad audience.",
-                        "technologies": ["Adobe Illustrator", "Infographics", "Data Visualization"],
-                        "live_demo": "https://makospecial.co.il/worldcup22",
-                        "type": "graphic"
-                    }'>
-                    <div class="featured-project-image-wrapper">
-                        <img src="../img/thumbnail1.jpg" alt="World Cup 22 Infographic" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                        <h4 class="featured-project-title-overlay">World Cup 22 Infographic</h4>
-                    </div>
-                    <div class="featured-project-content">
-                        <p>An engaging infographic designed for the 2022 World Cup, featuring key statistics and visual highlights of the tournament, transforming complex data into a visually appealing and easy-to-understand format.</p>
-                        <button class="view-project-btn">
-                            View Project <i class="fas fa-external-link-alt ml-2"></i>
-                        </button>
-                    </div>
+                <div class="left-section-header"> <!-- New wrapper for side title and effect -->
+                    <h2 class="section-title-side">Graphic Design</h2>
+                    <div class="side-title-bg-effect"></div>
                 </div>
-
-                <!-- Side Graphic Projects -->
-                <div class="side-projects-grid">
-                    <!-- Graphic Project Item 2: Road Accidents -->
-                    <div class="project-card-item animate-on-scroll"
+                <div class="right-projects-wrapper"> <!-- New wrapper for project cards -->
+                    <!-- Featured Graphic Project (World Cup 22 Infographic) -->
+                    <div class="featured-project animate-on-scroll"
                         data-project='{
-                            "id": "road-accidents",
-                            "title": "Road Accidents Data Visualization",
-                            "image": "../img/thumbnail2.jpg",
-                            "description": "A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information through clear and impactful graphics. This project showcases the ability to communicate sensitive data effectively and visually.",
-                            "technologies": ["Adobe Photoshop", "Data Analysis", "Graphic Design"],
-                            "live_demo": "https://specialprojects.mako.co.il/Road_Accidents",
+                            "id": "worldcup22",
+                            "title": "World Cup 22 Infographic",
+                            "image": "../img/thumbnail1.jpg",
+                            "description": "An engaging infographic designed for the 2022 World Cup, featuring key statistics and visual highlights of the tournament. This project demonstrates data visualization and compelling graphic storytelling, transforming complex data into a visually appealing and easy-to-understand format for a broad audience.",
+                            "technologies": ["Adobe Illustrator", "Infographics", "Data Visualization"],
+                            "live_demo": "https://makospecial.co.il/worldcup22",
                             "type": "graphic"
                         }'>
-                        <div class="project-card-item-image-wrapper">
-                            <img src="../img/thumbnail2.jpg" alt="Road Accidents Data Visualization" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                            <h4 class="project-card-item-title-overlay">Road Accidents Data Visualization</h4>
+                        <div class="featured-project-image-wrapper">
+                            <img src="../img/thumbnail1.jpg" alt="World Cup 22 Infographic" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                            <h4 class="featured-project-title-overlay">World Cup 22 Infographic</h4>
                         </div>
-                        <div class="project-card-item-content">
-                            <p>A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information through clear and impactful graphics.</p>
+                        <div class="featured-project-content">
+                            <p>An engaging infographic designed for the 2022 World Cup, featuring key statistics and visual highlights of the tournament, transforming complex data into a visually appealing and easy-to-understand format.</p>
                             <button class="view-project-btn">
                                 View Project <i class="fas fa-external-link-alt ml-2"></i>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Graphic Project Item 3: Climate Change -->
-                    <div class="project-card-item animate-on-scroll"
-                        data-project='{
-                            "id": "climate-change",
-                            "title": "Climate Change Awareness Graphics",
-                            "image": "../img/thumbnail3.jpg",
-                            "description": "Graphics created to raise awareness about climate change, translating complex environmental data into easily understandable and visually compelling messages. This project emphasizes impactful visual communication for social awareness.",
-                            "technologies": ["Adobe InDesign", "Illustrations", "Environmental Design"],
-                            "live_demo": "https://makospecial.co.il/climate_change",
-                            "type": "graphic"
-                        }'>
-                        <div class="project-card-item-image-wrapper">
-                            <img src="../img/thumbnail3.jpg" alt="Climate Change Awareness Graphics" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                            <h4 class="project-card-item-title-overlay">Climate Change Awareness Graphics</h4>
+                    <!-- Side Graphic Projects -->
+                    <div class="side-projects-grid">
+                        <!-- Graphic Project Item 2: Road Accidents -->
+                        <div class="project-card-item animate-on-scroll"
+                            data-project='{
+                                "id": "road-accidents",
+                                "title": "Road Accidents Data Visualization",
+                                "image": "../img/thumbnail2.jpg",
+                                "description": "A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information through clear and impactful graphics. This project showcases the ability to communicate sensitive data effectively and visually.",
+                                "technologies": ["Adobe Photoshop", "Data Analysis", "Graphic Design"],
+                                "live_demo": "https://specialprojects.mako.co.il/Road_Accidents",
+                                "type": "graphic"
+                            }'>
+                            <div class="project-card-item-image-wrapper">
+                                <img src="../img/thumbnail2.jpg" alt="Road Accidents Data Visualization" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                                <h4 class="project-card-item-title-overlay">Road Accidents Data Visualization</h4>
+                            </div>
+                            <div class="project-card-item-content">
+                                <p>A comprehensive data visualization project focusing on road accident statistics, designed to highlight critical safety information through clear and impactful graphics.</p>
+                                <button class="view-project-btn">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="project-card-item-content">
-                            <p>Graphics created to raise awareness about climate change, translating complex environmental data into easily understandable and visually compelling messages.</p>
-                            <button class="view-project-btn">
-                                View Project <i class="fas fa-external-link-alt ml-2"></i>
-                            </button>
+
+                        <!-- Graphic Project Item 3: Climate Change -->
+                        <div class="project-card-item animate-on-scroll"
+                            data-project='{
+                                "id": "climate-change",
+                                "title": "Climate Change Awareness Graphics",
+                                "image": "../img/thumbnail3.jpg",
+                                "description": "Graphics created to raise awareness about climate change, translating complex environmental data into easily understandable and visually compelling messages. This project emphasizes impactful visual communication for social awareness.",
+                                "technologies": ["Adobe InDesign", "Illustrations", "Environmental Design"],
+                                "live_demo": "https://makospecial.co.il/climate_change",
+                                "type": "graphic"
+                            }'>
+                            <div class="project-card-item-image-wrapper">
+                                <img src="../img/thumbnail3.jpg" alt="Climate Change Awareness Graphics" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                                <h4 class="project-card-item-title-overlay">Climate Change Awareness Graphics</h4>
+                            </div>
+                            <div class="project-card-item-content">
+                                <p>Graphics created to raise awareness about climate change, translating complex environmental data into easily understandable and visually compelling messages.</p>
+                                <button class="view-project-btn">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
