@@ -445,7 +445,7 @@
       flex-grow: 1; /* Allow it to take available space */
       /* No padding-bottom here, rely on content for spacing */
       transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover effect */
-      max-width: 400px; /* Narrower max width for featured project card */
+      max-width: 400px; /* Narrower max width for side project card */
       margin: 0 auto; /* Center individual cards when they are narrower than their container */
     }
 
@@ -638,26 +638,26 @@
       }
 
       .right-projects-wrapper {
-          flex-direction: row; /* For desktop, place featured and side grid side by side */
-          justify-content: center; /* Center them within the right column */
-          align-items: flex-start; /* Align them to the top */
+          display: grid; /* Changed to grid for finer control */
+          grid-template-columns: 1.5fr 1fr; /* Featured project is 1.5 times wider than side projects */
+          gap: 2rem; /* Gap between the two columns */
+          align-items: flex-start; /* Align items to the top */
           flex-grow: 1; /* Allow this wrapper to take remaining space */
+          /* No longer need flex-direction or justify-content here as grid handles it */
       }
 
       .featured-project {
-          width: 45%; /* Keep existing width */
-          max-width: 400px;
-          margin-right: 1.5rem; /* Keep space */
-          margin-left: 0; /* Override auto margin from mobile */
-          margin-top: 0;
-          margin-bottom: 0;
+          max-width: none; /* Remove max-width to allow grid to control width */
+          margin: 0; /* Remove auto margin */
+      }
+
+      .featured-project img {
+        height: 400px; /* Increased height for featured project image */
       }
 
       .side-projects-grid {
-          width: 45%; /* Keep existing width */
-          max-width: 300px;
-          grid-template-columns: 1fr;
-          margin: 0; /* Override auto margin from mobile */
+          max-width: none; /* Remove max-width to allow grid to control width */
+          margin: 0; /* Remove auto margin */
       }
 
       .side-title-brush-stroke {
@@ -701,12 +701,12 @@
         border-radius: 1rem;
         margin: 1rem 0;
         align-items: stretch;
-        min-height: 300px; /* Increased min-height for carousel */
+        min-height: 400px; /* Increased min-height for carousel */
     }
 
     .carousel-item {
-        flex: 0 0 250px; /* Fixed width for carousel items */
-        min-width: 250px; /* Ensure minimum width */
+        flex: 0 0 350px; /* Fixed width for carousel items, increased size */
+        min-width: 350px; /* Ensure minimum width, increased size */
         margin: 0 10px; /* Fixed margin between items */
         scroll-snap-align: center;
         padding: 0.75rem;
@@ -736,7 +736,7 @@
 
     .carousel-item img {
         width: 100%;
-        height: 100%; /* Make image take full height of its container */
+        height: 350px; /* Make image take full height of its container, increased size */
         object-fit: contain; /* Ensure full image is visible */
         border-radius: 0.75rem;
     }
@@ -971,16 +971,16 @@
           border-radius: 1rem; /* Smaller border-radius on mobile */
       }
       .carousel-wrapper {
-          min-height: 200px; /* Smaller min-height for carousel on mobile */
+          min-height: 250px; /* Smaller min-height for carousel on mobile, increased from 200px */
       }
       .carousel-item {
-          flex: 0 0 calc(80% - 1rem); /* Show ~1.2 items with gap */
+          flex: 0 0 calc(90% - 1rem); /* Show ~1.2 items with gap */
           margin: 0 0.5rem; /* Half of the gap on each side */
           padding: 0.5rem; /* Less padding inside carousel items */
           border-radius: 0.75rem; /* Smaller border-radius on mobile */
       }
       .carousel-item img {
-          max-height: 250px; /* Smaller max height for carousel images on mobile */
+          height: 200px; /* Fixed height for carousel images on mobile */
       }
       .carousel-nav-btn {
           width: 40px;
@@ -1316,92 +1316,92 @@
                  data-project='{
                    "id": "gallery-item-7",
                    "title": "Israel Defense Forces Project",
-                   "image": "WhatsApp Image 2025-04-03 at 22.42.53.jpg",
+                   "image": "../img/WhatsApp Image 2025-04-03 at 22.42.53.jpg",
                    "description": "Graphic design related to the Israel Defense Forces, focusing on a report of an event.",
                    "technologies": ["Graphic Design", "Social Media"],
-                   "live_demo": "WhatsApp Image 2025-04-03 at 22.42.53.jpg",
+                   "live_demo": "../img/WhatsApp Image 2025-04-03 at 22.42.53.jpg",
                    "type": "graphic",
                    "is_carousel_item": true
                  }'>
-                <img src="WhatsApp Image 2025-04-03 at 22.42.53.jpg" alt="Israel Defense Forces Project" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+                <img src="../img/WhatsApp Image 2025-04-03 at 22.42.53.jpg" alt="Israel Defense Forces Project" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
             </div>
             <div class="carousel-item"
                  data-project='{
                    "id": "gallery-item-8",
                    "title": "Political Leaders Graphic",
-                   "image": "WhatsApp Image 2025-04-03 at 23.04.33.jpeg",
+                   "image": "../img/WhatsApp Image 2025-04-03 at 23.04.33.jpeg",
                    "description": "Graphic featuring political leaders, likely for news or commentary.",
                    "technologies": ["Graphic Design", "Political Commentary"],
-                   "live_demo": "WhatsApp Image 2025-04-03 at 23.04.33.jpeg",
+                   "live_demo": "../img/WhatsApp Image 2025-04-03 at 23.04.33.jpeg",
                    "type": "graphic",
                    "is_carousel_item": true
                  }'>
-                <img src="WhatsApp Image 2025-04-03 at 23.04.33.jpeg" alt="Political Leaders Graphic" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+                <img src="../img/WhatsApp Image 2025-04-03 at 23.04.33.jpeg" alt="Political Leaders Graphic" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
             </div>
             <div class="carousel-item"
                  data-project='{
                    "id": "gallery-item-9",
                    "title": "Olympic Games 2024 Candidates",
-                   "image": "WhatsApp Image 2025-04-03 at 23.04.44.jpeg",
+                   "image": "../img/WhatsApp Image 2025-04-03 at 23.04.44.jpeg",
                    "description": "Graphic presenting candidates for the 2024 Olympic Games, showcasing athletic profiles.",
                    "technologies": ["Graphic Design", "Sports Marketing"],
-                   "live_demo": "WhatsApp Image 2025-04-03 at 23.04.44.jpeg",
+                   "live_demo": "../img/WhatsApp Image 2025-04-03 at 23.04.44.jpeg",
                    "type": "graphic",
                    "is_carousel_item": true
                  }'>
-                <img src="WhatsApp Image 2025-04-03 at 23.04.44.jpeg" alt="Olympic Games 2024 Candidates" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+                <img src="../img/WhatsApp Image 2025-04-03 at 23.04.44.jpeg" alt="Olympic Games 2024 Candidates" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
             </div>
             <div class="carousel-item"
                  data-project='{
                    "id": "gallery-item-10",
                    "title": "Military Personnel Graphic",
-                   "image": "WhatsApp Image 2025-04-03 at 23.04.55.jpeg",
+                   "image": "../img/WhatsApp Image 2025-04-03 at 23.04.55.jpeg",
                    "description": "Compelling graphic featuring military personnel, possibly for recruitment or awareness campaigns.",
                    "technologies": ["Graphic Design", "Public Awareness"],
-                   "live_demo": "WhatsApp Image 2025-04-03 at 23.04.55.jpeg",
+                   "live_demo": "../img/WhatsApp Image 2025-04-03 at 23.04.55.jpeg",
                    "type": "graphic",
                    "is_carousel_item": true
                  }'>
-                <img src="WhatsApp Image 2025-04-03 at 23.04.55.jpeg" alt="Military Personnel Graphic" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+                <img src="../img/WhatsApp Image 2025-04-03 at 23.04.55.jpeg" alt="Military Personnel Graphic" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
             </div>
             <div class="carousel-item"
                  data-project='{
                    "id": "gallery-item-11",
                    "title": "Movie Night Promotion",
-                   "image": "Screenshot_1.jpg",
+                   "image": "../img/Screenshot_1.jpg",
                    "description": "Vibrant promotional graphic for a movie night, incorporating neon elements and cinema motifs.",
                    "technologies": ["Graphic Design", "Promotional Material"],
-                   "live_demo": "Screenshot_1.jpg",
+                   "live_demo": "../img/Screenshot_1.jpg",
                    "type": "graphic",
                    "is_carousel_item": true
                  }'>
-                <img src="Screenshot_1.jpg" alt="Movie Night Promotion" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+                <img src="../img/Screenshot_1.jpg" alt="Movie Night Promotion" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
             </div>
             <div class="carousel-item"
                  data-project='{
                    "id": "gallery-item-12",
                    "title": "Interview Promotion Graphic",
-                   "image": "WhatsApp Image 2025-04-03 at 23.05.05.jpeg",
+                   "image": "../img/WhatsApp Image 2025-04-03 at 23.05.05.jpeg",
                    "description": "Graphic to promote an interview or news segment, featuring a speaker and thematic background.",
                    "technologies": ["Graphic Design", "Media Promotion"],
-                   "live_demo": "WhatsApp Image 2025-04-03 at 23.05.05.jpeg",
+                   "live_demo": "../img/WhatsApp Image 2025-04-03 at 23.05.05.jpeg",
                    "type": "graphic",
                    "is_carousel_item": true
                  }'>
-                <img src="WhatsApp Image 2025-04-03 at 23.05.05.jpeg" alt="Interview Promotion Graphic" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+                <img src="../img/WhatsApp Image 2025-04-03 at 23.05.05.jpeg" alt="Interview Promotion Graphic" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
             </div>
             <div class="carousel-item"
                  data-project='{
                    "id": "gallery-item-13",
                    "title": "Public Awareness Campaign",
-                   "image": "צילום מסך 2023-08-08 184220.jpg",
+                   "image": "../img/צילום מסך 2023-08-08 184220.jpg",
                    "description": "Graphic for a public awareness campaign, using striking visuals to convey an important message.",
                    "technologies": ["Graphic Design", "Public Awareness"],
-                   "live_demo": "צילום מסך 2023-08-08 184220.jpg",
+                   "live_demo": "../img/צילום מסך 2023-08-08 184220.jpg",
                    "type": "graphic",
                    "is_carousel_item": true
                  }'>
-                <img src="צילום מסך 2023-08-08 184220.jpg" alt="Public Awareness Campaign" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+                <img src="../img/צילום מסך 2023-08-08 184220.jpg" alt="Public Awareness Campaign" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
             </div>
         </div>
         <button class="carousel-nav-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
@@ -1635,4 +1635,341 @@
     }
 
     // Event listeners for opening modal: on any .project-card-item, .carousel-item or .featured-project
-    document.querySelectorAll('.project-card-item, .carousel-item
+    document.querySelectorAll('.project-card-item, .carousel-item, .featured-project').forEach(item => {
+        item.addEventListener('click', (event) => {
+            // Prevent opening modal if a child button (like View Project) was clicked, 
+            // as those buttons have their own href or event listeners
+            if (event.target.closest('.view-project-btn')) {
+                return;
+            }
+
+            let projectData = null;
+            const projectDataString = item.dataset.project;
+
+            if (!projectDataString || projectDataString === "undefined") {
+                console.error("Invalid or undefined project data string for this item:", item);
+                return;
+            }
+            try {
+                projectData = JSON.parse(projectDataString);
+            } catch (e) {
+                console.error("Error parsing JSON for project data:", projectDataString, e);
+                return;
+            }
+            
+            if (projectData) {
+                openModal(projectData);
+            }
+        });
+    });
+
+    // Handle clicks on "View Project" buttons *inside* the project cards
+    document.querySelectorAll('.view-project-btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.stopPropagation(); // Stop click from propagating to parent card
+            const card = event.target.closest('.project-card-item') || event.target.closest('.featured-project');
+            if (card) {
+                const projectDataString = card.dataset.project;
+                if (!projectDataString || projectDataString === "undefined") {
+                    console.error("Invalid or undefined project data string for this card:", projectDataString);
+                    return;
+                }
+                try {
+                    const projectData = JSON.parse(projectDataString);
+                    openModal(projectData);
+                } catch (e) {
+                    console.error("Error parsing JSON for project data:", projectDataString, e);
+                }
+            }
+        });
+    });
+
+
+    // Event listener for closing modal via button
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // Event listener for closing modal by clicking outside content
+    projectModal.addEventListener('click', (event) => {
+        if (event.target === projectModal) { // Only close if clicked directly on overlay
+            closeModal();
+        }
+    });
+
+    // Event listener for closing modal with Escape key
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && projectModal.classList.contains('is-visible')) {
+            closeModal();
+        }
+    });
+
+    // --- Gemini API Integration ---
+    aiInsightBtn.addEventListener('click', async () => {
+        // AI Insight should only be available for 'web' type projects and not carousel gallery items
+        if (!currentProjectData || currentProjectData.type !== 'web' || currentProjectData.is_carousel_item === true) { 
+            aiInsightContainer.classList.add('hidden'); // Ensure hidden if not applicable
+            console.error("AI Insight is only available for Web Development projects (and not for gallery images).");
+            return;
+        }
+
+        aiInsightContainer.classList.remove('hidden'); // Show container
+        aiInsightText.textContent = ''; // Clear previous text
+        aiInsightLoading.classList.remove('hidden'); // Show loading spinner
+
+        const prompt = `Given the following web development project:
+Title: ${currentProjectData.title}
+Description: ${currentProjectData.description}
+Technologies: ${currentProjectData.technologies ? currentProjectData.technologies.join(', ') : 'N/A'}
+
+Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting the unique aspect or impact of this project. Focus on what makes it stand out or its practical value. Do not include a title for the summary. Return only the summary text.`;
+
+        let chatHistory = [];
+        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+        const payload = { contents: chatHistory };
+        const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const result = await response.json();
+
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                aiInsightText.textContent = text;
+            } else {
+                aiInsightText.textContent = "Failed to generate insight. Please try again.";
+                console.error("Unexpected API response structure:", result);
+            }
+        } catch (error) {
+            aiInsightText.textContent = "Error generating insight. " + error.message;
+            console.error("Error calling Gemini API:", error);
+        } finally {
+            aiInsightLoading.classList.add('hidden'); // Hide loading spinner
+        }
+    });
+
+    // --- Mobile Navigation Toggle ---
+    document.addEventListener("DOMContentLoaded", function () {
+      const mainNavUl = document.getElementById("main-nav-menu"); // Main ul
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const designMenuToggle = document.getElementById('design-menu-toggle'); // The "Design" link
+      const designSubMenu = designMenuToggle.nextElementSibling; // The ul after "Design" link
+
+      // Function to close all menus (main and sub)
+      function closeAllMenus() {
+          mainNavUl.classList.remove('active'); // Close main mobile menu
+          if (designSubMenu) {
+              designSubMenu.classList.remove('active'); // Close mobile dropdown
+              designSubMenu.classList.remove('show-dropdown'); // Close desktop click dropdown
+              designMenuToggle.querySelector('i').classList.remove('rotate-180'); // Reset chevron
+          }
+      }
+
+      // Main mobile menu toggle
+      if (mobileMenuToggle) {
+          mobileMenuToggle.addEventListener('click', (event) => {
+              event.stopPropagation(); // Prevent immediate closing due to outer click listener
+              mainNavUl.classList.toggle('active');
+              if (!mainNavUl.classList.contains('active')) { // If closing main menu
+                  closeAllMenus(); // Close everything if hamburger is closing the main menu
+              }
+          });
+      }
+
+      // Design sub-menu toggle (for mobile and click scenarios on desktop)
+      if (designMenuToggle && designSubMenu) {
+          designMenuToggle.addEventListener('click', (event) => {
+              event.preventDefault(); // ALWAYS prevent default link behavior for this specific toggle button
+              event.stopPropagation(); // Prevent immediate closing due to outer click listener
+
+              if (window.innerWidth < 768) { // Mobile behavior: toggle 'active' class
+                  designSubMenu.classList.toggle('active');
+              } else { // Desktop behavior: toggle 'show-dropdown' class
+                  designSubMenu.classList.toggle('show-dropdown');
+              }
+              designMenuToggle.querySelector('i').classList.toggle('rotate-180'); // Rotate chevron
+          });
+
+          // Close sub-menu if clicking outside on desktop
+          document.addEventListener('click', (event) => {
+              // Only apply this logic on desktop sizes
+              if (window.innerWidth >= 768) {
+                  const isClickInsideDesignToggle = designMenuToggle.contains(event.target);
+                  const isClickInsideDesignSubMenu = designSubMenu.contains(event.target);
+
+                  // If the dropdown is currently shown by JS (show-dropdown)
+                  // and the click was outside both the toggle button and the dropdown itself
+                  if (designSubMenu.classList.contains('show-dropdown') && !isClickInsideDesignToggle && !isClickInsideDesignSubMenu) {
+                      designSubMenu.classList.remove('show-dropdown');
+                      designMenuToggle.querySelector('i').classList.remove('rotate-180');
+                  }
+              }
+          });
+
+          // Close all menus when a link inside main nav or sub-menu is clicked
+          mainNavUl.querySelectorAll('a').forEach(link => {
+              link.addEventListener('click', (event) => {
+                  // If it's a sub-menu item or a non-group main nav link, close all menus
+                  if (link.closest('.group ul') || (!link.closest('.group') && link.href && link.href !== '#')) {
+                      closeAllMenus();
+                  }
+              });
+          });
+      }
+
+      // Close all menus if resized to desktop view (from mobile)
+      window.addEventListener('resize', () => {
+          if (window.innerWidth >= 768) {
+              closeAllMenus();
+          }
+      });
+    });
+
+    // --- Carousel Logic (New) ---
+    const carouselWrapper = document.getElementById('carouselWrapper');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let carouselItems = document.querySelectorAll('.carousel-item'); // Re-query to get all items including new ones
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        if (!carouselWrapper || carouselItems.length === 0) return;
+
+        const containerWidth = carouselWrapper.offsetWidth;
+        const itemWidth = carouselItems[0].offsetWidth; // Fixed 350px
+        const itemMargin = parseFloat(window.getComputedStyle(carouselItems[0]).marginLeft) + parseFloat(window.getComputedStyle(carouselItems[0]).marginRight); // Fixed 20px (10px each side)
+        const itemTotalWidth = itemWidth + itemMargin; // 350 + 20 = 370px
+
+        // Calculate the target scroll position to center the current item.
+        // It's the cumulative width of items before the current one + half the width of the current item
+        // adjusted by half of the container width to center it in the view.
+        let scrollPosition = (currentIndex * itemTotalWidth) - (containerWidth / 2) + (itemTotalWidth / 2);
+        
+        // Ensure scrollPosition does not go below 0 or beyond max scrollable width
+        scrollPosition = Math.max(0, scrollPosition);
+        const maxScrollLeft = carouselWrapper.scrollWidth - containerWidth;
+        scrollPosition = Math.min(scrollPosition, maxScrollLeft);
+
+        carouselWrapper.scrollLeft = scrollPosition;
+
+        // Apply fade effect based on distance from current (centered) item
+        carouselItems.forEach((item, index) => {
+            if (index === currentIndex) {
+                item.classList.remove('carousel-item-faded');
+            } else {
+                item.classList.add('carousel-item-faded');
+            }
+        });
+    }
+
+    // Function to handle automatic centering of carousel items on scroll
+    function onCarouselScroll() {
+        if (!carouselWrapper || carouselItems.length === 0) return;
+
+        const scrollLeft = carouselWrapper.scrollLeft;
+        const containerWidth = carouselWrapper.offsetWidth;
+        const itemWidth = carouselItems[0].offsetWidth;
+        const itemMargin = parseFloat(window.getComputedStyle(carouselItems[0]).marginLeft) + parseFloat(window.getComputedStyle(carouselItems[0]).marginRight);
+        const itemTotalWidth = itemWidth + itemMargin;
+
+        // Calculate which item is currently closest to the center of the viewport
+        const centralViewPoint = scrollLeft + (containerWidth / 2);
+        let closestIndex = 0;
+        let minDistance = Infinity;
+
+        carouselItems.forEach((item, index) => {
+            const itemCenter = (index * itemTotalWidth) + (itemWidth / 2) + (itemMargin / 2);
+            const distance = Math.abs(itemCenter - centralViewPoint);
+
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestIndex = index;
+            }
+        });
+        currentIndex = closestIndex; // Update global currentIndex
+
+        // Apply fade effect based on distance from the closest item to the center
+        carouselItems.forEach((item, index) => {
+            if (index === currentIndex) {
+                item.classList.remove('carousel-item-faded');
+            } else {
+                item.classList.add('carousel-item-faded');
+            }
+        });
+    }
+
+    // Initialize carousel on load
+    window.addEventListener('load', () => {
+        carouselItems = document.querySelectorAll('.carousel-item'); // Re-query items in case of dynamic content
+        updateCarousel(); // Position correctly and apply initial fades
+    });
+    // Also update on resize to ensure correct snapping if layout changes
+    window.addEventListener('resize', () => {
+        carouselItems = document.querySelectorAll('.carousel-item'); // Re-query items
+        updateCarousel(); // Re-calculate and snap to nearest item on resize
+    });
+
+    // Add scroll event listener to apply fade effect dynamically
+    if (carouselWrapper) {
+        carouselWrapper.addEventListener('scroll', onCarouselScroll);
+    }
+
+    // Navigation buttons
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1; // Loop around
+            updateCarousel();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0; // Loop around
+            updateCarousel();
+        });
+    }
+
+    // Optional: Add swipe functionality for touch devices
+    let startX;
+    let isSwiping = false;
+
+    if (carouselWrapper) {
+        carouselWrapper.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isSwiping = true;
+        });
+
+        carouselWrapper.addEventListener('touchmove', (e) => {
+            if (!isSwiping) return;
+            // Allow native scrolling for touchmove, the touchend will handle snap
+        });
+
+        carouselWrapper.addEventListener('touchend', (e) => {
+            if (!isSwiping) return;
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+
+            // Trigger a manual snap to center if a swipe gesture is detected
+            if (Math.abs(diff) > 50) { // A threshold for a valid swipe
+                if (diff > 0) { // Swiped left (show next)
+                    currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0;
+                } else { // Swiped right (show prev)
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1;
+                }
+                updateCarousel(); // Trigger snap to new current index
+            } else {
+                // If no significant swipe, ensure it snaps to the nearest item
+                // This will be handled by the onCarouselScroll listener due to `scroll-snap-type`
+            }
+            isSwiping = false;
+        });
+    }
+  </script>
+</body>
+
+</html>
