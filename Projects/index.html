@@ -484,19 +484,47 @@
       flex-grow: 1; /* Allow side projects grid to grow and take available space */
     }
 
+    /* NEW: Styles for section titles when placed as "side titles" in desktop view */
+    .section-title-side {
+        font-size: 3rem; /* Same large font size */
+        font-weight: 700;
+        background: linear-gradient(to right, #2563eb, #7c3aed);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        position: absolute; /* Position absolutely within its relative container */
+        top: 50%; /* Center vertically */
+        left: 0; /* Align to the left of its container */
+        transform: translateY(-50%) rotate(-90deg); /* Rotate 90 degrees counter-clockwise */
+        transform-origin: left center; /* Rotate around its left-center point */
+        white-space: nowrap; /* Keep text on one line */
+        z-index: 1; /* Ensure it's above other content if overlapping */
+        /* Make it visible for desktop only */
+        display: none;
+    }
+
     @media (min-width: 768px) {
       .featured-project-container .section-header {
-        flex-direction: column; /* Keep column for consistent centering */
-        justify-content: center; /* Keep centered */
-        align-items: center; /* Keep centered */
+        /* Remove original centering for the section header, as title moves inside */
+        display: block; /* Revert to block to not interfere with flex */
+        margin-bottom: 0; /* No external margin when title is repositioned */
       }
       .featured-project-container .section-title {
-        margin-bottom: 0; /* No bottom margin when centered */
+        /* Hide the original section title in desktop view */
+        display: none;
       }
       .featured-projects-content {
-        flex-direction: row; /* Featured project on left, side projects on right */
-        justify-content: center; /* Center the featured and side project grid */
+        flex-direction: row; /* Featured project on right, side projects on left */
+        justify-content: flex-start; /* Align content to the start */
         align-items: flex-start; /* Align items to the top to prevent stretching */
+        position: relative; /* Needed for positioning the absolute title */
+        padding-left: 100px; /* Make space for the vertical title */
+      }
+
+      /* Show the side title for desktop */
+      .section-title-side {
+        display: block; /* Show for desktop */
       }
 
       .featured-project {
@@ -764,6 +792,11 @@
         text-align: center; /* Ensure centered on mobile */
       }
       
+      /* Hide side title on mobile */
+      .section-title-side {
+        display: none;
+      }
+
       /* Individual project cards (side web & side graphic) on mobile */
       .project-card-item {
         width: 100%; /* Take full width on mobile */
@@ -872,9 +905,12 @@
       <section id="web-development-section" class="py-12 mt-20">
         <div class="featured-project-container text-center max-w-full mx-auto">
             <div class="section-header">
+                <!-- Original section title for mobile -->
                 <h2 class="section-title">Web Development</h2>
             </div>
             <div class="featured-projects-content">
+                <!-- New vertical title for desktop -->
+                <h2 class="section-title-side">Web Development</h2>
                 <!-- Featured Project (TRAVELLY) -->
                 <div class="featured-project animate-on-scroll"
                     data-project='{
@@ -953,9 +989,12 @@
       <section id="graphic-design-section" class="py-12 mt-20">
         <div class="featured-project-container text-center max-w-full mx-auto">
             <div class="section-header">
+                <!-- Original section title for mobile -->
                 <h2 class="section-title">Graphic Design</h2>
             </div>
             <div class="featured-projects-content">
+                <!-- New vertical title for desktop -->
+                <h2 class="section-title-side">Graphic Design</h2>
                 <!-- Featured Graphic Project (World Cup 22 Infographic) -->
                 <div class="featured-project animate-on-scroll"
                     data-project='{
@@ -1233,7 +1272,7 @@
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                // Optional: stop observing once animated if it's a one-time animation
+                // Optionally, unobserve after animation to prevent re-triggering
                 // if (entry.target.classList.contains('animate-on-scroll') || entry.target.classList.contains('section-title')) {
                 //     observer.unobserve(entry.target);
                 // }
