@@ -226,6 +226,14 @@
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2), 0 0 25px 5px rgba(37, 99, 235, 0.7);
     }
 
+    /* New styles for image and title container */
+    .featured-project-image-wrapper,
+    .project-card-item-image-wrapper {
+      position: relative;
+      overflow: hidden; /* Ensures title overlay doesn't spill out */
+      border-radius: 0.75rem 0.75rem 0 0; /* Match parent card top radius */
+    }
+
     .project-card-item img {
       width: 100%;
       height: 200px; /* Increased height for side project images to make them more elongated */
@@ -240,13 +248,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-    }
-
-    .project-card-item h4 {
-      font-size: 1.2rem; /* Standard title size for side projects */
-      font-weight: 600;
-      color: #2d3748;
-      margin-bottom: 0.5rem;
+      padding-top: 0.5rem; /* Reduced padding-top as title is now an overlay */
     }
 
     .project-card-item p {
@@ -385,7 +387,7 @@
       display: flex;
       flex-direction: column;
       flex-grow: 1; /* Allow it to take available space */
-      padding-bottom: 1.5rem; /* More padding at bottom of featured card */
+      /* No padding-bottom here, rely on content for spacing */
       transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover effect */
       max-width: 400px; /* Narrower max width for featured project card */
       margin: 0 auto; /* Center individual cards when they are narrower than their container */
@@ -411,14 +413,36 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      padding-top: 0.5rem; /* Reduced padding-top as title is now an overlay */
+    }
+    
+    /* Base style for overlaid titles */
+    .featured-project-title-overlay,
+    .project-card-item-title-overlay {
+      position: absolute;
+      bottom: 0; /* Position at the bottom of the image */
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)); /* Gradient for better blending */
+      color: white; /* White text on dark background */
+      padding: 1.5rem 1rem 0.75rem 1rem; /* More padding at bottom to reveal text fully */
+      text-align: center;
+      font-weight: 700;
+      z-index: 1; /* Above image, below modal */
+      pointer-events: none; /* Allows clicks on image/card through title for modal */
+      transition: opacity 0.3s ease; /* Smooth transition for hover if implemented */
     }
 
-    .featured-project-content h4 {
-      font-size: 2rem; /* Larger title for featured project */
-      font-weight: 700;
-      color: #2d3748;
-      margin-bottom: 0.75rem;
+    /* Specific font sizes for titles within the overlay */
+    .featured-project-title-overlay {
+      font-size: 1.8rem; /* Slightly smaller than original h4, but still prominent */
+      line-height: 1.2;
     }
+    .project-card-item-title-overlay {
+      font-size: 1.1rem; /* Slightly smaller than original h4 for side projects */
+      line-height: 1.3;
+    }
+
 
     .featured-project-content p {
       font-size: 1.1rem; /* Larger text for featured project */
@@ -752,12 +776,6 @@
       .project-card-item-content {
         padding: 1rem;
       }
-      .project-card-item h4 {
-        font-size: 1.25rem;
-      }
-      .project-card-item p {
-        font-size: 0.85rem;
-      }
       .project-card-item .view-project-btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
@@ -766,9 +784,6 @@
       /* Featured project on mobile */
       .featured-project img {
         height: 200px; /* Adjust featured image height for mobile */
-      }
-      .featured-project-content h4 {
-        font-size: 1.5rem;
       }
       .featured-project-content p {
         font-size: 0.95rem;
@@ -797,6 +812,13 @@
           height: 40px;
           font-size: 1.2rem;
           padding: 0.5rem;
+      }
+      /* Specific font sizes for titles within the overlay on mobile */
+      .featured-project-title-overlay {
+        font-size: 1.5rem; /* Adjusted for mobile */
+      }
+      .project-card-item-title-overlay {
+        font-size: 1rem; /* Adjusted for mobile */
       }
     }
   </style>
@@ -859,16 +881,18 @@
                     data-project='{
                         "id": "travelly",
                         "title": "TRAVELLY - Travel Agency Website",
-                        "image": "https://placehold.co/800x600/add8e6/000000?text=TRAVELLY",
+                        "image": "../img/TRAVELLY_ME.png",
                         "description": "This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.",
                         "technologies": ["HTML5", "CSS3", "JavaScript"],
                         "live_demo": "https://shirly3212.github.io/TRAVELLY/",
                         "github_repo": "https://shirly3212.github.io/TRAVELLY",
                         "type": "web"
                     }'>
-                    <img src="https://placehold.co/800x600/add8e6/000000?text=TRAVELLY" alt="Travelly Website" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    <div class="featured-project-image-wrapper">
+                        <img src="../img/TRAVELLY_ME.png" alt="Travelly Website" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <h4 class="featured-project-title-overlay">TRAVELLY - Travel Agency Website</h4>
+                    </div>
                     <div class="featured-project-content">
-                        <h4>TRAVELLY - Travel Agency Website</h4>
                         <p>This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript, it includes interactive forms, image carousels, and cross-browser compatibility to ensure a delightful browsing experience for potential travelers.</p>
                         <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
                     </div>
@@ -887,9 +911,11 @@
                             "github_repo": "#",
                             "type": "web"
                         }'>
-                        <img src="https://placehold.co/800x600/87ceeb/000000?text=E-Commerce+Page" alt="E-commerce Product Page" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <div class="project-card-item-image-wrapper">
+                            <img src="https://placehold.co/800x600/87ceeb/000000?text=E-Commerce+Page" alt="E-commerce Product Page" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                            <h4 class="project-card-item-title-overlay">E-commerce Product Page</h4>
+                        </div>
                         <div class="project-card-item-content">
-                            <h4>E-commerce Product Page</h4>
                             <p>A clean and functional e-commerce product page built with modern HTML and Tailwind CSS.</p>
                             <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
                         </div>
@@ -907,9 +933,11 @@
                             "github_repo": "#",
                             "type": "web"
                         }'>
-                        <img src="https://placehold.co/800x600/98fb98/000000?text=To-Do+List" alt="Interactive To-Do List" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <div class="project-card-item-image-wrapper">
+                            <img src="https://placehold.co/800x600/98fb98/000000?text=To-Do+List" alt="Interactive To-Do List" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                            <h4 class="project-card-item-title-overlay">Interactive To-Do List</h4>
+                        </div>
                         <div class="project-card-item-content">
-                            <h4>Interactive To-Do List</h4>
                             <p>A simple yet effective to-do list application, allowing users to add, mark as complete, and delete tasks.</p>
                             <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
                         </div>
@@ -941,9 +969,11 @@
                         "github_repo": "#",
                         "type": "graphic"
                     }'>
-                    <img src="https://placehold.co/800x600/ffb6c1/000000?text=Brand+Identity" alt="Brand Identity Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                    <div class="featured-project-image-wrapper">
+                        <img src="https://placehold.co/800x600/ffb6c1/000000?text=Brand+Identity" alt="Brand Identity Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <h4 class="featured-project-title-overlay">Brand Identity Redesign</h4>
+                    </div>
                     <div class="featured-project-content">
-                        <h4>Brand Identity Redesign</h4>
                         <p>A comprehensive brand identity redesign, including logo, color palette, typography, and visual guidelines.</p>
                         <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
                     </div>
@@ -962,9 +992,11 @@
                             "github_repo": "#",
                             "type": "graphic"
                         }'>
-                        <img src="https://placehold.co/800x600/ffe4b5/000000?text=Social+Media" alt="Social Media Campaign" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <div class="project-card-item-image-wrapper">
+                            <img src="https://placehold.co/800x600/ffe4b5/000000?text=Social+Media" alt="Social Media Campaign" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                            <h4 class="project-card-item-title-overlay">Social Media Campaign</h4>
+                        </div>
                         <div class="project-card-item-content">
-                            <h4>Social Media Campaign</h4>
                             <p>Designed engaging graphics for a social media marketing campaign, focusing on visual storytelling.</p>
                             <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
                         </div>
@@ -982,9 +1014,11 @@
                             "github_repo": "#",
                             "type": "graphic"
                         }'>
-                        <img src="https://placehold.co/800x600/afeeee/000000?text=Web+Banners" alt="Website Banner Ads" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                        <div class="project-card-item-image-wrapper">
+                            <img src="https://placehold.co/800x600/afeeee/000000?text=Web+Banners" alt="Website Banner Ads" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                            <h4 class="project-card-item-title-overlay">Website Banner Ads</h4>
+                        </div>
                         <div class="project-card-item-content">
-                            <h4>Website Banner Ads</h4>
                             <p>Creation of various web banner ads for different online campaigns, optimizing for both aesthetic appeal and click-through rates.</p>
                             <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
                         </div>
