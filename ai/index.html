@@ -1,38 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Projects | Shirly Herscovici</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Shirly Herscovici's Artificial Intelligence projects, exploring various applications and innovations.">
+  <meta name="robots" content="index,follow">
+  <title>Shirly Herscovici | AI Projects</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts for 'Inter' (for header) and 'Manrope' (for body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- AOS for animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
   <style>
-    /* Removed the old body::before */
-    body::before {
-      content: none;
+    /* Global styles from original AI page */
+    html, body {
+      margin: 0; padding: 0;
+      font-family: "Manrope", sans-serif; /* Keep original font for body */
+      color: #e0e0e0; /* Original text color for dark background */
+      overflow-x: hidden;
+      text-align: center;
+      background: none; /* Ensure no other background interferes */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+      scroll-padding-top: 5rem; /* Added for fixed header compensation */
     }
-    /* Dynamic background with particles.js */
+
+    /* Particles.js canvas styling */
     #particles-js {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
       z-index: -2;
-      /* Changed to dark gradient */
       background: linear-gradient(135deg, #1a2a6c, #001f4c, #0d0c3d); /* Dark blue/purple gradient */
     }
-    html, body {
-      margin: 0; padding: 0;
-      font-family: "Manrope", sans-serif;
-      color: #e0e0e0; /* Adjusted text color for dark background */
-      overflow-x: hidden;
-      text-align: center;
-      background: none; /* Ensure no other background interferes */
-    }
+
+    /* Cursor style (from original AI page) */
     .cursor {
       width: 20px;
       height: 20px;
@@ -44,23 +56,27 @@
       z-index: 1000;
       transition: transform 0.1s ease;
     }
+
+    /* Typewriter effect (from original AI page) */
     .typewriter {
       font-size: 3.8rem;
       white-space: nowrap;
       overflow: hidden;
-      border-right: 0.15em solid; /* Border color will be set by blink-caret */
-      /* Changed to lighter turquoise gradient text, starting with white */
-      background-image: linear-gradient(90deg, #ffffff, #00e0ff); /* Gradient from white to bright turquoise */
+      border-right: 0.15em solid;
+      background-image: linear-gradient(90deg, #ffffff, #00e0ff);
       -webkit-background-clip: text;
       background-clip: text;
-      -webkit-text-fill-color: transparent; /* Makes text transparent, showing background */
-      background-size: 200% auto; /* For gradient animation */
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
       animation:
         typing 4s steps(40, end),
         blink-caret 0.75s step-end infinite,
-        gradient-animation 5s linear infinite; /* New gradient animation */
+        gradient-animation 5s linear infinite;
       width: fit-content;
       margin: 2rem auto;
+      position: relative; /* Ensure it respects z-index relative to header */
+      z-index: 5; /* Above particles */
+      padding-top: 5rem; /* Adjusted for fixed header */
     }
     @keyframes typing {
       from { width: 0 }
@@ -68,73 +84,59 @@
     }
     @keyframes blink-caret {
       from, to { border-color: transparent }
-      50% { border-color: #00e0ff; } /* Blinking caret matches bright turquoise */
+      50% { border-color: #00e0ff; }
     }
-    /* New keyframes for gradient animation */
     @keyframes gradient-animation {
         0% { background-position: 0% center; }
         100% { background-position: 200% center; }
     }
 
-    header {
-      background: #ffffff1a; /* Adjusted header background for dark theme */
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 10;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Darker shadow for contrast */
+    /* Header styling (merged from updated header) */
+    .header-frosted {
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        position: fixed; /* Ensure it stays at the top */
+        width: 100%;
+        top: 0;
+        z-index: 50; /* High z-index to stay on top */
     }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
+    .header-frosted .logo h1 { /* Specific style for logo text in frosted header */
+        font-family: 'Inter', sans-serif; /* Use Inter for header logo */
+        color: #1a202c; /* Darker color for logo text */
     }
-    nav ul li a {
-      text-decoration: none;
-      color: #e0e0e0; /* Adjusted link color for dark background */
-      font-weight: bold;
+    .header-frosted nav ul li a { /* Specific style for nav links in frosted header */
+        font-family: 'Inter', sans-serif; /* Use Inter for header nav links */
+        color: #4a5568; /* Darker color for nav links */
     }
-    nav ul li a.active {
-      color: #00bcd4;
+    .header-frosted nav ul li a.bg-blue-600 { /* Active link in header */
+        color: white;
     }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .logo img {
-      height: 40px;
-    }
-    .logo h1 { /* Added styling for logo text */
-        color: #e0e0e0;
-    }
+
+
+    /* Two-column section (from original AI page) */
     .two-column-section {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center; /* Ensures vertical alignment */
+      align-items: center;
       gap: 4rem;
       padding: 5rem 3rem;
       max-width: 1400px;
       margin: auto;
       position: relative;
       z-index: 5;
-      color: #e0e0e0; /* Adjusted text color for dark background */
+      color: #e0e0e0;
     }
     .two-column-section .text {
       flex: 1 1 400px;
-      text-align: left; /* Align text to left */
+      text-align: left;
     }
     .two-column-section .media {
-      flex: 1 1 700px; /* Adjust flex basis to ensure it aligns better */
+      flex: 1 1 700px;
       display: flex;
-      justify-content: center; /* Center video within its flex item */
+      justify-content: center;
     }
     .two-column-section .media video {
       max-width: 100%;
@@ -160,13 +162,14 @@
       transform: scale(1.05);
       background: linear-gradient(135deg, #00acc1, #9575cd);
     }
-    /* New styling for phone section layout */
+
+    /* Phone section (from original AI page) */
     .phone-section-container {
         display: flex;
-        flex-direction: column; /* Stack on mobile */
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 2rem; /* Reduced gap to bring elements closer */
+        gap: 2rem;
         padding: 4rem 2rem;
         max-width: 1400px;
         margin: auto;
@@ -174,76 +177,68 @@
     }
     @media (min-width: 768px) {
         .phone-section-container {
-            flex-direction: row; /* Side-by-side on desktop */
-            align-items: center; /* Center align items for better visual */
-            justify-content: space-between; /* Distribute items horizontally */
-            gap: 4rem; /* Restore gap for desktop */
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
         }
         .phone-section-container .phone-mockup {
-            margin-left: 0; /* Remove margin to allow flex to position it */
-            margin-right: auto; /* Push phone to the left */
+            margin-left: 0;
+            margin-right: auto;
         }
         .phone-section-container .text-content {
-            flex: 1 1 50%; /* Allow text to take up more space, adjust as needed */
-            max-width: 550px; /* Increased max-width for text column */
-            text-align: left; /* Align text to left on desktop */
-            margin-right: 0; /* Remove margin to allow flex to position it */
-            margin-left: auto; /* Push text to the right */
+            flex: 1 1 50%;
+            max-width: 550px;
+            text-align: left;
+            margin-right: 0;
+            margin-left: auto;
         }
-        /* Increased font size and line height for paragraphs on larger screens */
         .two-column-section p, .phone-section-container p {
-            font-size: 1.5rem; /* Increased from 1.25rem (text-xl) to 1.5rem */
-            line-height: 1.75; /* Increased line-height for better readability */
+            font-size: 1.5rem;
+            line-height: 1.75;
         }
     }
-
     .phone-mockup {
-      width: 480px; /* Adjusted width based on new image for better proportion */
-      height: 960px; /* Adjusted height for new width, maintaining aspect ratio (2:1) */
+      width: 480px;
+      height: 960px;
       border: 16px solid #333;
       border-radius: 36px;
       position: relative;
       overflow: hidden;
       background: #000;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.25); /* Base shadow */
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
       z-index: 5;
-      cursor: pointer; /* Change cursor on hover for interactivity hint */
-      display: flex; /* To center the iframe */
+      cursor: pointer;
+      display: flex;
       justify-content: center;
       align-items: center;
-      animation: phone-pulse-glow 3s infinite alternate ease-in-out; /* Continuous pulse */
-      transition: box-shadow 0.3s ease-in-out; /* Smooth transition for hover glow */
+      animation: phone-pulse-glow 3s infinite alternate ease-in-out;
+      transition: box-shadow 0.3s ease-in-out;
     }
-    /* Pulsating glow animation (default) */
     @keyframes phone-pulse-glow {
-        0% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); } /* Light turquoise base glow */
-        50% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 40px rgba(124, 77, 255, 0.6); } /* Brighter, mixed glow */
+        0% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); }
+        50% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 40px rgba(124, 77, 255, 0.6); }
         100% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); }
     }
-    /* Add hover glow effect */
     .phone-mockup:hover {
-        box-shadow: 0 0 40px rgba(255, 100, 200, 0.9), 0 0 60px rgba(255, 0, 100, 0.7); /* A more vibrant pink/reddish glow */
+        box-shadow: 0 0 40px rgba(255, 100, 200, 0.9), 0 0 60px rgba(255, 0, 100, 0.7);
     }
-
     .phone-mockup iframe {
-      width: 100%; /* Iframe takes full width of mockup */
-      height: 100%; /* Iframe takes full height of mockup */
+      width: 100%;
+      height: 100%;
       border: none;
       display: block;
     }
-
     .interactive-hint {
         position: absolute;
-        /* Adjusted positioning based on image and desired interaction area */
-        top: 25%; /* Roughly positioned over the "License Plate Number" field */
-        left: 20%; /* Positioned towards the input field */
-        font-size: 3rem; /* Size of the hand icon */
-        color: #ffffff; /* Changed hand color to white */
-        z-index: 10; /* Ensure it's above the phone */
-        animation: pointer-bounce 2s infinite ease-in-out; /* More pronounced bounce */
-        pointer-events: none; /* Do not interfere with iframe clicks */
+        top: 25%;
+        left: 20%;
+        font-size: 3rem;
+        color: #ffffff;
+        z-index: 10;
+        animation: pointer-bounce 2s infinite ease-in-out;
+        pointer-events: none;
     }
-
     @keyframes pointer-bounce {
         0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
         25% { transform: translateX(-50%) translateY(-15px); opacity: 0.8; }
@@ -251,7 +246,7 @@
         75% { transform: translateX(-50%) translateY(-10px); opacity: 0.8; }
     }
 
-
+    /* Metrics section (from original AI page) */
     .metric-box {
       position: relative;
       background: rgba(255, 255, 255, 0.1);
@@ -263,7 +258,7 @@
       flex: 1 1 200px;
       transition: transform 0.3s ease;
       z-index: 5;
-      color: #e0e0e0; /* Adjusted text color for dark background */
+      color: #e0e0e0;
     }
     .metric-box:hover {
       transform: scale(1.05);
@@ -282,167 +277,366 @@
       0% { transform: translateX(-100%); }
       100% { transform: translateX(100%); }
     }
+
+    /* Footer (from original AI page) */
     footer {
       margin-top: 4rem;
       padding: 2rem;
-      background: #1a1a1a; /* Dark footer for consistency */
-      color: #e0e0e0; /* Adjusted footer text color */
+      background: #1a1a1a;
+      color: #e0e0e0;
       font-size: 0.9rem;
       position: relative;
       z-index: 5;
-      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); /* Darker shadow */
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Header & Nav specific styles for dropdown (merged from updated header) */
+    nav ul li.group {
+        position: relative;
+    }
+
+    nav ul li.group ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 0.5rem;
+        min-width: 100%;
+        z-index: 10;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+        pointer-events: none;
+        display: block;
+    }
+
+    nav ul li.group ul.show-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    nav ul li.group:hover ul { /* Desktop hover for dropdown */
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
     }
 
     /* Mobile specific styles (max-width: 767px) */
     @media (max-width: 767px) {
-        /* General adjustments for mobile sections */
-        .two-column-section, .phone-section-container {
-            flex-direction: column; /* Ensure stacking */
-            padding: 2rem 1rem; /* Adjust padding for smaller screens */
-            gap: 2rem; /* Consistent gap */
-        }
+      /* Header, nav, and main padding adjustments */
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        position: relative;
+      }
+      #main-nav-menu {
+        display: none; /* Controlled by JS active class */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(241, 245, 249, 0.95);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        padding: 1rem 0;
+        border-radius: 0 0 0.5rem 0.5rem;
+      }
+      #main-nav-menu.active {
+        display: flex; /* Show main menu on mobile */
+      }
+      #main-nav-menu li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      #main-nav-menu li:last-child {
+        border-bottom: none;
+      }
+      #main-nav-menu li a {
+        display: block;
+        padding: 0.75rem 1rem;
+        color: #4a5568;
+        font-weight: 500;
+      }
+      #main-nav-menu li a.bg-blue-600 {
+        color: white;
+        border-radius: 0;
+      }
+      #mobile-menu-toggle {
+        display: block;
+        order: 2;
+      }
+      main {
+        padding-top: 8rem; /* Higher padding for mobile to clear header */
+      }
 
-        /* Adjustments for the "Smart Parking Promo" section */
-        .two-column-section .text, .two-column-section .media {
-            flex-basis: auto; /* Remove fixed basis on mobile */
-            width: 100%; /* Take full width */
-        }
-        .two-column-section .text {
-            text-align: center; /* Center text on mobile */
-        }
+      /* Main Title on Mobile */
+      .ai-projects-main-title-section {
+        margin-top: 6rem;
+        min-height: 150px;
+      }
+      .ai-projects-main-title {
+          font-size: 2.8rem;
+          letter-spacing: -1px;
+          line-height: 1.2;
+          padding: 0 1rem;
+          white-space: normal;
+      }
+      .title-bg-effect {
+          width: 250px;
+          height: 350px;
+          filter: blur(120px);
+          transform: translate(-50%, -50%) scale(0.9, 1.3);
+      }
+      @keyframes pulseElongated {
+        0% { transform: translate(-50%, -50%) scale(0.9, 1.3); opacity: 0.7; }
+        50% { transform: translate(-50%, -50%) scale(1.0, 1.4); opacity: 0.9; }
+        100% { transform: translate(-50%, -50%) scale(0.9, 1.3); opacity: 0.7; }
+      }
 
-        /* Adjustments for the "View All Projects" button */
-        .cta-button {
-            padding: 0.8rem 2rem; /* Slightly smaller horizontal padding */
-            font-size: 1.25rem; /* Smaller font size for mobile */
-            width: fit-content; /* Ensure it only takes content width */
-            margin-left: auto; /* Center button horizontally */
-            margin-right: auto; /* Center button horizontally */
-        }
+      /* AI Content on Mobile */
+      .ai-content {
+          padding: 1.5rem;
+          margin: 1rem auto;
+      }
+      .ai-content h2 {
+          font-size: 2rem;
+      }
+      .ai-content p {
+          font-size: 1rem;
+      }
+      .ai-content .contact-link {
+          padding: 0.6rem 1.5rem;
+          font-size: 1rem;
+      }
+      /* General adjustments for mobile sections */
+      .two-column-section, .phone-section-container {
+          flex-direction: column;
+          padding: 2rem 1rem;
+          gap: 2rem;
+      }
 
-        /* Adjustments for the phone mockup and its text on mobile */
-        .phone-mockup {
-            width: 300px; /* Smaller width for mobile phone */
-            height: 600px; /* Corresponding height for mobile phone (2:1 aspect ratio) */
-            margin: auto; /* Center phone horizontally */
-        }
+      /* Adjustments for the "Smart Parking Promo" section */
+      .two-column-section .text, .two-column-section .media {
+          flex-basis: auto;
+          width: 100%;
+      }
+      .two-column-section .text {
+          text-align: center;
+      }
 
-        .phone-mockup iframe {
-            width: 100%;
-            height: 100%;
-        }
+      /* Adjustments for the "View All Projects" button */
+      .cta-button {
+          padding: 0.8rem 2rem;
+          font-size: 1.25rem;
+          width: fit-content;
+          margin-left: auto;
+          margin-right: auto;
+      }
 
-        .interactive-hint {
-            top: 15%; /* Adjust hand position for smaller phone */
-            left: 20%;
-            font-size: 2.5rem; /* Smaller hand icon */
-        }
+      /* Adjustments for the phone mockup and its text on mobile */
+      .phone-mockup {
+          width: 300px;
+          height: 600px;
+          margin: auto;
+      }
 
-        .phone-section-container .text-content {
-            max-width: 100%; /* Allow text to take full width on mobile */
-            text-align: center; /* Center text on mobile */
-        }
+      .phone-mockup iframe {
+          width: 100%;
+          height: 100%;
+      }
 
-        /* Decrease font size for paragraphs on mobile */
-        .two-column-section p, .phone-section-container p {
-            font-size: 1.125rem; /* Standard mobile paragraph size */
-            line-height: 1.6; /* Adjusted line-height for mobile */
-        }
+      .interactive-hint {
+          top: 15%;
+          left: 20%;
+          font-size: 2.5rem;
+      }
 
-        /* Decrease font size for .typewriter on mobile and re-enable animation */
-        .typewriter {
-            font-size: 1.8rem; /* Adjusted font size for small screens to fit on one line */
-            white-space: nowrap; /* Keep on a single line for typing effect */
-            overflow: hidden; /* Hide overflow for typing effect */
-            border-right: 0.15em solid; /* Re-enable blinking caret */
-            animation:
-                typing 4s steps(40, end), /* Re-enable typing animation */
-                blink-caret 0.75s step-end infinite,
-                gradient-animation 5s linear infinite; /* Re-enable gradient animation */
-            width: fit-content; /* Adjust width based on content */
-            margin: 2rem auto; /* Center the element */
-        }
+      .phone-section-container .text-content {
+          max-width: 100%;
+          text-align: center;
+      }
+
+      /* Decrease font size for paragraphs on mobile */
+      .two-column-section p, .phone-section-container p {
+          font-size: 1.125rem;
+          line-height: 1.6;
+      }
+
+      /* Decrease font size for .typewriter on mobile and re-enable animation */
+      .typewriter {
+          font-size: 1.8rem;
+          white-space: nowrap;
+          overflow: hidden;
+          border-right: 0.15em solid;
+          animation:
+              typing 4s steps(40, end),
+              blink-caret 0.75s step-end infinite,
+              gradient-animation 5s linear infinite;
+          width: fit-content;
+          margin: 2rem auto;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="../icons/code.svg" alt="logo" />
-      <h1>Shirly Herscovici</h1>
-    </div>
-    <nav>
-      <ul>
-       <li><a href="../index.html">Home</a></li>
-        <li><a href="../Projects/index.html">Design</a></li>
-        <li><a href="../web/index.html">Web</a></li>
-        <li><a class="active" href="#">AI</a></li>
-        <li><a href="../contact/index.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
   <div id="particles-js"></div>
   <div class="cursor" id="cursor"></div>
   <h2 class="typewriter">Creating the Future with AI...</h2>
 
-  <section class="two-column-section" data-aos="fade-up">
-    <div class="text">
-      <h3>Smart Parking Promo</h3>
-      <p class="text-xl">This AI-generated promotional video and app prototype presents a seamless solution to urban parking challenges through a smart system design.</p>
-      <a href="../Projects/index.html" class="cta-button">View All Projects</a>
-    </div>
-    <div class="media">
-      <video src="../videos/smart_parking_promo.mp4" controls autoplay muted loop></video>
-    </div>
-  </section>
+  <!-- Header Section -->
+  <header class="header-frosted shadow-md fixed w-full z-50">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap relative">
+      <div class="logo flex items-center">
+        <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
+        <h1 class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition duration-300 rounded-lg p-2">Shirly Herscovici</h1>
+      </div>
+      <button id="mobile-menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+      <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
+        <li><a href="../index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Home</a></li>
+        
+        <!-- Design with Sub-menu -->
+        <li class="relative group">
+            <a href="../Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
+            <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
+                <li><a href="../Projects/graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Graphic Projects</a></li>
+            </ul>
+        </li>
+        <li><a href="../Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Video</a></li>
+        <li><a href="index.html" class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700">AI</a></li>
+        <li><a href="../index.html#contact-section" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- Section for phone mockup and text description -->
-  <section class="phone-section-container" data-aos="fade-left">
-    <div class="phone-mockup">
-        <!-- Hand icon for interactive hint -->
-        <div class="interactive-hint">
-            <i class="fas fa-hand-point-up"></i>
-        </div>
-      <iframe src="https://preview--park-nexus-urban-flow.lovable.app/" title="Smart Parking App Demo"></iframe>
-    </div>
-    <div class="text-content flex-1 max-w-lg">
-        <h3 class="text-3xl font-semibold mb-4">Smart Parking AI Project</h3>
-        <p class="text-xl leading-relaxed mb-4">
-            This project showcases an innovative smart parking lot prototype application developed using AI tools, including Lovable.
-            The application operates by recognizing vehicle license plates, reserving a dedicated parking space for the user, and efficiently navigating them to the most suitable spot within the parking facility.
-        </p>
-        <p class="text-xl leading-relaxed">
-            The parking space is automatically tailored to the vehicle's needs: electric cars are directed to charging stations, larger vehicles like trucks are guided to extended parking spots, and so on.
-            This solution optimizes the parking experience and reduces congestion in a smart and efficient manner.
-        </p>
-    </div>
-  </section>
+  <main class="pt-20 pb-12 flex-grow">
+    <!-- Main content from original AI page -->
+    <section class="two-column-section" data-aos="fade-up">
+      <div class="text">
+        <h3>Smart Parking Promo</h3>
+        <p class="text-xl">This AI-generated promotional video and app prototype presents a seamless solution to urban parking challenges through a smart system design.</p>
+        <a href="../Projects/index.html" class="cta-button">View All Projects</a>
+      </div>
+      <div class="media">
+        <video src="../videos/smart_parking_promo.mp4" controls autoplay muted loop></video>
+      </div>
+    </section>
 
-  <section class="ai-metrics" data-aos="fade-up" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; padding: 4rem 2rem;">
-    <div class="metric-box">
-      <h4 id="count1">0%</h4>
-      <p>Faster Parking Detection</p>
-    </div>
-    <div class="metric-box">
-      <h4 id="count2">0X</h4>
-      <p>Efficiency with AI Routing</p>
-    </div>
-    <div class="metric-box">
-      <h4 id="count3">0</h4>
-      <p>Real-Time Availability</p>
-    </div>
-    <div class="metric-box">
-      <h4 id="count4">0%</h4>
-      <p>Reduction in Urban Congestion</p>
-    </div>
-  </section>
+    <!-- Section for phone mockup and text description -->
+    <section class="phone-section-container" data-aos="fade-left">
+      <div class="phone-mockup">
+          <!-- Hand icon for interactive hint -->
+          <div class="interactive-hint">
+              <i class="fas fa-hand-point-up"></i>
+          </div>
+        <iframe src="https://preview--park-nexus-urban-flow.lovable.app/" title="Smart Parking App Demo"></iframe>
+      </div>
+      <div class="text-content flex-1 max-w-lg">
+          <h3 class="text-3xl font-semibold mb-4">Smart Parking AI Project</h3>
+          <p class="text-xl leading-relaxed mb-4">
+              This project showcases an innovative smart parking lot prototype application developed using AI tools, including Lovable.
+              The application operates by recognizing vehicle license plates, reserving a dedicated parking space for the user, and efficiently navigating them to the most suitable spot within the parking facility.
+          </p>
+          <p class="text-xl leading-relaxed">
+              The parking space is automatically tailored to the vehicle's needs: electric cars are directed to charging stations, larger vehicles like trucks are guided to extended parking spots, and so on.
+              This solution optimizes the parking experience and reduces congestion in a smart and efficient manner.
+          </p>
+      </div>
+    </section>
 
-  <footer>
-    <p>Shirly Herscovici &copy; 2025</p>
+    <section class="ai-metrics" data-aos="fade-up" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; padding: 4rem 2rem;">
+      <div class="metric-box">
+        <h4 id="count1">0%</h4>
+        <p>Faster Parking Detection</p>
+      </div>
+      <div class="metric-box">
+        <h4 id="count2">0X</h4>
+        <p>Efficiency with AI Routing</p>
+      </div>
+      <div class="metric-box">
+        <h4 id="count3">0</h4>
+        <p>Real-Time Availability</p>
+      </div>
+      <div class="metric-box">
+        <h4 id="count4">0%</h4>
+        <p>Reduction in Urban Congestion</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="custom-footer-gradient text-white min-h-7vh py-8 flex justify-between items-center flex-wrap px-5 mt-auto">
+    <h4 class="text-xl font-medium mb-4 md:mb-0">Shirly Herscovici © 2025</h4>
+    <ul class="flex justify-center items-center flex-wrap gap-6">
+      <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Instagram"><i class="fab fa-instagram text-2xl"></i></a></li>
+      <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Twitter"><i class="fab fa-twitter text-2xl"></i></a></li>
+      <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-200 transition duration-300" title="YouTube"><i class="fab fa-youtube text-2xl"></i></a></li>
+      <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="LinkedIn"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
+      <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="GitHub"><i class="fab fa-github text-2xl"></i></a></li>
+    </ul>
   </footer>
 
+  <!-- JavaScript Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
   <script>
+    // --- Particles.js Initialization ---
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#ffffff" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5, "random": false },
+        "size": { "value": 3, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 6,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "push" },
+          "resize": true
+        },
+        "modes": {
+          "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+          "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 },
+          "repulse": { "distance": 200, "duration": 0.4 },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // --- AOS and GSAP Initialization ---
     window.addEventListener("DOMContentLoaded", function () {
       if (typeof AOS !== 'undefined') {
         AOS.init({ once: true, duration: 1000 });
@@ -460,109 +654,109 @@
           toggleActions: "play none none none"
         }
       });
-      const cursor = document.getElementById("cursor");
-      document.addEventListener("mousemove", e => {
-        cursor.style.left = e.clientX + "px";
-        cursor.style.top = e.clientY + "px";
-      });
-      function countUp(id, endVal, suffix = "%") {
-        let el = document.getElementById(id);
-        let i = 0;
-        let interval = setInterval(() => {
-          if (i >= endVal) {
-            clearInterval(interval);
-          } else {
-            i++;
-            el.innerText = i + suffix;
-          }
-        }, 20);
-      }
-      countUp("count1", 95);
-      countUp("count2", 4, "X");
-      countUp("count3", 24, "/7");
-      countUp("count4", 80);
 
-      /* particles.js initialization */
-      particlesJS("particles-js", {
-        "particles": {
-          "number": {
-            "value": 80,
-            "density": {
-              "enable": true,
-              "value_area": 800
-            }
-          },
-          "color": {
-            "value": "#00bcd4"
-          },
-          "shape": {
-            "type": "circle",
-            "stroke": {
-              "width": 0,
-              "color": "#000000"
-            }
-          },
-          "opacity": {
-            "value": 0.5,
-            "random": true,
-            "anim": {
-              "enable": true,
-              "speed": 1,
-              "opacity_min": 0.1,
-              "sync": false
-            }
-          },
-          "size": {
-            "value": 4,
-            "random": true,
-            "anim": {
-              "enable": true,
-              "speed": 5,
-              "size_min": 0.1,
-              "sync": false
-            }
-          },
-          "move": {
-            "enable": true,
-            "speed": 2,
-            "direction": "none",
-            "random": true,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false,
-            "attract": {
-              "enable": false
-            }
-          }
-        },
-        "interactivity": {
-          "detect_on": "canvas",
-          "events": {
-            "onhover": {
-              "enable": true,
-              "mode": "grab"
-            },
-            "onclick": {
-              "enable": true,
-              "mode": "push"
-            },
-            "resize": true
-          },
-          "modes": {
-            "grab": {
-              "distance": 150,
-              "line_linked": {
-                "opacity": 0.6
+      // --- Cursor Animation (from original AI page) ---
+      const cursor = document.getElementById("cursor");
+      if (cursor) {
+          document.addEventListener("mousemove", e => {
+              cursor.style.left = e.clientX + "px";
+              cursor.style.top = e.clientY + "px";
+          });
+      }
+
+      // --- Metric Counter Animation (from original AI page) ---
+      function countUp(id, endVal, suffix = "") {
+          let el = document.getElementById(id);
+          if (!el) return; // Add a check to ensure element exists
+          let i = 0;
+          let interval = setInterval(() => {
+              if (i >= endVal) {
+                  clearInterval(interval);
+              } else {
+                  i++;
+                  el.innerText = i + suffix;
               }
-            }
-            ,
-            "push": {
-              "particles_nb": 4
-            }
+          }, 20);
+      }
+      // Delay execution slightly to ensure DOM is ready
+      setTimeout(() => {
+          countUp("count1", 95, "%");
+          countUp("count2", 4, "X");
+          countUp("count3", 24, "/7");
+          countUp("count4", 80, "%");
+      }, 500); // Small delay
+
+
+      // --- Mobile Navigation Toggle and Dropdown Logic ---
+      const mainNavUl = document.getElementById("main-nav-menu");
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const designMenuToggle = document.getElementById('design-menu-toggle');
+      const designSubMenu = designMenuToggle ? designMenuToggle.nextElementSibling : null;
+
+      // Function to close all menus (main and sub)
+      function closeAllMenus() {
+          if (mainNavUl) {
+              mainNavUl.classList.remove('active');
           }
-          
-        },
-        "retina_detect": true
+          if (designSubMenu) {
+              designSubMenu.classList.remove('active');
+              designSubMenu.classList.remove('show-dropdown');
+              designMenuToggle.querySelector('i').classList.remove('rotate-180');
+          }
+      }
+
+      if (mobileMenuToggle) {
+          mobileMenuToggle.addEventListener('click', (event) => {
+              event.stopPropagation();
+              if (mainNavUl) {
+                  mainNavUl.classList.toggle('active');
+                  if (!mainNavUl.classList.contains('active')) {
+                      closeAllMenus();
+                  }
+              }
+          });
+      }
+
+      if (designMenuToggle && designSubMenu) {
+          designMenuToggle.addEventListener('click', (event) => {
+              event.preventDefault();
+              event.stopPropagation();
+
+              if (window.innerWidth < 768) {
+                  designSubMenu.classList.toggle('active');
+              } else {
+                  designSubMenu.classList.toggle('show-dropdown');
+              }
+              designMenuToggle.querySelector('i').classList.toggle('rotate-180');
+          });
+
+          document.addEventListener('click', (event) => {
+              if (window.innerWidth >= 768) {
+                  const isClickInsideDesignToggle = designMenuToggle.contains(event.target);
+                  const isClickInsideDesignSubMenu = designSubMenu.contains(event.target);
+
+                  if (designSubMenu.classList.contains('show-dropdown') && !isClickInsideDesignToggle && !isClickInsideDesignSubMenu) {
+                      designSubMenu.classList.remove('show-dropdown');
+                      designMenuToggle.querySelector('i').classList.remove('rotate-180');
+                  }
+              }
+          });
+
+          if (mainNavUl) {
+              mainNavUl.querySelectorAll('a').forEach(link => {
+                  link.addEventListener('click', (event) => {
+                      if (link.closest('.group ul') || (!link.closest('.group') && link.href && link.href !== '#')) {
+                          closeAllMenus();
+                      }
+                  });
+              });
+          }
+      }
+
+      window.addEventListener('resize', () => {
+          if (window.innerWidth >= 768) {
+              closeAllMenus();
+          }
       });
     });
   </script>
