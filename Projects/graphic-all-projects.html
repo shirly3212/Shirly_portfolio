@@ -204,7 +204,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      height: auto;
+      height: auto; /* Allow card height to adjust if content requires it */
       cursor: pointer;
     }
 
@@ -244,11 +244,12 @@
 
     .project-card-content {
       padding: 1rem;
-      text-align: center;
-      flex-grow: 1;
-      display: flex;
+      text-align: center; /* Center text within the content area */
       flex-direction: column;
-      justify-content: space-between;
+      display: flex;
+      justify-content: space-between; /* Ensures content pushes button to bottom */
+      flex-grow: 1; /* Allows content area to grow */
+      min-height: 150px; /* Increased min-height to standardize content area */
     }
 
     .project-card p {
@@ -256,12 +257,17 @@
       color: #4a5568;
       line-height: 1.5;
       margin-bottom: 0.5rem;
-      flex-grow: 1;
+      flex-grow: 1; /* Make paragraph take all available space to push button down */
+      text-align: center; /* Explicitly center text */
+      overflow-wrap: break-word; /* Ensure long words break and wrap */
+      word-break: break-word; /* For older browsers/compatibility */
     }
 
     .project-card .view-project-btn {
-      margin-top: auto;
-      align-self: center;
+      margin-top: auto; /* Pushes button to the bottom of the flex container */
+      /* Use margin auto with display block for centering within text-align: center or flex parent */
+      display: block; /* Make it a block element to use margin auto for centering */
+      margin: 0 auto; /* Center horizontally */
       background-image: linear-gradient(to right, #3b82f6, #7c3aed, #3b82f6);
       background-size: 200% auto;
       background-position: left center;
@@ -269,10 +275,10 @@
       padding: 0.75rem 1.5rem;
       border-radius: 9999px;
       transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      align-items: center; /* For content inside the button */
+      justify-content: center; /* For content inside the button */
       font-weight: 500;
+      margin-bottom: 0.5rem; /* Added margin to prevent touching the edge */
     }
 
     .project-card .view-project-btn:hover {
@@ -500,11 +506,11 @@
         
         <!-- Design with Sub-menu -->
         <li class="relative group">
-            <!-- Updated href for the "Design" link to point directly to graphic-all-projects.html -->
-            <a href="graphic-all-projects.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md bg-blue-600 text-white" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
+            <!-- Updated href for the main "Design" link -->
+            <a href="https://shirly3212.github.io/Shirly_portfolio/Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md bg-blue-600 text-white" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
             <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
-                <!-- The "Graphic Projects" link within the dropdown -->
-                <li><a href="graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Graphic Projects</a></li>
+                <!-- Updated href for the "Graphic Projects" link within the dropdown -->
+                <li><a href="https://shirly3212.github.io/Shirly_portfolio/Projects/graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Graphic Projects</a></li>
             </ul>
         </li>
         <li><a href="../Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Video</a></li>
@@ -532,18 +538,18 @@
                   "id": "worldcup22",
                   "title": "World Cup 22 Infographic",
                   "image": "../img/thumbnail1.jpg",
-                  "description": "An engaging infographic for the 2022 World Cup, featuring key statistics and visual highlights. It transforms complex data into a visually appealing and easy-to-understand format.",
-                  "technologies": ["Adobe Illustrator", "Infographics", "Data Visualization"],
+                  "description": "Infographic for the 2022 World Cup, featuring key stats and highlights.",
+                  "technologies": ["Adobe Illustrator", "Infographics"],
                   "live_demo": "https://makospecial.co.il/worldcup22",
                   "type": "graphic"
               }'>
               <div class="project-card-image-wrapper">
                   <img src="../img/thumbnail1.jpg" alt="World Cup 22 Infographic" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                  <h4 class="project-card-title-overlay">World Cup 22 Infographic</h4>
+                  <h4 class="project-card-title-overlay'>World Cup 22 Infographic</h4>
               </div>
               <div class="project-card-content">
-                  <p>An engaging infographic for the 2022 World Cup, featuring key statistics and visual highlights.</p>
-                  <button class="view-project-btn">View Image <i class="fas fa-eye ml-2"></i></button>
+                  <p>Infographic for the 2022 World Cup, featuring key stats and highlights.</p>
+                  <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
               </div>
           </div>
 
@@ -553,18 +559,18 @@
                   "id": "road-accidents",
                   "title": "Road Accidents Data Visualization",
                   "image": "../img/thumbnail2.jpg",
-                  "description": "A comprehensive data visualization project on road accident statistics. Designed to highlight critical safety information through clear and impactful graphics.",
-                  "technologies": ["Adobe Photoshop", "Data Analysis", "Graphic Design"],
+                  "description": "Data visualization on road accident statistics, highlighting safety information.",
+                  "technologies": ["Adobe Photoshop", "Data Analysis"],
                   "live_demo": "https://specialprojects.mako.co.il/Road_Accidents",
                   "type": "graphic"
               }'>
               <div class="project-card-image-wrapper">
                   <img src="../img/thumbnail2.jpg" alt="Road Accidents Data Visualization" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                  <h4 class="project-card-title-overlay">Road Accidents Data Visualization</h4>
+                  <h4 class="project-card-title-overlay'>Road Accidents Data Visualization</h4>
               </div>
               <div class="project-card-content">
-                  <p>A comprehensive data visualization project on road accident statistics.</p>
-                  <button class="view-project-btn">View Image <i class="fas fa-eye ml-2"></i></button>
+                  <p>Data visualization on road accident statistics, highlighting safety information.</p>
+                  <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
               </div>
           </div>
 
@@ -574,18 +580,18 @@
                   "id": "climate-change",
                   "title": "Climate Change Awareness Graphics",
                   "image": "../img/thumbnail3.jpg",
-                  "description": "Graphics created to raise awareness about climate change. Translates complex environmental data into easily understandable and visually compelling messages.",
-                  "technologies": ["Adobe InDesign", "Illustrations", "Environmental Design"],
+                  "description": "Graphics to raise awareness about climate change, translating complex data.",
+                  "technologies": ["Adobe InDesign", "Illustrations"],
                   "live_demo": "https://makospecial.co.il/climate_change",
                   "type": "graphic"
               }'>
               <div class="project-card-image-wrapper">
                   <img src="../img/thumbnail3.jpg" alt="Climate Change Awareness Graphics" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                  <h4 class="project-card-title-overlay">Climate Change Awareness Graphics</h4>
+                  <h4 class="project-card-title-overlay'>Climate Change Awareness Graphics</h4>
               </div>
               <div class="project-card-content">
-                  <p>Graphics created to raise awareness about climate change.</p>
-                  <button class="view-project-btn">View Image <i class="fas fa-eye ml-2"></i></button>
+                  <p>Graphics to raise awareness about climate change, translating complex data.</p>
+                  <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
               </div>
           </div>
 
@@ -595,18 +601,18 @@
                   "id": "britney40",
                   "title": "Britney 40 - Pop Culture Infographic",
                   "image": "../img/thumbnail4.jpg",
-                  "description": "An engaging infographic celebrating Britney Spears' 40th birthday, showcasing key milestones and cultural impact. Designed with vibrant visuals and concise information.",
-                  "technologies": ["Adobe Illustrator", "Pop Culture", "Infographics"],
+                  "description": "Infographic celebrating Britney Spears' 40th birthday, showcasing milestones.",
+                  "technologies": ["Adobe Illustrator", "Pop Culture"],
                   "live_demo": "https://makospecial.co.il/40Britney",
                   "type": "graphic"
               }'>
               <div class="project-card-image-wrapper">
                   <img src="../img/thumbnail4.jpg" alt="Britney 40 Infographic" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                  <h4 class="project-card-title-overlay">Britney 40 - Pop Culture Infographic</h4>
+                  <h4 class="project-card-title-overlay'>Britney 40 - Pop Culture Infographic</h4>
               </div>
               <div class="project-card-content">
-                  <p>Infographic celebrating Britney Spears' 40th birthday, showcasing key milestones and cultural impact.</p>
-                  <button class="view-project-btn">View Image <i class="fas fa-eye ml-2"></i></button>
+                  <p>Infographic celebrating Britney Spears' 40th birthday, showcasing milestones.</p>
+                  <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
               </div>
           </div>
 
@@ -616,18 +622,18 @@
                   "id": "israel-politics",
                   "title": "Israeli Politics - Data Visualization",
                   "image": "../img/thumbnail5.jpg",
-                  "description": "A detailed data visualization illustrating key aspects and trends in Israeli politics. Translates complex political data into accessible visual formats.",
-                  "technologies": ["Adobe Illustrator", "Data Visualization", "Political Graphics"],
+                  "description": "Data visualization on Israeli politics, illustrating key aspects and trends.",
+                  "technologies": ["Adobe Illustrator", "Data Visualization"],
                   "live_demo": "https://makospecial.co.il/israel_politics",
                   "type": "graphic"
               }'>
               <div class="project-card-image-wrapper">
                   <img src="../img/thumbnail5.jpg" alt="Israeli Politics Data Visualization" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                  <h4 class="project-card-title-overlay">Israeli Politics - Data Visualization</h4>
+                  <h4 class="project-card-title-overlay'>Israeli Politics - Data Visualization</h4>
               </div>
               <div class="project-card-content">
-                  <p>Detailed data visualization illustrating key aspects and trends in Israeli politics.</p>
-                  <button class="view-project-btn">View Image <i class="fas fa-eye ml-2"></i></button>
+                  <p>Data visualization on Israeli politics, illustrating key aspects and trends.</p>
+                  <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
               </div>
           </div>
 
@@ -637,42 +643,21 @@
                   "id": "homat-magen",
                   "title": "Homat Magen - Operation Overview",
                   "image": "../img/thumbnail6.jpg",
-                  "description": "Graphic overview of Operation 'Homat Magen' (Defensive Shield), designed to explain key events and timelines through clear visual storytelling.",
-                  "technologies": ["Adobe Photoshop", "Historical Graphics", "Infographics"],
+                  "description": "Graphic overview of Operation 'Homat Magen', explaining key events.",
+                  "technologies": ["Adobe Photoshop", "Infographics"],
                   "live_demo": "https://makospecial.co.il/homat_magen",
                   "type": "graphic"
               }'>
               <div class="project-card-image-wrapper">
                   <img src="../img/thumbnail6.jpg" alt="Homat Magen Overview" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                  <h4 class="project-card-title-overlay">Homat Magen - Operation Overview</h4>
+                  <h4 class="project-card-title-overlay'>Homat Magen - Operation Overview</h4>
               </div>
               <div class="project-card-content">
-                  <p>Graphic overview of Operation 'Homat Magen', explaining key events and timelines.</p>
-                  <button class="view-project-btn">View Image <i class="fas fa-eye ml-2"></i></button>
+                  <p>Graphic overview of Operation 'Homat Magen', explaining key events.</p>
+                  <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
               </div>
           </div>
 
-         
-          <!-- woman.jpg -->
-          <div class="project-card animate-on-scroll"
-              data-project='{
-                "id": "woman",
-                "title": "'Look Them in the Eye' Campaign",
-                "image": "../img/woman.jpg",
-                "description": "A social awareness campaign highlighting the stories of murdered women, aiming to evoke empathy and encourage social change.",
-                "technologies": ["Graphic Design", "Social Campaign", "Photoshop"],
-                "live_demo": "../img/woman.jpg",
-                "type": "graphic"
-              }'>
-              <div class="project-card-image-wrapper">
-                  <img src="../img/woman.jpg" alt="'Look Them in the Eye' Campaign" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                  <h4 class="project-card-title-overlay">'Look Them in the Eye' Campaign</h4>
-              </div>
-              <div class="project-card-content">
-                  <p>A social awareness campaign highlighting the stories of murdered women.</p>
-                  <button class="view-project-btn">View Image <i class="fas fa-eye ml-2"></i></button>
-              </div>
-          </div>
         </div>
       </section>
     </div>
@@ -822,7 +807,7 @@
         modalTechnologies.parentElement.classList.remove('hidden');
         modalLiveDemoBtn.classList.remove('hidden');
         modalGithubRepoBtn.classList.remove('hidden'); // Ensure GitHub button is visible by default
-        aiInsightBtn.classList.remove('hidden'); // Ensure AI button is visible by default
+        aiInsightBtn.classList.add('hidden'); // AI button is always hidden for graphic projects
         aiInsightContainer.classList.add('hidden');
         aiInsightText.textContent = '';
         aiInsightLoading.classList.add('hidden');
@@ -846,21 +831,29 @@
         // Handle buttons based on project type
         if (projectData.type === 'graphic') {
             modalGithubRepoBtn.classList.add('hidden'); // Hide GitHub for graphic projects
-            aiInsightBtn.classList.add('hidden'); // Hide AI insight for graphic projects
-            modalLiveDemoBtn.querySelector('i').className = 'fas fa-eye ml-2'; // Change icon to eye
-            modalLiveDemoBtn.textContent = 'View Image'; // Change text to View Image
-            if (projectData.live_demo) { // Use live_demo for image path
+            modalLiveDemoBtn.querySelector('i').className = 'fas fa-external-link-alt ml-2'; // Icon for external link
+            modalLiveDemoBtn.textContent = 'View Project'; // Always 'View Project'
+            
+            // If live_demo is a valid URL, navigate to it. Otherwise, show image.
+            const isExternalLink = projectData.live_demo && projectData.live_demo.startsWith('http');
+
+            if (isExternalLink) {
                 modalLiveDemoBtn.href = projectData.live_demo;
                 modalLiveDemoBtn.classList.remove('hidden');
+                modalProjectImage.classList.remove('w-full', 'h-auto', 'object-contain'); 
+                modalProjectImage.classList.add('h-64', 'object-cover'); 
+            } else if (projectData.image) { // If it's just an image file
+                modalLiveDemoBtn.href = projectData.image; // Still link to the image
+                modalLiveDemoBtn.classList.remove('hidden');
+                modalProjectImage.classList.add('w-full', 'h-auto', 'object-contain');
+                modalProjectImage.classList.remove('h-64', 'object-cover');
             } else {
                 modalLiveDemoBtn.classList.add('hidden');
             }
-            // For graphic images, always ensure object-contain for full image view
-            modalProjectImage.classList.add('w-full', 'h-auto', 'object-contain');
-            modalProjectImage.classList.remove('h-64', 'object-cover'); // Ensure this isn't applied
+
         } else { // For 'web' or other types (though this page is specifically graphic)
             modalLiveDemoBtn.querySelector('i').className = 'fas fa-external-link-alt ml-2';
-            modalLiveDemoBtn.textContent = 'Live Demo';
+            modalLiveDemoBtn.textContent = 'View Project'; // Always 'View Project'
             if (projectData.live_demo && projectData.live_demo !== '#') {
                 modalLiveDemoBtn.href = projectData.live_demo;
                 modalLiveDemoBtn.classList.remove('hidden');
@@ -891,11 +884,12 @@
         currentProjectData = null;
     }
 
-    // Event listeners for opening modal
+    // Event listeners for opening modal (clicking anywhere on card)
     document.querySelectorAll('.project-card').forEach(item => {
         item.addEventListener('click', (event) => {
+            // Prevent opening modal if clicking directly on a button *inside* the card that has its own action
             if (event.target.closest('.view-project-btn')) {
-                return;
+                return; // Let the button's own event handler take over
             }
             let projectData = null;
             const projectDataString = item.dataset.project;
@@ -983,17 +977,27 @@
 
       if (designMenuToggle && designSubMenu) {
           designMenuToggle.addEventListener('click', (event) => {
-              event.preventDefault();
-              event.stopPropagation();
-
+              // For mobile, prevent default and toggle dropdown
               if (window.innerWidth < 768) {
+                  event.preventDefault();
+                  event.stopPropagation();
                   designSubMenu.classList.toggle('active');
+                  designMenuToggle.querySelector('i').classList.toggle('rotate-180');
               } else {
-                  designSubMenu.classList.toggle('show-dropdown');
+                  // On desktop, allow default navigation for the main Design link,
+                  // unless the dropdown is currently open (in which case, close it).
+                  // If dropdown is open, prevent default to just close it without navigating.
+                  if (designSubMenu.classList.contains('show-dropdown')) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      designSubMenu.classList.remove('show-dropdown');
+                      designMenuToggle.querySelector('i').classList.remove('rotate-180');
+                  }
+                  // If dropdown is not open, default navigation happens via href (no preventDefault).
               }
-              designMenuToggle.querySelector('i').classList.toggle('rotate-180');
           });
 
+          // Handle clicks outside the dropdown to close it on desktop
           document.addEventListener('click', (event) => {
               if (window.innerWidth >= 768) {
                   const isClickInsideDesignToggle = designMenuToggle.contains(event.target);
@@ -1008,6 +1012,10 @@
 
           mainNavUl.querySelectorAll('a').forEach(link => {
               link.addEventListener('click', (event) => {
+                  // Close menus if it's a sub-menu item or a non-group main nav link.
+                  // For the main 'Design' link on desktop, allow its navigation
+                  // unless the click event was already handled by the designMenuToggle logic
+                  // (e.g., to close the dropdown).
                   if (link.closest('.group ul') || (!link.closest('.group') && link.href && link.href !== '#')) {
                       closeAllMenus();
                   }
