@@ -834,21 +834,15 @@
             modalLiveDemoBtn.querySelector('i').className = 'fas fa-external-link-alt ml-2'; // Icon for external link
             modalLiveDemoBtn.textContent = 'View Project'; // Always 'View Project'
             
-            // If live_demo is a valid URL, navigate to it. Otherwise, show image.
-            const isExternalLink = projectData.live_demo && projectData.live_demo.startsWith('http');
-
-            if (isExternalLink) {
+            // For graphic projects, the modal button should always link to the live_demo URL if it exists,
+            // otherwise, the button should be hidden. The modal itself will display the image.
+            if (projectData.live_demo && projectData.live_demo.startsWith('http')) {
                 modalLiveDemoBtn.href = projectData.live_demo;
                 modalLiveDemoBtn.classList.remove('hidden');
                 modalProjectImage.classList.remove('w-full', 'h-auto', 'object-contain'); 
                 modalProjectImage.classList.add('h-64', 'object-cover'); 
-            } else if (projectData.image) { // If it's just an image file
-                modalLiveDemoBtn.href = projectData.image; // Still link to the image
-                modalLiveDemoBtn.classList.remove('hidden');
-                modalProjectImage.classList.add('w-full', 'h-auto', 'object-contain');
-                modalProjectImage.classList.remove('h-64', 'object-cover');
             } else {
-                modalLiveDemoBtn.classList.add('hidden');
+                modalLiveDemoBtn.classList.add('hidden'); // Hide button if no valid live_demo
             }
 
         } else { // For 'web' or other types (though this page is specifically graphic)
