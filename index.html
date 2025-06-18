@@ -179,7 +179,7 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
-        /* Intro Section Specific Styles */
+        /* Intro Section Specific Styles for Wix-like scroll */
         .intro {
             width: 90%;
             margin: auto;
@@ -188,9 +188,13 @@
             justify-content: space-between;
             align-items: center;
             flex-direction: column; /* Default for mobile and tablet sizes */
-            /* Ensure intro section takes up remaining space for footer visibility */
-            min-height: calc(100vh - 12rem - 7vh); /* Adjusted height (header height + footer height) */
+            min-height: 100vh; /* Ensures it takes full viewport height */
             padding-top: 8rem; /* Adjusted padding to push content below fixed header */
+            padding-bottom: 3rem; /* Add some bottom padding for the intro section */
+            position: sticky; /* Make it stick */
+            top: 0; /* Stick to the top of the viewport */
+            z-index: 1; /* Ensure it's behind the contact section when covered */
+            background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8); /* Add background to home section itself */
         }
         /* עבור מסכי מחשב נייד ומעלה (1024px ומעלה) - הדמות בצד ימין */
         @media screen and (min-width: 1024px) {
@@ -319,15 +323,38 @@
                 width: 90%; /* Adjust SVG size for mobile */
                 height: auto;
             }
+        }
 
-            /* Form section adjustments on mobile */
-            .form-section {
-                padding: 2rem 1rem; /* Adjusted padding for small screens */
-            }
-            .form-section > div { /* The white container around the form */
-                width: 100%; /* Make it take full width */
-                padding: 1.5rem; /* Adjust padding */
-            }
+        /* Update .form-section for Wix-like scroll */
+        .form-section {
+            background: linear-gradient(to right, #ff6600, #ff007b); /* Same as footer for consistency */
+            background-attachment: scroll; /* Changed to scroll, as the section itself scrolls over sticky home */
+            min-height: 100vh; /* Takes full viewport height */
+            display: flex; /* To center the form content vertically and horizontally */
+            justify-content: center;
+            align-items: center;
+            padding: 0; /* Remove existing padding, min-height and flex handles positioning */
+            position: relative; /* For z-index to work against home-section */
+            z-index: 2; /* Higher z-index to cover home-section */
+        }
+
+        /* Ensure the white form container itself floats above the fixed background */
+        .form-section > div { /* The white container around the form */
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white for a subtle blend */
+            padding: 2rem 1rem; /* Existing padding */
+            border-radius: 1rem; /* Enhanced rounded corners */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25); /* More prominent shadow */
+            position: relative; /* Crucial for z-index to work */
+            z-index: 2; /* Higher z-index to be above the fixed background */
+            width: 90%; /* Adjust width for mobile */
+            max-width: 500px; /* Max width for desktop */
+            margin: auto; /* Center the form within the section */
+        }
+
+        /* Ensure footer scrolls over the form-section with a higher z-index */
+        footer {
+            position: relative; /* Important for z-index to apply against other positioned elements */
+            z-index: 10; /* Ensures the footer scrolls on top of the form-section */
         }
 
 
@@ -431,7 +458,7 @@
         </nav>
     </header>
 
-    <main class="pt-20 pb-12 flex-grow">
+    <main class="relative flex-grow">
         <section id="home-section" class="intro flex-grow pb-12">
             <div class="intro-text text-center lg:text-left mx-auto max-w-4xl px-6">
                 <!-- יישום פונט Dancing Script, עם גודל מוגדל מעט -->
@@ -563,8 +590,8 @@
                 </svg>
             </div>
         </section>
-
-        <section id="contact-section" class="form-section flex justify-center items-center py-10 px-4 mt-20">
+        
+        <section id="contact-section" class="form-section flex justify-center items-center">
             <div class="bg-white p-8 md:p-12 rounded-xl shadow-lg w-full max-w-md">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Get in Touch</h2>
                 <form class="space-y-6">
