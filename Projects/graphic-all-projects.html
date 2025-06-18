@@ -51,10 +51,18 @@
     footer {
       background: linear-gradient(to right, #ff6600, #ff007b);
     }
+    .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
   </style>
 </head>
 <body class="relative min-h-screen">
   <div id="particles-js"></div>
+
   <header class="header-frosted shadow-md fixed w-full z-50 bg-white bg-opacity-90 backdrop-blur-lg">
     <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
       <div class="logo flex items-center">
@@ -86,64 +94,64 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-6xl mx-auto">
       <!-- פרויקט 1 -->
-      <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"World Cup 22 Infographic","image":"../img/thumbnail1.jpg","description":"Infographic for the 2022 World Cup, featuring key stats and highlights.","technologies":["Adobe Illustrator","Infographics"],"live_demo":"https://makospecial.co.il/worldcup22","type":"graphic"}'>
-        <img src="../img/thumbnail1.jpg" alt="World Cup 22" class="w-full h-60 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">World Cup 22 Infographic</h3>
-          <p class="text-sm text-gray-600 mb-4">Infographic for the 2022 World Cup, featuring key stats and highlights.</p>
-          <button class="view-project-btn">View Project</button>
-        </div>
-      </div>
+<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"World Cup 22 Infographic","image":"../img/thumbnail1.jpg","description":"Infographic for the 2022 World Cup, featuring key stats and highlights.","technologies":["Adobe Illustrator","Infographics"],"live_demo":"https://makospecial.co.il/worldcup22","type":"graphic"}'>
+  <img src="../img/thumbnail1.jpg" alt="World Cup 22" class="w-full h-60 object-cover">
+  <div class="p-4">
+    <h3 class="text-xl font-semibold mb-2">World Cup 22 Infographic</h3>
+    <p class="text-sm text-gray-600 mb-4">Infographic for the 2022 World Cup, featuring key stats and highlights.</p>
+    <button class="view-project-btn">View Project</button>
+  </div>
+</div>
 
-      <!-- פרויקט 2 -->
-      <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Road Accidents Data Visualization","image":"../img/thumbnail2.jpg","description":"Data visualization on road accident statistics, highlighting safety information.","technologies":["Adobe Photoshop","Data Analysis"],"live_demo":"https://specialprojects.mako.co.il/Road_Accidents","type":"graphic"}'>
-        <img src="../img/thumbnail2.jpg" alt="Road Accidents" class="w-full h-60 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Road Accidents Data Visualization</h3>
-          <p class="text-sm text-gray-600 mb-4">Data visualization on road accident statistics, highlighting safety information.</p>
-          <button class="view-project-btn">View Project</button>
-        </div>
-      </div>
+<!-- פרויקט 2 -->
+<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Road Accidents Data Visualization","image":"../img/thumbnail2.jpg","description":"Data visualization on road accident statistics, highlighting safety information.","technologies":["Adobe Photoshop","Data Analysis"],"live_demo":"https://specialprojects.mako.co.il/Road_Accidents","type":"graphic"}'>
+  <img src="../img/thumbnail2.jpg" alt="Road Accidents" class="w-full h-60 object-cover">
+  <div class="p-4">
+    <h3 class="text-xl font-semibold mb-2">Road Accidents Data Visualization</h3>
+    <p class="text-sm text-gray-600 mb-4">Data visualization on road accident statistics, highlighting safety information.</p>
+    <button class="view-project-btn">View Project</button>
+  </div>
+</div>
 
-      <!-- פרויקט 3 -->
-      <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Climate Change Awareness Graphics","image":"../img/thumbnail3.jpg","description":"Graphics to raise awareness about climate change, translating complex data.","technologies":["Adobe InDesign","Illustrations"],"live_demo":"https://makospecial.co.il/climate_change","type":"graphic"}'>
-        <img src="../img/thumbnail3.jpg" alt="Climate Change" class="w-full h-60 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Climate Change Awareness Graphics</h3>
-          <p class="text-sm text-gray-600 mb-4">Graphics to raise awareness about climate change, translating complex data.</p>
-          <button class="view-project-btn">View Project</button>
-        </div>
-      </div>
+<!-- פרויקט 3 -->
+<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Climate Change Awareness Graphics","image":"../img/thumbnail3.jpg","description":"Graphics to raise awareness about climate change, translating complex data.","technologies":["Adobe InDesign","Illustrations"],"live_demo":"https://makospecial.co.il/climate_change","type":"graphic"}'>
+  <img src="../img/thumbnail3.jpg" alt="Climate Change" class="w-full h-60 object-cover">
+  <div class="p-4">
+    <h3 class="text-xl font-semibold mb-2">Climate Change Awareness Graphics</h3>
+    <p class="text-sm text-gray-600 mb-4">Graphics to raise awareness about climate change, translating complex data.</p>
+    <button class="view-project-btn">View Project</button>
+  </div>
+</div>
 
-      <!-- פרויקט 4 -->
-      <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Britney 40 - Pop Culture Infographic","image":"../img/thumbnail4.jpg","description":"Infographic celebrating Britney Spears' 40th birthday, showcasing milestones.","technologies":["Adobe Illustrator","Pop Culture"],"live_demo":"https://makospecial.co.il/40Britney","type":"graphic"}'>
-        <img src="../img/thumbnail4.jpg" alt="Britney 40" class="w-full h-60 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Britney 40 - Pop Culture Infographic</h3>
-          <p class="text-sm text-gray-600 mb-4">Infographic celebrating Britney Spears' 40th birthday, showcasing milestones.</p>
-          <button class="view-project-btn">View Project</button>
-        </div>
-      </div>
+<!-- פרויקט 4 -->
+<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Britney 40 - Pop Culture Infographic","image":"../img/thumbnail4.jpg","description":"Infographic celebrating Britney Spears' 40th birthday, showcasing milestones.","technologies":["Adobe Illustrator","Pop Culture"],"live_demo":"https://makospecial.co.il/40Britney","type":"graphic"}'>
+  <img src="../img/thumbnail4.jpg" alt="Britney 40" class="w-full h-60 object-cover">
+  <div class="p-4">
+    <h3 class="text-xl font-semibold mb-2">Britney 40 - Pop Culture Infographic</h3>
+    <p class="text-sm text-gray-600 mb-4">Infographic celebrating Britney Spears' 40th birthday, showcasing milestones.</p>
+    <button class="view-project-btn">View Project</button>
+  </div>
+</div>
 
-      <!-- פרויקט 5 -->
-      <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Israeli Politics - Data Visualization","image":"../img/thumbnail5.jpg","description":"Data visualization on Israeli politics, illustrating key aspects and trends.","technologies":["Adobe Illustrator","Data Visualization"],"live_demo":"https://makospecial.co.il/israel_politics","type":"graphic"}'>
-        <img src="../img/thumbnail5.jpg" alt="Israeli Politics" class="w-full h-60 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Israeli Politics - Data Visualization</h3>
-          <p class="text-sm text-gray-600 mb-4">Data visualization on Israeli politics, illustrating key aspects and trends.</p>
-          <button class="view-project-btn">View Project</button>
-        </div>
-      </div>
+<!-- פרויקט 5 -->
+<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Israeli Politics - Data Visualization","image":"../img/thumbnail5.jpg","description":"Data visualization on Israeli politics, illustrating key aspects and trends.","technologies":["Adobe Illustrator","Data Visualization"],"live_demo":"https://makospecial.co.il/israel_politics","type":"graphic"}'>
+  <img src="../img/thumbnail5.jpg" alt="Israeli Politics" class="w-full h-60 object-cover">
+  <div class="p-4">
+    <h3 class="text-xl font-semibold mb-2">Israeli Politics - Data Visualization</h3>
+    <p class="text-sm text-gray-600 mb-4">Data visualization on Israeli politics, illustrating key aspects and trends.</p>
+    <button class="view-project-btn">View Project</button>
+  </div>
+</div>
 
-      <!-- פרויקט 6 -->
-      <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Homat Magen - Operation Overview","image":"../img/thumbnail6.jpg","description":"Graphic overview of Operation 'Homat Magen', explaining key events.","technologies":["Adobe Photoshop","Infographics"],"live_demo":"https://makospecial.co.il/homat_magen","type":"graphic"}'>
-        <img src="../img/thumbnail6.jpg" alt="Homat Magen" class="w-full h-60 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Homat Magen - Operation Overview</h3>
-          <p class="text-sm text-gray-600 mb-4">Graphic overview of Operation 'Homat Magen', explaining key events.</p>
-          <button class="view-project-btn">View Project</button>
-        </div>
-      </div>
+<!-- פרויקט 6 -->
+<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Homat Magen - Operation Overview","image":"../img/thumbnail6.jpg","description":"Graphic overview of Operation 'Homat Magen', explaining key events.","technologies":["Adobe Photoshop","Infographics"],"live_demo":"https://makospecial.co.il/homat_magen","type":"graphic"}'>
+  <img src="../img/thumbnail6.jpg" alt="Homat Magen" class="w-full h-60 object-cover">
+  <div class="p-4">
+    <h3 class="text-xl font-semibold mb-2">Homat Magen - Operation Overview</h3>
+    <p class="text-sm text-gray-600 mb-4">Graphic overview of Operation 'Homat Magen', explaining key events.</p>
+    <button class="view-project-btn">View Project</button>
+  </div>
+</div>
     </div>
   </main>
 
@@ -188,10 +196,34 @@
 
       document.querySelectorAll('.view-project-btn').forEach(button => {
         button.addEventListener('click', function (e) {
+          e.preventDefault();
           e.stopPropagation();
           const card = e.target.closest('.project-card');
           const projectData = JSON.parse(card.dataset.project);
-          window.open(projectData.live_demo, '_blank');
+
+          const modal = document.createElement('div');
+          modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50';
+
+          modal.innerHTML = `
+            <div class="bg-white rounded-lg p-6 max-w-xl shadow-2xl relative">
+              <button class="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-2xl font-bold" id="close-modal">&times;</button>
+              <h2 class="text-2xl font-bold mb-4">${projectData.title}</h2>
+              <img src="${projectData.image}" alt="${projectData.title}" class="w-full h-64 object-cover rounded mb-4">
+              <p class="text-gray-700 mb-2">${projectData.description}</p>
+              <p class="text-sm text-gray-500 mb-4">Technologies: ${projectData.technologies.join(', ')}</p>
+              <a href="${projectData.live_demo}" target="_blank" class="inline-block mt-2 px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition">Open Project</a>
+            </div>
+          `;
+
+          document.body.appendChild(modal);
+
+          modal.querySelector('#close-modal').addEventListener('click', () => {
+            modal.remove();
+          });
+
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.remove();
+          });
         });
       });
 
@@ -200,3 +232,5 @@
       });
     });
   </script>
+</body>
+</html>
