@@ -41,7 +41,12 @@
             display: block;
             margin: 0 auto;
             font-weight: 500;
-            margin-bottom: 0.5rem;
+            /* Added fixed height and flexbox for vertical alignment */
+            height: 48px; /* Fixed height for buttons */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0; /* Prevents button from shrinking */
         }
         .view-project-btn:hover {
             background-position: right center;
@@ -53,10 +58,19 @@
         }
         .project-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; /* Make the card a flex container */
+            flex-direction: column; /* Arrange content in a column */
         }
         .project-card:hover {
             transform: scale(1.03);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .project-card .p-4 {
+            flex-grow: 1; /* Allows content to expand and adjust height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Pushes the button to the bottom */
+            text-align: center; /* Center align text */
         }
         @keyframes fade-in-slide {
             0% { opacity: 0; transform: translateY(30px) scale(0.95); }
@@ -121,62 +135,62 @@
         </section>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-6xl mx-auto">
-            <!-- פרויקט 1 -->
+            <!-- Project 1 -->
             <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"World Cup 22 Infographic","image":"../img/thumbnail1.jpg","description":"Infographic for the 2022 World Cup, featuring key stats and highlights.","technologies":["Adobe Illustrator","Infographics"],"live_demo":"https://makospecial.co.il/worldcup22","type":"graphic"}'>
                 <img src="../img/thumbnail1.jpg" alt="World Cup 22" class="w-full h-60 object-cover">
-                <div class="p-4 text-center">
+                <div class="p-4">
                     <h3 class="text-xl font-semibold mb-2">World Cup 22 Infographic</h3>
-                    <p class="text-sm text-gray-600 mb-4">Infographic for the 2022 World Cup, featuring key stats and highlights.</p>
+                    <p class="text-sm text-gray-600 mb-4">Key stats and highlights from the 2022 World Cup.</p>
                     <button class="view-project-btn">View Project</button>
                 </div>
             </div>
 
-            <!-- פרויקט 2 -->
+            <!-- Project 2 -->
             <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Road Accidents Data Visualization","image":"../img/thumbnail2.jpg","description":"Data visualization on road accident statistics, highlighting safety information.","technologies":["Adobe Photoshop","Data Analysis"],"live_demo":"https://specialprojects.mako.co.il/Road_Accidents","type":"graphic"}'>
                 <img src="../img/thumbnail2.jpg" alt="Road Accidents" class="w-full h-60 object-cover">
-                <div class="p-4 text-center">
+                <div class="p-4">
                     <h3 class="text-xl font-semibold mb-2">Road Accidents Data Visualization</h3>
-                    <p class="text-sm text-gray-600 mb-4">Data visualization on road accident statistics, highlighting safety information.</p>
+                    <p class="text-sm text-gray-600 mb-4">Road accident statistics and safety info.</p>
                     <button class="view-project-btn">View Project</button>
                 </div>
             </div>
 
-            <!-- פרויקט 3 -->
+            <!-- Project 3 -->
             <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Climate Change Awareness Graphics","image":"../img/thumbnail3.jpg","description":"Graphics to raise awareness about climate change, translating complex data.","technologies":["Adobe InDesign","Illustrations"],"live_demo":"https://makospecial.co.il/climate_change","type":"graphic"}'>
                 <img src="../img/thumbnail3.jpg" alt="Climate Change" class="w-full h-60 object-cover">
                 <div class="p-4">
                     <h3 class="text-xl font-semibold mb-2">Climate Change Awareness Graphics</h3>
-                    <p class="text-sm text-gray-600 mb-4">Graphics to raise awareness about climate change, translating complex data.</p>
+                    <p class="text-sm text-gray-600 mb-4">Raising awareness for climate change.</p>
                     <button class="view-project-btn">View Project</button>
                 </div>
             </div>
 
-            <!-- פרויקט 4 -->
+            <!-- Project 4 -->
             <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Britney 40 - Pop Culture Infographic","image":"../img/thumbnail4.jpg","description":"Infographic celebrating Britney Spears&#39; 40th birthday.","technologies":["Adobe Illustrator","Pop Culture"],"live_demo":"https://makospecial.co.il/40Britney","type":"graphic"}'>
                 <img src="../img/thumbnail4.jpg" alt="Britney 40" class="w-full h-60 object-cover">
                 <div class="p-4">
                     <h3 class="text-xl font-semibold mb-2">Britney 40 - Pop Culture Infographic</h3>
-                    <p class="text-sm text-gray-600 mb-4">Infographic celebrating Britney Spears' 40th birthday, showcasing milestones.</p>
+                    <p class="text-sm text-gray-600 mb-4">Celebrating Britney Spears' 40th birthday.</p>
                     <button class="view-project-btn">View Project</button>
                 </div>
             </div>
 
-            <!-- פרויקט 5 -->
+            <!-- Project 5 -->
             <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Israeli Politics - Data Visualization","image":"../img/thumbnail5.jpg","description":"Data visualization on Israeli politics, illustrating key aspects and trends.","technologies":["Adobe Illustrator","Data Visualization"],"live_demo":"https://makospecial.co.il/israel_politics","type":"graphic"}'>
                 <img src="../img/thumbnail5.jpg" alt="Israeli Politics" class="w-full h-60 object-cover">
                 <div class="p-4">
                     <h3 class="text-xl font-semibold mb-2">Israeli Politics - Data Visualization</h3>
-                    <p class="text-sm text-gray-600 mb-4">Data visualization on Israeli politics, illustrating key aspects and trends.</p>
+                    <p class="text-sm text-gray-600 mb-4">Key aspects and trends in Israeli politics.</p>
                     <button class="view-project-btn">View Project</button>
                 </div>
             </div>
 
-            <!-- פרויקט 6 -->
-            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Homat Magen - Operation Overview","image":"../img/thumbnail6.jpg","description":"Graphic overview of Operation &#39;Homat Magen&#39; overview.","technologies":["Adobe Photoshop","Infographics"],"live_demo":"https://makospecial.co.il/homat_magen","type":"graphic"}'>
+            <!-- Project 6 -->
+            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Homat Magen - Operation Overview","image":"../img/thumbnail6.jpg","description":"Graphic overview of Operation &#39;Homat Magen&#39;.","technologies":["Adobe Photoshop","Infographics"],"live_demo":"https://makospecial.co.il/homat_magen","type":"graphic"}'>
                 <img src="../img/thumbnail6.jpg" alt="Homat Magen" class="w-full h-60 object-cover">
                 <div class="p-4">
                     <h3 class="text-xl font-semibold mb-2">Homat Magen - Operation Overview</h3>
-                    <p class="text-sm text-gray-600 mb-4">Graphic overview of Operation 'Homat Magen', explaining key events.</p>
+                    <p class="text-sm text-gray-600 mb-4">Overview and explanation of 'Homat Magen' operation.</p>
                     <button class="view-project-btn">View Project</button>
                 </div>
             </div>
@@ -287,6 +301,7 @@
                     // Asynchronously fetches detailed description using LLM
                     try {
                         let chatHistory = [];
+                        // Prompt changed back to English.
                         const prompt = `Provide a detailed, engaging description for a graphic design project titled "${projectData.title}". The current brief description is: "${projectData.description}". Expand on this, focusing on the design process, creative choices, and impact. Keep it concise, around 50-70 words.`;
                         chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                         const payload = { contents: chatHistory };
