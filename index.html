@@ -376,11 +376,11 @@
 
         /* Splash image styling for full height and right alignment */
         .splash {
-            position: fixed; /* Position relative to the viewport */
+            position: absolute; /* Changed from fixed to absolute */
             top: 0;
             right: 0;
-            height: 100vh; /* Full viewport height */
-            width: auto; /* Maintain aspect ratio */
+            height: 100%; /* Changed from 100vh to 100% */
+            width: 100%; /* Changed from auto to 100% */
             object-fit: cover; /* Cover the area, cropping if necessary, to avoid gaps */
             z-index: -1; /* Behind content but in front of particles and other background elements */
         }
@@ -428,8 +428,6 @@
 <body>
     <div id="particles-js"></div>
 
-    <img class="splash" src="img/splash.svg" alt="Shirly Herscovici background splash graphic">
-
     <header class="header-frosted shadow-md fixed w-full z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap relative">
             <div class="logo flex items-center">
@@ -460,6 +458,7 @@
 
     <main class="relative flex-grow">
         <section id="home-section" class="intro flex-grow pb-12">
+            <img class="splash" src="img/splash.svg" alt="Shirly Herscovici background splash graphic">
             <div class="intro-text text-center lg:text-left mx-auto max-w-4xl px-6">
                 <!-- יישום פונט Dancing Script, עם גודל מוגדל מעט -->
                 <h2 class="text-4xl md:text-5xl font-light mb-4">Shirly Herscovici</h2>
