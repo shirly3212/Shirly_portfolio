@@ -58,6 +58,13 @@
       transform: scale(1.03);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
+      @keyframes fade-in-slide {
+      0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .animate-fade-in-slide {
+      animation: fade-in-slide 1.2s ease-out forwards;
+    }
   </style>
 </head>
 <body class="relative min-h-screen">
@@ -75,9 +82,9 @@
       <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
         <li><a href="../index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">Home</a></li>
         <li class="relative group">
-          <a href="../Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm"></i></a>
+          <a href="../Projects/index.html" class="text-lg font-semibold py-2 px-3 rounded-md bg-blue-600 text-white" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm"></i></a>
           <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 w-48 z-10">
-            <li><a href="../Projects/graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Graphic Projects</a></li>
+            <li><a href="../Projects/graphic-all-projects.html" class="block px-4 py-2 bg-blue-600 text-white rounded-md">Graphic Projects</a></li>
           </ul>
         </li>
         <li><a href="../Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">Video</a></li>
@@ -89,14 +96,14 @@
 
   <main class="pt-28 pb-12 px-4">
     <section class="text-center">
-      <h1 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 leading-tight tracking-wide">All Graphic Design Projects</h1>
+      <h1 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 leading-tight tracking-wide animate-fade-in-slide">All Graphic Design Projects</h1>
     </section>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-6xl mx-auto">
       <!-- פרויקט 1 -->
 <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"World Cup 22 Infographic","image":"../img/thumbnail1.jpg","description":"Infographic for the 2022 World Cup, featuring key stats and highlights.","technologies":["Adobe Illustrator","Infographics"],"live_demo":"https://makospecial.co.il/worldcup22","type":"graphic"}'>
   <img src="../img/thumbnail1.jpg" alt="World Cup 22" class="w-full h-60 object-cover">
-  <div class="p-4">
+  <div class="p-4 text-center">
     <h3 class="text-xl font-semibold mb-2">World Cup 22 Infographic</h3>
     <p class="text-sm text-gray-600 mb-4">Infographic for the 2022 World Cup, featuring key stats and highlights.</p>
     <button class="view-project-btn">View Project</button>
@@ -106,7 +113,7 @@
 <!-- פרויקט 2 -->
 <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Road Accidents Data Visualization","image":"../img/thumbnail2.jpg","description":"Data visualization on road accident statistics, highlighting safety information.","technologies":["Adobe Photoshop","Data Analysis"],"live_demo":"https://specialprojects.mako.co.il/Road_Accidents","type":"graphic"}'>
   <img src="../img/thumbnail2.jpg" alt="Road Accidents" class="w-full h-60 object-cover">
-  <div class="p-4">
+  <div class="p-4 text-center">
     <h3 class="text-xl font-semibold mb-2">Road Accidents Data Visualization</h3>
     <p class="text-sm text-gray-600 mb-4">Data visualization on road accident statistics, highlighting safety information.</p>
     <button class="view-project-btn">View Project</button>
@@ -124,7 +131,7 @@
 </div>
 
 <!-- פרויקט 4 -->
-<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Britney 40 - Pop Culture Infographic","image":"../img/thumbnail4.jpg","description":"Infographic celebrating Britney Spears' 40th birthday, showcasing milestones.","technologies":["Adobe Illustrator","Pop Culture"],"live_demo":"https://makospecial.co.il/40Britney","type":"graphic"}'>
+<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Britney 40 - Pop Culture Infographic","image":"../img/thumbnail4.jpg","description":"Infographic celebrating Britney Spears&#39; 40th birthday.","technologies":["Adobe Illustrator","Pop Culture"],"live_demo":"https://makospecial.co.il/40Britney","type":"graphic"}'>
   <img src="../img/thumbnail4.jpg" alt="Britney 40" class="w-full h-60 object-cover">
   <div class="p-4">
     <h3 class="text-xl font-semibold mb-2">Britney 40 - Pop Culture Infographic</h3>
@@ -144,7 +151,7 @@
 </div>
 
 <!-- פרויקט 6 -->
-<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Homat Magen - Operation Overview","image":"../img/thumbnail6.jpg","description":"Graphic overview of Operation 'Homat Magen', explaining key events.","technologies":["Adobe Photoshop","Infographics"],"live_demo":"https://makospecial.co.il/homat_magen","type":"graphic"}'>
+<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Homat Magen - Operation Overview","image":"../img/thumbnail6.jpg","description":"Graphic overview of Operation &#39;Homat Magen&#39; overview.","technologies":["Adobe Photoshop","Infographics"],"live_demo":"https://makospecial.co.il/homat_magen","type":"graphic"}'>
   <img src="../img/thumbnail6.jpg" alt="Homat Magen" class="w-full h-60 object-cover">
   <div class="p-4">
     <h3 class="text-xl font-semibold mb-2">Homat Magen - Operation Overview</h3>
