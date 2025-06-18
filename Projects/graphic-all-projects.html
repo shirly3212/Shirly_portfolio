@@ -1,243 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Shirly Herscovici | Graphic Design Portfolio">
-  <title>Graphic Design Projects</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8);
-      background-size: 400% 400%;
-      animation: gradientBackground 15s ease infinite alternate;
-      color: #1a202c;
-      overflow-x: hidden;
-    }
-    #particles-js {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-    @keyframes gradientBackground {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 100% 100%; }
-    }
-    .view-project-btn {
-      background-image: linear-gradient(to right, #3b82f6, #7c3aed, #3b82f6);
-      background-size: 200% auto;
-      background-position: left center;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 9999px;
-      transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      display: block;
-      margin: 0 auto;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-    .view-project-btn:hover {
-      background-position: right center;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3), 0 0 15px 3px rgba(37, 99, 235, 0.7);
-    }
-    footer {
-      background: linear-gradient(to right, #ff6600, #ff007b);
-    }
-    .project-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .project-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-      @keyframes fade-in-slide {
-      0% { opacity: 0; transform: translateY(30px) scale(0.95); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .animate-fade-in-slide {
-      animation: fade-in-slide 1.2s ease-out forwards;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shirly Herscovici | Graphic Design Portfolio">
+    <title>Graphic Design Projects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8);
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite alternate;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        @keyframes gradientBackground {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        .view-project-btn {
+            background-image: linear-gradient(to right, #3b82f6, #7c3aed, #3b82f6);
+            background-size: 200% auto;
+            background-position: left center;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            display: block;
+            margin: 0 auto;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .view-project-btn:hover {
+            background-position: right center;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3), 0 0 15px 3px rgba(37, 99, 235, 0.7);
+        }
+        footer {
+            background: linear-gradient(to right, #ff6600, #ff007b);
+        }
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        @keyframes fade-in-slide {
+            0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-fade-in-slide {
+            animation: fade-in-slide 1.2s ease-out forwards;
+        }
+        /* Modal specific styles */
+        .modal-content {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            max-width: 36rem; /* Equivalent to max-w-xl */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* Equivalent to shadow-2xl */
+            position: relative;
+            text-align: center;
+            width: 90%; /* Responsive width */
+        }
+        @media (min-width: 640px) { /* sm breakpoint */
+            .modal-content {
+                width: auto;
+            }
+        }
+        .modal-description {
+            min-height: 5rem; /* Ensure space for loading text */
+        }
+    </style>
 </head>
 <body class="relative min-h-screen">
-  <div id="particles-js"></div>
+    <div id="particles-js"></div>
 
-  <header class="header-frosted shadow-md fixed w-full z-50 bg-white bg-opacity-90 backdrop-blur-lg">
-    <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
-      <div class="logo flex items-center">
-        <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
-        <h1 class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition duration-300">Shirly Herscovici</h1>
-      </div>
-      <button id="mobile-menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none">
-        <i class="fas fa-bars text-2xl"></i>
-      </button>
-      <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
-        <li><a href="../index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">Home</a></li>
-        <li class="relative group">
-          <a href="../Projects/index.html" class="text-lg font-semibold py-2 px-3 rounded-md bg-blue-600 text-white" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm"></i></a>
-          <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 w-48 z-10">
-            <li><a href="../Projects/graphic-all-projects.html" class="block px-4 py-2 bg-blue-600 text-white rounded-md">Graphic Projects</a></li>
-          </ul>
-        </li>
-        <li><a href="../Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">Video</a></li>
-        <li><a href="../ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">AI</a></li>
-        <li><a href="../index.html#contact-section" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main class="pt-28 pb-12 px-4">
-    <section class="text-center">
-      <h1 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 leading-tight tracking-wide animate-fade-in-slide">All Graphic Design Projects</h1>
-    </section>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-6xl mx-auto">
-      <!-- פרויקט 1 -->
-<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"World Cup 22 Infographic","image":"../img/thumbnail1.jpg","description":"Infographic for the 2022 World Cup, featuring key stats and highlights.","technologies":["Adobe Illustrator","Infographics"],"live_demo":"https://makospecial.co.il/worldcup22","type":"graphic"}'>
-  <img src="../img/thumbnail1.jpg" alt="World Cup 22" class="w-full h-60 object-cover">
-  <div class="p-4 text-center">
-    <h3 class="text-xl font-semibold mb-2">World Cup 22 Infographic</h3>
-    <p class="text-sm text-gray-600 mb-4">Infographic for the 2022 World Cup, featuring key stats and highlights.</p>
-    <button class="view-project-btn">View Project</button>
-  </div>
-</div>
-
-<!-- פרויקט 2 -->
-<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Road Accidents Data Visualization","image":"../img/thumbnail2.jpg","description":"Data visualization on road accident statistics, highlighting safety information.","technologies":["Adobe Photoshop","Data Analysis"],"live_demo":"https://specialprojects.mako.co.il/Road_Accidents","type":"graphic"}'>
-  <img src="../img/thumbnail2.jpg" alt="Road Accidents" class="w-full h-60 object-cover">
-  <div class="p-4 text-center">
-    <h3 class="text-xl font-semibold mb-2">Road Accidents Data Visualization</h3>
-    <p class="text-sm text-gray-600 mb-4">Data visualization on road accident statistics, highlighting safety information.</p>
-    <button class="view-project-btn">View Project</button>
-  </div>
-</div>
-
-<!-- פרויקט 3 -->
-<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Climate Change Awareness Graphics","image":"../img/thumbnail3.jpg","description":"Graphics to raise awareness about climate change, translating complex data.","technologies":["Adobe InDesign","Illustrations"],"live_demo":"https://makospecial.co.il/climate_change","type":"graphic"}'>
-  <img src="../img/thumbnail3.jpg" alt="Climate Change" class="w-full h-60 object-cover">
-  <div class="p-4">
-    <h3 class="text-xl font-semibold mb-2">Climate Change Awareness Graphics</h3>
-    <p class="text-sm text-gray-600 mb-4">Graphics to raise awareness about climate change, translating complex data.</p>
-    <button class="view-project-btn">View Project</button>
-  </div>
-</div>
-
-<!-- פרויקט 4 -->
-<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Britney 40 - Pop Culture Infographic","image":"../img/thumbnail4.jpg","description":"Infographic celebrating Britney Spears&#39; 40th birthday.","technologies":["Adobe Illustrator","Pop Culture"],"live_demo":"https://makospecial.co.il/40Britney","type":"graphic"}'>
-  <img src="../img/thumbnail4.jpg" alt="Britney 40" class="w-full h-60 object-cover">
-  <div class="p-4">
-    <h3 class="text-xl font-semibold mb-2">Britney 40 - Pop Culture Infographic</h3>
-    <p class="text-sm text-gray-600 mb-4">Infographic celebrating Britney Spears' 40th birthday, showcasing milestones.</p>
-    <button class="view-project-btn">View Project</button>
-  </div>
-</div>
-
-<!-- פרויקט 5 -->
-<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Israeli Politics - Data Visualization","image":"../img/thumbnail5.jpg","description":"Data visualization on Israeli politics, illustrating key aspects and trends.","technologies":["Adobe Illustrator","Data Visualization"],"live_demo":"https://makospecial.co.il/israel_politics","type":"graphic"}'>
-  <img src="../img/thumbnail5.jpg" alt="Israeli Politics" class="w-full h-60 object-cover">
-  <div class="p-4">
-    <h3 class="text-xl font-semibold mb-2">Israeli Politics - Data Visualization</h3>
-    <p class="text-sm text-gray-600 mb-4">Data visualization on Israeli politics, illustrating key aspects and trends.</p>
-    <button class="view-project-btn">View Project</button>
-  </div>
-</div>
-
-<!-- פרויקט 6 -->
-<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Homat Magen - Operation Overview","image":"../img/thumbnail6.jpg","description":"Graphic overview of Operation &#39;Homat Magen&#39; overview.","technologies":["Adobe Photoshop","Infographics"],"live_demo":"https://makospecial.co.il/homat_magen","type":"graphic"}'>
-  <img src="../img/thumbnail6.jpg" alt="Homat Magen" class="w-full h-60 object-cover">
-  <div class="p-4">
-    <h3 class="text-xl font-semibold mb-2">Homat Magen - Operation Overview</h3>
-    <p class="text-sm text-gray-600 mb-4">Graphic overview of Operation 'Homat Magen', explaining key events.</p>
-    <button class="view-project-btn">View Project</button>
-  </div>
-</div>
-    </div>
-  </main>
-
-  <footer class="text-white py-8 mt-auto">
-    <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-      <p class="text-lg font-medium">© 2025 Shirly Herscovici</p>
-      <ul class="flex gap-6 mt-4 md:mt-0">
-        <li><a href="#" class="hover:text-gray-200"><i class="fab fa-instagram text-2xl"></i></a></li>
-        <li><a href="#" class="hover:text-gray-200"><i class="fab fa-twitter text-2xl"></i></a></li>
-        <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" class="hover:text-gray-200"><i class="fab fa-youtube text-2xl"></i></a></li>
-        <li><a href="#" class="hover:text-gray-200"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
-        <li><a href="#" class="hover:text-gray-200"><i class="fab fa-github text-2xl"></i></a></li>
-      </ul>
-    </div>
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      particlesJS("particles-js", {
-        particles: {
-          number: { value: 60 },
-          color: { value: "#ffffff" },
-          shape: { type: "circle" },
-          opacity: { value: 0.5 },
-          size: { value: 3, random: true },
-          line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
-          move: { enable: true, speed: 4 }
-        },
-        interactivity: {
-          detect_on: "canvas",
-          events: {
-            onhover: { enable: true, mode: "grab" },
-            onclick: { enable: true, mode: "push" }
-          },
-          modes: {
-            grab: { distance: 140, line_linked: { opacity: 1 } },
-            push: { particles_nb: 4 }
-          }
-        },
-        retina_detect: true
-      });
-
-      document.querySelectorAll('.view-project-btn').forEach(button => {
-        button.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          const card = e.target.closest('.project-card');
-          const projectData = JSON.parse(card.dataset.project);
-
-          const modal = document.createElement('div');
-          modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50';
-
-          modal.innerHTML = `
-            <div class="bg-white rounded-lg p-6 max-w-xl shadow-2xl relative text-center">
-              <button class="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-2xl font-bold" id="close-modal">&times;</button>
-              <h2 class="text-2xl font-bold mb-4">${projectData.title}</h2>
-              <img src="${projectData.image}" alt="${projectData.title}" class="w-full h-64 object-cover rounded mb-4">
-              <p class="text-gray-700 mb-2 text-center">${projectData.description}</p>
-              <p class="text-sm text-gray-500 mb-4 text-center">Technologies: ${projectData.technologies.join(', ')}</p>
-              <a href="${projectData.live_demo}" target="_blank" class="block mx-auto mt-2 px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition">Open Project</a>
+    <header class="header-frosted shadow-md fixed w-full z-50 bg-white bg-opacity-90 backdrop-blur-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
+            <div class="logo flex items-center">
+                <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
+                <h1 class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition duration-300">Shirly Herscovici</h1>
             </div>
-          `;
+            <button id="mobile-menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
+                <li><a href="../index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">Home</a></li>
+                <li class="relative group">
+                    <a href="../Projects/index.html" class="text-lg font-semibold py-2 px-3 rounded-md bg-blue-600 text-white" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm"></i></a>
+                    <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 w-48 z-10">
+                        <li><a href="../Projects/graphic-all-projects.html" class="block px-4 py-2 bg-blue-600 text-white rounded-md">Graphic Projects</a></li>
+                    </ul>
+                </li>
+                <li><a href="../Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">Video</a></li>
+                <li><a href="../ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">AI</a></li>
+                <li><a href="../index.html#contact-section" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-          document.body.appendChild(modal);
+    <main class="pt-28 pb-12 px-4">
+        <section class="text-center">
+            <h1 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 leading-tight tracking-wide animate-fade-in-slide">All Graphic Design Projects</h1>
+        </section>
 
-          modal.querySelector('#close-modal').addEventListener('click', () => {
-            modal.remove();
-          });
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-6xl mx-auto">
+            <!-- פרויקט 1 -->
+            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"World Cup 22 Infographic","image":"../img/thumbnail1.jpg","description":"Infographic for the 2022 World Cup, featuring key stats and highlights.","technologies":["Adobe Illustrator","Infographics"],"live_demo":"https://makospecial.co.il/worldcup22","type":"graphic"}'>
+                <img src="../img/thumbnail1.jpg" alt="World Cup 22" class="w-full h-60 object-cover">
+                <div class="p-4 text-center">
+                    <h3 class="text-xl font-semibold mb-2">World Cup 22 Infographic</h3>
+                    <p class="text-sm text-gray-600 mb-4">Infographic for the 2022 World Cup, featuring key stats and highlights.</p>
+                    <button class="view-project-btn">View Project</button>
+                </div>
+            </div>
 
-          modal.addEventListener('click', (e) => {
-            if (e.target === modal) modal.remove();
-          });
+            <!-- פרויקט 2 -->
+            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Road Accidents Data Visualization","image":"../img/thumbnail2.jpg","description":"Data visualization on road accident statistics, highlighting safety information.","technologies":["Adobe Photoshop","Data Analysis"],"live_demo":"https://specialprojects.mako.co.il/Road_Accidents","type":"graphic"}'>
+                <img src="../img/thumbnail2.jpg" alt="Road Accidents" class="w-full h-60 object-cover">
+                <div class="p-4 text-center">
+                    <h3 class="text-xl font-semibold mb-2">Road Accidents Data Visualization</h3>
+                    <p class="text-sm text-gray-600 mb-4">Data visualization on road accident statistics, highlighting safety information.</p>
+                    <button class="view-project-btn">View Project</button>
+                </div>
+            </div>
+
+            <!-- פרויקט 3 -->
+            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Climate Change Awareness Graphics","image":"../img/thumbnail3.jpg","description":"Graphics to raise awareness about climate change, translating complex data.","technologies":["Adobe InDesign","Illustrations"],"live_demo":"https://makospecial.co.il/climate_change","type":"graphic"}'>
+                <img src="../img/thumbnail3.jpg" alt="Climate Change" class="w-full h-60 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">Climate Change Awareness Graphics</h3>
+                    <p class="text-sm text-gray-600 mb-4">Graphics to raise awareness about climate change, translating complex data.</p>
+                    <button class="view-project-btn">View Project</button>
+                </div>
+            </div>
+
+            <!-- פרויקט 4 -->
+            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Britney 40 - Pop Culture Infographic","image":"../img/thumbnail4.jpg","description":"Infographic celebrating Britney Spears&#39; 40th birthday.","technologies":["Adobe Illustrator","Pop Culture"],"live_demo":"https://makospecial.co.il/40Britney","type":"graphic"}'>
+                <img src="../img/thumbnail4.jpg" alt="Britney 40" class="w-full h-60 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">Britney 40 - Pop Culture Infographic</h3>
+                    <p class="text-sm text-gray-600 mb-4">Infographic celebrating Britney Spears' 40th birthday, showcasing milestones.</p>
+                    <button class="view-project-btn">View Project</button>
+                </div>
+            </div>
+
+            <!-- פרויקט 5 -->
+            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Israeli Politics - Data Visualization","image":"../img/thumbnail5.jpg","description":"Data visualization on Israeli politics, illustrating key aspects and trends.","technologies":["Adobe Illustrator","Data Visualization"],"live_demo":"https://makospecial.co.il/israel_politics","type":"graphic"}'>
+                <img src="../img/thumbnail5.jpg" alt="Israeli Politics" class="w-full h-60 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">Israeli Politics - Data Visualization</h3>
+                    <p class="text-sm text-gray-600 mb-4">Data visualization on Israeli politics, illustrating key aspects and trends.</p>
+                    <button class="view-project-btn">View Project</button>
+                </div>
+            </div>
+
+            <!-- פרויקט 6 -->
+            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-project='{"title":"Homat Magen - Operation Overview","image":"../img/thumbnail6.jpg","description":"Graphic overview of Operation &#39;Homat Magen&#39; overview.","technologies":["Adobe Photoshop","Infographics"],"live_demo":"https://makospecial.co.il/homat_magen","type":"graphic"}'>
+                <img src="../img/thumbnail6.jpg" alt="Homat Magen" class="w-full h-60 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">Homat Magen - Operation Overview</h3>
+                    <p class="text-sm text-gray-600 mb-4">Graphic overview of Operation 'Homat Magen', explaining key events.</p>
+                    <button class="view-project-btn">View Project</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-white py-8 mt-auto">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-lg font-medium">© 2025 Shirly Herscovici</p>
+            <ul class="flex gap-6 mt-4 md:mt-0">
+                <li><a href="#" class="hover:text-gray-200"><i class="fab fa-instagram text-2xl"></i></a></li>
+                <li><a href="#" class="hover:text-gray-200"><i class="fab fa-twitter text-2xl"></i></a></li>
+                <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" class="hover:text-gray-200"><i class="fab fa-youtube text-2xl"></i></a></li>
+                <li><a href="#" class="hover:text-gray-200"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
+                <li><a href="#" class="hover:text-gray-200"><i class="fab fa-github text-2xl"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Initializes the particles.js library for animated background
+            particlesJS("particles-js", {
+                particles: {
+                    number: { value: 60 },
+                    color: { value: "#ffffff" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5 },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 4 }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "grab" },
+                        onclick: { enable: true, mode: "push" }
+                    },
+                    modes: {
+                        grab: { distance: 140, line_linked: { opacity: 1 } },
+                        push: { particles_nb: 4 }
+                    }
+                },
+                retina_detect: true
+            });
+
+            // Event listener for "View Project" buttons
+            document.querySelectorAll('.view-project-btn').forEach(button => {
+                button.addEventListener('click', async function (e) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Prevents event from bubbling up
+
+                    const card = e.target.closest('.project-card');
+                    const projectData = JSON.parse(card.dataset.project); // Parses project data from data attribute
+
+                    // Creates the modal HTML structure
+                    const modal = document.createElement('div');
+                    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50';
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <button class="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-2xl font-bold" id="close-modal">&times;</button>
+                            <h2 class="text-2xl font-bold mb-4">${projectData.title}</h2>
+                            <img src="${projectData.image}" alt="${projectData.title}" class="w-full h-64 object-cover rounded mb-4">
+                            <p class="text-gray-700 mb-2 modal-description text-center">Loading detailed description...</p>
+                            <p class="text-sm text-gray-500 mb-4 text-center">Technologies: ${projectData.technologies.join(', ')}</p>
+                            <a href="${projectData.live_demo}" target="_blank" class="block mx-auto mt-2 px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition">Open Project</a>
+                        </div>
+                    `;
+
+                    document.body.appendChild(modal); // Appends the modal to the body
+
+                    // Get the description paragraph element in the modal
+                    const descriptionElement = modal.querySelector('.modal-description');
+
+                    // Asynchronously fetches detailed description using LLM
+                    try {
+                        let chatHistory = [];
+                        const prompt = `Provide a detailed, engaging description for a graphic design project titled "${projectData.title}". The current brief description is: "${projectData.description}". Expand on this, focusing on the design process, creative choices, and impact. Keep it concise, around 50-70 words.`;
+                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                        const payload = { contents: chatHistory };
+                        const apiKey = ""; // API key for Gemini API
+                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                        // Fetch response from Gemini API
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        const result = await response.json();
+
+                        // Update description with AI-generated text
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            descriptionElement.textContent = result.candidates[0].content.parts[0].text;
+                        } else {
+                            descriptionElement.textContent = "Could not load a detailed description. Please try again later.";
+                            console.error("LLM response structure unexpected:", result);
+                        }
+                    } catch (error) {
+                        descriptionElement.textContent = "Failed to load detailed description due to an error.";
+                        console.error("Error fetching LLM description:", error);
+                    }
+
+                    // Event listener to close the modal when the close button is clicked
+                    modal.querySelector('#close-modal').addEventListener('click', () => {
+                        modal.remove();
+                    });
+
+                    // Event listener to close the modal when clicking outside the modal content
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) modal.remove();
+                    });
+                });
+            });
+
+            // Toggles mobile navigation menu visibility
+            document.getElementById("mobile-menu-toggle")?.addEventListener("click", () => {
+                document.getElementById("main-nav-menu")?.classList.toggle("hidden");
+            });
         });
-      });
-
-      document.getElementById("mobile-menu-toggle")?.addEventListener("click", () => {
-        document.getElementById("main-nav-menu")?.classList.toggle("hidden");
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
