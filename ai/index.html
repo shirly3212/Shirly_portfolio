@@ -498,12 +498,13 @@
         overflow: hidden;
     }
 
+    /* Updated coming-soon-text styling */
     .coming-soon-text {
-        font-family: 'Inter', sans-serif;
-        font-size: 3rem;
-        font-weight: 700;
-        color: #00bcd4; /* Light blue color */
-        text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+        font-family: 'Inter', sans-serif; /* Using Inter font for elegance */
+        font-size: 2.2rem; /* Slightly smaller */
+        font-weight: 600; /* Medium-bold for elegance */
+        color: #ffffff; /* White color */
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.7); /* Softer white glow */
         margin-bottom: 2rem;
         position: relative;
         z-index: 2;
@@ -573,8 +574,9 @@
 
     /* Responsive adjustments for coming soon section */
     @media (max-width: 767px) {
+        /* Updated responsive coming-soon-text styling */
         .coming-soon-text {
-            font-size: 2rem;
+            font-size: 1.8rem; /* Adjusted for mobile */
             margin-bottom: 1.5rem;
         }
         .coming-soon-iframe-container {
@@ -667,11 +669,9 @@
             Soon you'll be able to explore different worlds, discover new projects, and experience my capabilities in 3D and interactivity.
         </p>
         <div class="coming-soon-iframe-container">
-            <!-- Replace 'YOUR_MARIO_WORLD_URL_HERE' with the actual URL where your Mario 3D world is hosted -->
-            <!-- For example, if hosted on GitHub Pages: https://yourusername.github.io/your-mario-world-repo/index.html -->
-            <iframe src="YOUR_MARIO_WORLD_URL_HERE" class="coming-soon-iframe" title="Mario 3D World Coming Soon"></iframe>
+            <!-- Updated src to the provided Mario world URL -->
+            <iframe src="https://shirly3212.github.io/Graphic_world/" class="coming-soon-iframe" title="Mario 3D World Coming Soon"></iframe>
             <div class="coming-soon-overlay">
-                <!-- Mushrooms are now next to the text horizontally -->
                 <span class="mario-emoji">🍄</span>
                 COMING SOON
                 <span class="mario-emoji">🍄</span>
