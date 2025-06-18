@@ -485,6 +485,110 @@
           margin: 2rem auto;
       }
     }
+
+    /* Style for the Coming Soon section */
+    .coming-soon-section {
+        position: relative;
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 4rem auto;
+        background: rgba(255, 255, 255, 0.05); /* Slightly transparent background */
+        border-radius: 1.5rem;
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.3); /* Glowing shadow */
+        overflow: hidden;
+    }
+
+    .coming-soon-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        color: #00bcd4; /* Light blue color */
+        text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .coming-soon-iframe-container {
+        position: relative;
+        width: 80%; /* Adjust width as needed */
+        padding-bottom: 45%; /* Aspect ratio (e.g., 16:9 for 56.25%, adjust as needed for the Mario world) */
+        height: 0;
+        margin: 0 auto;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(124, 77, 255, 0.5); /* Purple glow */
+    }
+
+    .coming-soon-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        filter: blur(5px) grayscale(80%); /* Blur and grayscale effect */
+        opacity: 0.6; /* Slightly transparent */
+        transition: filter 0.5s ease, opacity 0.5s ease;
+    }
+
+    .coming-soon-iframe-container:hover .coming-soon-iframe {
+        filter: blur(0px) grayscale(0%); /* Remove blur/grayscale on hover */
+        opacity: 1; /* Full opacity on hover */
+    }
+
+    .coming-soon-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Simple sky blue background */
+        background-color: rgb(135, 206, 250); /* Sky blue */
+        display: flex;
+        flex-direction: row; /* Arranges mushrooms and text horizontally */
+        justify-content: center;
+        align-items: center;
+        font-family: 'Inter', sans-serif; /* Using Inter, which is already loaded */
+        font-size: 3.5rem; /* Adjusted for impact */
+        font-weight: bold; /* Bold text */
+        color: #FFD700; /* Gold color from Mario style */
+        text-shadow: 4px 4px 0px #FF6B6B; /* Red shadow for retro look */
+        z-index: 10;
+        pointer-events: none; /* Allows clicks to pass through to iframe on hover */
+        transition: opacity 0.5s ease;
+        gap: 20px; /* Space between mushrooms and text */
+    }
+
+    /* Style for the mushroom emoji within the overlay */
+    .coming-soon-overlay .mario-emoji {
+        font-size: 4.5rem; /* Larger emoji */
+        line-height: 1; /* Ensure tight spacing */
+        /* Removed margin-bottom as gap handles spacing now */
+    }
+
+    .coming-soon-iframe-container:hover .coming-soon-overlay {
+        opacity: 0; /* Hide overlay on hover */
+    }
+
+    /* Responsive adjustments for coming soon section */
+    @media (max-width: 767px) {
+        .coming-soon-text {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .coming-soon-iframe-container {
+            width: 95%; /* Wider on small screens */
+            padding-bottom: 60%; /* Adjust aspect ratio for mobile if needed */
+        }
+        .coming-soon-overlay {
+            font-size: 2.5rem; /* Adjusted for mobile */
+            gap: 10px; /* Smaller gap on mobile */
+        }
+        .coming-soon-overlay .mario-emoji {
+            font-size: 3.5rem; /* Adjust emoji size for mobile */
+        }
+    }
   </style>
 </head>
 <body>
@@ -554,6 +658,30 @@
           </p>
       </div>
     </section>
+
+    <!-- NEW SECTION: Mario 3D World Coming Soon -->
+    <section class="coming-soon-section" data-aos="fade-up">
+        <h2 class="coming-soon-text">Mario-Style 3D Portfolio World - Coming Soon!</h2>
+        <p class="text-lg mb-4">
+            I'm working hard on an interactive Mario-style 3D project that will serve as a unique portfolio! 
+            Soon you'll be able to explore different worlds, discover new projects, and experience my capabilities in 3D and interactivity.
+        </p>
+        <div class="coming-soon-iframe-container">
+            <!-- Replace 'YOUR_MARIO_WORLD_URL_HERE' with the actual URL where your Mario 3D world is hosted -->
+            <!-- For example, if hosted on GitHub Pages: https://yourusername.github.io/your-mario-world-repo/index.html -->
+            <iframe src="YOUR_MARIO_WORLD_URL_HERE" class="coming-soon-iframe" title="Mario 3D World Coming Soon"></iframe>
+            <div class="coming-soon-overlay">
+                <!-- Mushrooms are now next to the text horizontally -->
+                <span class="mario-emoji">🍄</span>
+                COMING SOON
+                <span class="mario-emoji">🍄</span>
+            </div>
+        </div>
+        <p class="text-sm mt-4 text-gray-400">
+            (Hover over the preview for a sneak peek!)
+        </p>
+    </section>
+
 
     <section class="ai-metrics" data-aos="fade-up" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; padding: 4rem 2rem;">
       <div class="metric-box">
