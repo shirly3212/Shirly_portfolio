@@ -472,39 +472,6 @@
       padding-top: 0.5rem; /* Reduced padding-top as title is now an overlay */
     }
     
-    /* Base style for overlaid titles */
-    .featured-project-title-overlay,
-    .project-card-item-title-overlay {
-      position: absolute;
-      bottom: 0; /* Position at the bottom of the image */
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)); /* Gradient for better blending */
-      color: white; /* White text on dark background */
-      padding: 1.5rem 1rem 0.75rem 1rem; /* More padding at bottom to reveal text fully */
-      text-align: center;
-      font-weight: 700;
-      font-size: 1.8rem; /* Slightly smaller than original h4, but still prominent */
-      line-height: 1.2;
-      z-index: 1; /* Above image, below modal */
-      pointer-events: none; /* Allows clicks on image/card through title for modal */
-      transition: opacity 0.3s ease; /* Smooth transition for hover if implemented */
-    }
-
-    .project-card-item-title-overlay {
-      font-size: 1.1rem; /* Slightly smaller than original h4 for side projects */
-      line-height: 1.3;
-    }
-
-
-    .featured-project-content p {
-      font-size: 1.1rem; /* Larger text for featured project */
-      color: #4a5568;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      flex-grow: 1;
-    }
-    
     /* Apply the same button style to the featured project buttons */
     .featured-project .view-project-btn {
         margin-top: auto;
@@ -1061,7 +1028,7 @@
         <li class="relative group">
             <a href="https://shirly3212.github.io/Shirly_portfolio/Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
             <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
-                <li><a href="https://shirly3212.github.io/Shirly_portfolio/Projects/graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Graphic Projects</a></li>
+                <li><a href="https://shirly3212.github.io/Shirly_portfolio/Projects/graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" id="graphic-projects-link">Graphic Projects</a></li>
             </ul>
         </li>
         <li><a href="https://shirly3212.github.io/Shirly_portfolio/Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Video</a></li> <!-- Added Video Link -->
@@ -1954,6 +1921,60 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
             isSwiping = false;
         });
     }
+
+    // NEW: Function to highlight the active navigation item based on the URL
+    function highlightActiveNav() {
+        const currentPathname = window.location.pathname;
+        const mainNavLinks = document.querySelectorAll('#main-nav-menu > li > a');
+        const designMenuToggle = document.getElementById('design-menu-toggle');
+        const graphicProjectsLink = document.getElementById('graphic-projects-link');
+
+        // Remove active classes from all links initially
+        mainNavLinks.forEach(link => {
+            link.classList.remove('bg-blue-600', 'text-white', 'font-semibold');
+            link.classList.add('text-gray-700', 'hover:text-blue-600');
+        });
+        if (graphicProjectsLink) {
+            graphicProjectsLink.classList.remove('bg-blue-600', 'text-white', 'font-semibold');
+            graphicProjectsLink.classList.add('text-gray-700', 'hover:bg-gray-100');
+        }
+
+        // Check for "Design" related pages
+        const isGraphicProjectsPage = currentPathname.includes('/Projects/graphic-all-projects.html');
+        const isMainProjectsPage = currentPathname.includes('/Projects/index.html') && !isGraphicProjectsPage;
+
+        if (isGraphicProjectsPage) {
+            // If on graphic projects page, highlight both "Design" and "Graphic Projects" submenu item
+            if (designMenuToggle) {
+                designMenuToggle.classList.add('bg-blue-600', 'text-white', 'font-semibold');
+                designMenuToggle.classList.remove('text-gray-700', 'hover:text-blue-600');
+            }
+            if (graphicProjectsLink) {
+                graphicProjectsLink.classList.add('bg-blue-600', 'text-white', 'font-semibold');
+                graphicProjectsLink.classList.remove('text-gray-700', 'hover:bg-gray-100');
+            }
+        } else if (isMainProjectsPage) {
+            // If on main projects index page, highlight "Design"
+            if (designMenuToggle) {
+                designMenuToggle.classList.add('bg-blue-600', 'text-white', 'font-semibold');
+                designMenuToggle.classList.remove('text-gray-700', 'hover:text-blue-600');
+            }
+        } else {
+            // For other main navigation links, check for direct match
+            mainNavLinks.forEach(link => {
+                // Ensure to clean the href for comparison (remove '..' if present)
+                const linkHrefCleaned = link.getAttribute('href') ? link.getAttribute('href').replace('../', '/') : '';
+                // Compare only the last part of the path or the full path depending on complexity
+                if (linkHrefCleaned && currentPathname.includes(linkHrefCleaned) && link.id !== 'design-menu-toggle') {
+                     link.classList.add('bg-blue-600', 'text-white', 'font-semibold');
+                     link.classList.remove('text-gray-700', 'hover:text-blue-600');
+                }
+            });
+        }
+    }
+
+    // Call the function when the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', highlightActiveNav);
   </script>
 </body>
 
