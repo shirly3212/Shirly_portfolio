@@ -147,7 +147,7 @@
         }
         @keyframes SHIRT-L {
             from { transform: rotateZ(0.6deg); }
-            to { transform: rotateZ(0deg); }
+            to { transform: translateY(0deg); }
         }
         #HEAD {
             animation: HEAD 1.5s infinite alternate;
@@ -179,10 +179,8 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
-        /* Intro Section Specific Styles for Wix-like scroll */
+        /* Intro Section Specific Styles (NOT sticky now) */
         .intro {
-            width: 90%;
-            margin: auto;
             flex-wrap: wrap;
             display: flex;
             justify-content: space-between;
@@ -190,16 +188,18 @@
             flex-direction: column; /* Default for mobile and tablet sizes */
             min-height: 100vh; /* Ensures it takes full viewport height */
             padding-top: 8rem; /* Adjusted padding to push content below fixed header */
-            padding-bottom: 3rem; /* Add some bottom padding for the intro section */
-            position: sticky; /* Make it stick */
-            top: 0; /* Stick to the top of the viewport */
-            z-index: 1; /* Ensure it's behind the contact section when covered */
+            padding-bottom: 5rem; /* Regular bottom padding */
+            /* Removed position: sticky; and top: 0; */
+            z-index: 1; 
             background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8); /* Add background to home section itself */
         }
+
+        /* Removed #scroll-spacer styling entirely */
+
         /* עבור מסכי מחשב נייד ומעלה (1024px ומעלה) - הדמות בצד ימין */
         @media screen and (min-width: 1024px) {
             .intro {
-                flex-direction: row;
+                flex-direction: row; /* This is good for desktop */
             }
         }
         
@@ -222,14 +222,6 @@
         }
         .intro-social a {
             margin-right: 5rem; /* Specific spacing for social icons */
-        }
-
-        /* Media Queries from original CSS */
-        @media screen and (max-width: 1200px) {
-            svg {
-                width: 110%; /* Adjust SVG size */
-                height: 120%;
-            }
         }
 
         /* Mobile specific styles for header, nav, and intro section */
@@ -317,25 +309,21 @@
             }
             .me {
                 margin-top: 2rem;
-                width: 100%;
-            }
-            svg {
-                width: 90%; /* Adjust SVG size for mobile */
-                height: auto;
+                width: 100%; /* Keep 100% width on mobile */
+                min-height: 400px; /* מינימום גובה לדמות, למקרה שהתוכן קטן */
             }
         }
 
-        /* Update .form-section for Wix-like scroll */
+        /* Update .form-section to its original behavior */
         .form-section {
             background: linear-gradient(to right, #ff6600, #ff007b); /* Same as footer for consistency */
-            background-attachment: scroll; /* Changed to scroll, as the section itself scrolls over sticky home */
+            background-attachment: fixed; /* Changed to fixed for parallax-like background */
             min-height: 100vh; /* Takes full viewport height */
             display: flex; /* To center the form content vertically and horizontally */
             justify-content: center;
             align-items: center;
-            padding: 0; /* Remove existing padding, min-height and flex handles positioning */
-            position: relative; /* For z-index to work against home-section */
-            z-index: 2; /* Higher z-index to cover home-section */
+            padding: 100px 0; /* Reverted padding for content spacing */
+            /* Removed position: relative; and z-index: 2; */
         }
 
         /* Ensure the white form container itself floats above the fixed background */
@@ -375,14 +363,15 @@
         }
 
         /* Splash image styling for full height and right alignment */
-        .splash {
-            position: absolute; /* Changed from fixed to absolute */
+        /* Moved to be relative to .me container */
+        .me .splash { /* Targeting splash specifically inside .me */
+            position: absolute;
             top: 0;
-            right: 0;
-            height: 100%; /* Changed from 100vh to 100% */
-            width: 100%; /* Changed from auto to 100% */
-            object-fit: cover; /* Cover the area, cropping if necessary, to avoid gaps */
-            z-index: -1; /* Behind content but in front of particles and other background elements */
+            left: 0; /* Align to the left of the .me container */
+            width: 100%; /* Fill the width of .me container */
+            height: 100%; /* Fill the height of .me container */
+            object-fit: cover; /* Cover the area, cropping if necessary */
+            z-index: -1; /* Behind the SVG content */
         }
 
         /* Header & Nav specific styles for dropdown */
@@ -457,9 +446,8 @@
     </header>
 
     <main class="relative flex-grow">
-        <section id="home-section" class="intro flex-grow pb-12">
-            <img class="splash" src="img/splash.svg" alt="Shirly Herscovici background splash graphic">
-            <div class="intro-text text-center lg:text-left mx-auto max-w-4xl px-6">
+        <section id="home-section" class="intro flex-grow pb-12 max-w-7xl mx-auto lg:flex-row">
+            <div class="intro-text text-center lg:text-left mx-auto max-w-4xl px-6 lg:w-1/2">
                 <!-- יישום פונט Dancing Script, עם גודל מוגדל מעט -->
                 <h2 class="text-4xl md:text-5xl font-light mb-4">Shirly Herscovici</h2>
                 <h3 class="text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 leading-tight">Motion Graphic Designer <br /> Webstie Developer </h3>
@@ -470,8 +458,9 @@
                     <a href="https://www.linkedin.com/in/shirly-herscovici-a93766278/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition duration-300" title="LinkedIn Profile"><i class="fab fa-linkedin-in text-4xl"></i></a>
                 </div>
             </div>
-            <div class="me mt-12 flex justify-center items-center relative">
-                <svg width="1124" height="923" viewBox="0 0 1124 923" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-3xl h-auto">
+            <div class="me mt-12 flex justify-center items-center relative lg:w-1/2 lg:max-w-xl">
+                <!-- הסרתי את תגית התמונה splash כפי שביקשת -->
+                <svg width="1124" height="923" viewBox="0 0 1124 923" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
                     <path id="HAIR-NO-MOVEMENT"
                         d="M738.362 184.495C738.199 184.525 737.956 184.569 737.66 184.621C731.879 185.642 696.925 191.398 661.685 177.07C646.756 171.001 681.481 181.602 648.232 160.5C609.25 135.76 638.403 123.036 635.5 111.5C629.704 88.4646 600.014 72.1158 620.5 74.5C625.894 75.1277 623.522 59.4785 632.506 57.1513C634.48 56.6401 643.12 54.402 647.333 46.7682C651.09 39.9583 678.989 36.0851 680.5 30.5C704.081 30.5 686.452 7.48471 715.442 12.654C732.116 15.6271 745.085 23.744 770.342 39.8566C814.303 67.9008 836.284 81.923 841.224 103.406C845.906 123.769 834.668 132.543 842.841 154.34C850.452 174.636 842.868 171.083 847.028 187.501C853.721 213.922 848.549 245.117 838.2 257.196C826.853 270.439 816.002 277.708 801.596 287.357C783.513 299.469 781.212 453.117 770.342 452.501C750.635 451.384 618.264 337.407 617.5 320C617.5 326 615 257 635.704 180.773C639.994 172.158 730.028 181.36 731.137 176.411"
                         fill="url(#paint0_linear_0_1)" />
@@ -590,6 +579,8 @@
             </div>
         </section>
         
+        <!-- אלמנט מרווח הגלילה הוסר -->
+
         <section id="contact-section" class="form-section flex justify-center items-center">
             <div class="bg-white p-8 md:p-12 rounded-xl shadow-lg w-full max-w-md">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Get in Touch</h2>
@@ -721,10 +712,12 @@
                     
                     // On mobile, the dropdown toggle logic will still execute, but the page will
                     // navigate before the visual effect is fully observed.
+                    // For mobile, we want to directly navigate, so prevent the dropdown from opening.
+                    // However, since we removed preventDefault(), it will navigate.
+                    // We need to ensure the link click handler also closes the main menu.
                     if (window.innerWidth < 768) {
-                        // For mobile, we want to directly navigate, so prevent the dropdown from opening.
-                        // However, since we removed preventDefault(), it will navigate.
-                        // We need to ensure the link click handler also closes the main menu.
+                        // For mobile, we removed preventDefault() above, so the navigation will occur.
+                        // The `closeAllMenus()` function below is important for cleaning up the menu state.
                     } else { // Desktop behavior: toggle 'show-dropdown' class
                         designSubMenu.classList.toggle('show-dropdown');
                     }
