@@ -155,9 +155,10 @@
             justify-content: space-between;
             align-items: center;
             flex-direction: column; /* Default for mobile and tablet sizes */
-            /* Removed min-height: 100vh here to prevent pushing footer off-screen */
-            padding-top: 8rem; /* Adjusted padding to push content below fixed header */
-            padding-bottom: 3rem; /* Add some bottom padding for the intro section */
+            /* Min-height removed to allow footer to be visible */
+            /* Adjusted padding to reduce height on web view as requested */
+            padding-top: 6rem; /* Reduced from 8rem */
+            padding-bottom: 2rem; /* Reduced from 3rem */
             position: relative; /* Keep relative for splash positioning */
             background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8); /* Background for the intro section */
             flex-shrink: 0; /* Prevent it from shrinking more than content */
@@ -168,6 +169,9 @@
             .intro {
                 flex-direction: row; /* Layout content horizontally */
                 justify-content: space-around; /* Distribute space around items */
+                /* Further adjust padding for desktop if necessary */
+                padding-top: 6rem; /* Keep consistent with general intro or adjust specifically */
+                padding-bottom: 2rem;
             }
             .intro-text {
                 flex: 1; /* Allow text to take available space */
@@ -180,6 +184,7 @@
                 justify-content: flex-end; /* Push character to the right within its flex container */
                 align-items: flex-end; /* Align to bottom if needed */
                 padding-bottom: 0; /* Remove potential extra padding */
+                z-index: 2; /* Ensure character is in front of splash-svg */
             }
             .me svg {
                 width: auto; /* Let content width define it */
@@ -326,7 +331,8 @@
             display: flex; /* To center the form content vertically and horizontally */
             justify-content: center;
             align-items: center;
-            padding: 4rem 0; /* Added vertical padding for adequate space */
+            /* Increased vertical padding for more background height */
+            padding: 6rem 0; /* Increased from 4rem */
             flex-shrink: 0; /* Prevent it from shrinking more than content */
             flex-grow: 0; /* Do not grow to fill space within main, let content dictate */
         }
@@ -367,14 +373,14 @@
             }
         }
 
-        /* Splash SVG styling for positioning behind the character on the right */
+        /* Splash SVG styling for positioning directly behind the character */
         .splash-svg {
             position: absolute;
             top: 0;
             right: -5%; /* Adjusted to be more visible and on the right */
             width: 800px; /* Adjusted width for better fit on desktop */
             height: auto; /* Maintain aspect ratio */
-            z-index: -1; /* Behind content but in front of particles and other background elements */
+            z-index: 1; /* Moved forward to be directly behind the character (z-index 2) */
             pointer-events: none; /* Allow clicks to pass through */
         }
         /* Responsive adjustments for splash-svg - hidden on tablet and mobile */
@@ -421,6 +427,10 @@
             visibility: visible;
             transform: translateY(0);
             pointer-events: auto;
+        }
+        /* Custom height for footer using arbitrary value */
+        .min-h-7vh {
+            min-height: 7vh;
         }
     </style>
 </head>
@@ -589,14 +599,16 @@
     </main>
 
     <!-- Footer Section -->
-    <footer class="custom-footer-gradient text-white py-6 text-center shadow-inner mt-auto">
-        <div class="container mx-auto px-6">
-            <p>&copy; 2024 Shirly Herscovici. All rights reserved.</p>
-            <div class="flex justify-center space-x-6 mt-4">
-                <a href="https://www.linkedin.com/in/shirly-herscovici-a93766278/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer" class="hover:text-blue-200 transition duration-300" title="LinkedIn Profile"><i class="fab fa-linkedin-in text-2xl"></i></a>
-                <!-- You can add more social icons here if needed -->
-            </div>
-        </div>
+    <footer class="custom-footer-gradient text-white min-h-7vh py-8 flex justify-between items-center flex-wrap px-5">
+        <h4 class="text-xl font-medium mb-4 md:mb-0">Shirly Herscovici © 2025</h4>
+        <ul class="flex justify-center items-center flex-wrap gap-6">
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Instagram"><i class="fab fa-instagram text-2xl"></i></a></li>
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Twitter"><i class="fab fa-twitter text-2xl"></i></a></li>
+            <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-200 transition duration-300" title="YouTube"><i class="fab fa-youtube text-2xl"></i></a></li>
+            <!-- Updated LinkedIn and GitHub icons for professional portfolios -->
+            <li><a href="https://www.linkedin.com/in/shirly-herscovici-a93766278" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-200 transition duration-300" title="LinkedIn"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="GitHub"><i class="fab fa-github text-2xl"></i></a></li>
+        </ul>
     </footer>
 
     <script>
