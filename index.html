@@ -19,7 +19,8 @@
         html {
             height: 100%;
             scroll-behavior: smooth; /* Smooth scrolling for anchor links */
-            /* scroll-padding-top will be set dynamically by JavaScript for better accuracy */
+            /* This variable will be set dynamically by JavaScript for accurate scroll positioning */
+            scroll-padding-top: var(--header-height-with-offset, 0px);
         }
         body {
             font-family: 'Inter', sans-serif; /* Primary font for the body */
@@ -154,16 +155,36 @@
             justify-content: space-between;
             align-items: center;
             flex-direction: column; /* Default for mobile and tablet sizes */
-            min-height: 100vh; /* Ensures it takes full viewport height */
+            /* Removed min-height: 100vh here to prevent pushing footer off-screen */
             padding-top: 8rem; /* Adjusted padding to push content below fixed header */
             padding-bottom: 3rem; /* Add some bottom padding for the intro section */
             position: relative; /* Keep relative for splash positioning */
             background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8); /* Background for the intro section */
+            flex-shrink: 0; /* Prevent it from shrinking more than content */
+            flex-grow: 0; /* Do not grow to fill space within main, let content dictate */
         }
         /* Media query for larger screens (1024px and up) - character on the right */
         @media screen and (min-width: 1024px) {
             .intro {
                 flex-direction: row; /* Layout content horizontally */
+                justify-content: space-around; /* Distribute space around items */
+            }
+            .intro-text {
+                flex: 1; /* Allow text to take available space */
+                max-width: 50%; /* Control width of text block */
+                text-align: left; /* Align text to left on desktop */
+            }
+            .me {
+                flex: 1; /* Allow character to take available space */
+                display: flex; /* Use flex to center character if it doesn't fill entirely */
+                justify-content: flex-end; /* Push character to the right within its flex container */
+                align-items: flex-end; /* Align to bottom if needed */
+                padding-bottom: 0; /* Remove potential extra padding */
+            }
+            .me svg {
+                width: auto; /* Let content width define it */
+                height: 700px; /* Specific height for desktop, adjust as needed */
+                max-width: 100%; /* Ensure it doesn't overflow its container */
             }
         }
         
@@ -274,17 +295,40 @@
                 margin-top: 2rem;
                 width: 100%;
             }
+            .me svg {
+                height: auto;
+                width: 100%; /* Ensure character scales to full width on mobile */
+                max-width: 400px; /* Limit max size on very small screens if desired */
+            }
+        }
+        /* Tablet specific styles */
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+            .me svg {
+                height: 500px; /* Specific height for tablets */
+                width: auto;
+            }
+        }
+
+        /* Main content area, acts as a flex container for sections */
+        main {
+            position: relative;
+            flex-grow: 1; /* Allows main to take all available space */
+            display: flex; /* Make main a flex container */
+            flex-direction: column; /* Stack its sections vertically */
+            /* Ensure main takes at least the remaining height after header */
+            min-height: calc(100vh - var(--header-height, 0px));
         }
 
         /* Form section styling */
         .form-section {
             background: linear-gradient(to right, #ff6600, #ff007b); /* Same as footer for consistency */
             background-attachment: scroll;
-            min-height: 100vh; /* Takes full viewport height */
             display: flex; /* To center the form content vertically and horizontally */
             justify-content: center;
             align-items: center;
-            padding: 0;
+            padding: 4rem 0; /* Added vertical padding for adequate space */
+            flex-shrink: 0; /* Prevent it from shrinking more than content */
+            flex-grow: 0; /* Do not grow to fill space within main, let content dictate */
         }
 
         /* Ensure the white form container itself floats above the fixed background */
@@ -304,6 +348,7 @@
         footer {
             position: relative;
             z-index: 10; /* Ensures the footer scrolls on top of the form-section */
+            margin-top: auto; /* Pushes the footer to the bottom of the flex column parent (body) */
         }
 
         /* SVG Line Drawing Animation */
@@ -326,24 +371,16 @@
         .splash-svg {
             position: absolute;
             top: 0;
-            right: -150px; /* Adjust this value to move it further right or left */
-            width: 900px; /* Fixed width for better control */
+            right: -5%; /* Adjusted to be more visible and on the right */
+            width: 800px; /* Adjusted width for better fit on desktop */
             height: auto; /* Maintain aspect ratio */
             z-index: -1; /* Behind content but in front of particles and other background elements */
             pointer-events: none; /* Allow clicks to pass through */
         }
-        /* Responsive adjustments for splash-svg */
-        @media screen and (max-width: 1024px) {
+        /* Responsive adjustments for splash-svg - hidden on tablet and mobile */
+        @media screen and (max-width: 1023px) { /* Combine tablet and mobile into one rule to hide it */
             .splash-svg {
-                width: 700px; /* Smaller for tablets */
-                right: -100px;
-            }
-        }
-        @media screen and (max-width: 767px) {
-            .splash-svg {
-                width: 500px; /* Even smaller for mobile */
-                right: -50px; /* Adjust for mobile view */
-                top: 50px; /* Push down slightly for mobile */
+                display: none; /* Hide the splash SVG on tablet and mobile */
             }
         }
 
@@ -425,7 +462,7 @@
 
     <main class="relative flex-grow">
         <!-- Home Section with Intro Text and Animated SVG Character -->
-        <section id="home-section" class="intro flex-grow pb-12">
+        <section id="home-section" class="intro pb-12">
             <!-- SVG for the splash graphic -->
             <svg class="splash-svg" width="999" height="1080" viewBox="0 0 999 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path id="Vector" d="M306.5 -31.4999L882 -31.4998C999 -31.4997 999 -151.22 999 -10V480.5V1082.5C999 1347.06 553.889 1094.34 212.5 932.5C-67.0003 800 -42.9294 593.465 125.001 266C285 -45.9997 206.667 -14.9999 306.5 -31.4999Z" fill="url(#paint0_linear_5_3)"/>
@@ -497,7 +534,7 @@
                     <path d="M720.654 262.373C781.405 270.7 837.858 224.885 846.745 160.044C855.631 95.2029 813.586 35.8891 752.835 27.5631C692.083 19.237 635.631 65.0515 626.744 129.893C617.857 194.734 659.902 254.047 720.654 262.373Z" fill="#FFB6B6"/>
                     <path d="M794.439 152.54C789.764 138.778 772.271 143.393 771.971 143.405C766.105 143.632 766.796 157.157 733.828 138.177C719.861 130.137 700.925 124.182 670.849 98.7607C635.588 68.9566 628.681 142.27 626.744 129.893C554 98.7607 621.799 42.6815 646.083 31.1986C646.083 31.1986 665.5 17.5 680.766 12.2265L696.959 7.37104C707.186 2.71654 712.892 3.74043 722.627 2.24717C756.835 -3 760.454 3.76212 788.474 12.8198C804.59 18.0295 812.277 25.0526 835.112 44.4453C851.56 64.3631 863.735 89.8054 865.712 111.761C867.586 132.57 869.668 123.486 870.197 144.755C870.727 166.024 871.132 174.352 870.342 192.214C868.699 229.335 867.409 238.747 865.712 251.131C863.2 269.46 849.332 451.614 833.749 459.218C814.189 468.762 783.41 464.043 772.724 461.957C753.351 458.174 755.029 341.849 756.635 324.5C757.238 317.998 747.339 227.683 756.635 206.322C760.509 197.423 789.294 167.985 793.081 162.448" fill="url(#paint1_linear_0_1)"/>
                     </g>
-                    <path id="GLASESS" d="M694.527 145.439C699.378 146.519 697.573 149.878 697.573 150.357C697.573 150.837 699.378 178.665 722.722 185.982C746.068 193.299 760.053 178.905 764.113 171.708C768.173 164.51 771.557 147.358 772.572 146.039C773.586 144.72 778.436 142.441 778.436 142.441L779 135.724L772.91 133.805C772.91 133.805 757.571 126.369 735.016 126.008C712.46 125.648 699.715 139.442 699.715 139.442C693.366 137.287 685.467 137.003 678.285 139.442C678.285 139.442 665.54 125.648 642.984 126.007C620.429 126.366 605.09 133.804 605.09 133.804L599 135.723L599.564 142.441C599.564 142.441 604.414 144.72 605.428 146.039C606.443 147.358 609.826 164.511 613.886 171.708C617.946 178.905 631.931 193.299 655.277 185.982C678.622 178.665 680.427 150.838 680.427 150.357C680.427 149.877 678.624 146.519 683.473 145.439C687.688 144.501 690.315 144.502 694.527 145.439ZM750.579 180.224C732.76 191.62 711.444 180.105 705.016 165.111C698.587 150.118 704.001 142.201 704.001 142.201C714.759 123.548 758.138 122.774 765.58 142.921C766.82 146.279 768.398 168.829 750.579 180.224ZM612.419 142.919C619.876 122.734 663.26 123.584 673.998 142.201C673.998 142.201 679.412 150.118 672.983 165.111C666.555 180.104 645.238 191.619 627.42 180.224C609.599 168.828 611.179 146.278 612.419 142.919Z" fill="#211615"/>
+                    <path id="GLASESS" d="M694.527 145.439C699.378 146.519 697.573 149.878 697.573 150.357C697.573 150.837 699.378 178.665 722.722 185.982C746.068 193.299 760.053 178.905 764.113 171.708C768.173 164.51 771.557 147.358 772.572 146.039C773.586 144.72 778.436 142.441 778.436 142.441L779 135.724L772.91 133.805C772.91 133.805 757.571 126.369 735.016 126.008C712.46 125.648 699.715 139.442 699.715 139.442C693.366 137.287 685.467 137.003 678.285 139.442C678.285 139.442 665.54 125.648 642.984 126.007C620.429 126.366 605.09 133.804 605.09 133.804L599 135.723L599.564 142.441C599.564 142.441 604.414 144.72 605.428 146.039C606.443 147.358 609.826 164.511 613.886 171.708C617.946 178.905 631.931 193.299 655.277 185.982C678.622 178.665 680.427 150.838 680.427 150.357C680.427 149.877 678.624 146.519 683.473 145.439C687.688 144.501 690.315 144.502 694.527 145.439ZM750.579 180.224C732.76 191.62 711.444 180.105 705.016 165.111C698.587 150.118 704.001 142.201 704.001 142.201C714.759 123.548 758.138 122.774 765.58 142.921C766.82 146.279 768.398 168.829 750.579 180.224ZM612.419 142.919C619.876 122.734 663.26 123.584 673.998 142.201C673.998 142.201 679.412 150.118 672.983 165.111C666.555 180.104 645.238 191.619 627.420 180.224C609.599 168.828 611.179 146.278 612.419 142.919Z" fill="#211615"/>
                     <path id="Vector 1" d="M706.5 124L716 128.655L748 145.964L758 148H769.567L772.881 145.964L778.5 142.4H784.478H790L776.746 122.036L740.5 116L706.5 124Z" fill="url(#paint2_linear_0_1)"/>
                     </g>
                     <defs>
@@ -566,17 +603,19 @@
         // Get the main header element to measure its height
         const mainHeader = document.getElementById('main-header');
 
-        // Function to set scroll-padding-top dynamically
-        function setScrollPadding() {
+        // Function to set CSS variables for header height and scroll padding dynamically
+        function setHeaderHeightVars() {
             if (mainHeader) {
                 const headerHeight = mainHeader.offsetHeight;
-                document.documentElement.style.setProperty('--scroll-padding-top', `${headerHeight + 16}px`); // Add some extra padding
+                document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+                // Add extra 16px to scroll-padding-top for a bit of visual offset
+                document.documentElement.style.setProperty('--header-height-with-offset', `${headerHeight + 16}px`);
             }
         }
 
-        // Set padding on load and resize
-        window.addEventListener('load', setScrollPadding);
-        window.addEventListener('resize', setScrollPadding);
+        // Set variables on load and resize
+        window.addEventListener('load', setHeaderHeightVars);
+        window.addEventListener('resize', setHeaderHeightVars);
 
         // JavaScript for mobile menu toggle
         document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
@@ -584,7 +623,7 @@
             navMenu.classList.toggle('active');
         });
 
-        // Close mobile menu when a link is clicked
+        // Close mobile menu when a navigation link is clicked
         document.querySelectorAll('#main-nav-menu a').forEach(item => {
             item.addEventListener('click', () => {
                 const navMenu = document.getElementById('main-nav-menu');
@@ -594,19 +633,19 @@
             });
         });
 
-        // Toggle dropdown for "Design" on click for desktop, but not on hover
+        // Toggle dropdown for "Design" menu on click for desktop, preventing default navigation
         const designMenuToggle = document.getElementById('design-menu-toggle');
         if (designMenuToggle) {
             designMenuToggle.addEventListener('click', function(event) {
-                // Only prevent default if it's a click to open/close the dropdown, not if it's a direct navigation link (if href is not #)
-                if (window.innerWidth >= 768) { // Only for desktop
+                // Only apply dropdown toggle behavior on desktop widths (>= 768px)
+                if (window.innerWidth >= 768) {
                     event.preventDefault(); // Prevent direct navigation for the main "Design" link
-                    const dropdown = this.nextElementSibling; // The <ul> element
+                    const dropdown = this.nextElementSibling; // The <ul> element which is the dropdown
                     dropdown.classList.toggle('show-dropdown');
                 }
             });
 
-            // Close dropdown if clicking outside
+            // Close dropdown if a click occurs outside of the dropdown or its toggle button on desktop
             document.addEventListener('click', function(event) {
                 if (window.innerWidth >= 768) {
                     const isClickInside = designMenuToggle.contains(event.target) || 
