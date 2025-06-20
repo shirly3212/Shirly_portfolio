@@ -189,7 +189,6 @@
             min-height: 100vh; /* Ensures it takes full viewport height */
             padding-top: 8rem; /* Adjusted padding to push content below fixed header */
             padding-bottom: 5rem; /* Regular bottom padding */
-            /* Removed position: sticky; and top: 0; */
             z-index: 1; 
             background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8); /* Add background to home section itself */
         }
@@ -313,6 +312,9 @@
                 min-height: 400px; /* מינימום גובה לדמות, למקרה שהתוכן קטן */
             }
         }
+
+        /* Removed the media query that forced white text for logo and intro text on mobile/iPad */
+        /* This means they will now default to the dark colors defined elsewhere, ensuring contrast. */
 
         /* Update .form-section to its original behavior */
         .form-section {
@@ -459,7 +461,8 @@
                 </div>
             </div>
             <div class="me mt-12 flex justify-center items-center relative lg:w-1/2 lg:max-w-xl">
-                <!-- הסרתי את תגית התמונה splash כפי שביקשת -->
+                <!-- החזרת תגית התמונה splash -->
+                <img src="image_3b53ea.png" alt="Abstract Splash Background" class="splash">
                 <svg width="1124" height="923" viewBox="0 0 1124 923" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
                     <path id="HAIR-NO-MOVEMENT"
                         d="M738.362 184.495C738.199 184.525 737.956 184.569 737.66 184.621C731.879 185.642 696.925 191.398 661.685 177.07C646.756 171.001 681.481 181.602 648.232 160.5C609.25 135.76 638.403 123.036 635.5 111.5C629.704 88.4646 600.014 72.1158 620.5 74.5C625.894 75.1277 623.522 59.4785 632.506 57.1513C634.48 56.6401 643.12 54.402 647.333 46.7682C651.09 39.9583 678.989 36.0851 680.5 30.5C704.081 30.5 686.452 7.48471 715.442 12.654C732.116 15.6271 745.085 23.744 770.342 39.8566C814.303 67.9008 836.284 81.923 841.224 103.406C845.906 123.769 834.668 132.543 842.841 154.34C850.452 174.636 842.868 171.083 847.028 187.501C853.721 213.922 848.549 245.117 838.2 257.196C826.853 270.439 816.002 277.708 801.596 287.357C783.513 299.469 781.212 453.117 770.342 452.501C750.635 451.384 618.264 337.407 617.5 320C617.5 326 615 257 635.704 180.773C639.994 172.158 730.028 181.36 731.137 176.411"
