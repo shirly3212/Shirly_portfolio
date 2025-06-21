@@ -155,9 +155,9 @@
             justify-content: space-between;
             align-items: center;
             flex-direction: column; /* Default for mobile and tablet sizes */
-            /* Adjusted padding to reduce height on web view as requested */
-            padding-top: 6rem; /* Reduced from 8rem */
-            padding-bottom: 0; /* Changed from 2rem to remove space before contact section */
+            /* Adjusted padding to pull content up */
+            padding-top: 4rem; /* Reduced from 6rem to lift content */
+            padding-bottom: 0; /* Ensures no space before contact section */
             position: relative; /* Keep relative for splash positioning */
             background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8); /* Background for the intro section */
             flex-shrink: 0; /* Prevent it from shrinking more than content */
@@ -168,8 +168,7 @@
             .intro {
                 flex-direction: row; /* Layout content horizontally */
                 justify-content: space-around; /* Distribute space around items */
-                /* Further adjust padding for desktop if necessary */
-                padding-top: 6rem; /* Keep consistent with general intro or adjust specifically */
+                padding-top: 4rem; /* Keep consistent or adjust specifically for desktop */
                 padding-bottom: 0; /* Ensure no space for desktop either */
             }
             .intro-text {
@@ -272,7 +271,7 @@
 
             /* Intro Section adjustments for mobile */
             .intro {
-                padding-top: 10rem; /* Adjusted padding to ensure content is not hidden */
+                padding-top: 8rem; /* Increased padding to ensure content is not hidden by header */
                 min-height: auto; /* Let content dictate height on mobile */
                 justify-content: flex-start; /* Align content to top instead of center */
                 flex-direction: column; /* Stack intro content vertically */
@@ -316,6 +315,7 @@
             }
             .intro {
                 padding-bottom: 0; /* Also remove padding-bottom for tablet */
+                padding-top: 8rem; /* Increased padding for tablet as well */
             }
         }
 
@@ -346,7 +346,8 @@
         /* Ensure the white form container itself floats above the fixed background */
         .form-section > div { /* The white container around the form */
             background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white for a subtle blend */
-            padding: 2rem 1rem;
+            /* Reduced padding to shrink container slightly for better fit */
+            padding: 1.5rem 1rem; /* Reduced from 2rem 1rem */
             border-radius: 1rem;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
             position: relative;
@@ -478,7 +479,7 @@
 
     <main class="relative flex-grow">
         <!-- Home Section with Intro Text and Animated SVG Character -->
-        <section id="home-section" class="intro pb-12">
+        <section id="home-section" class="intro"> <!-- Removed pb-12 class here -->
             <!-- SVG for the splash graphic -->
             <svg class="splash-svg" width="999" height="1080" viewBox="0 0 999 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path id="Vector" d="M306.5 -31.4999L882 -31.4998C999 -31.4997 999 -151.22 999 -10V480.5V1082.5C999 1347.06 553.889 1094.34 212.5 932.5C-67.0003 800 -42.9294 593.465 125.001 266C285 -45.9997 206.667 -14.9999 306.5 -31.4999Z" fill="url(#paint0_linear_5_3)"/>
@@ -503,7 +504,7 @@
             <div class="me mt-12 flex justify-center items-center relative">
                 <!-- Updated SVG for the character -->
                 <svg width="1124" height="923" viewBox="0 0 1124 923" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-3xl h-auto">
-                    <path id="HAIR-NO-MOVEMENT" d="M738.362 184.495C738.199 184.525 737.956 184.569 737.66 184.621C731.879 185.642 696.925 191.398 661.685 177.07C646.756 171.001 681.481 181.602 648.232 160.5C609.25 135.76 638.403 123.036 635.5 111.5C629.704 88.4646 600.014 72.1158 620.5 74.5C625.894 75.1277 623.522 59.4785 632.506 57.1513C634.48 56.6401 643.12 54.402 647.333 46.7682C651.09 39.9583 678.989 36.0851 680.5 30.5C704.081 30.5 686.452 7.48471 715.442 12.654C732.116 15.6271 745.085 23.744 770.342 39.8566C814.303 67.9008 836.284 81.923 841.224 103.406C845.906 123.769 834.668 132.543 842.841 154.34C850.452 174.636 842.868 171.083 847.028 187.501C853.721 213.922 848.549 245.117 838.2 257.196C826.853 270.439 816.002 277.708 801.596 287.357C783.513 299.469 781.212 453.117 770.342 452.501C750.635 451.384 618.264 337.407 617.5 320C617.5 behaves 326 615 257 635.704 180.773C639.994 172.158 730.028 181.36 731.137 176.411" fill="url(#paint0_linear_0_1)"/>
+                    <path id="HAIR-NO-MOVEMENT" d="M738.362 184.495C738.199 184.525 737.956 184.569 737.66 184.621C731.879 185.642 696.925 191.398 661.685 177.07C646.756 171.001 681.481 181.602 648.232 160.5C609.25 135.76 638.403 123.036 635.5 111.5C629.704 88.4646 600.014 72.1158 620.5 74.5C625.894 75.1277 623.522 59.4785 632.506 57.1513C634.48 56.6401 643.12 54.402 647.333 46.7682C651.09 39.9583 678.989 36.0851 680.5 30.5C704.081 30.5 686.452 7.48471 715.442 12.654C732.116 15.6271 745.085 23.744 770.342 39.8566C814.303 67.9008 836.284 81.923 841.224 103.406C845.906 123.769 834.668 132.543 842.841 154.34C850.452 174.636 842.868 171.083 847.028 187.501C853.721 213.922 848.549 245.117 838.2 257.196C826.853 270.439 816.002 277.708 801.596 287.357C783.513 299.469 781.212 453.117 770.342 452.501C750.635 451.384 618.264 337.407 617.5 320C617.5 326 615 257 635.704 180.773C639.994 172.158 730.028 181.36 731.137 176.411" fill="url(#paint0_linear_0_1)"/>
                     <g id="NECK">
                     <path id="Vector" d="M776.347 229.935L836.752 326.102L663.36 363.527L674.404 243.13L776.347 229.935Z" fill="#FFB6B6"/>
                     <path id="NECK_2" opacity="0.1" d="M776.347 229.935L836.752 326.102L663.36 363.527L674.404 243.13L776.347 229.935Z" fill="black"/>
@@ -627,7 +628,7 @@
                 const headerHeight = mainHeader.offsetHeight;
                 document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
                 // Increased offset for contact form to ensure full visibility upon navigation
-                document.documentElement.style.setProperty('--header-height-with-offset', `${headerHeight + 100}px`); 
+                document.documentElement.style.setProperty('--header-height-with-offset', `${headerHeight + 200}px`); 
             }
         }
 
