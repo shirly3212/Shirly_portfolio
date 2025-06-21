@@ -155,10 +155,9 @@
             justify-content: space-between;
             align-items: center;
             flex-direction: column; /* Default for mobile and tablet sizes */
-            /* Min-height removed to allow footer to be visible */
             /* Adjusted padding to reduce height on web view as requested */
             padding-top: 6rem; /* Reduced from 8rem */
-            padding-bottom: 2rem; /* Reduced from 3rem */
+            padding-bottom: 0; /* Changed from 2rem to remove space before contact section */
             position: relative; /* Keep relative for splash positioning */
             background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8); /* Background for the intro section */
             flex-shrink: 0; /* Prevent it from shrinking more than content */
@@ -171,7 +170,7 @@
                 justify-content: space-around; /* Distribute space around items */
                 /* Further adjust padding for desktop if necessary */
                 padding-top: 6rem; /* Keep consistent with general intro or adjust specifically */
-                padding-bottom: 2rem;
+                padding-bottom: 0; /* Ensure no space for desktop either */
             }
             .intro-text {
                 flex: 1; /* Allow text to take available space */
@@ -278,6 +277,7 @@
                 justify-content: flex-start; /* Align content to top instead of center */
                 flex-direction: column; /* Stack intro content vertically */
                 text-align: center; /* Center align text */
+                padding-bottom: 0; /* Also remove padding-bottom for mobile */
             }
             .intro h2 {
                 font-size: 3.8rem; /* Adjusted size for mobile */
@@ -313,6 +313,9 @@
             .me svg {
                 height: 500px; /* Specific height for tablets */
                 width: auto;
+            }
+            .intro {
+                padding-bottom: 0; /* Also remove padding-bottom for tablet */
             }
         }
 
@@ -500,7 +503,7 @@
             <div class="me mt-12 flex justify-center items-center relative">
                 <!-- Updated SVG for the character -->
                 <svg width="1124" height="923" viewBox="0 0 1124 923" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-3xl h-auto">
-                    <path id="HAIR-NO-MOVEMENT" d="M738.362 184.495C738.199 184.525 737.956 184.569 737.66 184.621C731.879 185.642 696.925 191.398 661.685 177.07C646.756 171.001 681.481 181.602 648.232 160.5C609.25 135.76 638.403 123.036 635.5 111.5C629.704 88.4646 600.014 72.1158 620.5 74.5C625.894 75.1277 623.522 59.4785 632.506 57.1513C634.48 56.6401 643.12 54.402 647.333 46.7682C651.09 39.9583 678.989 36.0851 680.5 30.5C704.081 30.5 686.452 7.48471 715.442 12.654C732.116 15.6271 745.085 23.744 770.342 39.8566C814.303 67.9008 836.284 81.923 841.224 103.406C845.906 123.769 834.668 132.543 842.841 154.34C850.452 174.636 842.868 171.083 847.028 187.501C853.721 213.922 848.549 245.117 838.2 257.196C826.853 270.439 816.002 277.708 801.596 287.357C783.513 299.469 781.212 453.117 770.342 452.501C750.635 451.384 618.264 337.407 617.5 320C617.5 326 615 257 635.704 180.773C639.994 172.158 730.028 181.36 731.137 176.411" fill="url(#paint0_linear_0_1)"/>
+                    <path id="HAIR-NO-MOVEMENT" d="M738.362 184.495C738.199 184.525 737.956 184.569 737.66 184.621C731.879 185.642 696.925 191.398 661.685 177.07C646.756 171.001 681.481 181.602 648.232 160.5C609.25 135.76 638.403 123.036 635.5 111.5C629.704 88.4646 600.014 72.1158 620.5 74.5C625.894 75.1277 623.522 59.4785 632.506 57.1513C634.48 56.6401 643.12 54.402 647.333 46.7682C651.09 39.9583 678.989 36.0851 680.5 30.5C704.081 30.5 686.452 7.48471 715.442 12.654C732.116 15.6271 745.085 23.744 770.342 39.8566C814.303 67.9008 836.284 81.923 841.224 103.406C845.906 123.769 834.668 132.543 842.841 154.34C850.452 174.636 842.868 171.083 847.028 187.501C853.721 213.922 848.549 245.117 838.2 257.196C826.853 270.439 816.002 277.708 801.596 287.357C783.513 299.469 781.212 453.117 770.342 452.501C750.635 451.384 618.264 337.407 617.5 320C617.5 behaves 326 615 257 635.704 180.773C639.994 172.158 730.028 181.36 731.137 176.411" fill="url(#paint0_linear_0_1)"/>
                     <g id="NECK">
                     <path id="Vector" d="M776.347 229.935L836.752 326.102L663.36 363.527L674.404 243.13L776.347 229.935Z" fill="#FFB6B6"/>
                     <path id="NECK_2" opacity="0.1" d="M776.347 229.935L836.752 326.102L663.36 363.527L674.404 243.13L776.347 229.935Z" fill="black"/>
@@ -623,8 +626,8 @@
             if (mainHeader) {
                 const headerHeight = mainHeader.offsetHeight;
                 document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-                // Add extra 16px to scroll-padding-top for a bit of visual offset, plus more for the contact form
-                document.documentElement.style.setProperty('--header-height-with-offset', `${headerHeight + 50}px`); // Increased offset for contact form
+                // Increased offset for contact form to ensure full visibility upon navigation
+                document.documentElement.style.setProperty('--header-height-with-offset', `${headerHeight + 100}px`); 
             }
         }
 
