@@ -177,6 +177,8 @@
                 flex: 1; /* Allow text to take available space */
                 max-width: 50%; /* Control width of text block */
                 text-align: left; /* Align text to left on desktop */
+                z-index: 3; /* Ensure text is above splash-svg (z-index: 1) and character (z-index: 2) */
+                position: relative; /* Needed for z-index to work correctly */
             }
             .me {
                 flex: 1; /* Allow character to take available space */
@@ -335,6 +337,7 @@
             padding: 6rem 0; /* Increased from 4rem */
             flex-shrink: 0; /* Prevent it from shrinking more than content */
             flex-grow: 0; /* Do not grow to fill space within main, let content dictate */
+            margin-top: 0; /* Ensure no extra margin pushes it away from intro section */
         }
 
         /* Ensure the white form container itself floats above the fixed background */
@@ -620,8 +623,8 @@
             if (mainHeader) {
                 const headerHeight = mainHeader.offsetHeight;
                 document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-                // Add extra 16px to scroll-padding-top for a bit of visual offset
-                document.documentElement.style.setProperty('--header-height-with-offset', `${headerHeight + 16}px`);
+                // Add extra 16px to scroll-padding-top for a bit of visual offset, plus more for the contact form
+                document.documentElement.style.setProperty('--header-height-with-offset', `${headerHeight + 50}px`); // Increased offset for contact form
             }
         }
 
