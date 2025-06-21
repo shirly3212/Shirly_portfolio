@@ -381,14 +381,16 @@
         }
 
         /* Splash SVG styling for positioning directly behind the character */
-        .splash-svg {
-            position: absolute;
-            top: 0; /* Position from the top of the intro section */
-            right: -10%; /* Adjusted to be more visible and on the right */
-            width: 700px; /* Adjusted width */
-            height: 600px; /* Fixed height for desktop */
-            z-index: 0; /* Behind everything */
-            pointer-events: none; /* Allow clicks to pass through */
+        @media screen and (min-width: 1024px) {
+            .splash-svg {
+                position: absolute;
+                top: 50px; /* Adjusted to be a bit lower */
+                right: -10%; 
+                width: 700px; /* Adjusted width */
+                height: 600px; /* Fixed height for desktop */
+                z-index: 0; /* Behind everything */
+                pointer-events: none; /* Allow clicks to pass through */
+            }
         }
         /* Responsive adjustments for splash-svg - hidden on tablet and mobile */
         @media screen and (max-width: 1023px) { /* Combine tablet and mobile into one rule to hide it */
@@ -470,8 +472,7 @@
                         <li><a href="Projects/graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Graphic Projects</a></li>
                     </ul>
                 </li>
-                <li><a href="Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Video</a></li>
-                <li><a href="ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
+                <li><a href="Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
                 <li><a href="#contact-section" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
             </ul>
         </nav>
@@ -627,8 +628,8 @@
             if (mainHeader) {
                 const headerHeight = mainHeader.offsetHeight;
                 document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-                // Increased offset for contact form to ensure full visibility upon navigation
-                document.documentElement.style.setProperty('--header-height-with-offset', `${headerHeight + 250}px`); 
+                // Adjusted offset for contact form to ensure full visibility upon navigation
+                document.documentElement.style.setProperty('--header-height-with-offset', `${headerHeight + 30}px`); 
             }
         }
 
