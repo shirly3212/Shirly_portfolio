@@ -10,8 +10,7 @@
     <title>Shirly Herscovici | Motion Graphic Designer & Website Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- הוספת פונטים Inter, ו-Dancing Script. Dancing Script נטען במשקלים זמינים. -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Custom font for a modern look - Inter is a good choice */
         html {
@@ -184,37 +183,22 @@
             width: 90%;
             margin: auto;
             flex-wrap: wrap;
-            display: flex;
+            display: flex; /* Kept for desktop layout */
             justify-content: space-between;
             align-items: center;
-            flex-direction: column; /* Default for mobile and tablet sizes */
-            min-height: 100vh; /* Ensures it takes full viewport height */
+            flex-direction: row;
+            /* Ensure intro section takes up remaining space for footer visibility */
+            min-height: calc(100vh - 12rem - 7vh); /* Adjusted height (header height + footer height) */
             padding-top: 8rem; /* Adjusted padding to push content below fixed header */
-            padding-bottom: 3rem; /* Add some bottom padding for the intro section */
-            position: relative; /* Keep relative for splash positioning */
-            /* Removed z-index */
-            /* Removed background as body already provides it */
         }
-        /* עבור מסכי מחשב נייד ומעלה (1024px ומעלה) - הדמות בצד ימין */
-        @media screen and (min-width: 1024px) {
-            .intro {
-                flex-direction: row;
-            }
-        }
-        
-        /* גודל פונט מקורי ללוגו הוחזר (3xl) */
         .intro h2 {
-            /* יישום פונט Dancing Script */
-            font-family: 'Dancing Script', cursive;
-            font-weight: 400; /* חזרה למשקל רגיל */
-            font-size: 4.5rem; /* גודל מוגדל במעט */
+            font-size: 8rem; /* Explicit size, overrides Tailwind if present */
             padding-top: 2rem;
             background: linear-gradient(#0d335f, #38a4d3);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             display: inline-block;
-            line-height: 1.2; /* הוספת Line-height כדי לוודא שהאותיות לא נחתכות */
         }
         .intro h3 {
             padding: 2rem 0rem;
@@ -296,7 +280,7 @@
                 text-align: center; /* Center align text */
             }
             .intro h2 {
-                font-size: 3.8rem; /* Adjusted size for mobile */
+                font-size: 3.5rem; /* Adjusted size for mobile */
                 padding-top: 0;
                 margin-bottom: 1rem;
             }
@@ -322,37 +306,15 @@
                 width: 90%; /* Adjust SVG size for mobile */
                 height: auto;
             }
-        }
 
-        /* .form-section for regular scroll (no sticky or overlay effect) */
-        .form-section {
-            background: linear-gradient(to right, #ff6600, #ff007b);
-            padding: 5rem 0; /* Added top/bottom padding to create space */
-            min-height: 100vh; /* Takes full viewport height */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative; /* Retained for z-index of the white form container */
-            /* Removed z-index */
-        }
-
-        /* Ensure the white form container itself floats above the section background */
-        .form-section > div { /* The white container around the form */
-            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white for a subtle blend */
-            padding: 2rem 1rem; /* Existing padding */
-            border-radius: 1rem; /* Enhanced rounded corners */
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25); /* More prominent shadow */
-            position: relative; /* Crucial for z-index to work */
-            z-index: 2; /* Higher z-index to be above the fixed background */
-            width: 90%; /* Adjust width for mobile */
-            max-width: 500px; /* Max width for desktop */
-            margin: auto; /* Center the form within the section */
-        }
-
-        /* Ensure footer scrolls normally */
-        footer {
-            position: relative; /* Retained if any specific z-index is needed, but not for scroll effect */
-            z-index: 10;
+            /* Form section adjustments on mobile */
+            .form-section {
+                padding: 2rem 1rem; /* Adjusted padding for small screens */
+            }
+            .form-section > div { /* The white container around the form */
+                width: 100%; /* Make it take full width */
+                padding: 1.5rem; /* Adjust padding */
+            }
         }
 
 
@@ -374,13 +336,13 @@
 
         /* Splash image styling for full height and right alignment */
         .splash {
-            position: absolute;
+            position: fixed; /* Position relative to the viewport */
             top: 0;
             right: 0;
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            z-index: -1;
+            height: 100vh; /* Full viewport height */
+            width: auto; /* Maintain aspect ratio */
+            object-fit: cover; /* Cover the area, cropping if necessary, to avoid gaps */
+            z-index: -1; /* Behind content but in front of particles and other background elements */
         }
 
         /* Header & Nav specific styles for dropdown */
@@ -426,11 +388,12 @@
 <body>
     <div id="particles-js"></div>
 
+    <img class="splash" src="img/splash.svg" alt="Shirly Herscovici background splash graphic">
+
     <header class="header-frosted shadow-md fixed w-full z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap relative">
             <div class="logo flex items-center">
                 <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
-                <!-- הלוגו הוחזר לגודל ופונט מקוריים (Inter, 3xl) -->
                 <h1 class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition duration-300 rounded-lg p-2">Shirly Herscovici</h1>
             </div>
             <button id="mobile-menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600">
@@ -441,8 +404,7 @@
                 
                 <!-- Design with Sub-menu -->
                 <li class="relative group">
-                    <!-- Updated href to navigate directly to the specified page -->
-                    <a href="https://shirly3212.github.io/Shirly_portfolio/Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
+                    <a href="Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
                     <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
                         <li><a href="Projects/graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Graphic Projects</a></li>
                     </ul>
@@ -454,18 +416,14 @@
         </nav>
     </header>
 
-    <main class="relative flex-grow">
-        <section id="home-section" class="intro flex-grow pb-12">
-            <img class="splash" src="img/splash.svg" alt="Shirly Herscovici background splash graphic">
-            <div class="intro-text text-center lg:text-left mx-auto max-w-4xl px-6">
-                <!-- יישום פונט Dancing Script, עם גודל מוגדל מעט -->
-                <h2 class="text-4xl md:text-5xl font-light mb-4">Shirly Herscovici</h2>
+    <main class="pt-20 pb-12 flex-grow"> <section id="home-section" class="intro flex-grow pb-12"> <div class="intro-text text-center lg:text-left mx-auto max-w-4xl px-6">
+                <h2 class="text-5xl md:text-6xl font-bold mb-4">Shirly Herscovici</h2>
                 <h3 class="text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 leading-tight">Motion Graphic Designer <br /> Webstie Developer </h3>
                 <p class="text-lg mb-8 leading-relaxed">Shirly Herscovici is a motion graphic designer, <br /> video editor, and a Junior website developer who
                     spechializes in Html & CSS.</p>
                 <div class="intro-social flex justify-center lg:justify-start space-x-6">
-                    <!-- קישור LinkedIn עודכן -->
-                    <a href="https://www.linkedin.com/in/shirly-herscovici-a93766278/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition duration-300" title="LinkedIn Profile"><i class="fab fa-linkedin-in text-4xl"></i></a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 transition duration-300" title="GitHub"><i class="fab fa-github text-4xl"></i></a>
+                    <a href="https://www.linkedin.com/in/shirly-ben-nun-a93766278/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition duration-300" title="LinkedIn Profile"><i class="fab fa-linkedin-in text-4xl"></i></a>
                 </div>
             </div>
             <div class="me mt-12 flex justify-center items-center relative">
@@ -484,6 +442,9 @@
                         fill="#38A5D2" />
                     <g id="TABLE">
                         <path id="TABLE_2"
+                            d="M5.03646 907.032C-0.934059 896.987 -1.63916 884.576 3.15068 873.833L74.3285 714.213C79.6407 702.3 91.0605 694.602 103.422 694.602H1002.45C1014.47 694.602 1025.4 701.658 1030.98 713.017L1107.28 868.238C1112.55 878.968 1112.2 891.57 1106.35 901.95C1100.49 912.33 1090.22 918.555 1078.87 918.603L32.3703 923H32.2393C21.1454 923 10.9828 917.038 5.03646 907.032Z"
+                            fill="white" />
+                        <path id="Vector_2"
                             d="M5.03646 907.032C-0.934059 896.987 -1.63916 884.576 3.15068 873.833L74.3285 714.213C79.6407 702.3 91.0605 694.602 103.422 694.602H1002.45C1014.47 694.602 1025.4 701.658 1030.98 713.017L1107.28 868.238C1112.55 878.968 1112.2 891.57 1106.35 901.95C1100.49 912.33 1090.22 918.555 1078.87 918.603L32.3703 923H32.2393C21.1454 923 10.9828 917.038 5.03646 907.032ZM103.422 698.212C92.3579 698.212 82.1369 705.102 77.3823 715.764L6.20447 875.384C1.91717 884.999 2.54797 896.107 7.8921 905.099C13.2148 914.055 22.3095 919.391 32.2398 919.391H32.3571L1078.86 914.994C1089.02 914.951 1098.21 909.379 1103.45 900.088C1108.69 890.798 1109 879.518 1104.28 869.916L1027.99 714.692C1022.99 704.527 1013.21 698.212 1002.45 698.212H103.422Z"
                             fill="#3F3D56" />
                     </g>
@@ -494,7 +455,7 @@
                         <path id="Vector_4" d="M544.528 818.87L914.009 845.9L943.23 778.673L626.416 765.412L544.528 818.87Z"
                             fill="white" />
                         <path id="LINEPAINT"
-                            d="M826.649 790.16C833.773 790.756 838.923 797.805 839.011 805.216C839.102 812.908 833.81 819.771 827.653 823.177C820.439 827.167 811.628 827.491 803.735 826.427C796.635 825.47 788.979 822.784 784.653 816.313C781.012 810.869 779.922 802.825 783.452 796.961C786.952 791.148 793.940 779.791 799.630 792.417C805.652 795.197 809.258 801.302 809.006 808.331C808.727 816.122 804.215 823.145 798.122 827.207C791.551 831.589 783.460 832.751 775.868 832.419C767.595 832.056 759.434 829.862 751.965 826.106C744.967 822.587 738.034 817.643 733.197 811.114C728.661 804.994 726.139 796.657 729.110 789.084C731.547 782.873 737.205 779.238 743.479 780.032C749.224 780.758 754.907 784.570 757.231 790.361C759.853 796.894 758.238 804.537 754.327 810.120C749.812 816.566 742.952 820.010 735.484 820.240C727.535 820.485 719.811 817.154 713.484 812.239C707.625 807.687 702.548 801.960 696.214 798.113C693.166 796.262 689.818 795.026 686.286 794.885C681.789 794.705 681.496 807.080 677.085 807.814C673.347 808.436 665.413 797.752 661.808 796.337C658.723 795.126 655.024 806.902 652.941 810.820C646.430 823.061 644.614 817.177 645.802 814.028C646.734 811.558 655.282 790.499 660.321 789.656C665.360 788.814 666.235 791.852 666.235 791.852C668.642 794.156 672.466 800.966 675.896 800.258C679.471 799.521 683.381 790.513 687.036 790.760C699.984 791.636 708.064 803.816 718.249 810.664C728.958 817.863 745.029 818.999 752.311 805.872C754.956 801.105 755.728 794.654 752.559 789.967C749.919 786.062 745.044 783.590 740.511 784.138C734.817 784.827 731.763 790.459 731.732 796.183C731.695 803.188 736.027 809.059 740.726 813.450C751.184 823.223 765.368 828.568 779.272 828.307C785.795 828.185 792.786 826.662 798.032 822.247C802.565 818.432 805.815 812.058 805.022 805.790C804.337 800.366 800.273 796.106 795.181 795.352C789.972 794.581 785.720 798.377 785.256 803.945C784.734 810.207 788.011 815.588 792.953 818.654C798.552 822.128 805.482 822.816 811.850 822.726C818.610 822.630 825.717 821.023 830.663 815.736C834.882 811.227 836.695 804.352 833.209 798.789C831.670 796.333 829.277 794.549 826.477 794.315C823.985 794.106 824.144 789.950 826.649 790.16Z"
+                            d="M826.649 790.16C833.773 790.756 838.923 797.805 839.011 805.216C839.102 812.908 833.81 819.771 827.653 823.177C820.439 827.167 811.628 827.491 803.735 826.427C796.635 825.47 788.979 822.784 784.653 816.313C781.012 810.869 779.922 802.825 783.452 796.961C786.952 791.148 793.94 789.791 799.63 792.417C805.652 795.197 809.258 801.302 809.006 808.331C808.727 816.122 804.215 823.145 798.122 827.207C791.551 831.589 783.460 832.751 775.868 832.419C767.595 832.056 759.434 829.862 751.965 826.106C744.967 822.587 738.034 817.643 733.197 811.114C728.661 804.994 726.139 796.657 729.110 789.084C731.547 782.873 737.205 779.238 743.479 780.032C749.224 780.758 754.907 784.570 757.231 790.361C759.853 796.894 758.238 804.537 754.327 810.120C749.812 816.566 742.952 820.010 735.484 820.240C727.535 820.485 719.811 817.154 713.484 812.239C707.625 807.687 702.548 801.960 696.214 798.113C693.166 796.262 689.818 795.026 686.286 794.885C681.789 794.705 681.496 807.080 677.085 807.814C673.347 808.436 665.413 797.752 661.808 796.337C658.723 795.126 655.024 806.902 652.941 810.820C646.430 823.061 644.614 817.177 645.802 814.028C646.734 811.558 655.282 790.499 660.321 789.656C665.360 788.814 666.235 791.852 666.235 791.852C668.642 794.156 672.466 800.966 675.896 800.258C679.471 799.521 683.381 790.513 687.036 790.760C699.984 791.636 708.064 803.816 718.249 810.664C728.958 817.863 745.029 818.999 752.311 805.872C754.956 801.105 755.728 794.654 752.559 789.967C749.919 786.062 745.044 783.590 740.511 784.138C734.817 784.827 731.763 790.459 731.732 796.183C731.695 803.188 736.027 809.059 740.726 813.450C751.184 823.223 765.368 828.568 779.272 828.307C785.795 828.185 792.786 826.662 798.032 822.247C802.565 818.432 805.815 812.058 805.022 805.790C804.337 800.366 800.273 796.106 795.181 795.352C789.972 794.581 785.720 798.377 785.256 803.945C784.734 810.207 788.011 815.588 792.953 818.654C798.552 822.128 805.482 822.816 811.850 822.726C818.610 822.630 825.717 821.023 830.663 815.736C834.882 811.227 836.695 804.352 833.209 798.789C831.670 796.333 829.277 794.549 826.477 794.315C823.985 794.106 824.144 789.950 826.649 790.16Z"
                             fill="#38A5D2" />
                     </g>
                     <g id="HANDPENCIL">
@@ -587,8 +548,8 @@
                 </svg>
             </div>
         </section>
-        
-        <section id="contact-section" class="form-section flex justify-center items-center">
+
+        <section id="contact-section" class="form-section flex justify-center items-center py-10 px-4 mt-20">
             <div class="bg-white p-8 md:p-12 rounded-xl shadow-lg w-full max-w-md">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Get in Touch</h2>
                 <form class="space-y-6">
@@ -619,17 +580,11 @@
     <footer class="custom-footer-gradient text-white min-h-7vh py-8 flex justify-between items-center flex-wrap px-5 mt-auto">
         <h4 class="text-xl font-medium mb-4 md:mb-0">Shirly Herscovici © 2025</h4>
         <ul class="flex justify-center items-center flex-wrap gap-6">
-            <!-- אייקון אינסטגרם -->
             <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Instagram"><i class="fab fa-instagram text-2xl"></i></a></li>
-            <!-- אייקון טוויטר -->
             <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Twitter"><i class="fab fa-twitter text-2xl"></i></a></li>
-            <!-- אייקון יוטיוב -->
             <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-200 transition duration-300" title="YouTube"><i class="fab fa-youtube text-2xl"></i></a></li>
-            <!-- אייקון מייל -->
-            <li><a href="mailto:shirly3212@gmail.com" class="text-white hover:text-gray-200 transition duration-300" title="Email"><i class="fas fa-envelope text-2xl"></i></a></li>
-            <!-- אייקון LinkedIn עודכן -->
-            <li><a href="https://www.linkedin.com/in/shirly-herscovici-a93766278/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-200 transition duration-300" title="LinkedIn"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
-            <!-- אייקון GitHub הוסר -->
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="LinkedIn"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="GitHub"><i class="fab fa-github text-2xl"></i></a></li>
         </ul>
     </footer>
 
@@ -714,15 +669,11 @@
             // Design sub-menu toggle (for mobile and click scenarios on desktop)
             if (designMenuToggle && designSubMenu) {
                 designMenuToggle.addEventListener('click', (event) => {
-                    // Removed event.preventDefault() to allow direct navigation on click.
+                    event.preventDefault(); // ALWAYS prevent default link behavior for this specific toggle button
                     event.stopPropagation(); // Prevent immediate closing due to outer click listener
-                    
-                    // On mobile, the dropdown toggle logic will still execute, but the page will
-                    // navigate before the visual effect is fully observed.
-                    if (window.innerWidth < 768) {
-                        // For mobile, we want to directly navigate, so prevent the dropdown from opening.
-                        // However, since we removed preventDefault(), it will navigate.
-                        // We need to ensure the link click handler also closes the main menu.
+
+                    if (window.innerWidth < 768) { // Mobile behavior: toggle 'active' class
+                        designSubMenu.classList.toggle('active');
                     } else { // Desktop behavior: toggle 'show-dropdown' class
                         designSubMenu.classList.toggle('show-dropdown');
                     }
@@ -750,10 +701,7 @@
                     mainNavUl.querySelectorAll('a').forEach(link => {
                         link.addEventListener('click', (event) => {
                             // If it's a sub-menu item or a non-group main nav link, close all menus
-                            // Specifically, for the 'Design' link itself, we want it to navigate
-                            // without toggling the mobile dropdown, as the href handles navigation.
-                            // The `closeAllMenus()` call here ensures the mobile menu is closed.
-                            if (link.closest('.group ul') || (link.href === "https://shirly3212.github.io/Shirly_portfolio/Projects/index.html") || (!link.closest('.group') && link.href && link.href !== '#')) {
+                            if (link.closest('.group ul') || (!link.closest('.group') && link.href && link.href !== '#')) {
                                 closeAllMenus();
                             }
                         });
