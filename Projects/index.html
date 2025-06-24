@@ -1050,41 +1050,91 @@
     <div class="page-content container mx-auto px-4">
 
       <!-- Web Development Section (Featured Project Layout) -->
-      <section id="web-development-section" class="py-12 mt-20">
-        <div class="featured-project-container text-center max-w-full mx-auto">
-            <div class="section-header">
-                <!-- Original section title for mobile -->
-                <h2 class="section-title">Web Development</h2>
-            </div>
-            <div class="featured-projects-content">
-                <div class="left-section-header"> <!-- New wrapper for side title and effect -->
-                    <h2 class="section-title-side">Web Development</h2>
-                    <div class="side-title-brush-stroke"></div> <!-- NEW ELEMENT HERE -->
-                    <div class="side-title-bg-effect"></div>
-                    <div class="abstract-pattern-overlay"></div> <!-- New abstract pattern -->
-                </div>
-                <div class="right-projects-wrapper"> <!-- New wrapper for project cards -->
-                    <!-- Featured Project (TRAVELLY) -->
-                    <div class="featured-project animate-on-scroll"
-                        data-project='{
-                            "id": "travelly",
-                            "title": "TRAVELLY - Travel Agency Website",
-                            "image": "../img/TRAVEELY_ME.png",
-                            "description": "This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript.",
-                            "technologies": ["HTML5", "CSS3", "JavaScript"],
-                            "live_demo": "https://shirly3212.github.io/TRAVELLY/",
-                            "github_repo": "https://shirly3212.github.io/TRAVELLY",
-                            "type": "web"
-                        }'>
-                        <div class="featured-project-image-wrapper">
-                            <img src="../img/TRAVEELY_ME.png" alt="Travelly Website" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
-                            <h4 class="featured-project-title-overlay">TRAVELLY - Travel Agency Website</h4>
-                        </div>
-                        <div class="featured-project-content">
-                            <p>This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript.</p>
-                            <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
-                        </div>
-                    </div>
+     <section id="web-development-section" class="py-12 mt-20">
+  <div class="featured-project-container text-center max-w-full mx-auto">
+      <div class="section-header">
+          <h2 class="section-title">Web Development</h2>
+      </div>
+      <div class="featured-projects-content">
+          <div class="left-section-header">
+              <h2 class="section-title-side">Web Development</h2>
+              <div class="side-title-brush-stroke"></div>
+              <div class="side-title-bg-effect"></div>
+              <div class="abstract-pattern-overlay"></div>
+          </div>
+          <div class="right-projects-wrapper">
+              <!-- Featured Project: Photographer -->
+              <div class="featured-project animate-on-scroll"
+                  data-project='{
+                      "id": "photographer",
+                      "title": "Photographer - Visual Portfolio",
+                      "image": "../img/Photographer_me.png",
+                      "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout and image galleries.",
+                      "technologies": ["HTML5", "CSS3"],
+                      "live_demo": "https://shirly3212.github.io/Photographer/",
+                      "github_repo": "https://shirly3212.github.io/Photographer",
+                      "type": "web"
+                  }'>
+                  <div class="featured-project-image-wrapper">
+                      <img src="../img/Photographer_me.png" alt="Photographer Portfolio" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                      <h4 class="featured-project-title-overlay">Photographer - Visual Portfolio</h4>
+                  </div>
+                  <div class="featured-project-content">
+                      <p>A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout and image galleries.</p>
+                      <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
+                  </div>
+              </div>
+
+              <!-- Side Projects Grid Container -->
+              <div class="side-projects-grid">
+                  <!-- Project Item 2: People Counter -->
+                  <div class="project-card-item animate-on-scroll"
+                      data-project='{
+                          "id": "people-counter",
+                          "title": "People Counter - Simple Counter App",
+                          "image": "../img/PEOPLE_COUNTER.png",
+                          "description": "A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface.",
+                          "technologies": ["HTML5", "CSS3", "JavaScript"],
+                          "live_demo": "https://shirly3212.github.io/People-Counter/",
+                          "github_repo": "https://shirly3212.github.io/People-Counter",
+                          "type": "web"
+                      }'>
+                      <div class="project-card-item-image-wrapper">
+                          <img src="../img/PEOPLE_COUNTER.png" alt="People Counter App" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                          <h4 class="project-card-item-title-overlay">People Counter - Simple Counter App</h4>
+                      </div>
+                      <div class="project-card-item-content">
+                          <p>A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface.</p>
+                          <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
+                      </div>
+                  </div>
+
+                  <!-- Project Item 3: Travelly -->
+                  <div class="project-card-item animate-on-scroll"
+                      data-project='{
+                          "id": "travelly",
+                          "title": "TRAVELLY - Travel Agency Website",
+                          "image": "../img/TRAVEELY_ME.png",
+                          "description": "This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript.",
+                          "technologies": ["HTML5", "CSS3", "JavaScript"],
+                          "live_demo": "https://shirly3212.github.io/TRAVELLY/",
+                          "github_repo": "https://shirly3212.github.io/TRAVELLY",
+                          "type": "web"
+                      }'>
+                      <div class="project-card-item-image-wrapper">
+                          <img src="../img/TRAVEELY_ME.png" alt="Travelly Website" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+                          <h4 class="project-card-item-title-overlay">TRAVELLY - Travel Agency Website</h4>
+                      </div>
+                      <div class="project-card-item-content">
+                          <p>This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript.</p>
+                          <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
 
                     <!-- Side Projects Grid Container -->
                     <div class="side-projects-grid">
