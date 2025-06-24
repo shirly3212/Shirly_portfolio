@@ -1706,8 +1706,8 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
       });
     });
 
-    // --- Carousel Logic (New) ---
-   // --- Carousel Logic (Fixed) ---
+    
+// --- Carousel Logic (Fixed) ---
 const carouselWrapper = document.getElementById('carouselWrapper');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -1721,85 +1721,63 @@ function updateCarousel() {
     isUpdating = true;
     
     const containerWidth = carouselWrapper.offsetWidth;
-    const itemWidth = carouselItems[0].offsetWidth; // 350px
-    const itemMargin = 20; // 10px each side = 20px total
-    const itemTotalWidth = itemWidth + itemMargin; // 370px
+    const itemWidth = carouselItems[0].offsetWidth;
+    const itemMargin = 20;
+    const itemTotalWidth = itemWidth + itemMargin;
     
-    // Calculate scroll position to center the current item
     let scrollPosition = (currentIndex * itemTotalWidth) - (containerWidth / 2) + (itemTotalWidth / 2);
     
-    // For the first item, scroll to the beginning
-    if (currentIndex === 0) {
-        scrollPosition = 0;
-    }
-    // For the last item, scroll to the end
-    else if (currentIndex === carouselItems.length - 1) {
+    if (currentIndex === 0) scrollPosition = 0;
+    else if (currentIndex === carouselItems.length - 1)
         scrollPosition = carouselWrapper.scrollWidth - containerWidth;
-    }
-    
-    // Ensure scrollPosition is within bounds
-    scrollPosition = Math.max(0, scrollPosition);
-    const maxScrollLeft = carouselWrapper.scrollWidth - containerWidth;
-    scrollPosition = Math.min(scrollPosition, maxScrollLeft);
-    
-    // Smooth scroll to position
+
+    scrollPosition = Math.max(0, Math.min(scrollPosition, carouselWrapper.scrollWidth - containerWidth));
+
     carouselWrapper.scrollTo({
         left: scrollPosition,
         behavior: 'smooth'
     });
-    
-    // Apply fade effect
+
     updateFadeEffect();
-    
-    // Reset the flag after a short delay to allow smooth scrolling to complete
-    setTimeout(() => {
-        isUpdating = false;
-    }, 500);
+
+    setTimeout(() => { isUpdating = false; }, 500);
 }
 
 function updateFadeEffect() {
     carouselItems.forEach((item, index) => {
-        if (index === currentIndex) {
-            item.classList.remove('carousel-item-faded');
-        } else {
-            item.classList.add('carousel-item-faded');
-        }
+        item.classList.toggle('carousel-item-faded', index !== currentIndex);
     });
 }
 
-// Function to find the closest item to center when scrolling manually
 function findClosestItemToCenter() {
-    if (!carouselWrapper || carouselItems.length === 0) return;
-    
+    if (!carouselWrapper || carouselItems.length === 0) return 0;
+
     const scrollLeft = carouselWrapper.scrollLeft;
     const containerWidth = carouselWrapper.offsetWidth;
     const itemWidth = carouselItems[0].offsetWidth;
     const itemMargin = 20;
     const itemTotalWidth = itemWidth + itemMargin;
-    
-    // Calculate which item is closest to center
+
     const centralViewPoint = scrollLeft + (containerWidth / 2);
     let closestIndex = 0;
     let minDistance = Infinity;
-    
+
     carouselItems.forEach((item, index) => {
         const itemCenter = (index * itemTotalWidth) + (itemWidth / 2);
         const distance = Math.abs(itemCenter - centralViewPoint);
-        
+
         if (distance < minDistance) {
             minDistance = distance;
             closestIndex = index;
         }
     });
-    
+
     return closestIndex;
 }
 
-// Handle scroll events (for manual scrolling)
 function onCarouselScroll() {
-    if (isUpdating) return; // Don't interfere during manual updates
-    
-    // Update current index based on scroll position
+    if (isUpdating) return;
+
     const newIndex = findClosestItemToCenter();
     if (newIndex !== currentIndex) {
         currentIndex = newIndex;
@@ -1807,16 +1785,13 @@ function onCarouselScroll() {
     }
 }
 
-// Initialize carousel
 function initCarousel() {
     carouselItems = document.querySelectorAll('.carousel-item');
     if (carouselItems.length === 0) return;
-    
     currentIndex = 0;
     updateCarousel();
 }
 
-// Navigation buttons
 if (prevBtn) {
     prevBtn.addEventListener('click', () => {
         currentIndex = currentIndex > 0 ? currentIndex - 1 : carouselItems.length - 1;
@@ -1831,17 +1806,14 @@ if (nextBtn) {
     });
 }
 
-// Add scroll event listener
 if (carouselWrapper) {
     let scrollTimeout;
     carouselWrapper.addEventListener('scroll', () => {
-        // Debounce the scroll event
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(onCarouselScroll, 100);
     });
 }
 
-// Touch/swipe functionality
 let startX = 0;
 let isSwiping = false;
 
@@ -1850,18 +1822,16 @@ if (carouselWrapper) {
         startX = e.touches[0].clientX;
         isSwiping = true;
     });
-    
+
     carouselWrapper.addEventListener('touchend', (e) => {
         if (!isSwiping) return;
-        
         const endX = e.changedTouches[0].clientX;
         const diff = startX - endX;
-        
-        if (Math.abs(diff) > 50) { // Minimum swipe distance
-            if (diff > 0) { // Swiped left (next)
-                currentIndex = currentIndex < carouselItems.length - 1 ? currentIndex + 1 : 0;
-            } else { // Swiped right (prev)
-                currentIndex = currentIndex > 0 ? currentIndex - 1 : carouselItems.length - 1;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0;
+            } else {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1;
             }
             updateCarousel();
         }
@@ -1869,80 +1839,62 @@ if (carouselWrapper) {
     });
 }
 
-// Initialize on load and resize
 window.addEventListener('load', initCarousel);
 window.addEventListener('resize', () => {
-    setTimeout(initCarousel, 100); // Small delay to ensure layout is complete
+    setTimeout(initCarousel, 100);
 });
-            // Trigger a manual snap to center if a swipe gesture is detected
-            if (Math.abs(diff) > 50) { // A threshold for a valid swipe
-                if (diff > 0) { // Swiped left (show next)
-                    currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0;
-                } else { // Swiped right (show prev)
-                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1;
-                }
-                updateCarousel(); // Trigger snap to new current index
-            } else {
-                // If no significant swipe, ensure it snaps to the nearest item
-                // This will be handled by the onCarouselScroll listener due to `scroll-snap-type`
-            }
-            isSwiping = false;
-        });
+
+// --- Image Zoom Modal ---
+const imageZoomModal = document.createElement('div');
+imageZoomModal.id = 'imageZoomModal';
+imageZoomModal.className = 'fixed inset-0 bg-black bg-opacity-90 z-[60] flex items-center justify-center opacity-0 invisible transition-all duration-300';
+imageZoomModal.innerHTML = `
+    <div class="relative max-w-[95vw] max-h-[95vh] flex items-center justify-center">
+        <img id="zoomedImage" src="" alt="Zoomed Image" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
+        <button id="closeZoomBtn" class="absolute top-4 right-4 text-white text-3xl font-bold bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center hover:bg-opacity-70 transition-colors duration-200">
+            ×
+        </button>
+    </div>
+`;
+document.body.appendChild(imageZoomModal);
+
+const zoomedImage = document.getElementById('zoomedImage');
+const closeZoomBtn = document.getElementById('closeZoomBtn');
+const modalProjectImage = document.getElementById('modalProjectImage');
+
+function openImageZoom(imageSrc, imageAlt) {
+    zoomedImage.src = imageSrc;
+    zoomedImage.alt = imageAlt;
+    imageZoomModal.classList.remove('opacity-0', 'invisible');
+    imageZoomModal.classList.add('opacity-100', 'visible');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageZoom() {
+    imageZoomModal.classList.add('opacity-0', 'invisible');
+    imageZoomModal.classList.remove('opacity-100', 'visible');
+    document.body.style.overflow = '';
+}
+
+modalProjectImage.addEventListener('click', (event) => {
+    event.stopPropagation();
+    openImageZoom(modalProjectImage.src, modalProjectImage.alt);
+});
+
+closeZoomBtn.addEventListener('click', closeImageZoom);
+imageZoomModal.addEventListener('click', (event) => {
+    if (event.target === imageZoomModal) {
+        closeImageZoom();
     }
-
-    // NEW: Function to highlight the active navigation item based on the URL
-    function highlightActiveNav() {
-        const currentPathname = window.location.pathname;
-        const mainNavLinks = document.querySelectorAll('#main-nav-menu > li > a');
-        const designMenuToggle = document.getElementById('design-menu-toggle');
-        const graphicProjectsLink = document.getElementById('graphic-projects-link');
-
-        // Remove active classes from all links initially
-        mainNavLinks.forEach(link => {
-            link.classList.remove('bg-blue-600', 'text-white', 'font-semibold');
-            link.classList.add('text-gray-700', 'hover:text-blue-600');
-        });
-        if (graphicProjectsLink) {
-            graphicProjectsLink.classList.remove('bg-blue-600', 'text-white', 'font-semibold');
-            graphicProjectsLink.classList.add('text-gray-700', 'hover:bg-gray-100');
-        }
-
-        // Check for "Design" related pages
-        const isGraphicProjectsPage = currentPathname.includes('/Projects/graphic-all-projects.html');
-        const isMainProjectsPage = currentPathname.includes('/Projects/index.html') && !isGraphicProjectsPage;
-
-        if (isGraphicProjectsPage) {
-            // If on graphic projects page, highlight both "Design" and "Graphic Projects" submenu item
-            if (designMenuToggle) {
-                designMenuToggle.classList.add('bg-blue-600', 'text-white', 'font-semibold');
-                designMenuToggle.classList.remove('text-gray-700', 'hover:text-blue-600');
-            }
-            if (graphicProjectsLink) {
-                graphicProjectsLink.classList.add('bg-blue-600', 'text-white', 'font-semibold');
-                graphicProjectsLink.classList.remove('text-gray-700', 'hover:bg-gray-100');
-            }
-        } else if (isMainProjectsPage) {
-            // If on main projects index page, highlight "Design"
-            if (designMenuToggle) {
-                designMenuToggle.classList.add('bg-blue-600', 'text-white', 'font-semibold');
-                designMenuToggle.classList.remove('text-gray-700', 'hover:text-blue-600');
-            }
-        } else {
-            // For other main navigation links, check for direct match
-            mainNavLinks.forEach(link => {
-                // Ensure to clean the href for comparison (remove '..' if present)
-                const linkHrefCleaned = link.getAttribute('href') ? link.getAttribute('href').replace('../', '/') : '';
-                // Compare only the last part of the path or the full path depending on complexity
-                if (linkHrefCleaned && currentPathname.includes(linkHrefCleaned) && link.id !== 'design-menu-toggle') {
-                     link.classList.add('bg-blue-600', 'text-white', 'font-semibold');
-                     link.classList.remove('text-gray-700', 'hover:text-blue-600');
-                }
-            });
-        }
+});
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && imageZoomModal.classList.contains('visible')) {
+        closeImageZoom();
     }
+});
 
-    // Call the function when the DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', highlightActiveNav);
+document.addEventListener('DOMContentLoaded', highlightActiveNav);
+
   </script>
 </body>
 
