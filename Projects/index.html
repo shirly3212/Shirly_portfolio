@@ -1707,129 +1707,173 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
     });
 
     // --- Carousel Logic (New) ---
-    const carouselWrapper = document.getElementById('carouselWrapper');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let carouselItems = document.querySelectorAll('.carousel-item'); // Re-query to get all items including new ones
-    let currentIndex = 0;
+   // --- Carousel Logic (Fixed) ---
+const carouselWrapper = document.getElementById('carouselWrapper');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+let carouselItems = document.querySelectorAll('.carousel-item');
+let currentIndex = 0;
+let isUpdating = false; // Flag to prevent conflicts during manual updates
 
-    function updateCarousel() {
-        if (!carouselWrapper || carouselItems.length === 0) return;
+function updateCarousel() {
+    if (!carouselWrapper || carouselItems.length === 0 || isUpdating) return;
+    
+    isUpdating = true;
+    
+    const containerWidth = carouselWrapper.offsetWidth;
+    const itemWidth = carouselItems[0].offsetWidth; // 350px
+    const itemMargin = 20; // 10px each side = 20px total
+    const itemTotalWidth = itemWidth + itemMargin; // 370px
+    
+    // Calculate scroll position to center the current item
+    let scrollPosition = (currentIndex * itemTotalWidth) - (containerWidth / 2) + (itemTotalWidth / 2);
+    
+    // For the first item, scroll to the beginning
+    if (currentIndex === 0) {
+        scrollPosition = 0;
+    }
+    // For the last item, scroll to the end
+    else if (currentIndex === carouselItems.length - 1) {
+        scrollPosition = carouselWrapper.scrollWidth - containerWidth;
+    }
+    
+    // Ensure scrollPosition is within bounds
+    scrollPosition = Math.max(0, scrollPosition);
+    const maxScrollLeft = carouselWrapper.scrollWidth - containerWidth;
+    scrollPosition = Math.min(scrollPosition, maxScrollLeft);
+    
+    // Smooth scroll to position
+    carouselWrapper.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth'
+    });
+    
+    // Apply fade effect
+    updateFadeEffect();
+    
+    // Reset the flag after a short delay to allow smooth scrolling to complete
+    setTimeout(() => {
+        isUpdating = false;
+    }, 500);
+}
 
-        const containerWidth = carouselWrapper.offsetWidth;
-        const itemWidth = carouselItems[0].offsetWidth; // Fixed 350px
-        const itemMargin = parseFloat(window.getComputedStyle(carouselItems[0]).marginLeft) + parseFloat(window.getComputedStyle(carouselItems[0]).marginRight); // Fixed 20px (10px each side)
-        const itemTotalWidth = itemWidth + itemMargin; // 350 + 20 = 370px
+function updateFadeEffect() {
+    carouselItems.forEach((item, index) => {
+        if (index === currentIndex) {
+            item.classList.remove('carousel-item-faded');
+        } else {
+            item.classList.add('carousel-item-faded');
+        }
+    });
+}
 
-        // Calculate the target scroll position to center the current item.
-        // It's the cumulative width of items before the current one + half the width of the current item
-        // adjusted by half of the container width to center it in the view.
-        let scrollPosition = (currentIndex * itemTotalWidth) - (containerWidth / 2) + (itemTotalWidth / 2);
+// Function to find the closest item to center when scrolling manually
+function findClosestItemToCenter() {
+    if (!carouselWrapper || carouselItems.length === 0) return;
+    
+    const scrollLeft = carouselWrapper.scrollLeft;
+    const containerWidth = carouselWrapper.offsetWidth;
+    const itemWidth = carouselItems[0].offsetWidth;
+    const itemMargin = 20;
+    const itemTotalWidth = itemWidth + itemMargin;
+    
+    // Calculate which item is closest to center
+    const centralViewPoint = scrollLeft + (containerWidth / 2);
+    let closestIndex = 0;
+    let minDistance = Infinity;
+    
+    carouselItems.forEach((item, index) => {
+        const itemCenter = (index * itemTotalWidth) + (itemWidth / 2);
+        const distance = Math.abs(itemCenter - centralViewPoint);
         
-        // Ensure scrollPosition does not go below 0 or beyond max scrollable width
-        scrollPosition = Math.max(0, scrollPosition);
-        const maxScrollLeft = carouselWrapper.scrollWidth - containerWidth;
-        scrollPosition = Math.min(scrollPosition, maxScrollLeft);
-
-        carouselWrapper.scrollLeft = scrollPosition;
-
-        // Apply fade effect based on distance from current (centered) item
-        carouselItems.forEach((item, index) => {
-            if (index === currentIndex) {
-                item.classList.remove('carousel-item-faded');
-            } else {
-                item.classList.add('carousel-item-faded');
-            }
-        });
-    }
-
-    // Function to handle automatic centering of carousel items on scroll
-    function onCarouselScroll() {
-        if (!carouselWrapper || carouselItems.length === 0) return;
-
-        const scrollLeft = carouselWrapper.scrollLeft;
-        const containerWidth = carouselWrapper.offsetWidth;
-        const itemWidth = carouselItems[0].offsetWidth;
-        const itemMargin = parseFloat(window.getComputedStyle(carouselItems[0]).marginLeft) + parseFloat(window.getComputedStyle(carouselItems[0]).marginRight);
-        const itemTotalWidth = itemWidth + itemMargin;
-
-        // Calculate which item is currently closest to the center of the viewport
-        const centralViewPoint = scrollLeft + (containerWidth / 2);
-        let closestIndex = 0;
-        let minDistance = Infinity;
-
-        carouselItems.forEach((item, index) => {
-            const itemCenter = (index * itemTotalWidth) + (itemWidth / 2) + (itemMargin / 2);
-            const distance = Math.abs(itemCenter - centralViewPoint);
-
-            if (distance < minDistance) {
-                minDistance = distance;
-                closestIndex = index;
-            }
-        });
-        currentIndex = closestIndex; // Update global currentIndex
-
-        // Apply fade effect based on distance from the closest item to the center
-        carouselItems.forEach((item, index) => {
-            if (index === currentIndex) {
-                item.classList.remove('carousel-item-faded');
-            } else {
-                item.classList.add('carousel-item-faded');
-            }
-        });
-    }
-
-    // Initialize carousel on load
-    window.addEventListener('load', () => {
-        carouselItems = document.querySelectorAll('.carousel-item'); // Re-query items in case of dynamic content
-        updateCarousel(); // Position correctly and apply initial fades
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestIndex = index;
+        }
     });
-    // Also update on resize to ensure correct snapping if layout changes
-    window.addEventListener('resize', () => {
-        carouselItems = document.querySelectorAll('.carousel-item'); // Re-query items
-        updateCarousel(); // Re-calculate and snap to nearest item on resize
+    
+    return closestIndex;
+}
+
+// Handle scroll events (for manual scrolling)
+function onCarouselScroll() {
+    if (isUpdating) return; // Don't interfere during manual updates
+    
+    // Update current index based on scroll position
+    const newIndex = findClosestItemToCenter();
+    if (newIndex !== currentIndex) {
+        currentIndex = newIndex;
+        updateFadeEffect();
+    }
+}
+
+// Initialize carousel
+function initCarousel() {
+    carouselItems = document.querySelectorAll('.carousel-item');
+    if (carouselItems.length === 0) return;
+    
+    currentIndex = 0;
+    updateCarousel();
+}
+
+// Navigation buttons
+if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+        currentIndex = currentIndex > 0 ? currentIndex - 1 : carouselItems.length - 1;
+        updateCarousel();
     });
+}
 
-    // Add scroll event listener to apply fade effect dynamically
-    if (carouselWrapper) {
-        carouselWrapper.addEventListener('scroll', onCarouselScroll);
-    }
+if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+        currentIndex = currentIndex < carouselItems.length - 1 ? currentIndex + 1 : 0;
+        updateCarousel();
+    });
+}
 
-    // Navigation buttons
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1; // Loop around
+// Add scroll event listener
+if (carouselWrapper) {
+    let scrollTimeout;
+    carouselWrapper.addEventListener('scroll', () => {
+        // Debounce the scroll event
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(onCarouselScroll, 100);
+    });
+}
+
+// Touch/swipe functionality
+let startX = 0;
+let isSwiping = false;
+
+if (carouselWrapper) {
+    carouselWrapper.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isSwiping = true;
+    });
+    
+    carouselWrapper.addEventListener('touchend', (e) => {
+        if (!isSwiping) return;
+        
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > 50) { // Minimum swipe distance
+            if (diff > 0) { // Swiped left (next)
+                currentIndex = currentIndex < carouselItems.length - 1 ? currentIndex + 1 : 0;
+            } else { // Swiped right (prev)
+                currentIndex = currentIndex > 0 ? currentIndex - 1 : carouselItems.length - 1;
+            }
             updateCarousel();
-        });
-    }
+        }
+        isSwiping = false;
+    });
+}
 
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0; // Loop around
-            updateCarousel();
-        });
-    }
-
-    // Optional: Add swipe functionality for touch devices
-    let startX;
-    let isSwiping = false;
-
-    if (carouselWrapper) {
-        carouselWrapper.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            isSwiping = true;
-        });
-
-        carouselWrapper.addEventListener('touchmove', (e) => {
-            if (!isSwiping) return;
-            // Allow native scrolling for touchmove, the touchend will handle snap
-        });
-
-        carouselWrapper.addEventListener('touchend', (e) => {
-            if (!isSwiping) return;
-            const endX = e.changedTouches[0].clientX;
-            const diff = startX - endX;
-
+// Initialize on load and resize
+window.addEventListener('load', initCarousel);
+window.addEventListener('resize', () => {
+    setTimeout(initCarousel, 100); // Small delay to ensure layout is complete
+});
             // Trigger a manual snap to center if a swipe gesture is detected
             if (Math.abs(diff) > 50) { // A threshold for a valid swipe
                 if (diff > 0) { // Swiped left (show next)
