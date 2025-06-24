@@ -1705,8 +1705,6 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
           }
       });
     });
-
-    
 // --- Carousel Logic (Fixed) ---
 const carouselWrapper = document.getElementById('carouselWrapper');
 const prevBtn = document.getElementById('prevBtn');
@@ -1792,15 +1790,20 @@ function initCarousel() {
     updateCarousel();
 }
 
+// Navigation buttons - Fixed
 if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
+    prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         currentIndex = currentIndex > 0 ? currentIndex - 1 : carouselItems.length - 1;
         updateCarousel();
     });
 }
 
 if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
+    nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         currentIndex = currentIndex < carouselItems.length - 1 ? currentIndex + 1 : 0;
         updateCarousel();
     });
@@ -1844,6 +1847,167 @@ window.addEventListener('resize', () => {
     setTimeout(initCarousel, 100);
 });
 
+// --- Modal Logic (Fixed) ---
+const projectModal = document.getElementById('projectModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const modalProjectImage = document.getElementById('modalProjectImage');
+const modalProjectTitle = document.getElementById('modalProjectTitle');
+const modalProjectDescription = document.getElementById('modalProjectDescription');
+const modalTechnologies = document.getElementById('modalTechnologies');
+const modalLiveDemoBtn = document.getElementById('modalLiveDemoBtn');
+const modalGithubRepoBtn = document.getElementById('modalGithubRepoBtn');
+
+let currentProjectData = null;
+
+function openModal(projectData) {
+    currentProjectData = projectData;
+    if (modalProjectImage) {
+        modalProjectImage.src = projectData.image;
+        modalProjectImage.alt = projectData.title;
+    }
+
+    const isCarouselGalleryItem = projectData.is_carousel_item === true;
+
+    // Reset all elements to their default state
+    if (modalProjectTitle) modalProjectTitle.classList.remove('hidden');
+    if (modalProjectDescription) modalProjectDescription.classList.remove('hidden');
+    if (modalTechnologies && modalTechnologies.parentElement) modalTechnologies.parentElement.classList.remove('hidden');
+    if (modalLiveDemoBtn) modalLiveDemoBtn.classList.remove('hidden');
+    if (modalGithubRepoBtn) modalGithubRepoBtn.classList.remove('hidden');
+
+    // Reset image classes
+    if (modalProjectImage) modalProjectImage.className = 'rounded-md mb-4 cursor-zoom-in';
+
+    if (isCarouselGalleryItem) {
+        // Hide text and buttons for gallery items
+        if (modalProjectTitle) modalProjectTitle.classList.add('hidden');
+        if (modalProjectDescription) modalProjectDescription.classList.add('hidden');
+        if (modalTechnologies && modalTechnologies.parentElement) modalTechnologies.parentElement.classList.add('hidden');
+        if (modalLiveDemoBtn) modalLiveDemoBtn.classList.add('hidden');
+        if (modalGithubRepoBtn) modalGithubRepoBtn.classList.add('hidden');
+        
+        // Make image take full available space
+        if (modalProjectImage) modalProjectImage.classList.add('w-full', 'max-h-[80vh]', 'object-contain');
+    } else {
+        // Populate content for regular projects
+        if (modalProjectTitle) modalProjectTitle.textContent = projectData.title;
+        if (modalProjectDescription) modalProjectDescription.textContent = projectData.description;
+
+        if (modalTechnologies) {
+            modalTechnologies.innerHTML = '';
+            if (projectData.technologies && projectData.technologies.length > 0) {
+                projectData.technologies.forEach(tech => {
+                    const span = document.createElement('span');
+                    span.textContent = tech;
+                    span.classList.add('bg-blue-100', 'text-blue-800', 'text-xs', 'font-medium', 'px-2.5', 'py-0.5', 'rounded-full');
+                    modalTechnologies.appendChild(span);
+                });
+            } else {
+                if (modalTechnologies.parentElement) modalTechnologies.parentElement.classList.add('hidden');
+            }
+        }
+
+        // Handle buttons
+        if (modalGithubRepoBtn) {
+            if (projectData.github_repo && projectData.github_repo !== '#') {
+                modalGithubRepoBtn.href = projectData.github_repo;
+            } else {
+                modalGithubRepoBtn.classList.add('hidden');
+            }
+        }
+
+        if (modalLiveDemoBtn) {
+            if (projectData.live_demo && projectData.live_demo !== '#') {
+                modalLiveDemoBtn.href = projectData.live_demo;
+            } else {
+                modalLiveDemoBtn.classList.add('hidden');
+            }
+        }
+
+        if (modalProjectImage) modalProjectImage.classList.add('w-full', 'h-64', 'object-cover');
+    }
+
+    if (projectModal) {
+        projectModal.classList.add('is-visible');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeModal() {
+    if (projectModal) {
+        projectModal.classList.remove('is-visible');
+        document.body.style.overflow = '';
+        currentProjectData = null;
+    }
+}
+
+// Event listeners for opening modal
+function addModalEventListeners() {
+    document.querySelectorAll('.project-card-item, .carousel-item, .featured-project').forEach(item => {
+        item.addEventListener('click', (event) => {
+            // Don't open modal if clicking on buttons
+            if (event.target.closest('.view-project-btn') || 
+                event.target.closest('button') || 
+                event.target.closest('a[href]')) {
+                return;
+            }
+
+            const projectDataString = item.dataset.project;
+            if (!projectDataString || projectDataString === "undefined") {
+                console.error("Invalid project data for item:", item);
+                return;
+            }
+
+            try {
+                const projectData = JSON.parse(projectDataString);
+                if (projectData) {
+                    openModal(projectData);
+                }
+            } catch (e) {
+                console.error("Error parsing project data:", e);
+            }
+        });
+    });
+
+    // Handle "View Project" buttons
+    document.querySelectorAll('.view-project-btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const card = event.target.closest('.project-card-item') || event.target.closest('.featured-project');
+            if (card) {
+                const projectDataString = card.dataset.project;
+                if (projectDataString && projectDataString !== "undefined") {
+                    try {
+                        const projectData = JSON.parse(projectDataString);
+                        openModal(projectData);
+                    } catch (e) {
+                        console.error("Error parsing project data:", e);
+                    }
+                }
+            }
+        });
+    });
+}
+
+// Modal close events
+if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
+}
+
+if (projectModal) {
+    projectModal.addEventListener('click', (event) => {
+        if (event.target === projectModal) {
+            closeModal();
+        }
+    });
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && projectModal && projectModal.classList.contains('is-visible')) {
+        closeModal();
+    }
+});
+
 // --- Image Zoom Modal ---
 const imageZoomModal = document.createElement('div');
 imageZoomModal.id = 'imageZoomModal';
@@ -1860,11 +2024,12 @@ document.body.appendChild(imageZoomModal);
 
 const zoomedImage = document.getElementById('zoomedImage');
 const closeZoomBtn = document.getElementById('closeZoomBtn');
-const modalProjectImage = document.getElementById('modalProjectImage');
 
 function openImageZoom(imageSrc, imageAlt) {
-    zoomedImage.src = imageSrc;
-    zoomedImage.alt = imageAlt;
+    if (zoomedImage) {
+        zoomedImage.src = imageSrc;
+        zoomedImage.alt = imageAlt || 'Zoomed Image';
+    }
     imageZoomModal.classList.remove('opacity-0', 'invisible');
     imageZoomModal.classList.add('opacity-100', 'visible');
     document.body.style.overflow = 'hidden';
@@ -1876,26 +2041,52 @@ function closeImageZoom() {
     document.body.style.overflow = '';
 }
 
-modalProjectImage.addEventListener('click', (event) => {
-    event.stopPropagation();
-    openImageZoom(modalProjectImage.src, modalProjectImage.alt);
-});
+// Add click event to modal image for zoom
+function addImageZoomListener() {
+    if (modalProjectImage) {
+        modalProjectImage.addEventListener('click', (event) => {
+            event.stopPropagation();
+            openImageZoom(modalProjectImage.src, modalProjectImage.alt);
+        });
+    }
+}
 
-closeZoomBtn.addEventListener('click', closeImageZoom);
+// Close zoom modal events
+if (closeZoomBtn) {
+    closeZoomBtn.addEventListener('click', closeImageZoom);
+}
+
 imageZoomModal.addEventListener('click', (event) => {
     if (event.target === imageZoomModal) {
         closeImageZoom();
     }
 });
+
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && imageZoomModal.classList.contains('visible')) {
         closeImageZoom();
     }
 });
 
-document.addEventListener('DOMContentLoaded', highlightActiveNav);
+// --- Initialization ---
+function initializeEverything() {
+    initCarousel();
+    addModalEventListeners();
+    addImageZoomListener();
+}
 
-  </script>
+// Highlight active navigation function (if exists in your code)
+function highlightActiveNav() {
+    // Add your navigation highlighting logic here if needed
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    initializeEverything();
+    highlightActiveNav();
+});
+
+window.addEventListener('load', initializeEverything);
 </body>
 
 </html>
