@@ -1010,7 +1010,7 @@
   <!-- Particles.js Canvas -->
   <div id="particles-js"></div>
 
-  <!-- Header -->
+<!-- Header -->
   <header class="header-frosted shadow-md fixed w-full z-50">
     <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
       <div class="logo flex items-center">
@@ -1024,16 +1024,18 @@
       <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
         <li><a href="https://shirly3212.github.io/Shirly_portfolio/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Home</a></li>
         
-        <!-- Design with Sub-menu -->
+        <!-- Design with Sub-menu - Active/Current page -->
         <li class="relative group">
-            <a href="https://shirly3212.github.io/Shirly_portfolio/Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
-            <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
-                <li><a href="https://shirly3212.github.io/Shirly_portfolio/Projects/graphic-all-projects.html" class="class="bg-blue-600 text-white font-semibold py-2 px-3 rounded-md transition duration-300 hover:bg-blue-700" id="graphic-projects-link">Graphic Projects</a></li>
-            </ul>
+            <a href="../Projects/index.html" class="text-lg text-blue-600 hover:text-blue-600 py-2 px-3 rounded-md" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm"></i></a>
+                    <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 w-48 z-10">
+                        <!-- Graphic Projects link - this is the one to be highlighted on this page -->
+                        <li><a href="../Projects/graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" id="graphic-projects-link">Graphic Projects</a></li>
+                    </ul>
+                </li>
         </li>
-        <li><a href="https://shirly3212.github.io/Shirly_portfolio/Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Video</a></li> <!-- Added Video Link -->
-        <li><a href="https://shirly3212.github.io/Shirly_portfolio/ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md" id="graphic-projects-link">AI</a></li>
-        <li><a href="https://shirly3212.github.io/Shirly_portfolio/index.html#contact-section" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
+        <li><a href="../Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">Video</a></li>
+        <li><a href="../ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">AI</a></li>
+        <li><a href="../index.html#contact-section" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">Contact</a></li>
       </ul>
     </nav>
   </header>
