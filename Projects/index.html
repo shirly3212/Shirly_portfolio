@@ -1232,58 +1232,119 @@
             </div>
         </div>
       </section>
-
-      <!-- Graphic Design Gallery Carousel Section -->
-     <!-- Graphic Design Gallery Carousel Section -->
-<section id="graphic-carousel-section" class="carousel-section container mx-auto">
+<!-- Graphic Design Gallery Carousel Section -->
+<section id="graphic-carousel-section" class="carousel-section container mx-auto relative">
   <h2 class="section-title">Gallery</h2>
-  <div class="carousel-wrapper" id="carouselWrapper">
+  <div class="carousel-wrapper flex gap-4 overflow-x-auto scroll-smooth" id="carouselWrapper">
+    <!-- Carousel items with reversed order -->
 
-    <!-- Begin reversed order (last shown first) -->
-    <div class="carousel-item" data-project='{"id": "gallery-item-galatz", "title": "The power of Iran", "image": "../img/iranforce18061godelr.png", "description": "The Iran and Israel war", "technologies": ["עיצוב גרפי", "פוטושופ", "איורי וקטור"], "live_demo": "../img/iranforce18061godelr.png", "type": "graphic", "is_carousel_item": true }'>
-      <img src="../img/iranforce18061godelr.png" alt="The power of Iran" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+    <!-- Item 1 -->
+    <div class="carousel-item flex-shrink-0 w-80 cursor-pointer" data-image="../img/iranforce18061godelr.png">
+      <img src="../img/iranforce18061godelr.png" alt="The power of Iran" class="w-full rounded shadow-md hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
     </div>
 
-    <div class="carousel-item" data-project='{"id": "gallery-item-galatz", "title": "מוזיקה מהמסך - גלגלצ N12", "image": "../img/galatz.jpg", "description": "עיצוב ויזואלי לפרויקט 'מוזיקה מהמסך' של גלגלצ ו-N12, המשלב אלמנטים ניאוניים וקולנועיים.", "technologies": ["עיצוב גרפי", "פוטושופ", "איורי וקטור"], "live_demo": "../img/galatz.jpg", "type": "graphic", "is_carousel_item": true }'>
-      <img src="../img/galatz.jpg" alt="מוזיקה מהמסך - גלגלצ N12" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+    <!-- Item 2 -->
+    <div class="carousel-item flex-shrink-0 w-80 cursor-pointer" data-image="../img/galatz.jpg">
+      <img src="../img/galatz.jpg" alt="גלגלצ N12" class="w-full rounded shadow-md hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
     </div>
 
-    <div class="carousel-item" data-project='{"id": "gallery-item-woman", "title": "קמפיין 'תסתכלו להן בעיניים'", "image": "../img/woman.jpg", "description": "קמפיין מודעות חברתי המדגיש את סיפוריהן של נשים שנרצחו, במטרה לעורר הזדהות ולעודד שינוי חברתי.", "technologies": ["עיצוב גרפי", "קמפיין חברתי", "פוטושופ"], "live_demo": "../img/woman.jpg", "type": "graphic", "is_carousel_item": true }'>
-      <img src="../img/woman.jpg" alt="קמפיין 'תסתכלו להן בעיניים'" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+    <!-- Item 3 -->
+    <div class="carousel-item flex-shrink-0 w-80 cursor-pointer" data-image="../img/woman.jpg">
+      <img src="../img/woman.jpg" alt="תסתכלו להן בעיניים" class="w-full rounded shadow-md hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
     </div>
 
-    <div class="carousel-item" data-project='{"id": "gallery-item-nova", "title": "דו\"ח חקירות צה\"ל - 7.10", "image": "../img/nova.jpg", "description": "עיצוב גרפי עבור דו\"ח חקירות צה\"ל אודות אירועי 7 באוקטובר. מציג מידע מורכב בפורמט ויזואלי ברור ומוסמך.", "technologies": ["עיצוב גרפי", "אילוסטרייטור", "אינפוגרפיקה"], "live_demo": "../img/nova.jpg", "type": "graphic", "is_carousel_item": true }'>
-      <img src="../img/nova.jpg" alt="דו\"ח חקירות צה\"ל" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+    <!-- Item 4 -->
+    <div class="carousel-item flex-shrink-0 w-80 cursor-pointer" data-image="../img/nova.jpg">
+      <img src="../img/nova.jpg" alt="דו"ח חקירות צה"ל" class="w-full rounded shadow-md hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
     </div>
 
-    <div class="carousel-item" data-project='{"id": "gallery-item-6", "title": "Visual Identity Design", "image": "../img/gallery6.jpg", "description": "Comprehensive visual identity design, including logo, color scheme, and typography, crafted to represent brand values.", "technologies": ["Adobe Illustrator", "Logo Design"], "live_demo": "../img/gallery6.jpg", "type": "graphic", "is_carousel_item": true }'>
-      <img src="../img/gallery6.jpg" alt="Visual Identity Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+    <!-- Item 5 -->
+    <div class="carousel-item flex-shrink-0 w-80 cursor-pointer" data-image="../img/gallery6.jpg">
+      <img src="../img/gallery6.jpg" alt="Visual Identity Design" class="w-full rounded shadow-md hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
     </div>
 
-    <div class="carousel-item" data-project='{"id": "gallery-item-5", "title": "Digital Art Design", "image": "../img/gallery5.jpg", "description": "Vibrant digital art showcasing experimental techniques and a rich blend of colors for an immersive visual experience.", "technologies": ["Procreate", "Digital Painting"], "live_demo": "../img/gallery5.jpg", "type": "graphic", "is_carousel_item": true }'>
-      <img src="../img/gallery5.jpg" alt="Digital Art Design" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Found';">
+    <!-- Item 6 -->
+    <div class="carousel-item flex-shrink-0 w-80 cursor-pointer" data-image="../img/gallery5.jpg">
+      <img src="../img/gallery5.jpg" alt="Digital Art Design" class="w-full rounded shadow-md hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
     </div>
 
-    <div class="carousel-item" data-project='{"id": "gallery-item-4", "title": "Modern Graphic Design", "image": "../img/gallery4.jpg", "description": "Modern graphic design emphasizing clean lines, balanced composition, and a sophisticated color palette for branding.", "technologies": ["Adobe Illustrator", "Branding"], "live_demo": "../img/gallery4.jpg", "type": "graphic", "is_carousel_item": true }'>
-      <img src="../img/gallery4.jpg" alt="Modern Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+    <!-- Item 7 -->
+    <div class="carousel-item flex-shrink-0 w-80 cursor-pointer" data-image="../img/gallery4.jpg">
+      <img src="../img/gallery4.jpg" alt="Modern Graphic Design" class="w-full rounded shadow-md hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
     </div>
 
-    <div class="carousel-item" data-project='{"id": "gallery-item-3", "title": "Creative Graphic Design", "image": "../img/gallery3.jpg", "description": "Highly creative graphic design demonstrating innovative typography and visual hierarchy for powerful messages.", "technologies": ["Adobe InDesign", "Typography"], "live_demo": "../img/gallery3.jpg", "type": "graphic", "is_carousel_item": true }'>
-      <img src="../img/gallery3.jpg" alt="Creative Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+    <!-- Item 8 -->
+    <div class="carousel-item flex-shrink-0 w-80 cursor-pointer" data-image="../img/gallery3.jpg">
+      <img src="../img/gallery3.jpg" alt="Creative Graphic Design" class="w-full rounded shadow-md hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
     </div>
 
-    <div class="carousel-item" data-project='{"id": "gallery-item-2", "title": "Abstract Graphic Design", "image": "../img/gallery2.jpg", "description": "Abstract graphic design with unique textures and minimalist forms, inviting interpretation.", "technologies": ["Adobe Photoshop", "Digital Painting"], "live_demo": "../img/gallery2.jpg", "type": "graphic", "is_carousel_item": true }'>
-      <img src="../img/gallery2.jpg" alt="Abstract Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+    <!-- Item 9 -->
+    <div class="carousel-item flex-shrink-0 w-80 cursor-pointer" data-image="../img/gallery2.jpg">
+      <img src="../img/gallery2.jpg" alt="Abstract Graphic Design" class="w-full rounded shadow-md hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
     </div>
 
-    <div class="carousel-item" data-project='{"id": "gallery-item-1", "title": "Dynamic Graphic Design", "image": "../img/gallery1.jpg", "description": "Dynamic graphic design combining vibrant colors and fluid shapes for movement and energy.", "technologies": ["Adobe Illustrator", "Concept Art"], "live_demo": "../img/gallery1.jpg", "type": "graphic", "is_carousel_item": true }'>
-      <img src="../img/gallery1.jpg" alt="Dynamic Graphic Design" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+    <!-- Item 10 -->
+    <div class="carousel-item flex-shrink-0 w-80 cursor-pointer" data-image="../img/gallery1.jpg">
+      <img src="../img/gallery1.jpg" alt="Dynamic Graphic Design" class="w-full rounded shadow-md hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
     </div>
 
   </div>
-  <button class="carousel-nav-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-  <button class="carousel-nav-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+
+  <button class="carousel-nav-btn prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 rounded-full p-2 z-10" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+  <button class="carousel-nav-btn next absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 rounded-full p-2 z-10" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
 </section>
+
+<!-- Image Modal -->
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+  <div class="relative max-w-[90%] max-h-[90%]">
+    <button id="closeImageModal" class="absolute top-2 right-2 text-white text-3xl font-bold">&times;</button>
+    <img id="modalImage" src="" alt="Zoomed Image" class="max-w-full max-h-full rounded shadow-lg">
+  </div>
+</div>
+
+<script>
+  const carouselWrapper = document.getElementById('carouselWrapper');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const imageModal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage');
+  const closeImageModal = document.getElementById('closeImageModal');
+
+  let scrollAmount = 0;
+
+  nextBtn.addEventListener('click', () => {
+    scrollAmount += 300;
+    carouselWrapper.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  prevBtn.addEventListener('click', () => {
+    scrollAmount -= 300;
+    carouselWrapper.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  document.querySelectorAll('.carousel-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const imgSrc = item.getAttribute('data-image');
+      modalImage.src = imgSrc;
+      imageModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  closeImageModal.addEventListener('click', () => {
+    imageModal.classList.add('hidden');
+    modalImage.src = '';
+    document.body.style.overflow = '';
+  });
+
+  imageModal.addEventListener('click', (e) => {
+    if (e.target === imageModal) {
+      imageModal.classList.add('hidden');
+      modalImage.src = '';
+      document.body.style.overflow = '';
+    }
+  });
+</script>
 
   </main>
 
