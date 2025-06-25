@@ -8,26 +8,30 @@
         content="Shirly Herscovici is a motion graphic designer, video editor, and a Junior website developer who specializes in HTML & CSS">
     <meta name="robots" content="index,follow">
     <title>Shirly Herscovici | Motion Graphic Designer & Website Developer</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts for 'Inter' (matching Web page) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Custom font for a modern look - Inter is a good choice */
+        /* Global Styles & Base Typography */
+        /* Applying a base font-size for rem calculations, standardizing 1rem to 10px */
         html {
-            height: 100%;
+            font-size: 62.5%; /* 1rem = 10px */
             scroll-behavior: smooth; /* Smooth scrolling for anchor links */
             scroll-padding-top: 5rem; /* Added for fixed header compensation */
         }
         body {
-            font-family: 'Inter', sans-serif; /* Changed from Manrope for consistency */
+            font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8);
             background-size: 400% 400%;
             animation: gradientBackground 15s ease infinite alternate;
             color: #1a202c;
             position: relative;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            display: flex; /* Use flexbox for overall layout */
+            flex-direction: column; /* Stack children vertically */
             min-height: 100vh; /* Ensure body takes at least full viewport height */
         }
 
@@ -379,6 +383,12 @@
             object-fit: cover; /* Cover the area, cropping if necessary, to avoid gaps */
             z-index: -1; /* Behind content but in front of particles and other background elements */
         }
+        /* Rule to hide splash on smaller screens (re-added based on user's old code) */
+        @media screen and (max-width: 1200px) {
+            .splash {
+                display: none; /* Hide splash on screens smaller than 1200px */
+            }
+        }
 
         /* Header & Nav specific styles for dropdown */
         nav ul li.group { /* Parent li for dropdown */
@@ -423,7 +433,7 @@
         }
 
         /* Desktop layout (1301px and above) */
-        @media screen and (min-width: 481px) {
+        @media screen and (min-width: 481px) { /* This media query now defines the desktop/larger tablet layout */
             .intro {
                 flex-direction: row;
                 text-align: left;
@@ -443,10 +453,13 @@
 </head>
 
 <body>
+    <!-- Particles.js Canvas -->
     <div id="particles-js"></div>
 
+    <!-- Splash image - Moved outside the intro section for fixed positioning -->
     <img class="splash" src="img/splash.svg" alt="Shirly Herscovici background splash graphic">
 
+    <!-- Header -->
     <header class="header-frosted shadow-md fixed w-full z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap relative">
             <div class="logo flex items-center">
@@ -461,7 +474,8 @@
                 
                 <!-- Design with Sub-menu -->
                 <li class="relative group">
-                    <!-- Updated href to navigate directly to the specified page -->
+                    <!-- The href here is for direct navigation to the Design main page.
+                         The JS will preventDefault on click for the 'toggle' behavior. -->
                     <a href="https://shirly3212.github.io/Shirly_portfolio/Projects/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
                     <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
                         <li><a href="Projects/graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Graphic Projects</a></li>
@@ -474,7 +488,9 @@
         </nav>
     </header>
 
-    <main class="pt-20 pb-12 flex-grow"> <section id="home-section" class="intro flex-grow pb-12"> <div class="intro-text text-center lg:text-left mx-auto max-w-4xl px-6">
+    <main class="pt-20 pb-12 flex-grow">
+        <section id="home-section" class="intro flex-grow pb-12">
+            <div class="intro-text text-center lg:text-left mx-auto max-w-4xl px-6">
                 <h2 class="text-5xl md:text-6xl font-bold mb-4 montserrat-title">Shirly Herscovici</h2>
                 <h3 class="text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 leading-tight">Motion Graphic Designer <br /> Webstie Developer </h3>
                 <p class="text-lg mb-8 leading-relaxed">Shirly Herscovici is a motion graphic designer, <br /> video editor, and a Junior website developer who
@@ -554,7 +570,7 @@
                             d="M20.0127 742.239C20.6885 792.151 50.5979 809.174 87.1969 808.678C88.0468 808.667 88.8931 808.646 89.7343 808.615C91.4293 808.557 93.1069 808.457 94.7671 808.316C127.7670 805.531 153.1850 786.862 152.5560 740.445C151.9060 692.407 89.6913 632.617 85.0256 628.197L85.0176 628.193C84.840 628.024 84.7489 627.940 84.7489 627.940C84.7489 627.940 19.3371 692.331 20.0127 742.239Z"
                             fill="#D0CDE1" />
                         <path id="Vector_34_2"
-                            d="M89.5044 801.011L64.8084 767.474L89.6164 804.728L89.7342 808.615C91.4292 808.557 93.1068 808.457 94.7671 808.316L91.4799 758.418L91.4947 758.032L91.4494 757.960L91.1368 753.245L114.9870 715.238L91.0154 749.711L90.9676 750.712L88.4849 713.013L108.8110 673.797L88.1391 706.387L85.0255 628.197L85.0144 627.937L85.0175 628.193L86.1949 689.871L65.1068 665.699L86.3563 695.249L87.3628 728.955L67.5339 696.800L87.5063 733.921L88.0654 752.700L59.3155 707.957L88.2643 759.251L89.5044 801.011Z"
+                            d="M89.5044 801.116L64.8084 767.474L89.6164 804.728L89.7342 808.615C91.4292 808.557 93.1068 808.457 94.7671 808.316L91.4799 758.418L91.4947 758.032L91.4494 757.960L91.1368 753.245L114.9870 715.238L91.0154 749.711L90.9676 750.712L88.4849 713.013L108.8110 673.797L88.1391 706.387L85.0255 628.197L85.0144 627.937L85.0175 628.193L86.1949 689.871L65.1068 665.699L86.3563 695.249L87.3628 728.955L67.5339 696.800L87.5063 733.921L88.0654 752.700L59.3155 707.957L88.2643 759.251L89.5044 801.116Z"
                             fill="#3F3D56" />
                     </g>
                     <g id="SQUARE">
@@ -694,7 +710,6 @@
 
         // --- Mobile Navigation Toggle ---
         document.addEventListener("DOMContentLoaded", function () {
-            const nav = document.querySelector("nav"); // Select the nav element
             const mainNavUl = document.getElementById("main-nav-menu"); // Select the ul by its ID
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const designMenuToggle = document.getElementById('design-menu-toggle'); // The "Design" link
@@ -708,7 +723,11 @@
                 if (designSubMenu) {
                     designSubMenu.classList.remove('active'); // Close mobile dropdown
                     designSubMenu.classList.remove('show-dropdown'); // Close desktop click dropdown
-                    designMenuToggle.querySelector('i').classList.remove('rotate-180'); // Reset chevron
+                    // Check if the icon exists before trying to access its classList
+                    const designMenuIcon = designMenuToggle ? designMenuToggle.querySelector('i') : null;
+                    if (designMenuIcon) {
+                        designMenuIcon.classList.remove('rotate-180'); // Reset chevron
+                    }
                 }
             }
 
@@ -727,19 +746,22 @@
             // Design sub-menu toggle (for mobile and click scenarios on desktop)
             if (designMenuToggle && designSubMenu) {
                 designMenuToggle.addEventListener('click', (event) => {
-                    // Removed event.preventDefault() to allow direct navigation on click.
+                    // Prevent default navigation for the 'Design' link itself,
+                    // so it acts as a toggle for its sub-menu.
+                    event.preventDefault(); 
                     event.stopPropagation(); // Prevent immediate closing due to outer click listener
                     
-                    // On mobile, the dropdown toggle logic will still execute, but the page will
-                    // navigate before the visual effect is fully observed.
-                    if (window.innerWidth < 768) {
-                        // For mobile, we want to directly navigate, so prevent the dropdown from opening.
-                        // However, since we removed preventDefault(), it will navigate.
-                        // We need to ensure the link click handler also closes the main menu.
+                    // On mobile, always toggle the 'active' class for the dropdown
+                    if (window.innerWidth < 768) { // Use 768px as the breakpoint for general mobile behavior
+                        designSubMenu.classList.toggle('active');
                     } else { // Desktop behavior: toggle 'show-dropdown' class
                         designSubMenu.classList.toggle('show-dropdown');
                     }
-                    designMenuToggle.querySelector('i').classList.toggle('rotate-180'); // Rotate chevron
+                    // Toggle chevron rotation
+                    const designMenuIcon = designMenuToggle.querySelector('i');
+                    if (designMenuIcon) {
+                        designMenuIcon.classList.toggle('rotate-180');
+                    }
                 });
 
                 // Close sub-menu if clicking outside on desktop
@@ -753,20 +775,22 @@
                         // and the click was outside both the toggle button and the dropdown itself
                         if (designSubMenu.classList.contains('show-dropdown') && !isClickInsideDesignToggle && !isClickInsideDesignSubMenu) {
                             designSubMenu.classList.remove('show-dropdown');
-                            designMenuToggle.querySelector('i').classList.remove('rotate-180');
+                            const designMenuIcon = designMenuToggle.querySelector('i');
+                            if (designMenuIcon) {
+                                designMenuIcon.classList.remove('rotate-180');
+                            }
                         }
                     }
                 });
 
                 // Close all menus when a link inside main nav or sub-menu is clicked
+                // This ensures all menus collapse upon navigation
                 if (mainNavUl) {
                     mainNavUl.querySelectorAll('a').forEach(link => {
                         link.addEventListener('click', (event) => {
                             // If it's a sub-menu item or a non-group main nav link, close all menus
-                            // Specifically, for the 'Design' link itself, we want it to navigate
-                            // without toggling the mobile dropdown, as the href handles navigation.
-                            // The `closeAllMenus()` call here ensures the mobile menu is closed.
-                            if (link.closest('.group ul') || (link.href === "https://shirly3212.github.io/Shirly_portfolio/Projects/index.html") || (!link.closest('.group') && link.href && link.href !== '#')) {
+                            // This specifically ensures the mobile menu closes after a link is clicked.
+                            if (link.closest('#main-nav-menu li') && link.href && link.href !== '#') {
                                 closeAllMenus();
                             }
                         });
@@ -776,7 +800,7 @@
 
             // Close all menus if resized to desktop view (from mobile)
             window.addEventListener('resize', () => {
-                if (window.innerWidth >= 768) {
+                if (window.innerWidth >= 768) { // If width is desktop or larger
                     closeAllMenus();
                 }
             });
