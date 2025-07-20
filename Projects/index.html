@@ -1552,27 +1552,49 @@
         }
     }
 
-    // Event listeners for opening modal
+    // Event listeners for opening modal - Using Event Delegation
     function addModalEventListeners() {
-        console.log("addModalEventListeners called.");
-        // Event listeners for regular project cards (Web Dev, Graphic Design)
-        document.querySelectorAll('.project-card-item, .featured-project').forEach(item => {
-            console.log("Attaching click listener to project card/featured project:", item);
-            item.addEventListener('click', (event) => {
-                console.log("Click event detected on project card/featured project.");
-                // If the click target is a direct link, prevent the modal from opening from the parent card's listener.
-                // This prevents opening the modal if the user clicks the "View Project" or "View Image" button directly.
-                if (event.target.closest('a[href]') || event.target.closest('.view-project-btn')) {
-                    console.log("Click was on a button/link inside the card, preventing modal open from card listener.");
-                    return;
+        console.log("addModalEventListeners called. Attaching delegated click listeners.");
+
+        // Delegated listener for project cards and their buttons
+        document.addEventListener('click', (event) => {
+            console.log("Delegated click event detected on document. Target:", event.target);
+
+            // Check for project card clicks
+            const projectCard = event.target.closest('.project-card-item, .featured-project');
+            if (projectCard) {
+                // If the click target is a direct link or a "View Project" button inside the card,
+                // let those specific listeners handle it (if any, though we're delegating now).
+                // Otherwise, open the modal for the card itself.
+                const isButtonClick = event.target.closest('a[href]') || event.target.closest('.view-project-btn');
+                
+                if (isButtonClick) {
+                    console.log("Click was on a button/link inside a project card.");
+                    // If it's a view-project-btn, handle it here to open the modal
+                    if (event.target.closest('.view-project-btn')) {
+                        const projectDataString = projectCard.dataset.project;
+                        console.log("View Project button clicked. Project data string:", projectDataString);
+                        if (projectDataString && projectDataString !== "undefined") {
+                            try {
+                                const projectData = JSON.parse(projectDataString);
+                                openModal(projectData);
+                            } catch (e) {
+                                console.error("Error parsing project data from button click:", e, "Data string was:", projectDataString);
+                            }
+                        } else {
+                            console.error("No valid project data found on button's parent card.");
+                        }
+                    }
+                    return; // Prevent the card's general click from opening the modal if a specific button was clicked
                 }
 
+                // If it's a click on the card itself (but not a button/link within it)
                 let projectData = null;
-                const projectDataString = item.dataset.project;
-                console.log("Project data string:", projectDataString);
+                const projectDataString = projectCard.dataset.project;
+                console.log("Click on project card itself. Project data string:", projectDataString);
 
                 if (!projectDataString || projectDataString === "undefined") {
-                    console.error("Invalid project data for item (string is empty or 'undefined'):", item);
+                    console.error("Invalid project data for item (string is empty or 'undefined'):", projectCard);
                     return;
                 }
 
@@ -1587,52 +1609,25 @@
                 if (projectData) {
                     openModal(projectData);
                 } else {
-                    console.error("Project data is null after parsing.");
+                    console.error("Project data is null after parsing for project card click.");
                 }
-            });
-        });
+            }
 
-        // Separate event listeners for carousel items to open image zoom modal
-        document.querySelectorAll('.carousel-item').forEach(item => {
-            console.log("Attaching click listener to carousel item:", item);
-            item.addEventListener('click', (event) => {
-                console.log("Click event detected on carousel item.");
-                event.stopPropagation(); // Prevent any parent listeners
-                const imgSrc = item.getAttribute('data-image');
+            // Check for carousel item clicks
+            const carouselItem = event.target.closest('.carousel-item');
+            if (carouselItem) {
+                console.log("Click on carousel item detected.");
+                event.stopPropagation(); // Prevent any parent listeners from firing for carousel items
+                const imgSrc = carouselItem.getAttribute('data-image');
                 console.log("Carousel image src:", imgSrc);
                 if (imgSrc) {
-                    openImageZoom(imgSrc, item.querySelector('img').alt); // Pass image source and alt text
+                    openImageZoom(imgSrc, carouselItem.querySelector('img').alt); // Pass image source and alt text
                 } else {
                     console.error("Carousel item has no 'data-image' attribute.");
                 }
-            });
+            }
         });
-
-        // Handle "View Project" buttons (these are only on regular project cards)
-        document.querySelectorAll('.view-project-btn').forEach(button => {
-            console.log("Attaching click listener to View Project button:", button);
-            button.addEventListener('click', (event) => {
-                console.log("Click event detected on View Project button.");
-                event.stopPropagation(); // Stop click from propagating to parent card
-                const card = event.target.closest('.project-card-item') || event.target.closest('.featured-project');
-                if (card) {
-                    const projectDataString = card.dataset.project;
-                    console.log("Project data string from button's parent card:", projectDataString);
-                    if (projectDataString && projectDataString !== "undefined") {
-                        try {
-                            const projectData = JSON.parse(projectDataString);
-                            openModal(projectData);
-                        } catch (e) {
-                            console.error("Error parsing project data from button click:", e, "Data string was:", projectDataString);
-                        }
-                    } else {
-                        console.error("No valid project data found on button's parent card.");
-                    }
-                } else {
-                    console.error("Button's parent card not found.");
-                }
-            });
-        });
+        console.log("Delegated click listeners for project cards and carousel items attached to document.");
     }
 
 
@@ -1668,60 +1663,66 @@
     console.log("Escape key listener attached.");
 
     // --- Gemini API Integration ---
-    aiInsightBtn.addEventListener('click', async () => {
-        console.log("AI Insight button clicked.");
-        // AI Insight should only be available for 'web' type projects
-        if (!currentProjectData || currentProjectData.type !== 'web') { 
-            if (aiInsightContainer) aiInsightContainer.classList.add('hidden'); // Ensure hidden if not applicable
-            console.error("AI Insight is only available for Web Development projects or currentProjectData is missing.");
-            return;
-        }
+    if (aiInsightBtn) { // Ensure aiInsightBtn exists before attaching listener
+        aiInsightBtn.addEventListener('click', async () => {
+            console.log("AI Insight button clicked.");
+            // AI Insight should only be available for 'web' type projects
+            if (!currentProjectData || currentProjectData.type !== 'web') { 
+                if (aiInsightContainer) aiInsightContainer.classList.add('hidden'); // Ensure hidden if not applicable
+                console.error("AI Insight is only available for Web Development projects or currentProjectData is missing.");
+                return;
+            }
 
-        if (aiInsightContainer) aiInsightContainer.classList.remove('hidden'); // Show container
-        if (aiInsightText) aiInsightText.textContent = ''; // Clear previous text
-        if (aiInsightLoading) aiInsightLoading.classList.remove('hidden'); // Show loading spinner
-        console.log("Generating AI insight for:", currentProjectData.title);
+            if (aiInsightContainer) aiInsightContainer.classList.remove('hidden'); // Show container
+            if (aiInsightText) aiInsightText.textContent = ''; // Clear previous text
+            if (aiInsightLoading) aiInsightLoading.classList.remove('hidden'); // Show loading spinner
+            console.log("Generating AI insight for:", currentProjectData.title);
 
-        const prompt = `Given the following web development project:
+            const prompt = `Given the following web development project:
 Title: ${currentProjectData.title}
 Description: ${currentProjectData.description}
 Technologies: ${currentProjectData.technologies ? currentProjectData.technologies.join(', ') : 'N/A'}
 
 Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting the unique aspect or impact of this project. Focus on what makes it stand out or its practical value. Do not include a title for the summary. Return only the summary text.`;
 
-        let chatHistory = [];
-        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-        const payload = { contents: chatHistory };
-        const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            const result = await response.json();
-            console.log("Gemini API response received:", result);
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                console.log("Gemini API response received:", result);
 
-            if (result.candidates && result.candidates.length > 0 &&
-                result.candidates[0].content && result.candidates[0].content.parts &&
-                result.candidates[0].content.parts.length > 0) {
-                const text = result.candidates[0].content.parts[0].text;
-                if (aiInsightText) aiInsightText.textContent = text;
-                console.log("AI Insight text set:", text);
-            } else {
-                if (aiInsightText) aiInsightText.textContent = "Failed to generate insight. Please try again.";
-                console.error("Unexpected API response structure:", result);
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    if (aiInsightText) aiInsightText.textContent = text;
+                    console.log("AI Insight text set:", text);
+                } else {
+                    if (aiInsightText) aiInsightText.textContent = "Failed to generate insight. Please try again.";
+                    console.error("Unexpected API response structure:", result);
+                }
+            } catch (error) {
+                if (aiInsightText) aiInsightText.textContent = "Error generating insight. " + error.message;
+                console.error("Error calling Gemini API:", error);
+            } finally {
+                if (aiInsightLoading) aiInsightLoading.classList.add('hidden'); // Hide loading spinner
+                console.log("AI Insight loading spinner hidden.");
             }
-        } catch (error) {
-            if (aiInsightText) aiInsightText.textContent = "Error generating insight. " + error.message;
-            console.error("Error calling Gemini API:", error);
-        } finally {
-            if (aiInsightLoading) aiInsightLoading.classList.add('hidden'); // Hide loading spinner
-            console.log("AI Insight loading spinner hidden.");
-        }
-    });
+        });
+        console.log("AI Insight button listener attached.");
+    } else {
+        console.error("AI Insight button (aiInsightBtn) not found!");
+    }
+
 
     // --- Mobile Navigation Toggle ---
     document.addEventListener("DOMContentLoaded", function () {
