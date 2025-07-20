@@ -934,7 +934,7 @@
 
       /* Individual project cards (side web & side graphic) on mobile */
       .project-card-item {
-        width: 100%; /* Take full width on mobile */
+        width: 100%;
         height: auto;
         margin: 0 auto; /* Center individual cards */
       }
@@ -1136,7 +1136,7 @@
           </div>
       </div>
   </div>
-</section>>
+</section>
 
       <!-- Graphic Design Projects Section (Featured Project Layout) -->
       <section id="graphic-design-section" class="py-12 mt-20">
@@ -1608,15 +1608,13 @@
             const card = event.target.closest('.project-card-item') || event.target.closest('.featured-project');
             if (card) {
                 const projectDataString = card.dataset.project;
-                if (!projectDataString || projectDataString === "undefined") {
-                    console.error("Invalid or undefined project data string for this card:", projectDataString);
-                    return;
-                }
-                try {
-                    const projectData = JSON.parse(projectDataString);
-                    openModal(projectData);
-                } catch (e) {
-                    console.error("Error parsing JSON for project data:", projectDataString, e);
+                if (projectDataString && projectDataString !== "undefined") {
+                    try {
+                        const projectData = JSON.parse(projectDataString);
+                        openModal(projectData);
+                    } catch (e) {
+                        console.error("Error parsing JSON for project data:", projectDataString, e);
+                    }
                 }
             }
         });
