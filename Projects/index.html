@@ -1083,7 +1083,7 @@
                   </div>
                   <div class="featured-project-content">
                       <p>A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout and image galleries.</p>
-                      <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
+                      <button class="view-project-btn">View Project <i class="fas fa-eye ml-2"></i></button>
                   </div>
               </div>
 
@@ -1107,7 +1107,7 @@
                       </div>
                       <div class="project-card-item-content">
                           <p>A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface.</p>
-                          <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
+                          <button class="view-project-btn">View Project <i class="fas fa-eye ml-2"></i></button>
                       </div>
                   </div>
 
@@ -1129,7 +1129,7 @@
                       </div>
                       <div class="project-card-item-content">
                           <p>This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript.</p>
-                          <button class="view-project-btn">View Project <i class="fas fa-external-link-alt ml-2"></i></button>
+                          <button class="view-project-btn">View Project <i class="fas fa-eye ml-2"></i></button>
                       </div>
                   </div>
               </div>
@@ -1572,53 +1572,57 @@
     }
 
     // Event listeners for opening modal: on any .project-card-item, .carousel-item or .featured-project
-    document.querySelectorAll('.project-card-item, .carousel-item, .featured-project').forEach(item => {
-        item.addEventListener('click', (event) => {
-            // Prevent opening modal if a child button (like View Project) was clicked, 
-            // as those buttons have their own href or event listeners
-            if (event.target.closest('.view-project-btn')) {
-                return;
-            }
+    function addModalEventListeners() {
+        document.querySelectorAll('.project-card-item, .carousel-item, .featured-project').forEach(item => {
+            item.addEventListener('click', (event) => {
+                // אם היעד של הקליק הוא קישור או כפתור שיש לו פעולה משלו,
+                // מונעים מהמודאל להיפתח דרך המאזין של כרטיס האב.
+                // כפתור ה-.view-project-btn כבר פותח את המודאל בעצמו, אז אין צורך למנוע זאת כאן.
+                if (event.target.closest('a[href]')) { // מונעים רק אם זה קישור אמיתי
+                    return;
+                }
 
-            let projectData = null;
-            const projectDataString = item.dataset.project;
+                let projectData = null;
+                const projectDataString = item.dataset.project;
 
-            if (!projectDataString || projectDataString === "undefined") {
-                console.error("Invalid or undefined project data string for this item:", item);
-                return;
-            }
-            try {
-                projectData = JSON.parse(projectDataString);
-            }
-            catch (e) {
-                console.error("Error parsing JSON for project data:", projectDataString, e);
-                return;
-            }
-            
-            if (projectData) {
-                openModal(projectData);
-            }
+                if (!projectDataString || projectDataString === "undefined") {
+                    console.error("Invalid project data for item:", item);
+                    return;
+                }
+
+                try {
+                    projectData = JSON.parse(projectDataString);
+                }
+                catch (e) {
+                    console.error("Error parsing project data:", e);
+                    return;
+                }
+                
+                if (projectData) {
+                    openModal(projectData);
+                }
+            });
         });
-    });
 
-    // Handle clicks on "View Project" buttons *inside* the project cards
-    document.querySelectorAll('.view-project-btn').forEach(button => {
-        button.addEventListener('click', (event) => {
-            event.stopPropagation(); // Stop click from propagating to parent card
-            const card = event.target.closest('.project-card-item') || event.target.closest('.featured-project');
-            if (card) {
-                const projectDataString = card.dataset.project;
-                if (projectDataString && projectDataString !== "undefined") {
-                    try {
-                        const projectData = JSON.parse(projectDataString);
-                        openModal(projectData);
-                    } catch (e) {
-                        console.error("Error parsing JSON for project data:", projectDataString, e);
+        // Handle "View Project" buttons
+        document.querySelectorAll('.view-project-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation(); // Stop click from propagating to parent card
+                const card = event.target.closest('.project-card-item') || event.target.closest('.featured-project');
+                if (card) {
+                    const projectDataString = card.dataset.project;
+                    if (projectDataString && projectDataString !== "undefined") {
+                        try {
+                            const projectData = JSON.parse(projectDataString);
+                            openModal(projectData);
+                        } catch (e) {
+                            console.error("Error parsing project data:", e);
+                        }
                     }
                 }
-            }
+            });
         });
-    });
+    }
 
 
     // Event listener for closing modal via button
@@ -2004,26 +2008,31 @@ function closeModal() {
 function addModalEventListeners() {
     document.querySelectorAll('.project-card-item, .carousel-item, .featured-project').forEach(item => {
         item.addEventListener('click', (event) => {
-            // Don't open modal if clicking on buttons
-            if (event.target.closest('.view-project-btn') || 
-                event.target.closest('button') || 
-                event.target.closest('a[href]')) {
+            // אם היעד של הקליק הוא קישור או כפתור שיש לו פעולה משלו,
+            // מונעים מהמודאל להיפתח דרך המאזין של כרטיס האב.
+            // כפתור ה-.view-project-btn כבר פותח את המודאל בעצמו, אז אין צורך למנוע זאת כאן.
+            if (event.target.closest('a[href]')) { // מונעים רק אם זה קישור אמיתי
                 return;
             }
 
+            let projectData = null;
             const projectDataString = item.dataset.project;
+
             if (!projectDataString || projectDataString === "undefined") {
                 console.error("Invalid project data for item:", item);
                 return;
             }
 
             try {
-                const projectData = JSON.parse(projectDataString);
-                if (projectData) {
-                    openModal(projectData);
-                }
-            } catch (e) {
+                projectData = JSON.parse(projectDataString);
+            }
+            catch (e) {
                 console.error("Error parsing project data:", e);
+                return;
+            }
+            
+            if (projectData) {
+                openModal(projectData);
             }
         });
     });
@@ -2031,7 +2040,7 @@ function addModalEventListeners() {
     // Handle "View Project" buttons
     document.querySelectorAll('.view-project-btn').forEach(button => {
         button.addEventListener('click', (event) => {
-            event.stopPropagation();
+            event.stopPropagation(); // Stop click from propagating to parent card
             const card = event.target.closest('.project-card-item') || event.target.closest('.featured-project');
             if (card) {
                 const projectDataString = card.dataset.project;
@@ -2062,7 +2071,7 @@ if (projectModal) {
 }
 
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && projectModal && projectModal.classList.contains('is-visible')) {
+    if (event.key === 'Escape' && projectModal.classList.contains('is-visible')) {
         closeModal();
     }
 });
