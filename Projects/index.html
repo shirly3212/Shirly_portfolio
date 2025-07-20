@@ -1444,12 +1444,29 @@
 
     let currentProjectData = null; // Store data of the currently opened project
 
+    console.log("Modal elements initialized:", {
+        projectModal: !!projectModal,
+        closeModalBtn: !!closeModalBtn,
+        modalProjectImage: !!modalProjectImage,
+        modalProjectTitle: !!modalProjectTitle,
+        modalProjectDescription: !!modalProjectDescription,
+        modalTechnologies: !!modalTechnologies,
+        modalLiveDemoBtn: !!modalLiveDemoBtn,
+        modalGithubRepoBtn: !!modalGithubRepoBtn,
+        aiInsightBtn: !!aiInsightBtn,
+        aiInsightContainer: !!aiInsightContainer,
+        aiInsightText: !!aiInsightText,
+        aiInsightLoading: !!aiInsightLoading
+    });
+
     // Function to open the project details modal
     function openModal(projectData) {
+        console.log("openModal called with projectData:", projectData);
         currentProjectData = projectData; // Store the data
         if (modalProjectImage) {
             modalProjectImage.src = projectData.image;
             modalProjectImage.alt = projectData.title; // Set alt text for accessibility
+            console.log("Modal Project Image src set to:", projectData.image);
         }
 
         // Reset all elements to their default (visible) state for project modals
@@ -1517,76 +1534,101 @@
         if (projectModal) {
             projectModal.classList.add('is-visible');
             document.body.style.overflow = 'hidden'; // Prevent scrolling of body
+            console.log("Project modal should be visible now.");
+        } else {
+            console.error("Project modal element not found!");
         }
     }
 
     // Function to close the modal
     function closeModal() {
+        console.log("closeModal called.");
         if (projectModal) {
             projectModal.classList.remove('is-visible');
             document.body.style.overflow = ''; // Restore scrolling of body
             currentProjectData = null; // Clear current project data
+            console.log("Project modal should be hidden now.");
         }
     }
 
     // Event listeners for opening modal
     function addModalEventListeners() {
+        console.log("addModalEventListeners called.");
         // Event listeners for regular project cards (Web Dev, Graphic Design)
         document.querySelectorAll('.project-card-item, .featured-project').forEach(item => {
+            console.log("Attaching click listener to project card/featured project:", item);
             item.addEventListener('click', (event) => {
+                console.log("Click event detected on project card/featured project.");
                 // If the click target is a direct link, prevent the modal from opening from the parent card's listener.
                 // This prevents opening the modal if the user clicks the "View Project" or "View Image" button directly.
                 if (event.target.closest('a[href]') || event.target.closest('.view-project-btn')) {
+                    console.log("Click was on a button/link inside the card, preventing modal open from card listener.");
                     return;
                 }
 
                 let projectData = null;
                 const projectDataString = item.dataset.project;
+                console.log("Project data string:", projectDataString);
 
                 if (!projectDataString || projectDataString === "undefined") {
-                    console.error("Invalid project data for item:", item);
+                    console.error("Invalid project data for item (string is empty or 'undefined'):", item);
                     return;
                 }
 
                 try {
                     projectData = JSON.parse(projectDataString);
+                    console.log("Parsed project data:", projectData);
                 } catch (e) {
-                    console.error("Error parsing project data:", e);
+                    console.error("Error parsing project data:", e, "Data string was:", projectDataString);
                     return;
                 }
                 
                 if (projectData) {
                     openModal(projectData);
+                } else {
+                    console.error("Project data is null after parsing.");
                 }
             });
         });
 
         // Separate event listeners for carousel items to open image zoom modal
         document.querySelectorAll('.carousel-item').forEach(item => {
+            console.log("Attaching click listener to carousel item:", item);
             item.addEventListener('click', (event) => {
+                console.log("Click event detected on carousel item.");
                 event.stopPropagation(); // Prevent any parent listeners
                 const imgSrc = item.getAttribute('data-image');
+                console.log("Carousel image src:", imgSrc);
                 if (imgSrc) {
                     openImageZoom(imgSrc, item.querySelector('img').alt); // Pass image source and alt text
+                } else {
+                    console.error("Carousel item has no 'data-image' attribute.");
                 }
             });
         });
 
         // Handle "View Project" buttons (these are only on regular project cards)
         document.querySelectorAll('.view-project-btn').forEach(button => {
+            console.log("Attaching click listener to View Project button:", button);
             button.addEventListener('click', (event) => {
+                console.log("Click event detected on View Project button.");
                 event.stopPropagation(); // Stop click from propagating to parent card
                 const card = event.target.closest('.project-card-item') || event.target.closest('.featured-project');
                 if (card) {
                     const projectDataString = card.dataset.project;
+                    console.log("Project data string from button's parent card:", projectDataString);
                     if (projectDataString && projectDataString !== "undefined") {
                         try {
                             const projectData = JSON.parse(projectDataString);
                             openModal(projectData);
                         } catch (e) {
-                            console.error("Error parsing project data:", e);
+                            console.error("Error parsing project data from button click:", e, "Data string was:", projectDataString);
                         }
+                    } else {
+                        console.error("No valid project data found on button's parent card.");
                     }
+                } else {
+                    console.error("Button's parent card not found.");
                 }
             });
         });
@@ -1596,36 +1638,48 @@
     // Event listener for closing modal via button
     if (closeModalBtn) {
         closeModalBtn.addEventListener('click', closeModal);
+        console.log("Close modal button listener attached.");
+    } else {
+        console.error("Close modal button (closeModalBtn) not found!");
     }
 
     // Event listener for closing modal by clicking outside content
     if (projectModal) {
         projectModal.addEventListener('click', (event) => {
+            console.log("Click event on projectModal overlay. Target:", event.target);
             if (event.target === projectModal) {
                 closeModal();
             }
         });
+        console.log("Project modal overlay listener attached.");
+    } else {
+        console.error("Project modal (projectModal) not found for overlay listener!");
     }
 
     // Event listener for closing modal with Escape key
     document.addEventListener('keydown', (event) => {
+        console.log("Keydown event detected:", event.key);
         if (event.key === 'Escape' && projectModal && projectModal.classList.contains('is-visible')) {
+            console.log("Escape key pressed and project modal is visible. Closing modal.");
             closeModal();
         }
     });
+    console.log("Escape key listener attached.");
 
     // --- Gemini API Integration ---
     aiInsightBtn.addEventListener('click', async () => {
+        console.log("AI Insight button clicked.");
         // AI Insight should only be available for 'web' type projects
         if (!currentProjectData || currentProjectData.type !== 'web') { 
             if (aiInsightContainer) aiInsightContainer.classList.add('hidden'); // Ensure hidden if not applicable
-            console.error("AI Insight is only available for Web Development projects.");
+            console.error("AI Insight is only available for Web Development projects or currentProjectData is missing.");
             return;
         }
 
         if (aiInsightContainer) aiInsightContainer.classList.remove('hidden'); // Show container
         if (aiInsightText) aiInsightText.textContent = ''; // Clear previous text
         if (aiInsightLoading) aiInsightLoading.classList.remove('hidden'); // Show loading spinner
+        console.log("Generating AI insight for:", currentProjectData.title);
 
         const prompt = `Given the following web development project:
 Title: ${currentProjectData.title}
@@ -1647,12 +1701,14 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
                 body: JSON.stringify(payload)
             });
             const result = await response.json();
+            console.log("Gemini API response received:", result);
 
             if (result.candidates && result.candidates.length > 0 &&
                 result.candidates[0].content && result.candidates[0].content.parts &&
                 result.candidates[0].content.parts.length > 0) {
                 const text = result.candidates[0].content.parts[0].text;
                 if (aiInsightText) aiInsightText.textContent = text;
+                console.log("AI Insight text set:", text);
             } else {
                 if (aiInsightText) aiInsightText.textContent = "Failed to generate insight. Please try again.";
                 console.error("Unexpected API response structure:", result);
@@ -1662,11 +1718,13 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
             console.error("Error calling Gemini API:", error);
         } finally {
             if (aiInsightLoading) aiInsightLoading.classList.add('hidden'); // Hide loading spinner
+            console.log("AI Insight loading spinner hidden.");
         }
     });
 
     // --- Mobile Navigation Toggle ---
     document.addEventListener("DOMContentLoaded", function () {
+      console.log("DOM Content Loaded. Initializing mobile nav toggle.");
       const mainNavUl = document.getElementById("main-nav-menu"); // Main ul
       const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
       const designMenuToggle = document.getElementById('design-menu-toggle'); // The "Design" link
@@ -1674,6 +1732,7 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
 
       // Function to close all menus (main and sub)
       function closeAllMenus() {
+          console.log("closeAllMenus called.");
           if (mainNavUl) mainNavUl.classList.remove('active'); // Close main mobile menu
           if (designSubMenu) {
               designSubMenu.classList.remove('active'); // Close mobile dropdown
@@ -1684,27 +1743,35 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
 
       if (mobileMenuToggle) {
           mobileMenuToggle.addEventListener('click', (event) => {
+              console.log("Mobile menu toggle clicked.");
               event.stopPropagation(); // Prevent immediate closing due to outer click listener
               if (mainNavUl) mainNavUl.classList.toggle('active');
               if (mainNavUl && !mainNavUl.classList.contains('active')) { // If closing main menu
                   closeAllMenus(); // Close everything if hamburger is closing the main menu
               }
           });
+          console.log("Mobile menu toggle listener attached.");
+      } else {
+          console.error("Mobile menu toggle button not found!");
       }
 
       // Design sub-menu toggle (for mobile and click scenarios on desktop)
       if (designMenuToggle && designSubMenu) {
           designMenuToggle.addEventListener('click', (event) => {
+              console.log("Design menu toggle clicked.");
               event.preventDefault(); // ALWAYS prevent default link behavior for this specific toggle button
               event.stopPropagation(); // Prevent immediate closing due to outer click listener
 
               if (window.innerWidth < 768) { // Mobile behavior: toggle 'active' class
                   designSubMenu.classList.toggle('active');
+                  console.log("Mobile: Toggling design sub-menu active class.");
               } else { // Desktop behavior: toggle 'show-dropdown' class
                   designSubMenu.classList.toggle('show-dropdown');
+                  console.log("Desktop: Toggling design sub-menu show-dropdown class.");
               }
               if (designMenuToggle) designMenuToggle.querySelector('i').classList.toggle('rotate-180'); // Rotate chevron
           });
+          console.log("Design menu toggle listener attached.");
 
           // Close sub-menu if clicking outside on desktop
           document.addEventListener('click', (event) => {
@@ -1718,6 +1785,7 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
                   if (designSubMenu.classList.contains('show-dropdown') && !isClickInsideDesignToggle && !isClickInsideDesignSubMenu) {
                       designSubMenu.classList.remove('show-dropdown');
                       if (designMenuToggle) designMenuToggle.querySelector('i').classList.remove('rotate-180');
+                      console.log("Desktop: Clicked outside design sub-menu, closing dropdown.");
                   }
               }
           });
@@ -1729,16 +1797,20 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
                       // If it's a sub-menu item or a non-group main nav link, close all menus
                       if (link.closest('.group ul') || (!link.closest('.group') && link.href && link.href !== '#')) {
                           closeAllMenus();
+                          console.log("Link clicked, closing all menus.");
                       }
                   });
               });
           }
+      } else {
+          console.error("Design menu toggle or sub-menu not found!");
       }
 
       // Close all menus if resized to desktop view (from mobile)
       window.addEventListener('resize', () => {
           if (window.innerWidth >= 768) {
               closeAllMenus();
+              console.log("Window resized to desktop, closing all menus.");
           }
       });
     });
@@ -1750,12 +1822,34 @@ let carouselItems = document.querySelectorAll('.carousel-item');
 let currentIndex = 0;
 let isUpdating = false; // Flag to prevent conflicts during manual updates
 
+console.log("Carousel elements initialized:", {
+    carouselWrapper: !!carouselWrapper,
+    prevBtn: !!prevBtn,
+    nextBtn: !!nextBtn,
+    carouselItemsCount: carouselItems.length
+});
+
 function updateCarousel() {
-    if (!carouselWrapper || carouselItems.length === 0 || isUpdating) return;
+    console.log("updateCarousel called. Current index:", currentIndex);
+    if (!carouselWrapper || carouselItems.length === 0 || isUpdating) {
+        console.log("updateCarousel skipped. Conditions:", {
+            carouselWrapper: !!carouselWrapper,
+            carouselItemsLength: carouselItems.length,
+            isUpdating: isUpdating
+        });
+        return;
+    }
     
     isUpdating = true;
     
     const containerWidth = carouselWrapper.offsetWidth;
+    // Ensure carouselItems is updated if DOM changed
+    carouselItems = document.querySelectorAll('.carousel-item');
+    if (carouselItems.length === 0) {
+        console.error("No carousel items found during updateCarousel!");
+        isUpdating = false;
+        return;
+    }
     const itemWidth = carouselItems[0].offsetWidth;
     const itemMargin = 20;
     const itemTotalWidth = itemWidth + itemMargin;
@@ -1772,13 +1866,15 @@ function updateCarousel() {
         left: scrollPosition,
         behavior: 'smooth'
     });
+    console.log("Carousel scrolling to position:", scrollPosition);
 
     updateFadeEffect();
 
-    setTimeout(() => { isUpdating = false; }, 500);
+    setTimeout(() => { isUpdating = false; console.log("updateCarousel finished."); }, 500);
 }
 
 function updateFadeEffect() {
+    console.log("updateFadeEffect called.");
     carouselItems.forEach((item, index) => {
         item.classList.toggle('carousel-item-faded', index !== currentIndex);
     });
@@ -1806,23 +1902,29 @@ function findClosestItemToCenter() {
             closestIndex = index;
         }
     });
-
+    // console.log("Closest item to center found:", closestIndex);
     return closestIndex;
 }
 
 function onCarouselScroll() {
+    // console.log("onCarouselScroll called.");
     if (isUpdating) return;
 
     const newIndex = findClosestItemToCenter();
     if (newIndex !== currentIndex) {
         currentIndex = newIndex;
         updateFadeEffect();
+        // console.log("Carousel index changed due to scroll:", currentIndex);
     }
 }
 
 function initCarousel() {
+    console.log("initCarousel called.");
     carouselItems = document.querySelectorAll('.carousel-item');
-    if (carouselItems.length === 0) return;
+    if (carouselItems.length === 0) {
+        console.warn("No carousel items found during initCarousel.");
+        return;
+    }
     currentIndex = 0;
     updateCarousel();
 }
@@ -1833,6 +1935,7 @@ if (prevBtn) {
         e.preventDefault();
         e.stopPropagation();
         currentIndex = currentIndex > 0 ? currentIndex - 1 : carouselItems.length - 1;
+        console.log("Prev button clicked. New index:", currentIndex);
         updateCarousel();
     });
 }
@@ -1842,6 +1945,7 @@ if (nextBtn) {
         e.preventDefault();
         e.stopPropagation();
         currentIndex = currentIndex < carouselItems.length - 1 ? currentIndex + 1 : 0;
+        console.log("Next button clicked. New index:", currentIndex);
         updateCarousel();
     });
 }
@@ -1852,6 +1956,7 @@ if (carouselWrapper) {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(onCarouselScroll, 100);
     });
+    console.log("Carousel scroll listener attached.");
 }
 
 let startX = 0;
@@ -1861,26 +1966,32 @@ if (carouselWrapper) {
     carouselWrapper.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
         isSwiping = true;
+        console.log("Carousel touchstart detected.");
     });
 
     carouselWrapper.addEventListener('touchend', (e) => {
+        console.log("Carousel touchend detected.");
         if (!isSwiping) return;
         const endX = e.changedTouches[0].clientX;
         const diff = startX - endX;
         if (Math.abs(diff) > 50) {
             if (diff > 0) {
                 currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0;
+                console.log("Swipe left detected. New index:", currentIndex);
             } else {
                 currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1;
+                console.log("Swipe right detected. New index:", currentIndex);
             }
             updateCarousel();
         }
         isSwiping = false;
     });
+    console.log("Carousel touch listeners attached.");
 }
 
 window.addEventListener('load', initCarousel);
 window.addEventListener('resize', () => {
+    console.log("Window resized. Re-initializing carousel.");
     setTimeout(initCarousel, 100);
 });
 
@@ -1889,50 +2000,81 @@ const imageZoomModal = document.getElementById('imageZoomModal'); // Get the exi
 const zoomedImage = document.getElementById('zoomedImage');
 const closeZoomBtn = document.getElementById('closeZoomBtn');
 
+console.log("Image Zoom Modal elements initialized:", {
+    imageZoomModal: !!imageZoomModal,
+    zoomedImage: !!zoomedImage,
+    closeZoomBtn: !!closeZoomBtn
+});
+
 function openImageZoom(imageSrc, imageAlt) {
+    console.log("openImageZoom called with src:", imageSrc);
     if (zoomedImage) {
         zoomedImage.src = imageSrc;
         zoomedImage.alt = imageAlt || 'Zoomed Image';
     }
-    imageZoomModal.classList.remove('opacity-0', 'invisible');
-    imageZoomModal.classList.add('opacity-100', 'visible');
-    document.body.style.overflow = 'hidden';
+    if (imageZoomModal) {
+        imageZoomModal.classList.remove('opacity-0', 'invisible');
+        imageZoomModal.classList.add('opacity-100', 'visible');
+        document.body.style.overflow = 'hidden';
+        console.log("Image zoom modal should be visible now.");
+    } else {
+        console.error("Image zoom modal element not found!");
+    }
 }
 
 function closeImageZoom() {
-    imageZoomModal.classList.add('opacity-0', 'invisible');
-    imageZoomModal.classList.remove('opacity-100', 'visible');
-    document.body.style.overflow = '';
+    console.log("closeImageZoom called.");
+    if (imageZoomModal) {
+        imageZoomModal.classList.add('opacity-0', 'invisible');
+        imageZoomModal.classList.remove('opacity-100', 'visible');
+        document.body.style.overflow = '';
+        console.log("Image zoom modal should be hidden now.");
+    }
 }
 
 // Add click event to modal image for zoom (inside projectModal)
 // This listener is for the image *within* the project details modal, allowing it to zoom
 if (modalProjectImage) {
     modalProjectImage.addEventListener('click', (event) => {
+        console.log("Click event on modalProjectImage (inside project details modal).");
         event.stopPropagation();
         openImageZoom(modalProjectImage.src, modalProjectImage.alt);
     });
+    console.log("Listener attached to modalProjectImage for zoom.");
+} else {
+    console.error("modalProjectImage element not found for zoom listener!");
 }
 
 // Close zoom modal events
 if (closeZoomBtn) {
     closeZoomBtn.addEventListener('click', closeImageZoom);
+    console.log("Close zoom button listener attached.");
+} else {
+    console.error("Close zoom button (closeZoomBtn) not found!");
 }
 
 imageZoomModal.addEventListener('click', (event) => {
+    console.log("Click event on imageZoomModal overlay. Target:", event.target);
     if (event.target === imageZoomModal || event.target === zoomedImage) { // Close if clicking on image or overlay
         closeImageZoom();
     }
 });
+console.log("Image zoom modal overlay listener attached.");
+
 
 document.addEventListener('keydown', (event) => {
+    console.log("Keydown event detected for image zoom modal:", event.key);
     if (event.key === 'Escape' && imageZoomModal.classList.contains('visible')) {
+        console.log("Escape key pressed and image zoom modal is visible. Closing zoom modal.");
         closeImageZoom();
     }
 });
+console.log("Escape key listener attached for image zoom modal.");
+
 
 // --- Initialization ---
 function initializeEverything() {
+    console.log("initializeEverything called.");
     initCarousel();
     addModalEventListeners(); // This now correctly separates logic for project cards and carousel items
 }
@@ -1940,15 +2082,15 @@ function initializeEverything() {
 // Highlight active navigation function (if exists in your code)
 function highlightActiveNav() {
     // Add your navigation highlighting logic here if needed
+    console.log("highlightActiveNav called (if implemented).");
 }
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM Content Loaded. Calling initializeEverything.");
     initializeEverything();
     highlightActiveNav();
 });
 
 window.addEventListener('load', initializeEverything);
-</body>
-
-</html>
+console.log("Window load listener attached for initializeEverything.");
