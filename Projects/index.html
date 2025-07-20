@@ -1354,7 +1354,7 @@
   <!-- Particles.js library -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    console.log("Script execution started."); // Added this log
+    console.log("Script execution started. (from very top of script)"); // Added this log
 
     // --- Particles.js Initialization ---
     particlesJS("particles-js", {
@@ -1559,57 +1559,52 @@
         // Delegated listener for project cards and their buttons
         document.addEventListener('click', (event) => {
             console.log("Delegated click event detected on document. Target:", event.target);
+            event.preventDefault(); // IMPORTANT: Prevent default behavior for all clicks handled here
 
             // Check for project card clicks
             const projectCard = event.target.closest('.project-card-item, .featured-project');
             if (projectCard) {
-                // If the click target is a direct link or a "View Project" button inside the card,
-                // let those specific listeners handle it (if any, though we're delegating now).
-                // Otherwise, open the modal for the card itself.
-                const isButtonClick = event.target.closest('a[href]') || event.target.closest('.view-project-btn');
-                
+                console.log("Click on project card or child detected.");
+                const isButtonClick = event.target.closest('.view-project-btn'); // Only check for our specific buttons
+
                 if (isButtonClick) {
-                    console.log("Click was on a button/link inside a project card.");
-                    // If it's a view-project-btn, handle it here to open the modal
-                    if (event.target.closest('.view-project-btn')) {
-                        const projectDataString = projectCard.dataset.project;
-                        console.log("View Project button clicked. Project data string:", projectDataString);
-                        if (projectDataString && projectDataString !== "undefined") {
-                            try {
-                                const projectData = JSON.parse(projectDataString);
-                                openModal(projectData);
-                            } catch (e) {
-                                console.error("Error parsing project data from button click:", e, "Data string was:", projectDataString);
-                            }
-                        } else {
-                            console.error("No valid project data found on button's parent card.");
+                    console.log("View Project button clicked.");
+                    const projectDataString = projectCard.dataset.project;
+                    console.log("Project data string from button's parent card:", projectDataString);
+                    if (projectDataString && projectDataString !== "undefined") {
+                        try {
+                            const projectData = JSON.parse(projectDataString);
+                            openModal(projectData);
+                        } catch (e) {
+                            console.error("Error parsing project data from button click:", e, "Data string was:", projectDataString);
                         }
+                    } else {
+                        console.error("No valid project data found on button's parent card.");
                     }
-                    return; // Prevent the card's general click from opening the modal if a specific button was clicked
-                }
+                } else { // Clicked on the card itself, but not the specific button
+                    console.log("Click on project card (not button).");
+                    let projectData = null;
+                    const projectDataString = projectCard.dataset.project;
+                    console.log("Project data string:", projectDataString);
 
-                // If it's a click on the card itself (but not a button/link within it)
-                let projectData = null;
-                const projectDataString = projectCard.dataset.project;
-                console.log("Click on project card itself. Project data string:", projectDataString);
+                    if (!projectDataString || projectDataString === "undefined") {
+                        console.error("Invalid project data for item (string is empty or 'undefined'):", projectCard);
+                        return;
+                    }
 
-                if (!projectDataString || projectDataString === "undefined") {
-                    console.error("Invalid project data for item (string is empty or 'undefined'):", projectCard);
-                    return;
-                }
-
-                try {
-                    projectData = JSON.parse(projectDataString);
-                    console.log("Parsed project data:", projectData);
-                } catch (e) {
-                    console.error("Error parsing project data:", e, "Data string was:", projectDataString);
-                    return;
-                }
-                
-                if (projectData) {
-                    openModal(projectData);
-                } else {
-                    console.error("Project data is null after parsing for project card click.");
+                    try {
+                        projectData = JSON.parse(projectDataString);
+                        console.log("Parsed project data:", projectData);
+                    } catch (e) {
+                        console.error("Error parsing project data:", e, "Data string was:", projectDataString);
+                        return;
+                    }
+                    
+                    if (projectData) {
+                        openModal(projectData);
+                    } else {
+                        console.error("Project data is null after parsing for project card click.");
+                    }
                 }
             }
 
@@ -1617,7 +1612,7 @@
             const carouselItem = event.target.closest('.carousel-item');
             if (carouselItem) {
                 console.log("Click on carousel item detected.");
-                event.stopPropagation(); // Prevent any parent listeners from firing for carousel items
+                // event.preventDefault() is already at the top of this delegated listener
                 const imgSrc = carouselItem.getAttribute('data-image');
                 console.log("Carousel image src:", imgSrc);
                 if (imgSrc) {
