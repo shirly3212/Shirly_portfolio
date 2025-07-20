@@ -1032,8 +1032,7 @@
                     </ul>
                 </li>
         </li>
-        <li><a href="../Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">Video</a></li>
-        <li><a href="../ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">AI</a></li>
+        <li><a href="../Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">AI</a></li>
         <li><a href="../index.html#contact-section" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md">Contact</a></li>
       </ul>
     </nav>
@@ -1355,6 +1354,8 @@
   <!-- Particles.js library -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
+    console.log("Script execution started."); // Added this log
+
     // --- Particles.js Initialization ---
     particlesJS("particles-js", {
       "particles": {
@@ -2088,9 +2089,14 @@ function highlightActiveNav() {
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Content Loaded. Calling initializeEverything.");
-    initializeEverything();
+    try { // Added try-catch block here
+        initializeEverything();
+    } catch (e) {
+        console.error("Error during initializeEverything:", e);
+    }
     highlightActiveNav();
 });
 
-window.addEventListener('load', initializeEverything);
-console.log("Window load listener attached for initializeEverything.");
+// Removed window.onload listener as DOMContentLoaded is sufficient and fires earlier
+// window.addEventListener('load', initializeEverything);
+// console.log("Window load listener attached for initializeEverything.");
