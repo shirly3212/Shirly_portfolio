@@ -1026,7 +1026,7 @@
         <li><a href="https://shirly3212.github.io/Shirly_portfolio/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Home</a></li>
         
         <!-- Design with Sub-menu - Active/Current page -->
-        <li class="relative group">
+        <li class="relative group nav-projects-dropdown"> <!-- Added nav-projects-dropdown class for JS -->
             <a href="../Projects/index.html" class="text-lg text-white bg-blue-600 hover:bg-blue-700 py-2 px-3 rounded-md" id="design-menu-toggle">Design <i class="fas fa-chevron-down ml-1 text-sm"></i></a>
                     <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 w-48 z-10">
                         <!-- Graphic Projects link - this is the one to be highlighted on this page -->
@@ -1069,7 +1069,7 @@
               <!-- Featured Project: Photographer -->
               <div class="featured-project animate-on-scroll"
                   data-project='{
-                      "id": "photographer",
+                      "id": "visual-portfolio",
                       "title": "Photographer - Visual Portfolio",
                       "image": "../img/Photographer_me.png",
                       "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout and image galleries.",
@@ -1084,7 +1084,7 @@
                   </div>
                   <div class="featured-project-content">
                       <p>A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout and image galleries.</p>
-                      <button class="view-project-btn">View Project <i class="fas fa-eye ml-2"></i></button>
+                      <button class="view-project-btn" data-project-id="visual-portfolio">View Project <i class="fas fa-eye ml-2"></i></button>
                   </div>
               </div>
 
@@ -1108,7 +1108,7 @@
                       </div>
                       <div class="project-card-item-content">
                           <p>A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface.</p>
-                          <button class="view-project-btn">View Project <i class="fas fa-eye ml-2"></i></button>
+                          <button class="view-project-btn" data-project-id="people-counter">View Project <i class="fas fa-eye ml-2"></i></button>
                       </div>
                   </div>
 
@@ -1130,7 +1130,7 @@
                       </div>
                       <div class="project-card-item-content">
                           <p>This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript.</p>
-                          <button class="view-project-btn">View Project <i class="fas fa-eye ml-2"></i></button>
+                          <button class="view-project-btn" data-project-id="travelly">View Project <i class="fas fa-eye ml-2"></i></button>
                       </div>
                   </div>
               </div>
@@ -1157,7 +1157,7 @@
                     <!-- Featured Graphic Project (World Cup 22 Infographic) -->
                     <div class="featured-project animate-on-scroll"
                         data-project='{
-                            "id": "worldcup22",
+                            "id": "world-cup-infographic",
                             "title": "World Cup 22 Infographic",
                             "image": "../img/thumbnail1.jpg",
                             "description": "An engaging infographic for the 2022 World Cup, featuring key statistics and visual highlights. It transforms complex data into a visually appealing and easy-to-understand format.",
@@ -1170,7 +1170,7 @@
                         </div>
                         <div class="featured-project-content">
                             <p>An engaging infographic for the 2022 World Cup, featuring key statistics and visual highlights.</p>
-                            <button class="view-project-btn">
+                            <button class="view-project-btn" data-project-id="world-cup-infographic">
                                 View Image <i class="fas fa-eye ml-2"></i>
                             </button>
                         </div>
@@ -1181,11 +1181,11 @@
                         <!-- Graphic Project Item 2: Road Accidents -->
                         <div class="project-card-item animate-on-scroll"
                             data-project='{
-                                "id": "road-accidents",
+                                "id": "road-accident-data-viz",
                                 "title": "Israeli Politics - Data Visualization",
                                 "image": "../img/thumbnail5.jpg",
                                 "description": "Key aspects and trends in Israeli politics.",
-                                "technologies": ["Adobe Photoshop", "Data Analysis",After Effects, "Graphic Design"],
+                                "technologies": ["Adobe Photoshop", "Data Analysis", "After Effects", "Graphic Design"],
                                 "live_demo": "https://makospecial.co.il/israel_politics",
                                 "type": "graphic"
                             }'>
@@ -1195,7 +1195,7 @@
                             </div>
                             <div class="project-card-item-content">
                                 <p>A comprehensive data visualization project on road accident statistics.</p>
-                                <button class="view-project-btn">
+                                <button class="view-project-btn" data-project-id="road-accident-data-viz">
                                     View Image <i class="fas fa-eye ml-2"></i>
                                 </button>
                             </div>
@@ -1204,7 +1204,7 @@
                         <!-- Graphic Project Item 3: Climate Change -->
                         <div class="project-card-item animate-on-scroll"
                             data-project='{
-                                "id": "climate-change",
+                                "id": "ukraine-war-graphics",
                                 "title": "Ukraine and Russia war",
                                 "image": "../img/ukraineeee12.png",
                                 "description": "Graphics created to raise awareness about the war between Ukraine and Russia. Translates complex environmental data into easily understandable and visually compelling messages.",
@@ -1218,7 +1218,7 @@
                             </div>
                             <div class="project-card-item-content">
                                 <p>Graphics created to raise awareness about ukraine and russia war and it's development.</p>
-                                <button class="view-project-btn">
+                                <button class="view-project-btn" data-project-id="ukraine-war-graphics">
                                     View Image <i class="fas fa-eye ml-2"></i>
                                 </button>
                             </div>
@@ -1355,83 +1355,241 @@
 
   <!-- Particles.js library -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- Inlined script.js content for a single file solution -->
   <script>
-    console.log("Script execution started. (from very top of script)"); // Added this log
-
-    // --- Particles.js Initialization ---
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": "#ffffff" }, /* Light blue/cyan */
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5, "random": false },
-        "size": { "value": 3, "random": true },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#ffffff",
-          "opacity": 0.4,
-          "width": 1
+    // --- Project Data Definition (Moved to global scope) ---
+    const projectsData = {
+        "visual-portfolio": {
+          title: "Visual Portfolio Website",
+          description: "A sleek visual portfolio website for photographers featuring a responsive layout and image galleries.",
+          image: "../img/Photographer_me.png",
+          liveLink: "https://shirly3212.github.io/Photographer/",
+          repoLink: "https://github.com/shirly3212/Photographer",
+          type: "web"
         },
-        "move": {
-          "enable": true,
-          "speed": 6, /* Slightly slower speed for subtlety */
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false,
-          "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 }
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": { "enable": true, "mode": "grab" }, /* Grab effect on hover */
-          "onclick": { "enable": true, "mode": "push" }, /* Push effect on click */
-          "resize": true
+        "people-counter": {
+          title: "People Counter Web App",
+          description: "A straightforward web application to count people entering or exiting an area, built with HTML, CSS, and JavaScript.",
+          image: "../img/PEOPLE_COUNTER.png",
+          liveLink: "https://shirly3212.github.io/People-Counter/",
+          repoLink: "https://github.com/shirly3212/People-Counter",
+          type: "web"
         },
-        "modes": {
-          "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
-          "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 },
-          "repulse": { "distance": 200, "duration": 0.4 },
-          "push": { "particles_nb": 4 },
-          "remove": { "particles_nb": 2 }
+        "travelly": {
+          title: "TRAVELLY - Travel Agency Website",
+          description: "A responsive and modern website for a travel agency developed with HTML, CSS, and vanilla JavaScript.",
+          image: "../img/TRAVEELY_ME.png",
+          liveLink: "https://shirly3212.github.io/TRAVELLY/",
+          repoLink: "https://github.com/shirly3212/TRAVELLY",
+          type: "web"
+        },
+        "world-cup-infographic": {
+          title: "World Cup 2022 Infographic",
+          description: "An engaging infographic for the 2022 World Cup, featuring key statistics and visual highlights.",
+          image: "../img/thumbnail1.jpg",
+          liveLink: "https://makospecial.co.il/worldcup22",
+          repoLink: "#",
+          type: "graphic"
+        },
+        "road-accident-data-viz": {
+          title: "Road Accident Data Visualization",
+          description: "A comprehensive data visualization project on road accident statistics.",
+          image: "../img/thumbnail2.jpg",
+          liveLink: "https://makospecial.co.il/israel_politics",
+          repoLink: "#",
+          type: "graphic"
+        },
+        "ukraine-war-graphics": {
+          title: "Ukraine War Awareness Graphics",
+          description: "Graphics created to raise awareness about the Ukraine and Russia war.",
+          image: "../img/ukraineeee12.png",
+          liveLink: "https://makospecial.co.il/ukrainewar?makoOpenChromeTabs=1",
+          repoLink: "#",
+          type: "graphic"
+        },
+        "my-first-website": {
+          title: "My First Website",
+          description: "This is my very first website, a simple static page built with basic HTML and CSS.",
+          image: "https://placehold.co/600x400/57FF33/FFFFFF?text=My+First+Website",
+          liveLink: "https://shirly3212.github.io/My-first-website/",
+          repoLink: "https://github.com/shirly3212/My-first-website",
+          type: "web"
+        },
+        "css-challenge": {
+          title: "CSS Challenge Projects",
+          description: "A collection of small projects demonstrating various CSS techniques and challenges.",
+          image: "https://placehold.co/600x400/33A1FF/FFFFFF?text=CSS+Challenges",
+          liveLink: "https://shirly3212.github.io/CSS-Challenge/",
+          repoLink: "https://github.com/shirly3212/CSS-Challenge",
+          type: "web"
         }
-      },
-      "retina_detect": true
-    });
-
-    // --- Animation on Scroll Logic (UPDATED for section-title) ---
-    // Select all elements that need animation, including section titles
-    const allAnimatedElements = document.querySelectorAll('.animate-on-scroll, .section-title');
-
-    const observerOptions = {
-        root: null, /* viewport as root */
-        rootMargin: '0px',
-        threshold: 0.1 /* callback fires when 10% of item is visible */
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                // Optionally, unobserve after animation to prevent re-triggering
-                // if (entry.target.classList.contains('animate-on-scroll') || entry.target.classList.contains('section-title')) {
-                //     observer.unobserve(entry.target);
-                // }
-            } else {
-                // Optional: remove is-visible when out of view if animation should repeat on re-entry
-                // entry.target.classList.remove('is-visible');
-            }
+
+    // Mobile navigation toggle
+    document.addEventListener("DOMContentLoaded", function () {
+      const nav = document.querySelector("nav ul");
+      const toggle = document.createElement("div");
+      toggle.classList.add("nav-toggle");
+      toggle.innerHTML = "☰";
+      toggle.style.cursor = "pointer";
+      toggle.style.fontSize = "3rem";
+      toggle.style.display = "none";
+      toggle.style.userSelect = "none";
+
+      // Insert the toggle button before the navigation list
+      if (nav && nav.parentNode) {
+        nav.parentNode.insertBefore(toggle, nav);
+      }
+
+      // Add event listener for mobile nav toggle
+      if (toggle && nav) {
+        toggle.addEventListener("click", () => {
+          nav.classList.toggle("show-nav");
         });
-    }, observerOptions);
+      }
 
-    allAnimatedElements.forEach(element => {
-        observer.observe(element);
-    });
+      // Add CSS for mobile toggle visibility
+      const style = document.createElement("style");
+      style.innerHTML = `
+        @media screen and (max-width: 754px) {
+          .nav-toggle {
+            display: block;
+          }
 
-    // --- Modal Logic ---
+          nav ul {
+            display: none;
+            flex-direction: column;
+            background: white;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+          }
+
+          nav ul.show-nav {
+            display: flex;
+          }
+
+          nav ul li {
+            padding: 1rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+
+      // --- Dropdown menu functionality for desktop navigation ---
+      const projectsDropdown = document.querySelector(".nav-projects-dropdown");
+      const dropdownMenu = document.querySelector(".nav-projects-dropdown ul");
+
+      if (projectsDropdown && dropdownMenu) {
+        // Toggle dropdown on click for desktop (fallback for hover)
+        projectsDropdown.addEventListener("click", function(event) {
+          // Prevent the default link behavior if it's a parent link
+          event.preventDefault();
+          // Stop propagation to prevent document click listener from closing immediately
+          event.stopPropagation();
+          dropdownMenu.classList.toggle("show-dropdown");
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function(event) {
+          if (dropdownMenu && !projectsDropdown.contains(event.target) && dropdownMenu.classList.contains("show-dropdown")) {
+            dropdownMenu.classList.remove("show-dropdown");
+          }
+        });
+      }
+
+      // --- Carousel / Gallery Scroll Functionality ---
+      const galleryScroll = document.getElementById('carouselWrapper');
+      const leftArrow = document.getElementById("prevBtn");
+      const rightArrow = document.getElementById("nextBtn");
+
+      // Function to scroll the gallery
+      function scrollGallery(direction) {
+        if (galleryScroll) {
+          const scrollAmount = 370; // Matches flex-basis + margin of .carousel-item
+          galleryScroll.scrollBy({
+            left: direction * scrollAmount,
+            behavior: 'smooth'
+          });
+        }
+      }
+
+      // Attach event listeners to carousel navigation buttons
+      if (leftArrow) {
+        leftArrow.addEventListener("click", (e) => {
+            e.preventDefault();
+            scrollGallery(-1);
+        });
+      }
+      if (rightArrow) {
+        rightArrow.addEventListener("click", (e) => {
+            e.preventDefault();
+            scrollGallery(1);
+        });
+      }
+
+      // Update carousel item opacity based on scroll position (center item is active)
+      if (galleryScroll) {
+        galleryScroll.addEventListener('scroll', () => {
+          const scrollLeft = galleryScroll.scrollLeft;
+          const containerWidth = galleryScroll.clientWidth;
+          const items = galleryScroll.querySelectorAll('.carousel-item');
+
+          items.forEach(item => {
+            const itemLeft = item.offsetLeft;
+            const itemWidth = item.offsetWidth;
+
+            const itemCenter = itemLeft + itemWidth / 2;
+            const containerCenterLeft = scrollLeft + containerWidth * 0.2;
+            const containerCenterRight = scrollLeft + containerWidth * 0.8;
+
+            if (itemCenter > containerCenterLeft && itemCenter < containerCenterRight) {
+              item.classList.remove('carousel-item-faded');
+            } else {
+              item.classList.add('carousel-item-faded');
+            }
+          });
+        });
+
+        setTimeout(() => {
+            galleryScroll.dispatchEvent(new Event('scroll'));
+        }, 100);
+      }
+
+
+      // --- Intersection Observer for Section Titles Animation ---
+      const sectionTitles = document.querySelectorAll(".section-title");
+
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      sectionTitles.forEach(title => {
+        observer.observe(title);
+      });
+
+    }); // End of DOMContentLoaded for initial setup
+
+
+    // --- Project Details Modal Logic (Consolidated and Corrected) ---
+    // These variables are intentionally global or in a scope accessible by addModalEventListeners
     const projectModal = document.getElementById('projectModal');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const modalProjectImage = document.getElementById('modalProjectImage');
@@ -1447,55 +1605,22 @@
 
     let currentProjectData = null; // Store data of the currently opened project
 
-    console.log("Modal elements initialized:", {
-        projectModal: !!projectModal,
-        closeModalBtn: !!closeModalBtn,
-        modalProjectImage: !!modalProjectImage,
-        modalProjectTitle: !!modalProjectTitle,
-        modalProjectDescription: !!modalProjectDescription,
-        modalTechnologies: !!modalTechnologies,
-        modalLiveDemoBtn: !!modalLiveDemoBtn,
-        modalGithubRepoBtn: !!modalGithubRepoBtn,
-        aiInsightBtn: !!aiInsightBtn,
-        aiInsightContainer: !!aiInsightContainer,
-        aiInsightText: !!aiInsightText,
-        aiInsightLoading: !!aiInsightLoading
-    });
-
     // Function to open the project details modal
     function openModal(projectData) {
-        console.log("openModal called with projectData:", projectData);
-        currentProjectData = projectData; // Store the data
+        currentProjectData = projectData;
         if (modalProjectImage) {
             modalProjectImage.src = projectData.image;
-            modalProjectImage.alt = projectData.title; // Set alt text for accessibility
-            console.log("Modal Project Image src set to:", projectData.image);
+            modalProjectImage.alt = projectData.title;
         }
 
-        // Reset all elements to their default (visible) state for project modals
-        if (modalProjectTitle) modalProjectTitle.classList.remove('hidden');
-        if (modalProjectDescription) modalProjectDescription.classList.remove('hidden');
-        if (modalTechnologies && modalTechnologies.parentElement) modalTechnologies.parentElement.classList.remove('hidden');
-        if (modalLiveDemoBtn) modalLiveDemoBtn.classList.remove('hidden');
-        if (modalGithubRepoBtn) modalGithubRepoBtn.classList.remove('hidden');
-        if (aiInsightBtn) aiInsightBtn.classList.remove('hidden'); // Assume visible unless hidden by type
-        if (aiInsightContainer) aiInsightContainer.classList.add('hidden'); // AI insight content hidden by default
-        if (aiInsightText) aiInsightText.textContent = ''; // Clear any previous AI insight text
-        if (aiInsightLoading) aiInsightLoading.classList.add('hidden'); // Hide AI loading spinner
-
-        // Set default object-fit for modal image (for project cards)
-        if (modalProjectImage) {
-            modalProjectImage.classList.add('w-full', 'h-64', 'object-cover'); // Restore fixed height and cropping for regular projects
-            modalProjectImage.classList.remove('max-h-[80vh]', 'object-contain'); // Ensure removed if previously set by image zoom
-        }
-
-        // Populate content for regular project cards
         if (modalProjectTitle) modalProjectTitle.textContent = projectData.title;
         if (modalProjectDescription) modalProjectDescription.textContent = projectData.description;
 
+        // Reset and populate technologies
         if (modalTechnologies) {
-            modalTechnologies.innerHTML = ''; // Clear previous technologies
+            modalTechnologies.innerHTML = '';
             if (projectData.technologies && projectData.technologies.length > 0) {
+                if (modalTechnologies.parentElement) modalTechnologies.parentElement.classList.remove('hidden');
                 projectData.technologies.forEach(tech => {
                     const span = document.createElement('span');
                     span.textContent = tech;
@@ -1503,7 +1628,7 @@
                     modalTechnologies.appendChild(span);
                 });
             } else {
-                if (modalTechnologies.parentElement) modalTechnologies.parentElement.classList.add('hidden'); // Hide if no technologies
+                if (modalTechnologies.parentElement) modalTechnologies.parentElement.classList.add('hidden');
             }
         }
 
@@ -1511,6 +1636,7 @@
         if (modalGithubRepoBtn) {
             if (projectData.github_repo && projectData.github_repo !== '#') {
                 modalGithubRepoBtn.href = projectData.github_repo;
+                modalGithubRepoBtn.classList.remove('hidden');
             } else {
                 modalGithubRepoBtn.classList.add('hidden');
             }
@@ -1520,6 +1646,7 @@
         if (modalLiveDemoBtn) {
             if (projectData.live_demo && projectData.live_demo !== '#') {
                 modalLiveDemoBtn.href = projectData.live_demo;
+                modalLiveDemoBtn.classList.remove('hidden');
             } else {
                 modalLiveDemoBtn.classList.add('hidden');
             }
@@ -1534,62 +1661,51 @@
             }
         }
 
+        // Hide AI insight content and loading spinner when opening a new modal
+        if (aiInsightContainer) aiInsightContainer.classList.add('hidden');
+        if (aiInsightText) aiInsightText.textContent = '';
+        if (aiInsightLoading) aiInsightLoading.classList.add('hidden');
+
+        // Set default object-fit for modal image (for project modals)
+        if (modalProjectImage) {
+            modalProjectImage.classList.add('w-full', 'h-64', 'object-cover');
+            modalProjectImage.classList.remove('max-h-[80vh]', 'object-contain');
+        }
+
         if (projectModal) {
             projectModal.classList.add('is-visible');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling of body
-            console.log("Project modal should be visible now.");
-        } else {
-            console.error("Project modal element not found!");
+            document.body.style.overflow = 'hidden';
         }
     }
 
     // Function to close the modal
     function closeModal() {
-        console.log("closeModal called.");
         if (projectModal) {
             projectModal.classList.remove('is-visible');
-            document.body.style.overflow = ''; // Restore scrolling of body
-            currentProjectData = null; // Clear current project data
-            console.log("Project modal should be hidden now.");
+            document.body.style.overflow = '';
+            currentProjectData = null;
         }
     }
 
     // Event listeners for opening modal - Using Event Delegation
     function addModalEventListeners() {
-        console.log("addModalEventListeners called. Attaching delegated click listeners.");
-
-        // Delegated listener for project cards and their buttons
         document.addEventListener('click', (event) => {
-            console.log("Delegated click event detected on document. Target:", event.target);
-            // Removed event.preventDefault() from here. It will now be called conditionally.
-
-            // Check for project card clicks
             const projectCard = event.target.closest('.project-card-item, .featured-project');
             if (projectCard) {
-                console.log("Click on project card or child detected.");
-                const isButtonClick = event.target.closest('.view-project-btn'); // Only check for our specific buttons
+                const isButtonClick = event.target.closest('.view-project-btn');
 
                 if (isButtonClick) {
-                    event.preventDefault(); // Prevent default only when a project button is clicked
-                    console.log("View Project button clicked.");
-                    const projectDataString = projectCard.dataset.project;
-                    console.log("Project data string from button's parent card:", projectDataString);
-                    if (projectDataString && projectDataString !== "undefined") {
-                        try {
-                            const projectData = JSON.parse(projectDataString);
-                            openModal(projectData);
-                        } catch (e) {
-                            console.error("Error parsing project data from button click:", e, "Data string was:", projectDataString);
-                        }
+                    event.preventDefault();
+                    const projectId = isButtonClick.dataset.projectId; // Get ID from the button itself
+                    if (projectId && projectsData[projectId]) {
+                        openModal(projectsData[projectId]); // Pass the actual project data object
                     } else {
-                        console.error("No valid project data found on button's parent card.");
+                        console.error("Project data not found for ID:", projectId);
                     }
                 } else { // Clicked on the card itself, but not the specific button
-                    event.preventDefault(); // Prevent default only when a project card is clicked directly
-                    console.log("Click on project card (not button).");
+                    event.preventDefault();
                     let projectData = null;
                     const projectDataString = projectCard.dataset.project;
-                    console.log("Project data string:", projectDataString);
 
                     if (!projectDataString || projectDataString === "undefined") {
                         console.error("Invalid project data for item (string is empty or 'undefined'):", projectCard);
@@ -1598,7 +1714,6 @@
 
                     try {
                         projectData = JSON.parse(projectDataString);
-                        console.log("Parsed project data:", projectData);
                     } catch (e) {
                         console.error("Error parsing project data:", e, "Data string was:", projectDataString);
                         return;
@@ -1615,67 +1730,53 @@
             // Check for carousel item clicks
             const carouselItem = event.target.closest('.carousel-item');
             if (carouselItem) {
-                event.preventDefault(); // Prevent default only when a carousel item is clicked
-                console.log("Click on carousel item detected.");
+                event.preventDefault();
                 const imgSrc = carouselItem.getAttribute('data-image');
-                console.log("Carousel image src:", imgSrc);
                 if (imgSrc) {
-                    openImageZoom(imgSrc, carouselItem.querySelector('img').alt); // Pass image source and alt text
+                    openImageZoom(imgSrc, carouselItem.querySelector('img').alt);
                 } else {
                     console.error("Carousel item has no 'data-image' attribute.");
                 }
             }
         });
-        console.log("Delegated click listeners for project cards and carousel items attached to document.");
     }
 
-
-    // Event listener for closing modal via button
+    // Event listener for closing project modal via button
     if (closeModalBtn) {
         closeModalBtn.addEventListener('click', closeModal);
-        console.log("Close modal button listener attached.");
     } else {
         console.error("Close modal button (closeModalBtn) not found!");
     }
 
-    // Event listener for closing modal by clicking outside content
+    // Event listener for closing project modal by clicking outside content
     if (projectModal) {
         projectModal.addEventListener('click', (event) => {
-            console.log("Click event on projectModal overlay. Target:", event.target);
             if (event.target === projectModal) {
                 closeModal();
             }
         });
-        console.log("Project modal overlay listener attached.");
     } else {
         console.error("Project modal (projectModal) not found for overlay listener!");
     }
 
-    // Event listener for closing modal with Escape key
+    // Event listener for closing project modal with Escape key
     document.addEventListener('keydown', (event) => {
-        console.log("Keydown event detected:", event.key);
         if (event.key === 'Escape' && projectModal && projectModal.classList.contains('is-visible')) {
-            console.log("Escape key pressed and project modal is visible. Closing modal.");
             closeModal();
         }
     });
-    console.log("Escape key listener attached.");
 
     // --- Gemini API Integration ---
-    if (aiInsightBtn) { // Ensure aiInsightBtn exists before attaching listener
+    if (aiInsightBtn) {
         aiInsightBtn.addEventListener('click', async () => {
-            console.log("AI Insight button clicked.");
-            // AI Insight should only be available for 'web' type projects
             if (!currentProjectData || currentProjectData.type !== 'web') { 
-                if (aiInsightContainer) aiInsightContainer.classList.add('hidden'); // Ensure hidden if not applicable
-                console.error("AI Insight is only available for Web Development projects or currentProjectData is missing.");
+                if (aiInsightContainer) aiInsightContainer.classList.add('hidden');
                 return;
             }
 
-            if (aiInsightContainer) aiInsightContainer.classList.remove('hidden'); // Show container
-            if (aiInsightText) aiInsightText.textContent = ''; // Clear previous text
-            if (aiInsightLoading) aiInsightLoading.classList.remove('hidden'); // Show loading spinner
-            console.log("Generating AI insight for:", currentProjectData.title);
+            if (aiInsightContainer) aiInsightContainer.classList.remove('hidden');
+            if (aiInsightText) aiInsightText.textContent = '';
+            if (aiInsightLoading) aiInsightLoading.classList.remove('hidden');
 
             const prompt = `Given the following web development project:
 Title: ${currentProjectData.title}
@@ -1687,7 +1788,7 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
             let chatHistory = [];
             chatHistory.push({ role: "user", parts: [{ text: prompt }] });
             const payload = { contents: chatHistory };
-            const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+            const apiKey = "";
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
             try {
@@ -1697,27 +1798,21 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
                     body: JSON.stringify(payload)
                 });
                 const result = await response.json();
-                console.log("Gemini API response received:", result);
 
                 if (result.candidates && result.candidates.length > 0 &&
                     result.candidates[0].content && result.candidates[0].content.parts &&
                     result.candidates[0].content.parts.length > 0) {
                     const text = result.candidates[0].content.parts[0].text;
                     if (aiInsightText) aiInsightText.textContent = text;
-                    console.log("AI Insight text set:", text);
                 } else {
                     if (aiInsightText) aiInsightText.textContent = "Failed to generate insight. Please try again.";
-                    console.error("Unexpected API response structure:", result);
                 }
             } catch (error) {
                 if (aiInsightText) aiInsightText.textContent = "Error generating insight. " + error.message;
-                console.error("Error calling Gemini API:", error);
             } finally {
-                if (aiInsightLoading) aiInsightLoading.classList.add('hidden'); // Hide loading spinner
-                console.log("AI Insight loading spinner hidden.");
+                if (aiInsightLoading) aiInsightLoading.classList.add('hidden');
             }
         });
-        console.log("AI Insight button listener attached.");
     } else {
         console.error("AI Insight button (aiInsightBtn) not found!");
     }
@@ -1725,80 +1820,62 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
 
     // --- Mobile Navigation Toggle ---
     document.addEventListener("DOMContentLoaded", function () {
-      console.log("DOM Content Loaded. Initializing mobile nav toggle.");
-      const mainNavUl = document.getElementById("main-nav-menu"); // Main ul
+      const mainNavUl = document.getElementById("main-nav-menu");
       const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-      const designMenuToggle = document.getElementById('design-menu-toggle'); // The "Design" link
-      const designSubMenu = designMenuToggle.nextElementSibling; // The ul after "Design" link
+      const designMenuToggle = document.getElementById('design-menu-toggle');
+      const designSubMenu = designMenuToggle.nextElementSibling;
 
-      // Function to close all menus (main and sub)
       function closeAllMenus() {
-          console.log("closeAllMenus called.");
-          if (mainNavUl) mainNavUl.classList.remove('active'); // Close main mobile menu
+          if (mainNavUl) mainNavUl.classList.remove('active');
           if (designSubMenu) {
-              designSubMenu.classList.remove('active'); // Close mobile dropdown
-              designSubMenu.classList.remove('show-dropdown'); // Close desktop click dropdown
-              if (designMenuToggle) designMenuToggle.querySelector('i').classList.remove('rotate-180'); // Reset chevron
+              designSubMenu.classList.remove('active');
+              designSubMenu.classList.remove('show-dropdown');
+              if (designMenuToggle) designMenuToggle.querySelector('i').classList.remove('rotate-180');
           }
       }
 
       if (mobileMenuToggle) {
           mobileMenuToggle.addEventListener('click', (event) => {
-              console.log("Mobile menu toggle clicked.");
-              event.stopPropagation(); // Prevent immediate closing due to outer click listener
+              event.stopPropagation();
               if (mainNavUl) mainNavUl.classList.toggle('active');
-              if (mainNavUl && !mainNavUl.classList.contains('active')) { // If closing main menu
-                  closeAllMenus(); // Close everything if hamburger is closing the main menu
+              if (mainNavUl && !mainNavUl.classList.contains('active')) {
+                  closeAllMenus();
               }
           });
-          console.log("Mobile menu toggle listener attached.");
       } else {
           console.error("Mobile menu toggle button not found!");
       }
 
-      // Design sub-menu toggle (for mobile and click scenarios on desktop)
       if (designMenuToggle && designSubMenu) {
           designMenuToggle.addEventListener('click', (event) => {
-              console.log("Design menu toggle clicked.");
-              event.preventDefault(); // ALWAYS prevent default link behavior for this specific toggle button
-              event.stopPropagation(); // Prevent immediate closing due to outer click listener
+              event.preventDefault();
+              event.stopPropagation();
 
-              if (window.innerWidth < 768) { // Mobile behavior: toggle 'active' class
+              if (window.innerWidth < 768) {
                   designSubMenu.classList.toggle('active');
-                  console.log("Mobile: Toggling design sub-menu active class.");
-              } else { // Desktop behavior: toggle 'show-dropdown' class
+              } else {
                   designSubMenu.classList.toggle('show-dropdown');
-                  console.log("Desktop: Toggling design sub-menu show-dropdown class.");
               }
-              if (designMenuToggle) designMenuToggle.querySelector('i').classList.toggle('rotate-180'); // Rotate chevron
+              if (designMenuToggle) designMenuToggle.querySelector('i').classList.toggle('rotate-180');
           });
-          console.log("Design menu toggle listener attached.");
 
-          // Close sub-menu if clicking outside on desktop
           document.addEventListener('click', (event) => {
-              // Only apply this logic on desktop sizes
               if (window.innerWidth >= 768) {
                   const isClickInsideDesignToggle = designMenuToggle.contains(event.target);
                   const isClickInsideDesignSubMenu = designSubMenu.contains(event.target);
 
-                  // If the dropdown is currently shown by JS (show-dropdown)
-                  // and the click was outside both the toggle button and the dropdown itself
                   if (designSubMenu.classList.contains('show-dropdown') && !isClickInsideDesignToggle && !isClickInsideDesignSubMenu) {
                       designSubMenu.classList.remove('show-dropdown');
                       if (designMenuToggle) designMenuToggle.querySelector('i').classList.remove('rotate-180');
-                      console.log("Desktop: Clicked outside design sub-menu, closing dropdown.");
                   }
               }
           });
 
-          // Close all menus when a link inside main nav or sub-menu is clicked
           if (mainNavUl) {
               mainNavUl.querySelectorAll('a').forEach(link => {
                   link.addEventListener('click', (event) => {
-                      // If it's a sub-menu item or a non-group main nav link, close all menus
                       if (link.closest('.group ul') || (!link.closest('.group') && link.href && link.href !== '#')) {
                           closeAllMenus();
-                          console.log("Link clicked, closing all menus.");
                       }
                   });
               });
@@ -1807,296 +1884,229 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
           console.error("Design menu toggle or sub-menu not found!");
       }
 
-      // Close all menus if resized to desktop view (from mobile)
       window.addEventListener('resize', () => {
           if (window.innerWidth >= 768) {
               closeAllMenus();
-              console.log("Window resized to desktop, closing all menus.");
           }
       });
     });
-// --- Carousel Logic (Fixed) ---
-const carouselWrapper = document.getElementById('carouselWrapper');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-let carouselItems = document.querySelectorAll('.carousel-item');
-let currentIndex = 0;
-let isUpdating = false; // Flag to prevent conflicts during manual updates
 
-console.log("Carousel elements initialized:", {
-    carouselWrapper: !!carouselWrapper,
-    prevBtn: !!prevBtn,
-    nextBtn: !!nextBtn,
-    carouselItemsCount: carouselItems.length
-});
+    // --- Carousel Logic (Fixed) ---
+    const carouselWrapper = document.getElementById('carouselWrapper');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let carouselItems = document.querySelectorAll('.carousel-item');
+    let currentIndex = 0;
+    let isUpdating = false;
 
-function updateCarousel() {
-    console.log("updateCarousel called. Current index:", currentIndex);
-    if (!carouselWrapper || carouselItems.length === 0 || isUpdating) {
-        console.log("updateCarousel skipped. Conditions:", {
-            carouselWrapper: !!carouselWrapper,
-            carouselItemsLength: carouselItems.length,
-            isUpdating: isUpdating
+    function updateCarousel() {
+        if (!carouselWrapper || carouselItems.length === 0 || isUpdating) {
+            return;
+        }
+        
+        isUpdating = true;
+        
+        const containerWidth = carouselWrapper.offsetWidth;
+        carouselItems = document.querySelectorAll('.carousel-item');
+        if (carouselItems.length === 0) {
+            isUpdating = false;
+            return;
+        }
+        const itemWidth = carouselItems[0].offsetWidth;
+        const itemMargin = 20;
+        const itemTotalWidth = itemWidth + itemMargin;
+        
+        let scrollPosition = (currentIndex * itemTotalWidth) - (containerWidth / 2) + (itemTotalWidth / 2);
+        
+        if (currentIndex === 0) scrollPosition = 0;
+        else if (currentIndex === carouselItems.length - 1)
+            scrollPosition = carouselWrapper.scrollWidth - containerWidth;
+
+        scrollPosition = Math.max(0, Math.min(scrollPosition, carouselWrapper.scrollWidth - containerWidth));
+
+        carouselWrapper.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth'
         });
-        return;
-    }
-    
-    isUpdating = true;
-    
-    const containerWidth = carouselWrapper.offsetWidth;
-    // Ensure carouselItems is updated if DOM changed
-    carouselItems = document.querySelectorAll('.carousel-item');
-    if (carouselItems.length === 0) {
-        console.error("No carousel items found during updateCarousel!");
-        isUpdating = false;
-        return;
-    }
-    const itemWidth = carouselItems[0].offsetWidth;
-    const itemMargin = 20;
-    const itemTotalWidth = itemWidth + itemMargin;
-    
-    let scrollPosition = (currentIndex * itemTotalWidth) - (containerWidth / 2) + (itemTotalWidth / 2);
-    
-    if (currentIndex === 0) scrollPosition = 0;
-    else if (currentIndex === carouselItems.length - 1)
-        scrollPosition = carouselWrapper.scrollWidth - containerWidth;
 
-    scrollPosition = Math.max(0, Math.min(scrollPosition, carouselWrapper.scrollWidth - containerWidth));
-
-    carouselWrapper.scrollTo({
-        left: scrollPosition,
-        behavior: 'smooth'
-    });
-    console.log("Carousel scrolling to position:", scrollPosition);
-
-    updateFadeEffect();
-
-    setTimeout(() => { isUpdating = false; console.log("updateCarousel finished."); }, 500);
-}
-
-function updateFadeEffect() {
-    console.log("updateFadeEffect called.");
-    carouselItems.forEach((item, index) => {
-        item.classList.toggle('carousel-item-faded', index !== currentIndex);
-    });
-}
-
-function findClosestItemToCenter() {
-    if (!carouselWrapper || carouselItems.length === 0) return 0;
-
-    const scrollLeft = carouselWrapper.scrollLeft;
-    const containerWidth = carouselWrapper.offsetWidth;
-    const itemWidth = carouselItems[0].offsetWidth;
-    const itemMargin = 20;
-    const itemTotalWidth = itemWidth + itemMargin;
-
-    const centralViewPoint = scrollLeft + (containerWidth / 2);
-    let closestIndex = 0;
-    let minDistance = Infinity;
-
-    carouselItems.forEach((item, index) => {
-        const itemCenter = (index * itemTotalWidth) + (itemWidth / 2);
-        const distance = Math.abs(itemCenter - centralViewPoint);
-
-        if (distance < minDistance) {
-            minDistance = distance;
-            closestIndex = index;
-        }
-    });
-    // console.log("Closest item to center found:", closestIndex);
-    return closestIndex;
-}
-
-function onCarouselScroll() {
-    // console.log("onCarouselScroll called.");
-    if (isUpdating) return;
-
-    const newIndex = findClosestItemToCenter();
-    if (newIndex !== currentIndex) {
-        currentIndex = newIndex;
         updateFadeEffect();
-        // console.log("Carousel index changed due to scroll:", currentIndex);
+
+        setTimeout(() => { isUpdating = false; }, 500);
     }
-}
 
-function initCarousel() {
-    console.log("initCarousel called.");
-    carouselItems = document.querySelectorAll('.carousel-item');
-    if (carouselItems.length === 0) {
-        console.warn("No carousel items found during initCarousel.");
-        return;
+    function updateFadeEffect() {
+        carouselItems.forEach((item, index) => {
+            item.classList.toggle('carousel-item-faded', index !== currentIndex);
+        });
     }
-    currentIndex = 0;
-    updateCarousel();
-}
 
-// Navigation buttons - Fixed
-if (prevBtn) {
-    prevBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        currentIndex = currentIndex > 0 ? currentIndex - 1 : carouselItems.length - 1;
-        console.log("Prev button clicked. New index:", currentIndex);
-        updateCarousel();
-    });
-}
+    function findClosestItemToCenter() {
+        if (!carouselWrapper || carouselItems.length === 0) return 0;
 
-if (nextBtn) {
-    nextBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        currentIndex = currentIndex < carouselItems.length - 1 ? currentIndex + 1 : 0;
-        console.log("Next button clicked. New index:", currentIndex);
-        updateCarousel();
-    });
-}
+        const scrollLeft = carouselWrapper.scrollLeft;
+        const containerWidth = carouselWrapper.offsetWidth;
+        const itemWidth = carouselItems[0].offsetWidth;
+        const itemMargin = 20;
+        const itemTotalWidth = itemWidth + itemMargin;
 
-if (carouselWrapper) {
-    let scrollTimeout;
-    carouselWrapper.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(onCarouselScroll, 100);
-    });
-    console.log("Carousel scroll listener attached.");
-}
+        const centralViewPoint = scrollLeft + (containerWidth / 2);
+        let closestIndex = 0;
+        let minDistance = Infinity;
 
-let startX = 0;
-let isSwiping = false;
+        carouselItems.forEach((item, index) => {
+            const itemCenter = (index * itemTotalWidth) + (itemWidth / 2);
+            const distance = Math.abs(itemCenter - centralViewPoint);
 
-if (carouselWrapper) {
-    carouselWrapper.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        isSwiping = true;
-        console.log("Carousel touchstart detected.");
-    });
-
-    carouselWrapper.addEventListener('touchend', (e) => {
-        console.log("Carousel touchend detected.");
-        if (!isSwiping) return;
-        const endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-                currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0;
-                console.log("Swipe left detected. New index:", currentIndex);
-            } else {
-                currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1;
-                console.log("Swipe right detected. New index:", currentIndex);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestIndex = index;
             }
-            updateCarousel();
+        });
+        return closestIndex;
+    }
+
+    function initCarousel() {
+        carouselItems = document.querySelectorAll('.carousel-item');
+        if (carouselItems.length === 0) {
+            return;
         }
-        isSwiping = false;
+        currentIndex = 0;
+        updateCarousel();
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            currentIndex = currentIndex > 0 ? currentIndex - 1 : carouselItems.length - 1;
+            updateCarousel();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            currentIndex = currentIndex < carouselItems.length - 1 ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+    }
+
+    if (carouselWrapper) {
+        let scrollTimeout;
+        carouselWrapper.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(onCarouselScroll, 100);
+        });
+    }
+
+    let startX = 0;
+    let isSwiping = false;
+
+    if (carouselWrapper) {
+        carouselWrapper.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isSwiping = true;
+        });
+
+        carouselWrapper.addEventListener('touchend', (e) => {
+            if (!isSwiping) return;
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0;
+                } else {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1;
+                }
+                updateCarousel();
+            }
+            isSwiping = false;
+        });
+    }
+
+    window.addEventListener('load', initCarousel);
+    window.addEventListener('resize', () => {
+        setTimeout(initCarousel, 100);
     });
-    console.log("Carousel touch listeners attached.");
-}
 
-window.addEventListener('load', initCarousel);
-window.addEventListener('resize', () => {
-    console.log("Window resized. Re-initializing carousel.");
-    setTimeout(initCarousel, 100);
-});
+    // --- Image Zoom Modal ---
+    const imageZoomModal = document.getElementById('imageZoomModal');
+    const zoomedImage = document.getElementById('zoomedImage');
+    const closeZoomBtn = document.getElementById('closeZoomBtn');
 
-// --- Image Zoom Modal ---
-const imageZoomModal = document.getElementById('imageZoomModal'); // Get the existing imageZoomModal
-const zoomedImage = document.getElementById('zoomedImage');
-const closeZoomBtn = document.getElementById('closeZoomBtn');
-
-console.log("Image Zoom Modal elements initialized:", {
-    imageZoomModal: !!imageZoomModal,
-    zoomedImage: !!zoomedImage,
-    closeZoomBtn: !!closeZoomBtn
-});
-
-function openImageZoom(imageSrc, imageAlt) {
-    console.log("openImageZoom called with src:", imageSrc);
-    if (zoomedImage) {
-        zoomedImage.src = imageSrc;
-        zoomedImage.alt = imageAlt || 'Zoomed Image';
+    function openImageZoom(imageSrc, imageAlt) {
+        if (zoomedImage) {
+            zoomedImage.src = imageSrc;
+            zoomedImage.alt = imageAlt || 'Zoomed Image';
+        }
+        if (imageZoomModal) {
+            imageZoomModal.classList.remove('opacity-0', 'invisible');
+            imageZoomModal.classList.add('opacity-100', 'visible');
+            document.body.style.overflow = 'hidden';
+        }
     }
-    if (imageZoomModal) {
-        imageZoomModal.classList.remove('opacity-0', 'invisible');
-        imageZoomModal.classList.add('opacity-100', 'visible');
-        document.body.style.overflow = 'hidden';
-        console.log("Image zoom modal should be visible now.");
-    } else {
-        console.error("Image zoom modal element not found!");
-    }
-}
 
-function closeImageZoom() {
-    console.log("closeImageZoom called.");
-    if (imageZoomModal) {
-        imageZoomModal.classList.add('opacity-0', 'invisible');
-        imageZoomModal.classList.remove('opacity-100', 'visible');
-        document.body.style.overflow = '';
-        console.log("Image zoom modal should be hidden now.");
+    function closeImageZoom() {
+        if (imageZoomModal) {
+            imageZoomModal.classList.add('opacity-0', 'invisible');
+            imageZoomModal.classList.remove('opacity-100', 'visible');
+            document.body.style.overflow = '';
+        }
     }
-}
 
-// Add click event to modal image for zoom (inside projectModal)
-// This listener is for the image *within* the project details modal, allowing it to zoom
-if (modalProjectImage) {
-    modalProjectImage.addEventListener('click', (event) => {
-        console.log("Click event on modalProjectImage (inside project details modal).");
-        event.stopPropagation();
-        openImageZoom(modalProjectImage.src, modalProjectImage.alt);
+    if (modalProjectImage) {
+        modalProjectImage.addEventListener('click', (event) => {
+            event.stopPropagation();
+            openImageZoom(modalProjectImage.src, modalProjectImage.alt);
+        });
+    }
+
+    if (closeZoomBtn) {
+        closeZoomBtn.addEventListener('click', closeImageZoom);
+    }
+
+    imageZoomModal.addEventListener('click', (event) => {
+        if (event.target === imageZoomModal || event.target === zoomedImage) {
+            closeImageZoom();
+        }
     });
-    console.log("Listener attached to modalProjectImage for zoom.");
-} else {
-    console.error("modalProjectImage element not found for zoom listener!");
-}
 
-// Close zoom modal events
-if (closeZoomBtn) {
-    closeZoomBtn.addEventListener('click', closeImageZoom);
-    console.log("Close zoom button listener attached.");
-} else {
-    console.error("Close zoom button (closeZoomBtn) not found!");
-}
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && imageZoomModal.classList.contains('visible')) {
+            closeImageZoom();
+        }
+    });
 
-imageZoomModal.addEventListener('click', (event) => {
-    console.log("Click event on imageZoomModal overlay. Target:", event.target);
-    if (event.target === imageZoomModal || event.target === zoomedImage) { // Close if clicking on image or overlay
-        closeImageZoom();
+
+    // --- Initialization ---
+    function initializeEverything() {
+        initCarousel();
+        addModalEventListeners();
     }
-});
-console.log("Image zoom modal overlay listener attached.");
 
-
-document.addEventListener('keydown', (event) => {
-    console.log("Keydown event detected for image zoom modal:", event.key);
-    if (event.key === 'Escape' && imageZoomModal.classList.contains('visible')) {
-        console.log("Escape key pressed and image zoom modal is visible. Closing zoom modal.");
-        closeImageZoom();
+    function highlightActiveNav() {
+        // Add your navigation highlighting logic here if needed
     }
-});
-console.log("Escape key listener attached for image zoom modal.");
 
+    document.addEventListener('DOMContentLoaded', () => {
+        try {
+            initializeEverything();
+        } catch (e) {
+            console.error("Error during initializeEverything:", e);
+        }
+        highlightActiveNav();
+    });
 
-// --- Initialization ---
-function initializeEverything() {
-    console.log("initializeEverything called.");
-    initCarousel();
-    addModalEventListeners(); // This now correctly separates logic for project cards and carousel items
-}
+    function onCarouselScroll() {
+        if (isUpdating) return;
 
-// Highlight active navigation function (if exists in your code)
-function highlightActiveNav() {
-    // Add your navigation highlighting logic here if needed
-    console.log("highlightActiveNav called (if implemented).");
-}
-
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOM Content Loaded. Calling initializeEverything.");
-    try { // Added try-catch block here
-        initializeEverything();
-    } catch (e) {
-        console.error("Error during initializeEverything:", e);
+        const newIndex = findClosestItemToCenter();
+        if (newIndex !== currentIndex) {
+            currentIndex = newIndex;
+            updateFadeEffect();
+        }
     }
-    highlightActiveNav();
-});
-
-// Removed window.onload listener as DOMContentLoaded is sufficient and fires earlier
-// window.addEventListener('load', initializeEverything);
-// console.log("Window load listener attached for initializeEverything.");
+  </script>
+</body>
+</html>
