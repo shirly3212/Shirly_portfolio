@@ -289,7 +289,7 @@
     .view-all-button-container {
         text-align: center;
         margin-top: 2rem;
-        margin-bottom: 4rem; /* More space before next section or footer */
+        margin-bottom: 0.5rem; /* Reduced margin-bottom from 1rem to 0.5rem */
     }
 
     .view-all-button {
@@ -371,7 +371,7 @@
       flex-direction: column; /* Default to column for mobile */
       /* Increased spacing */
       gap: 3rem; /* Increased gap between featured and side projects */
-      padding: 2rem; /* Increased padding inside the content area */
+      padding: 0.5rem; /* Reduced padding from 1rem to 0.5rem */
       background-color: rgba(255, 255, 255, 0.6);
       border-radius: 1rem;
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
@@ -1335,6 +1335,14 @@
               <div id="modalTechnologies" class="flex flex-wrap gap-2"></div>
           </div>
           <!-- Removed AI Insight Container -->
+          <div class="flex justify-center gap-4 mt-6">
+              <a id="modalLiveDemoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
+                  Live Demo <i class="fas fa-external-link-alt ml-2"></i>
+              </a>
+              <a id="modalGithubRepoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
+                  GitHub Repo <i class="fab fa-github ml-2"></i>
+              </a>
+          </div>
       </div>
   </div>
 
@@ -1348,64 +1356,64 @@
           title: "Visual Portfolio Website",
           description: "A sleek visual portfolio website for photographers featuring a responsive layout and image galleries.",
           image: "../img/Photographer_me.png",
-          liveLink: "https://shirly3212.github.io/Photographer/",
-          repoLink: "https://github.com/shirly3212/Photographer",
+          live_demo: "https://shirly3212.github.io/Photographer/", 
+          github_repo: "https://github.com/shirly3212/Photographer", 
           type: "web"
         },
         "people-counter": {
           title: "People Counter Web App",
           description: "A straightforward web application to count people entering or exiting an area, built with HTML, CSS, and JavaScript.",
           image: "../img/PEOPLE_COUNTER.png",
-          liveLink: "https://shirly3212.github.io/People-Counter/",
-          repoLink: "https://github.com/shirly3212/People-Counter",
+          live_demo: "https://shirly3212.github.io/People-Counter/", 
+          github_repo: "https://github.com/shirly3212/People-Counter", 
           type: "web"
         },
         "travelly": {
           title: "TRAVELLY - Travel Agency Website",
           description: "A responsive and modern website for a travel agency developed with HTML, CSS, and vanilla JavaScript.",
           image: "../img/TRAVEELY_ME.png",
-          liveLink: "https://shirly3212.github.io/TRAVELLY/",
-          repoLink: "https://github.com/shirly3212/TRAVELLY",
+          live_demo: "https://shirly3212.github.io/TRAVELLY/", 
+          github_repo: "https://github.com/shirly3212/TRAVELLY", 
           type: "web"
         },
         "world-cup-infographic": {
-          title: "World Cup 2022 Infographic",
+          title: "World Cup 22 Infographic",
           description: "An engaging infographic for the 2022 World Cup, featuring key statistics and visual highlights.",
           image: "../img/thumbnail1.jpg",
-          liveLink: "https://makospecial.co.il/worldcup22",
-          repoLink: "#",
+          live_demo: "https://makospecial.co.il/worldcup22", 
+          github_repo: "#", 
           type: "graphic"
         },
         "road-accident-data-viz": {
           title: "Israeli Politics - Data Visualization",
           description: "Key aspects and trends in Israeli politics.",
           image: "../img/thumbnail2.jpg",
-          liveLink: "https://makospecial.co.il/israel_politics",
-          repoLink: "#",
+          live_demo: "https://makospecial.co.il/israel_politics", 
+          github_repo: "#", 
           type: "graphic"
         },
         "ukraine-war-graphics": {
           title: "Ukraine War Awareness Graphics",
           description: "Graphics created to raise awareness about the Ukraine and Russia war.",
           image: "../img/ukraineeee12.png",
-          liveLink: "https://makospecial.co.il/ukrainewar?makoOpenChromeTabs=1",
-          repoLink: "#",
+          live_demo: "https://makospecial.co.il/ukrainewar?makoOpenChromeTabs=1", 
+          github_repo: "#", 
           type: "graphic"
         },
         "my-first-website": {
           title: "My First Website",
           description: "This is my very first website, a simple static page built with basic HTML and CSS.",
           image: "https://placehold.co/600x400/57FF33/FFFFFF?text=My+First+Website",
-          liveLink: "https://shirly3212.github.io/My-first-website/",
-          repoLink: "https://github.com/shirly3212/My-first-website",
+          live_demo: "https://shirly3212.github.io/My-first-website/", 
+          github_repo: "https://github.com/shirly3212/My-first-website", 
           type: "web"
         },
         "css-challenge": {
           title: "CSS Challenge Projects",
           description: "A collection of small projects demonstrating various CSS techniques and challenges.",
           image: "https://placehold.co/600x400/33A1FF/FFFFFF?text=CSS+Challenges",
-          liveLink: "https://shirly3212.github.io/CSS-Challenge/",
-          repoLink: "https://github.com/shirly3212/CSS-Challenge",
+          live_demo: "https://shirly3212.github.io/CSS-Challenge/", 
+          github_repo: "https://github.com/shirly3212/CSS-Challenge", 
           type: "web"
         }
     };
@@ -1528,7 +1536,7 @@
     const modalTechnologies = document.getElementById('modalTechnologies');
     const modalLiveDemoBtn = document.getElementById('modalLiveDemoBtn');
     const modalGithubRepoBtn = document.getElementById('modalGithubRepoBtn');
-    // Removed AI Insight related variables: aiInsightBtn, aiInsightContainer, aiInsightText, aiInsightLoading
+    
 
     let currentProjectData = null; // Store data of the currently opened project
 
@@ -1561,6 +1569,7 @@
 
         // Show/hide GitHub button based on data
         if (modalGithubRepoBtn) {
+            // Check for projectData.github_repo (from data-project)
             if (projectData.github_repo && projectData.github_repo !== '#') {
                 modalGithubRepoBtn.href = projectData.github_repo;
                 modalGithubRepoBtn.classList.remove('hidden');
@@ -1571,6 +1580,7 @@
 
         // Show/hide Live Demo button based on data
         if (modalLiveDemoBtn) {
+            // Check for projectData.live_demo (from data-project)
             if (projectData.live_demo && projectData.live_demo !== '#') {
                 modalLiveDemoBtn.href = projectData.live_demo;
                 modalLiveDemoBtn.classList.remove('hidden');
@@ -1578,9 +1588,7 @@
                 modalLiveDemoBtn.classList.add('hidden');
             }
         }
-
-        // Removed AI Insight button/container logic
-
+        
         // Set default object-fit for modal image (for project modals)
         if (modalProjectImage) {
             modalProjectImage.classList.add('w-full', 'h-64', 'object-cover');
@@ -1962,7 +1970,7 @@
 
     // FIX: Corrected the event listener for closeZoomBtn
     if (closeZoomBtn) {
-        closeZoomBtn.addEventListener('click', closeImageZoom);
+        closeZoomBtn.addEventListener('click', closeZoomBtn);
     }
 
     imageZoomModal.addEventListener('click', (event) => {
