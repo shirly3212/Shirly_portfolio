@@ -1860,7 +1860,7 @@
         // Use scrollIntoView to reliably center the item
         carouselItems[currentIndex].scrollIntoView({
             behavior: 'smooth',
-            block: 'center', // Centers vertically
+            block: 'nearest', // Changed from 'center' to 'nearest' to prevent excessive scrolling for loop
             inline: 'center' // Centers horizontally
         });
 
@@ -1918,7 +1918,8 @@
         prevBtn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            currentIndex = currentIndex > 0 ? currentIndex - 1 : carouselItems.length - 1; // Loop to end if at start
+            // Loop functionality: If at the first item, go to the last. Otherwise, go to the previous.
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1; 
             updateCarousel();
         });
     }
@@ -1928,7 +1929,8 @@
         nextBtn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            currentIndex = currentIndex < carouselItems.length - 1 ? currentIndex + 1 : 0; // Loop to start if at end
+            // Loop functionality: If at the last item, go to the first. Otherwise, go to the next.
+            currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0; 
             updateCarousel();
         });
     }
@@ -2000,6 +2002,11 @@
             imageZoomModal.classList.remove('opacity-0', 'invisible');
             imageZoomModal.classList.add('opacity-100', 'visible');
             document.body.style.overflow = 'hidden';
+            // Set max-width and max-height for the image itself to control its size
+            zoomedImage.style.maxWidth = 'min(90vw, 800px)'; // Max 90vw or 800px
+            zoomedImage.style.maxHeight = 'min(90vh, 600px)'; // Max 90vh or 600px
+            zoomedImage.style.width = 'auto'; // Allow image to scale down
+            zoomedImage.style.height = 'auto'; // Allow image to scale down
         }
     }
 
@@ -2024,7 +2031,8 @@
     }
 
     imageZoomModal.addEventListener('click', (event) => {
-        if (event.target === imageZoomModal || event.target === zoomedImage) {
+        // Only close if clicking on the overlay itself, not the image within
+        if (event.target === imageZoomModal) {
             closeImageZoom();
         }
     });
