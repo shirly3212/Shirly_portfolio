@@ -1075,7 +1075,7 @@
                       "description": "A sleek visual portfolio website created for photographers to showcase their work in an elegant and modern style. It features a responsive layout and image galleries.",
                       "technologies": ["HTML5", "CSS3"],
                       "live_demo": "https://shirly3212.github.io/Photographer/",
-                      "github_repo": "https://shirly3212.github.io/Photographer",
+                      "github_repo": "https://github.com/shirly3212/Photographer",
                       "type": "web"
                   }'>
                   <div class="featured-project-image-wrapper">
@@ -1297,7 +1297,7 @@
 
 <!-- Image Modal (for carousel items) -->
 <div id="imageZoomModal" class="fixed inset-0 bg-black bg-opacity-90 z-[60] flex items-center justify-center opacity-0 invisible transition-all duration-300">
-    <div class="relative max-w-[95vw] max-h-[95vh] flex items-center justify-center">
+    <div class="relative max-w-[80vw] max-h-[80vh] flex items-center justify-center"> <!-- Changed max-width/height to 80vw/vh -->
         <img id="zoomedImage" src="" alt="Zoomed Image" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
         <button id="closeZoomBtn" class="absolute top-4 right-4 text-white text-3xl font-bold bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center hover:bg-opacity-70 transition-colors duration-200">
             &times;
@@ -1857,16 +1857,11 @@
             return;
         }
         
-        // Calculate scroll position to align the start of the current item with the start of the wrapper
-        // The 'scroll-snap-align: center' on carousel-item will then center it automatically.
-        let scrollPosition = carouselItems[currentIndex].offsetLeft;
-
-        // Ensure scrollPosition is within bounds
-        scrollPosition = Math.max(0, Math.min(scrollPosition, carouselWrapper.scrollWidth - carouselWrapper.offsetWidth));
-
-        carouselWrapper.scrollTo({
-            left: scrollPosition,
-            behavior: 'smooth'
+        // Use scrollIntoView to reliably center the item
+        carouselItems[currentIndex].scrollIntoView({
+            behavior: 'smooth',
+            block: 'center', // Centers vertically
+            inline: 'center' // Centers horizontally
         });
 
         // Update fade effect immediately. The onCarouselScroll listener will refine it
@@ -1897,9 +1892,7 @@
         let minDistance = Infinity;
 
         carouselItems.forEach((item, index) => {
-            const itemRect = item.getBoundingClientRect();
-            // Calculate the center of the item relative to the carouselWrapper's scroll position
-            const itemCenter = (item.offsetLeft + item.offsetWidth / 2);
+            const itemCenter = item.offsetLeft + (item.offsetWidth / 2); // Center of the item relative to its parent
             const distance = Math.abs(itemCenter - centralViewPoint);
 
             if (distance < minDistance) {
@@ -2025,8 +2018,9 @@
         });
     }
 
+    // FIX: Corrected the event listener for closeZoomBtn
     if (closeZoomBtn) {
-        closeZoomBtn.addEventListener('click', closeZoomBtn);
+        closeZoomBtn.addEventListener('click', closeImageZoom);
     }
 
     imageZoomModal.addEventListener('click', (event) => {
