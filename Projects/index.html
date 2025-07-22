@@ -542,6 +542,22 @@
     /* NEW: Animated Brush Stroke for side titles */
     .side-title-brush-stroke {
         display: none; /* Hidden by default for mobile */
+        width: 80%; /* Percentage of parent width */
+        max-width: 180px; /* Max width to visually match "Development" (was 250px) */
+        height: 4px; /* Thinner line (was 6px) */
+        background: linear-gradient(to right, #3b82f6, #7c3aed);
+        border-radius: 3px;
+        margin: 10px auto 0 auto; /* Centers it horizontally, adds space below title */
+        opacity: 0; /* Initially invisible */
+        transform: scaleX(0); /* Start with zero width via scale */
+        transform-origin: left center; /* Scale from left to right */
+        /* Removed animation property here, will be added by JS class */
+        z-index: 1; /* To be above background effects */
+    }
+
+    /* Animation class for the brush stroke */
+    .side-title-brush-stroke.animate-stroke {
+      animation: drawBrush 1.5s ease-out forwards 0.8s; /* Animate over 1.5s, delayed by 0.8s */
     }
 
     /* ANIMATION FOR BRUSH STROKE */
@@ -638,15 +654,10 @@
       .side-projects-grid {
           display: flex; /* Use flex for internal stacking of side projects */
           flex-direction: column;
-          gap: 2rem; /* Maintain gap between side projects */
-          grid-column: 2; /* Place in the second column of the main grid */
-          grid-row: 1 / span 2; /* Also span both rows, ensuring vertical alignment */
-          max-width: none;
-          margin: 0;
-          height: auto; /* Allow height to be determined by grid */
-          min-height: 0;
+          gap: 2rem;
+          width: 100%; /* Take full width on mobile */
       }
-      
+
       .project-card-item {
         /* Reset any conflicting mobile styles for desktop */
         width: auto;
@@ -657,18 +668,7 @@
 
       .side-title-brush-stroke {
         display: block; /* Show on desktop */
-        width: 80%; /* Percentage of parent width */
-        max-width: 180px; /* Max width to visually match "Development" (was 250px) */
-        height: 4px; /* Thinner line (was 6px) */
-        background: linear-gradient(to right, #3b82f6, #7c3aed);
-        border-radius: 3px;
-        margin: 10px auto 0 auto; /* Centers it horizontally, adds space below title */
-        opacity: 0; /* Initially invisible */
-        transform: scaleX(0); /* Start with zero width via scale */
-        transform-origin: left center; /* Scale from left to right */
-        animation: drawBrush 1.5s ease-out forwards 0.8s; /* Animate over 1.5s, delayed by 0.8s */
-        z-index: 1; /* To be above background effects */
-    }
+      }
     }
 
 
@@ -697,6 +697,8 @@
         margin: 1rem 0;
         align-items: stretch;
         min-height: 400px; /* Increased min-height for carousel */
+        /* Added custom property for dynamic padding */
+        scroll-padding-inline: var(--carousel-padding, 0px);
     }
 
     .carousel-item {
@@ -779,7 +781,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0.7); /* Changed opacity to 0.7 for more transparency */
         display: none;
         justify-content: center;
         align-items: center;
@@ -812,14 +814,15 @@
 
     .modal-close-btn {
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: 0.5rem; /* Adjusted top position */
+        right: 0.5rem; /* Adjusted right position */
         background: none;
         border: none;
         font-size: 2rem;
         color: #6b7280;
         cursor: pointer;
         transition: color 0.2s ease;
+        z-index: 10; /* Ensure it's above the image */
     }
 
     .modal-close-btn:hover {
@@ -1061,7 +1064,7 @@
       <div class="featured-projects-content">
           <div class="left-section-header">
               <h2 class="section-title-side">Web Development</h2>
-              <div class="side-title-brush-stroke"></div>
+              <div class="side-title-brush-stroke" id="webBrushStroke"></div>
               <div class="side-title-bg-effect"></div>
               <div class="abstract-pattern-overlay"></div>
           </div>
@@ -1149,7 +1152,7 @@
             <div class="featured-projects-content">
                 <div class="left-section-header"> <!-- New wrapper for side title and effect -->
                     <h2 class="section-title-side">Graphic Design</h2>
-                    <div class="side-title-brush-stroke"></div> <!-- NEW ELEMENT HERE -->
+                    <div class="side-title-brush-stroke" id="graphicBrushStroke"></div> <!-- NEW ELEMENT HERE -->
                     <div class="side-title-bg-effect"></div>
                     <div class="abstract-pattern-overlay"></div> <!-- New abstract pattern -->
                 </div>
@@ -1296,9 +1299,9 @@
 </section>
 
 <!-- Image Modal (for carousel items) -->
-<div id="imageZoomModal" class="fixed inset-0 bg-black bg-opacity-90 z-[60] flex items-center justify-center opacity-0 invisible transition-all duration-300">
-    <div class="relative max-w-[80vw] max-h-[80vh] flex items-center justify-center"> <!-- Changed max-width/height to 80vw/vh -->
-        <img id="zoomedImage" src="" alt="Zoomed Image" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
+<div id="imageZoomModal" class="fixed inset-0 bg-black bg-opacity-70 z-[60] flex items-center justify-center opacity-0 invisible transition-all duration-300">
+    <div class="relative max-w-[80vw] max-h-[80vh] flex items-center justify-center">
+        <img id="zoomedImage" src="" alt="Zoomed Image" class="rounded-lg shadow-2xl" style="object-fit: scale-down;">
         <button id="closeZoomBtn" class="absolute top-4 right-4 text-white text-3xl font-bold bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center hover:bg-opacity-70 transition-colors duration-200">
             &times;
         </button>
@@ -1331,26 +1334,7 @@
               <span class="text-gray-600 font-semibold">Technologies Used:</span>
               <div id="modalTechnologies" class="flex flex-wrap gap-2"></div>
           </div>
-          <div id="aiInsightContainer" class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-blue-800 text-left hidden">
-              <p class="font-semibold mb-2">✨ AI Insight:</p>
-              <div id="aiInsightText"></div>
-              <div id="aiInsightLoading" class="flex items-center justify-center mt-2 hidden">
-                  <div class="spinner mr-2"></div>
-                  <span>Generating insight...</span>
-              </div>
-          </div>
-          <div class="flex justify-center gap-4 mt-6">
-              <a id="modalLiveDemoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
-                  Live Demo <i class="fas fa-external-link-alt ml-2"></i>
-              </a>
-              <a id="modalGithubRepoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
-                  GitHub Repo <i class="fab fa-github ml-2"></i>
-              </a>
-              <!-- AI Insight button is now always hidden by default, as requested -->
-              <button id="aiInsightBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center hidden">
-                  ✨ AI Insight
-              </button>
-          </div>
+          <!-- Removed AI Insight Container -->
       </div>
   </div>
 
@@ -1544,10 +1528,7 @@
     const modalTechnologies = document.getElementById('modalTechnologies');
     const modalLiveDemoBtn = document.getElementById('modalLiveDemoBtn');
     const modalGithubRepoBtn = document.getElementById('modalGithubRepoBtn');
-    const aiInsightBtn = document.getElementById('aiInsightBtn');
-    const aiInsightContainer = document.getElementById('aiInsightContainer');
-    const aiInsightText = document.getElementById('aiInsightText');
-    const aiInsightLoading = document.getElementById('aiInsightLoading');
+    // Removed AI Insight related variables: aiInsightBtn, aiInsightContainer, aiInsightText, aiInsightLoading
 
     let currentProjectData = null; // Store data of the currently opened project
 
@@ -1598,15 +1579,7 @@
             }
         }
 
-        // Always hide AI Insight button as requested
-        if (aiInsightBtn) {
-            aiInsightBtn.classList.add('hidden');
-        }
-
-        // Hide AI insight content and loading spinner when opening a new modal
-        if (aiInsightContainer) aiInsightContainer.classList.add('hidden');
-        if (aiInsightText) aiInsightText.textContent = '';
-        if (aiInsightLoading) aiInsightLoading.classList.add('hidden');
+        // Removed AI Insight button/container logic
 
         // Set default object-fit for modal image (for project modals)
         if (modalProjectImage) {
@@ -1708,60 +1681,6 @@
         }
     });
 
-    // --- Gemini API Integration ---
-    if (aiInsightBtn) {
-        aiInsightBtn.addEventListener('click', async () => {
-            // Re-enable AI Insight button if you want to use it
-            // For now, it's always hidden as per user request.
-            // if (!currentProjectData || currentProjectData.type !== 'web') { 
-            //     if (aiInsightContainer) aiInsightContainer.classList.add('hidden');
-            //     return;
-            // }
-
-            // if (aiInsightContainer) aiInsightContainer.classList.remove('hidden');
-            // if (aiInsightText) aiInsightText.textContent = '';
-            // if (aiInsightLoading) aiInsightLoading.classList.remove('hidden');
-
-            // const prompt = `Given the following web development project:
-            // Title: ${currentProjectData.title}
-            // Description: ${currentProjectData.description}
-            // Technologies: ${currentProjectData.technologies ? currentProjectData.technologies.join(', ') : 'N/A'}
-
-            // Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting the unique aspect or impact of this project. Focus on what makes it stand out or its practical value. Do not include a title for the summary. Return only the summary text.`;
-
-            // let chatHistory = [];
-            // chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-            // const payload = { contents: chatHistory };
-            // const apiKey = "";
-            // const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-            // try {
-            //     const response = await fetch(apiUrl, {
-            //         method: 'POST',
-            //         headers: { 'Content-Type': 'application/json' },
-            //         body: JSON.stringify(payload)
-            //     });
-            //     const result = await response.json();
-
-            //     if (result.candidates && result.candidates.length > 0 &&
-            //         result.candidates[0].content && result.candidates[0].content.parts &&
-            //         result.candidates[0].content.parts.length > 0) {
-            //         const text = result.candidates[0].content.parts[0].text;
-            //         if (aiInsightText) aiInsightText.textContent = text;
-            //     } else {
-            //         if (aiInsightText) aiInsightText.textContent = "Failed to generate insight. Please try again.";
-            //     }
-            // } catch (error) {
-            //     if (aiInsightText) aiInsightText.textContent = "Error generating insight. " + error.message;
-            // } finally {
-            //     if (aiInsightLoading) aiInsightLoading.classList.add('hidden');
-            // }
-        });
-    } else {
-        console.error("AI Insight button (aiInsightBtn) not found!");
-    }
-
-
     // --- Mobile Navigation Toggle ---
     document.addEventListener("DOMContentLoaded", function () {
       const mainNavUl = document.getElementById("main-nav-menu");
@@ -1843,6 +1762,17 @@
     let currentIndex = 0;
     let isUpdating = false;
 
+    // Function to calculate and apply dynamic padding for carousel ends
+    function applyCarouselPadding() {
+        if (!carouselWrapper || carouselItems.length === 0) return;
+
+        const itemWidth = carouselItems[0].offsetWidth;
+        const wrapperWidth = carouselWrapper.offsetWidth;
+        // Calculate padding needed to center the first/last item
+        const padding = (wrapperWidth - itemWidth) / 2;
+        carouselWrapper.style.setProperty('--carousel-padding', `${padding}px`);
+    }
+
     // Function to update the carousel's scroll position and fade effect
     function updateCarousel() {
         if (!carouselWrapper || carouselItems.length === 0 || isUpdating) {
@@ -1860,8 +1790,8 @@
         // Use scrollIntoView to reliably center the item
         carouselItems[currentIndex].scrollIntoView({
             behavior: 'smooth',
-            block: 'nearest', // Changed from 'center' to 'nearest' to prevent excessive scrolling for loop
-            inline: 'center' // Centers horizontally
+            block: 'nearest', 
+            inline: 'center' 
         });
 
         // Update fade effect immediately. The onCarouselScroll listener will refine it
@@ -1909,6 +1839,7 @@
         if (carouselItems.length === 0) {
             return;
         }
+        applyCarouselPadding(); // Apply padding on initialization
         currentIndex = 0; // Start at the first item
         updateCarousel(); // Update to show the first item
     }
@@ -1985,7 +1916,10 @@
     // Initialize carousel on window load and re-initialize on resize
     window.addEventListener('load', initCarousel);
     window.addEventListener('resize', () => {
-        setTimeout(initCarousel, 100); // Debounce resize
+        setTimeout(() => {
+            applyCarouselPadding(); // Recalculate padding on resize
+            initCarousel(); // Re-initialize carousel to ensure correct centering
+        }, 100); // Debounce resize
     });
 
     // --- Image Zoom Modal ---
@@ -2003,10 +1937,11 @@
             imageZoomModal.classList.add('opacity-100', 'visible');
             document.body.style.overflow = 'hidden';
             // Set max-width and max-height for the image itself to control its size
-            zoomedImage.style.maxWidth = 'min(90vw, 800px)'; // Max 90vw or 800px
-            zoomedImage.style.maxHeight = 'min(90vh, 600px)'; // Max 90vh or 600px
-            zoomedImage.style.width = 'auto'; // Allow image to scale down
-            zoomedImage.style.height = 'auto'; // Allow image to scale down
+            zoomedImage.style.maxWidth = 'min(70vw, 700px)'; 
+            zoomedImage.style.maxHeight = 'min(70vh, 500px)'; 
+            zoomedImage.style.width = 'auto'; 
+            zoomedImage.style.height = 'auto'; 
+            zoomedImage.style.objectFit = 'scale-down'; 
         }
     }
 
@@ -2039,7 +1974,7 @@
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && imageZoomModal.classList.contains('visible')) {
-            closeImageZoom();
+            closeZoomBtn.click(); // Simulate click on close button for consistency
         }
     });
 
@@ -2048,11 +1983,43 @@
     function initializeEverything() {
         initCarousel(); // Initialize carousel
         addModalEventListeners(); // Add event listeners for project modals and carousel image zoom
+        setupBrushStrokeAnimation(); // Setup Intersection Observer for brush strokes
     }
 
     function highlightActiveNav() {
         // Add your navigation highlighting logic here if needed
     }
+
+    // Function to setup Intersection Observer for brush stroke animations
+    function setupBrushStrokeAnimation() {
+      const graphicBrushStroke = document.getElementById('graphicBrushStroke');
+      const webBrushStroke = document.getElementById('webBrushStroke');
+
+      const observerOptions = {
+        root: null, // relative to the viewport
+        rootMargin: '0px',
+        threshold: 0.5 // Trigger when 50% of the element is visible
+      };
+
+      const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-stroke');
+            observer.unobserve(entry.target); // Stop observing once animated
+          }
+        });
+      };
+
+      const brushStrokeObserver = new IntersectionObserver(observerCallback, observerOptions);
+
+      if (graphicBrushStroke) {
+        brushStrokeObserver.observe(graphicBrushStroke);
+      }
+      if (webBrushStroke) {
+        brushStrokeObserver.observe(webBrushStroke);
+      }
+    }
+
 
     // Call initialization function when DOM is fully loaded
     document.addEventListener('DOMContentLoaded', () => {
