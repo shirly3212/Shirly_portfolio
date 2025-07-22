@@ -1559,7 +1559,7 @@
         // Delegated listener for project cards and their buttons
         document.addEventListener('click', (event) => {
             console.log("Delegated click event detected on document. Target:", event.target);
-            event.preventDefault(); // IMPORTANT: Prevent default behavior for all clicks handled here
+            // Removed event.preventDefault() from here. It will now be called conditionally.
 
             // Check for project card clicks
             const projectCard = event.target.closest('.project-card-item, .featured-project');
@@ -1568,6 +1568,7 @@
                 const isButtonClick = event.target.closest('.view-project-btn'); // Only check for our specific buttons
 
                 if (isButtonClick) {
+                    event.preventDefault(); // Prevent default only when a project button is clicked
                     console.log("View Project button clicked.");
                     const projectDataString = projectCard.dataset.project;
                     console.log("Project data string from button's parent card:", projectDataString);
@@ -1582,6 +1583,7 @@
                         console.error("No valid project data found on button's parent card.");
                     }
                 } else { // Clicked on the card itself, but not the specific button
+                    event.preventDefault(); // Prevent default only when a project card is clicked directly
                     console.log("Click on project card (not button).");
                     let projectData = null;
                     const projectDataString = projectCard.dataset.project;
@@ -1611,8 +1613,8 @@
             // Check for carousel item clicks
             const carouselItem = event.target.closest('.carousel-item');
             if (carouselItem) {
+                event.preventDefault(); // Prevent default only when a carousel item is clicked
                 console.log("Click on carousel item detected.");
-                // event.preventDefault() is already at the top of this delegated listener
                 const imgSrc = carouselItem.getAttribute('data-image');
                 console.log("Carousel image src:", imgSrc);
                 if (imgSrc) {
@@ -2096,3 +2098,4 @@ document.addEventListener('DOMContentLoaded', () => {
 // Removed window.onload listener as DOMContentLoaded is sufficient and fires earlier
 // window.addEventListener('load', initializeEverything);
 // console.log("Window load listener attached for initializeEverything.");
+
