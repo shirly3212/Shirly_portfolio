@@ -1505,63 +1505,8 @@
       }
 
       // --- Carousel / Gallery Scroll Functionality ---
-      const galleryScroll = document.getElementById('carouselWrapper');
-      const leftArrow = document.getElementById("prevBtn");
-      const rightArrow = document.getElementById("nextBtn");
-
-      // Function to scroll the gallery
-      function scrollGallery(direction) {
-        if (galleryScroll) {
-          const scrollAmount = 370; // Matches flex-basis + margin of .carousel-item
-          galleryScroll.scrollBy({
-            left: direction * scrollAmount,
-            behavior: 'smooth'
-          });
-        }
-      }
-
-      // Attach event listeners to carousel navigation buttons
-      if (leftArrow) {
-        leftArrow.addEventListener("click", (e) => {
-            e.preventDefault();
-            scrollGallery(-1);
-        });
-      }
-      if (rightArrow) {
-        rightArrow.addEventListener("click", (e) => {
-            e.preventDefault();
-            scrollGallery(1);
-        });
-      }
-
-      // Update carousel item opacity based on scroll position (center item is active)
-      if (galleryScroll) {
-        galleryScroll.addEventListener('scroll', () => {
-          const scrollLeft = galleryScroll.scrollLeft;
-          const containerWidth = galleryScroll.clientWidth;
-          const items = galleryScroll.querySelectorAll('.carousel-item');
-
-          items.forEach(item => {
-            const itemLeft = item.offsetLeft;
-            const itemWidth = item.offsetWidth;
-
-            const itemCenter = itemLeft + itemWidth / 2;
-            const containerCenterLeft = scrollLeft + containerWidth * 0.2;
-            const containerCenterRight = scrollLeft + containerWidth * 0.8;
-
-            if (itemCenter > containerCenterLeft && itemCenter < containerCenterRight) {
-              item.classList.remove('carousel-item-faded');
-            } else {
-              item.classList.add('carousel-item-faded');
-            }
-          });
-        });
-
-        setTimeout(() => {
-            galleryScroll.dispatchEvent(new Event('scroll'));
-        }, 100);
-      }
-
+      // These are now handled by global functions and event listeners
+      // to ensure consistency and proper interaction with currentIndex.
 
       // --- Intersection Observer for Section Titles Animation ---
       const sectionTitles = document.querySelectorAll(".section-title");
@@ -1891,7 +1836,7 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
       });
     });
 
-    // --- Carousel Logic (Fixed) ---
+    // --- Carousel Logic ---
     const carouselWrapper = document.getElementById('carouselWrapper');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -1899,6 +1844,7 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
     let currentIndex = 0;
     let isUpdating = false;
 
+    // Function to update the carousel's scroll position and fade effect
     function updateCarousel() {
         if (!carouselWrapper || carouselItems.length === 0 || isUpdating) {
             return;
@@ -1906,55 +1852,55 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
         
         isUpdating = true;
         
-        const containerWidth = carouselWrapper.offsetWidth;
-        carouselItems = document.querySelectorAll('.carousel-item');
+        carouselItems = document.querySelectorAll('.carousel-item'); // Re-query items in case of dynamic changes
         if (carouselItems.length === 0) {
             isUpdating = false;
             return;
         }
-        const itemWidth = carouselItems[0].offsetWidth;
-        const itemMargin = 20;
-        const itemTotalWidth = itemWidth + itemMargin;
         
-        let scrollPosition = (currentIndex * itemTotalWidth) - (containerWidth / 2) + (itemTotalWidth / 2);
-        
-        if (currentIndex === 0) scrollPosition = 0;
-        else if (currentIndex === carouselItems.length - 1)
-            scrollPosition = carouselWrapper.scrollWidth - containerWidth;
+        // Calculate scroll position to align the start of the current item with the start of the wrapper
+        // The 'scroll-snap-align: center' on carousel-item will then center it automatically.
+        let scrollPosition = carouselItems[currentIndex].offsetLeft;
 
-        scrollPosition = Math.max(0, Math.min(scrollPosition, carouselWrapper.scrollWidth - containerWidth));
+        // Ensure scrollPosition is within bounds
+        scrollPosition = Math.max(0, Math.min(scrollPosition, carouselWrapper.scrollWidth - carouselWrapper.offsetWidth));
 
         carouselWrapper.scrollTo({
             left: scrollPosition,
             behavior: 'smooth'
         });
 
+        // Update fade effect immediately. The onCarouselScroll listener will refine it
+        // once the smooth scroll animation completes and the item is truly centered.
         updateFadeEffect();
 
-        setTimeout(() => { isUpdating = false; }, 500);
+        // Debounce to prevent rapid updates during smooth scrolling
+        setTimeout(() => { isUpdating = false; }, 500); 
     }
 
+    // Function to update the fade effect based on the currently centered item
     function updateFadeEffect() {
+        const currentCenterItemIndex = findClosestItemToCenter(); // Find the truly centered item
         carouselItems.forEach((item, index) => {
-            item.classList.toggle('carousel-item-faded', index !== currentIndex);
+            item.classList.toggle('carousel-item-faded', index !== currentCenterItemIndex);
         });
     }
 
+    // Function to find the index of the carousel item closest to the center of the wrapper
     function findClosestItemToCenter() {
         if (!carouselWrapper || carouselItems.length === 0) return 0;
 
         const scrollLeft = carouselWrapper.scrollLeft;
         const containerWidth = carouselWrapper.offsetWidth;
-        const itemWidth = carouselItems[0].offsetWidth;
-        const itemMargin = 20;
-        const itemTotalWidth = itemWidth + itemMargin;
+        const centralViewPoint = scrollLeft + (containerWidth / 2); // Center point of the visible container
 
-        const centralViewPoint = scrollLeft + (containerWidth / 2);
         let closestIndex = 0;
         let minDistance = Infinity;
 
         carouselItems.forEach((item, index) => {
-            const itemCenter = (index * itemTotalWidth) + (itemWidth / 2);
+            const itemRect = item.getBoundingClientRect();
+            // Calculate the center of the item relative to the carouselWrapper's scroll position
+            const itemCenter = (item.offsetLeft + item.offsetWidth / 2);
             const distance = Math.abs(itemCenter - centralViewPoint);
 
             if (distance < minDistance) {
@@ -1965,41 +1911,58 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
         return closestIndex;
     }
 
+    // Initialize the carousel on load
     function initCarousel() {
         carouselItems = document.querySelectorAll('.carousel-item');
         if (carouselItems.length === 0) {
             return;
         }
-        currentIndex = 0;
-        updateCarousel();
+        currentIndex = 0; // Start at the first item
+        updateCarousel(); // Update to show the first item
     }
 
+    // Event listener for the previous button
     if (prevBtn) {
         prevBtn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            currentIndex = currentIndex > 0 ? currentIndex - 1 : carouselItems.length - 1;
+            currentIndex = currentIndex > 0 ? currentIndex - 1 : carouselItems.length - 1; // Loop to end if at start
             updateCarousel();
         });
     }
 
+    // Event listener for the next button
     if (nextBtn) {
         nextBtn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            currentIndex = currentIndex < carouselItems.length - 1 ? currentIndex + 1 : 0;
+            currentIndex = currentIndex < carouselItems.length - 1 ? currentIndex + 1 : 0; // Loop to start if at end
             updateCarousel();
         });
     }
 
+    // Event listener for native scroll events (e.g., mouse wheel, scrollbar drag)
     if (carouselWrapper) {
         let scrollTimeout;
         carouselWrapper.addEventListener('scroll', () => {
             clearTimeout(scrollTimeout);
+            // Debounce the scroll event to only react after scrolling has paused
             scrollTimeout = setTimeout(onCarouselScroll, 100);
         });
     }
 
+    // Function called after native scroll stops
+    function onCarouselScroll() {
+        if (isUpdating) return; // Prevent conflicts with button-triggered updates
+
+        const newIndex = findClosestItemToCenter();
+        if (newIndex !== currentIndex) {
+            currentIndex = newIndex;
+            updateFadeEffect();
+        }
+    }
+
+    // Touch/Swipe functionality for carousel
     let startX = 0;
     let isSwiping = false;
 
@@ -2013,10 +1976,10 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
             if (!isSwiping) return;
             const endX = e.changedTouches[0].clientX;
             const diff = startX - endX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) {
+            if (Math.abs(diff) > 50) { // Threshold for a significant swipe
+                if (diff > 0) { // Swiped left, go to next
                     currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0;
-                } else {
+                } else { // Swiped right, go to previous
                     currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1;
                 }
                 updateCarousel();
@@ -2025,9 +1988,10 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
         });
     }
 
+    // Initialize carousel on window load and re-initialize on resize
     window.addEventListener('load', initCarousel);
     window.addEventListener('resize', () => {
-        setTimeout(initCarousel, 100);
+        setTimeout(initCarousel, 100); // Debounce resize
     });
 
     // --- Image Zoom Modal ---
@@ -2063,7 +2027,7 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
     }
 
     if (closeZoomBtn) {
-        closeZoomBtn.addEventListener('click', closeImageZoom);
+        closeZoomBtn.addEventListener('click', closeZoomBtn);
     }
 
     imageZoomModal.addEventListener('click', (event) => {
@@ -2079,16 +2043,17 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
     });
 
 
-    // --- Initialization ---
+    // --- General Initialization ---
     function initializeEverything() {
-        initCarousel();
-        addModalEventListeners();
+        initCarousel(); // Initialize carousel
+        addModalEventListeners(); // Add event listeners for project modals and carousel image zoom
     }
 
     function highlightActiveNav() {
         // Add your navigation highlighting logic here if needed
     }
 
+    // Call initialization function when DOM is fully loaded
     document.addEventListener('DOMContentLoaded', () => {
         try {
             initializeEverything();
@@ -2097,16 +2062,6 @@ Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting
         }
         highlightActiveNav();
     });
-
-    function onCarouselScroll() {
-        if (isUpdating) return;
-
-        const newIndex = findClosestItemToCenter();
-        if (newIndex !== currentIndex) {
-            currentIndex = newIndex;
-            updateFadeEffect();
-        }
-    }
   </script>
 </body>
 </html>
