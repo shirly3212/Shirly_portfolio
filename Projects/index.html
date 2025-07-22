@@ -1099,7 +1099,7 @@
                           "description": "A straightforward web application designed to count people entering or exiting an area. Built with HTML, CSS, and JavaScript, it provides a clean, intuitive interface.",
                           "technologies": ["HTML5", "CSS3", "JavaScript"],
                           "live_demo": "https://shirly3212.github.io/People-Counter/",
-                          "github_repo": "https://shirly3212.github.io/People-Counter",
+                          "github_repo": "https://github.com/shirly3212/People-Counter",
                           "type": "web"
                       }'>
                       <div class="project-card-item-image-wrapper">
@@ -1121,7 +1121,7 @@
                           "description": "This responsive and modern website for a travel agency features an attractive design and a seamless user experience. Developed with HTML, CSS, and vanilla JavaScript.",
                           "technologies": ["HTML5", "CSS3", "JavaScript"],
                           "live_demo": "https://shirly3212.github.io/TRAVELLY/",
-                          "github_repo": "https://shirly3212.github.io/TRAVELLY",
+                          "github_repo": "https://github.com/shirly3212/TRAVELLY",
                           "type": "web"
                       }'>
                       <div class="project-card-item-image-wrapper">
@@ -1346,7 +1346,8 @@
               <a id="modalGithubRepoBtn" href="#" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
                   GitHub Repo <i class="fab fa-github ml-2"></i>
               </a>
-              <button id="aiInsightBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center">
+              <!-- AI Insight button is now always hidden by default, as requested -->
+              <button id="aiInsightBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center justify-center hidden">
                   ✨ AI Insight
               </button>
           </div>
@@ -1392,8 +1393,8 @@
           type: "graphic"
         },
         "road-accident-data-viz": {
-          title: "Road Accident Data Visualization",
-          description: "A comprehensive data visualization project on road accident statistics.",
+          title: "Israeli Politics - Data Visualization",
+          description: "Key aspects and trends in Israeli politics.",
           image: "../img/thumbnail2.jpg",
           liveLink: "https://makospecial.co.il/israel_politics",
           repoLink: "#",
@@ -1597,13 +1598,9 @@
             }
         }
 
-        // AI Insight button should only be visible for Web projects (not graphic)
+        // Always hide AI Insight button as requested
         if (aiInsightBtn) {
-            if (projectData.type === 'graphic') {
-                aiInsightBtn.classList.add('hidden');
-            } else {
-                aiInsightBtn.classList.remove('hidden');
-            }
+            aiInsightBtn.classList.add('hidden');
         }
 
         // Hide AI insight content and loading spinner when opening a new modal
@@ -1714,49 +1711,51 @@
     // --- Gemini API Integration ---
     if (aiInsightBtn) {
         aiInsightBtn.addEventListener('click', async () => {
-            if (!currentProjectData || currentProjectData.type !== 'web') { 
-                if (aiInsightContainer) aiInsightContainer.classList.add('hidden');
-                return;
-            }
+            // Re-enable AI Insight button if you want to use it
+            // For now, it's always hidden as per user request.
+            // if (!currentProjectData || currentProjectData.type !== 'web') { 
+            //     if (aiInsightContainer) aiInsightContainer.classList.add('hidden');
+            //     return;
+            // }
 
-            if (aiInsightContainer) aiInsightContainer.classList.remove('hidden');
-            if (aiInsightText) aiInsightText.textContent = '';
-            if (aiInsightLoading) aiInsightLoading.classList.remove('hidden');
+            // if (aiInsightContainer) aiInsightContainer.classList.remove('hidden');
+            // if (aiInsightText) aiInsightText.textContent = '';
+            // if (aiInsightLoading) aiInsightLoading.classList.remove('hidden');
 
-            const prompt = `Given the following web development project:
-Title: ${currentProjectData.title}
-Description: ${currentProjectData.description}
-Technologies: ${currentProjectData.technologies ? currentProjectData.technologies.join(', ') : 'N/A'}
+            // const prompt = `Given the following web development project:
+            // Title: ${currentProjectData.title}
+            // Description: ${currentProjectData.description}
+            // Technologies: ${currentProjectData.technologies ? currentProjectData.technologies.join(', ') : 'N/A'}
 
-Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting the unique aspect or impact of this project. Focus on what makes it stand out or its practical value. Do not include a title for the summary. Return only the summary text.`;
+            // Provide a concise, engaging, and insightful summary (2-3 sentences) highlighting the unique aspect or impact of this project. Focus on what makes it stand out or its practical value. Do not include a title for the summary. Return only the summary text.`;
 
-            let chatHistory = [];
-            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-            const payload = { contents: chatHistory };
-            const apiKey = "";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            // let chatHistory = [];
+            // chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            // const payload = { contents: chatHistory };
+            // const apiKey = "";
+            // const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const result = await response.json();
+            // try {
+            //     const response = await fetch(apiUrl, {
+            //         method: 'POST',
+            //         headers: { 'Content-Type': 'application/json' },
+            //         body: JSON.stringify(payload)
+            //     });
+            //     const result = await response.json();
 
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    if (aiInsightText) aiInsightText.textContent = text;
-                } else {
-                    if (aiInsightText) aiInsightText.textContent = "Failed to generate insight. Please try again.";
-                }
-            } catch (error) {
-                if (aiInsightText) aiInsightText.textContent = "Error generating insight. " + error.message;
-            } finally {
-                if (aiInsightLoading) aiInsightLoading.classList.add('hidden');
-            }
+            //     if (result.candidates && result.candidates.length > 0 &&
+            //         result.candidates[0].content && result.candidates[0].content.parts &&
+            //         result.candidates[0].content.parts.length > 0) {
+            //         const text = result.candidates[0].content.parts[0].text;
+            //         if (aiInsightText) aiInsightText.textContent = text;
+            //     } else {
+            //         if (aiInsightText) aiInsightText.textContent = "Failed to generate insight. Please try again.";
+            //     }
+            // } catch (error) {
+            //     if (aiInsightText) aiInsightText.textContent = "Error generating insight. " + error.message;
+            // } finally {
+            //     if (aiInsightLoading) aiInsightLoading.classList.add('hidden');
+            // }
         });
     } else {
         console.error("AI Insight button (aiInsightBtn) not found!");
