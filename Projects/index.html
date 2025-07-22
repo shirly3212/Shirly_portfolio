@@ -622,20 +622,20 @@
 
       .right-projects-wrapper {
           display: grid; /* Changed to grid for finer control */
-          grid-template-columns: 1.2fr 1fr; /* Featured project is now 1.2 times wider than side projects (was 1.5fr) */
-          grid-template-rows: repeat(2, minmax(min-content, 1fr)); /* Two rows, each occupying equal space, but at least content height */
-          gap: 2rem; /* Gap between the two columns and rows */
-          align-items: stretch; /* Stretch items to fill their grid cells */
-          flex-grow: 1; /* Allow this wrapper to take remaining space */
+          grid-template-columns: 1.2fr 1fr; /* Featured project is 1.2 times wider than side projects (was 1.5fr) */
+          /* REMOVED: grid-template-rows: 1fr 1fr; */ /* This was causing issues with height distribution */
+          gap: 2rem;
+          align-items: stretch; /* This is crucial: makes grid items (columns) stretch to the height of the tallest item */
+          flex-grow: 1;
       }
 
       .featured-project {
-          grid-row: 1 / span 2; /* Span both rows */
-          grid-column: 1; /* First column */
-          max-width: none; /* Remove max-width to allow grid to control width */
-          margin: 0; /* Remove auto margin */
-          height: auto; /* Allow height to be determined by grid */
+          grid-column: 1; /* Place in the first column */
+          /* No need for grid-row: 1 / span 2; here, align-items: stretch will handle the height */
+          height: auto; /* Allow content to define height */
           min-height: 0; /* Override any potential default min-height */
+          display: flex; /* Make it a flex container to manage its own content */
+          flex-direction: column;
       }
 
       .featured-project img {
@@ -652,10 +652,12 @@
 
       /* Update side-projects-grid for grid layout */
       .side-projects-grid {
+          grid-column: 2; /* Place in the second column */
           display: flex; /* Use flex for internal stacking of side projects */
           flex-direction: column;
           gap: 2rem;
           width: 100%; /* Take full width on mobile */
+          height: 100%; /* Make this container fill the height of its grid cell */
       }
 
       .project-card-item {
@@ -663,6 +665,17 @@
         width: auto;
         height: auto; /* Allow height to be flexible */
         flex-grow: 1; /* Each card takes equal space within side-projects-grid */
+        display: flex; /* Make it a flex container to manage its own content */
+        flex-direction: column;
+        min-height: 0; /* Prevent content from pushing out */
+      }
+
+      /* Ensure content within cards pushes the button to the bottom */
+      .project-card-item-content {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
       }
 
 
@@ -1186,7 +1199,7 @@
                             data-project='{
                                 "id": "road-accident-data-viz",
                                 "title": "Israeli Politics - Data Visualization",
-                                "image": "../img/thumbnail5.jpg",
+                                "image": "../img/thumbnail2.jpg",
                                 "description": "Key aspects and trends in Israeli politics.",
                                 "technologies": ["Adobe Photoshop", "Data Analysis", "After Effects", "Graphic Design"],
                                 "live_demo": "https://makospecial.co.il/israel_politics",
