@@ -335,7 +335,7 @@
             }
 
             .me {
-                max-width: 40%; /* Adjust character size for medium screens */
+                max-width: 40%;
             }
 
             .intro h2 {
@@ -457,6 +457,42 @@
                 max-width: 45%;
             }
         }
+
+        /* Styles for the new skills section */
+        .skills-section {
+            padding: 4rem 1rem;
+            background-color: rgba(255, 255, 255, 0.85); /* Increased opacity to 85% */
+            backdrop-filter: blur(8px); /* Frosted glass effect */
+            -webkit-backdrop-filter: blur(8px); /* For Safari support */
+            border-radius: 1.5rem; /* Rounded corners for the section */
+            margin: 2rem auto; /* Center the section and add some margin */
+            max-width: 800px; /* Limit width for better readability */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-align: center;
+        }
+
+        .skill-bar-container {
+            width: 100%;
+            background-color: #e2e8f0;
+            border-radius: 9999px; /* Fully rounded */
+            height: 1.5rem; /* Height of the bar */
+            overflow: hidden; /* Ensures the fill stays within bounds */
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: linear-gradient(to right, #3b82f6, #8dcef8); /* Blue gradient */
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 0.5rem;
+            color: white;
+            font-weight: bold;
+            /* Initial state for staggered animation - set to 0% by default */
+            width: 0%;
+            transition: width 1.5s ease-out; /* Smooth animation for width change */
+        }
     </style>
 </head>
 
@@ -465,7 +501,7 @@
     <div id="particles-js"></div>
 
     <!-- Splash image - Moved outside the intro section for fixed positioning -->
-    <img class="splash" src="img/splash.svg" alt="Shirly Herscovici background splash graphic">
+    <img class="splash" src="https://placehold.co/1200x900/E0E7FF/000000?text=Shirly+Herscovici+background+graphic" alt="Shirly Herscovici background splash graphic">
 
     <!-- Header -->
     <header class="header-frosted shadow-md fixed w-full z-50">
@@ -498,6 +534,7 @@
 </li>
                 <li><a href="Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Video</a></li>
                 <li><a href="ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
+                <!-- Removed Skills link as requested -->
                 <li><a href="#contact-section" class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
             </ul>
         </nav>
@@ -637,6 +674,111 @@
             </div>
         </section>
 
+        <!-- New Skills Section -->
+        <section id="skills-section" class="skills-section">
+            <h2 class="text-4xl font-bold text-gray-800 mb-10">My Skills</h2>
+            <div class="container mx-auto px-6 max-w-3xl">
+                <!-- Skill Item: AFTER EFFECTS -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-medium text-gray-700">AFTER EFFECTS</span>
+                        <span class="text-lg font-semibold text-blue-600">100%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill" data-skill="after-effects" data-progress="100"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Item: PHOTOSHOP & ILLUSTRATOR -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-medium text-gray-700">PHOTOSHOP & ILLUSTRATOR</span>
+                        <span class="text-lg font-semibold text-blue-600">100%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill" data-skill="photoshop-illustrator" data-progress="100"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Item: PREMIERE PRO -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-medium text-gray-700">PREMIERE PRO</span>
+                        <span class="text-lg font-semibold text-blue-600">100%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill" data-skill="premiere-pro" data-progress="100"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Item: FIGMA -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-medium text-gray-700">FIGMA</span>
+                        <span class="text-lg font-semibold text-blue-600">85%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill" data-skill="figma" data-progress="85"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Item: HTML & CSS -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-medium text-gray-700">HTML & CSS</span>
+                        <span class="text-lg font-semibold text-blue-600">85%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill" data-skill="html-css" data-progress="85"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Item: AI -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-medium text-gray-700">AI</span>
+                        <span class="text-lg font-semibold text-blue-600">80%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill" data-skill="ai" data-progress="80"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Item: JAVASCRIPT -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-medium text-gray-700">JAVASCRIPT</span>
+                        <span class="text-lg font-semibold text-blue-600">40%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill" data-skill="javascript" data-progress="40"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Item: PYTHON -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-medium text-gray-700">PYTHON</span>
+                        <span class="text-lg font-semibold text-blue-600">30%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill" data-skill="python" data-progress="30"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Item for "Coming Soon" -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-medium text-gray-700">DEVOPS COURSE - COMING SOON</span>
+                        <span class="text-lg font-semibold text-gray-500"></span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill" data-skill="devops" data-progress="0" style="background: #cbd5e1;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="contact-section" class="form-section flex justify-center items-center py-10 px-4 mt-20">
             <div class="bg-white p-8 md:p-12 rounded-xl shadow-lg w-full max-w-md">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Get in Touch</h2>
@@ -680,23 +822,23 @@
         // --- Particles.js Initialization ---
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 120, "density": { "enable": true, "value_area": 1000 } }, // Increased density
                 "color": { "value": "#b0e0e6" }, /* Light blue/cyan */
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.5, "random": false },
-                "size": { "value": 3, "random": true },
+                "opacity": { "value": 0.6, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } }, // Added opacity animation
+                "size": { "value": 4, "random": true, "anim": { "enable": true, "speed": 40, "size_min": 0.1, "sync": false } }, // Increased size and added size animation
                 "line_linked": {
                     "enable": true,
-                    "distance": 150,
+                    "distance": 180, // Increased distance
                     "color": "#b0e0e6",
-                    "opacity": 0.4,
+                    "opacity": 0.5, // Increased opacity
                     "width": 1
                 },
                 "move": {
                     "enable": true,
-                    "speed": 3, /* Slightly slower speed for subtlety */
+                    "speed": 4, /* Slightly faster speed */
                     "direction": "none",
-                    "random": false,
+                    "random": true, // Made movement more random
                     "straight": false,
                     "out_mode": "out",
                     "bounce": false,
@@ -711,7 +853,7 @@
                     "resize": true
                 },
                 "modes": {
-                    "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+                    "grab": { "distance": 160, "line_linked": { "opacity": 1 } }, // Adjusted grab distance
                     "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 },
                     "repulse": { "distance": 200, "duration": 0.4 },
                     "push": { "particles_nb": 4 },
@@ -725,7 +867,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             const mainNavUl = document.getElementById("main-nav-menu"); // Select the ul by its ID
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const designMenuToggle = document.getElementById('design-menu-toggle'); // The "Design" link
+            const designMenuToggle = document.getElementById('design-link'); // The "Design" link
             const designSubMenu = designMenuToggle ? designMenuToggle.nextElementSibling : null; // The ul after "Design" link
 
             // Function to close all menus (main and sub)
@@ -817,6 +959,44 @@
                     closeAllMenus();
                 }
             });
+
+            // Animate skill bars on scroll
+            const skillSection = document.getElementById('skills-section');
+            const observerOptions = {
+                root: null, // Use the viewport as the root
+                rootMargin: '0px',
+                threshold: 0.5 // Trigger when 50% of the section is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillBars = document.querySelectorAll('.skill-bar-fill');
+                        skillBars.forEach((bar, index) => {
+                            // Reset width to 0% before animating to ensure re-animation on re-scroll
+                            // This is now handled by the 'else' block below, so no need to reset here.
+                            // However, for initial load, ensure it's 0% or set it explicitly.
+                            // For a clean re-animation, it's good to reset.
+                            bar.style.width = '0%'; // Explicitly reset for re-animation
+                            const progress = bar.dataset.progress;
+                            setTimeout(() => {
+                                bar.style.width = `${progress}%`; // Set width to trigger CSS transition
+                            }, index * 150); // 150ms delay for each subsequent bar
+                        });
+                        // No need to unobserve if we want it to re-animate when scrolling away and back
+                        // observer.unobserve(entry.target);
+                    } else {
+                        // Reset bars when they leave view, so they animate again when entering
+                        document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                            bar.style.width = '0%'; // Reset to 0% when out of view
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            if (skillSection) {
+                observer.observe(skillSection);
+            }
         });
     </script>
 </body>
