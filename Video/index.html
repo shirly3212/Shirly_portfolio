@@ -307,14 +307,13 @@
             padding: 1rem;
             text-align: center;
             /* Center text within the content area */
-            flex-direction: column;
             display: flex;
+            /* Changed to flex */
+            flex-direction: column;
             justify-content: space-between;
-            /* Ensures content pushes button to bottom */
-            flex-grow: 1;
-            /* Allows content area to grow */
-            min-height: 150px;
-            /* Increased min-height to standardize content area */
+            align-items: center;
+            /* Added to center children horizontally */
+            height: 220px; /* Set a fixed height for consistent content area height */
         }
 
         .project-card p {
@@ -322,24 +321,16 @@
             color: #4a5568;
             line-height: 1.5;
             margin-bottom: 0.5rem;
-            flex-grow: 1;
-            /* Make paragraph take all available space to push button down */
+            /* Removed flex-grow from here, now controlled by parent .project-card-content */
             text-align: center;
-            /* Explicitly center text */
             overflow-wrap: break-word;
-            /* Ensure long words break and wrap */
             word-break: break-word;
-            /* For older browsers/compatibility */
         }
 
         .project-card .view-project-btn {
             margin-top: auto;
-            /* Pushes button to the bottom of the flex container */
-            /* Use margin auto with display block for centering within text-align: center or flex parent */
             display: block;
-            /* Make it a block element to use margin auto for centering */
             margin: 0 auto;
-            /* Center horizontally */
             background-image: linear-gradient(to right, #3b82f6, #7c3aed, #3b82f6);
             background-size: 200% auto;
             background-position: left center;
@@ -348,12 +339,9 @@
             border-radius: 9999px;
             transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
             align-items: center;
-            /* For content inside the button */
             justify-content: center;
-            /* For content inside the button */
             font-weight: 500;
             margin-bottom: 0.5rem;
-            /* Added margin to prevent touching the edge */
         }
 
         .project-card .view-project-btn:hover {
@@ -613,6 +601,29 @@
                 font-size: 0.8rem;
             }
         }
+
+        /* New CSS for the centered row of two projects */
+        .projects-grid-two-columns {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(280px, 1fr));
+            /* Two columns for larger screens */
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 600px;
+            /* Max width for two cards + gap */
+            margin: 0 auto;
+            /* Center the grid container */
+            justify-items: center;
+            /* Center items within their grid cells */
+        }
+
+        @media (max-width: 767px) {
+            .projects-grid-two-columns {
+                grid-template-columns: 1fr;
+                /* Stack on mobile */
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -748,7 +759,10 @@
                                     class="fas fa-play-circle ml-2"></i></button>
                         </div>
                     </div>
+                </div>
 
+                <!-- New container for the last two projects to center them -->
+                <div class="projects-grid-two-columns">
                     <!-- Video Project 4 -->
                     <div class="project-card animate-on-scroll" data-project='{
                   "id": "video4",
@@ -777,7 +791,7 @@
                   "id": "video5",
                   "title": "Educational Video: Environmental Preservation",
                   "image": "https://img.youtube.com/vi/lw9X3q-9H4Q/mqdefault.jpg",
-                  "description": "An educational video promoting environmental protection and presenting simple ways to do so.",
+                  "description": "An educational video promoting environmental protection.",
                   "technologies": ["Adobe Animate", "Voice Over"],
                   "video_id": "lw9X3q-9H4Q",
                   "type": "video"
@@ -787,15 +801,13 @@
                                 alt="Educational Video: Environmental Preservation"
                                 onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Video+Thumbnail';">
                             <h4 class="project-card-title-overlay'>Educational Video: Environmental Preservation</h4>
-              </div>
-              <div class=" project-card-content">
-                                <p>An educational video promoting environmental protection and presenting simple ways to
-                                    do so.</p>
-                                <button class="view-project-btn">Watch Video <i
-                                        class="fas fa-play-circle ml-2"></i></button>
+                        </div>
+                        <div class="project-card-content">
+                            <p>An educational video promoting environmental protection.</p>
+                            <button class="view-project-btn">Watch Video <i
+                                    class="fas fa-play-circle ml-2"></i></button>
                         </div>
                     </div>
-
                 </div>
             </section>
         </div>
