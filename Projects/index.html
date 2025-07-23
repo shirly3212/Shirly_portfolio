@@ -217,8 +217,7 @@
       height: auto;
       cursor: pointer;
       flex-shrink: 0;
-      max-width: 300px; /* Narrower max width for side project cards */
-      margin: 0 auto; /* Center individual cards when they are narrower than their container */
+      /* Removed max-width and margin: 0 auto; for desktop to allow grid to control sizing */
     }
 
     .project-card-item:hover {
@@ -446,8 +445,7 @@
       flex-grow: 1; /* Allow it to take available space */
       /* No padding-bottom here, rely on content for spacing */
       transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover effect */
-      max-width: 400px; /* Narrower max width for side project cards */
-      margin: 0 auto; /* Center individual cards when they are narrower than their container */
+      /* Removed max-width and margin: 0 auto; for desktop to allow grid to control sizing */
     }
 
     .featured-project:hover {
@@ -701,7 +699,7 @@
 
     .carousel-wrapper {
         display: flex;
-        overflow-x: scroll; /* Changed to scroll to allow smooth scrolling and position tracking */
+        overflow-x: hidden; /* Changed to hidden to remove scrollbar */
         scroll-behavior: smooth;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
@@ -709,8 +707,8 @@
         margin: 1rem 0;
         align-items: stretch;
         min-height: 400px; /* Increased min-height for carousel */
-        /* Added custom property for dynamic padding */
-        scroll-padding-inline: var(--carousel-padding, 0px);
+        /* Removed custom property for dynamic padding as it's now calculated directly in JS */
+        /* scroll-padding-inline: var(--carousel-padding, 0px); */
     }
 
     .carousel-item {
@@ -746,7 +744,7 @@
     .carousel-item img {
         width: 100%;
         height: 350px; /* Make image take full height of its container, increased size */
-        object-fit: contain; /* Ensure full image is visible */
+        object-fit: contain; /* Changed from cover to contain to show full image */
         border-radius: 0.75rem;
     }
 
@@ -1241,20 +1239,28 @@
                     </div>
                 </div>
             </div>
-            <div class="view-all-button-container">
-                <a href="https://shirly3212.github.io/Shirly_portfolio/Projects/graphic-all-projects.html" class="view-all-button">
-                    View All Graphic Projects <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
+            <!-- Moved the view-all-button-container outside the graphic-design-section -->
+            <!-- It will now be placed between graphic-design-section and graphic-carousel-section -->
+            <!-- The styling for centering will be applied directly to this div -->
         </div>
       </section>
+
+<!-- New section for the "View All Graphic Projects" button -->
+<section class="py-8 text-center">
+    <div class="view-all-button-container mx-auto">
+        <a href="https://shirly3212.github.io/Shirly_portfolio/Projects/graphic-all-projects.html" class="view-all-button">
+            View All Graphic Projects <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+    </div>
+</section>
+
 <!-- Graphic Design Gallery Carousel Section -->
 <section id="graphic-carousel-section" class="carousel-section container mx-auto relative">
   <h2 class="section-title">Gallery</h2>
-  <div class="carousel-wrapper flex gap-4 overflow-x-auto scroll-smooth" id="carouselWrapper">
-    <!-- Carousel items with reversed order -->
+  <div class="carousel-wrapper flex gap-4 overflow-x: hidden; scroll-smooth" id="carouselWrapper">
+    <!-- Carousel items with corrected order to start with "iranforce.." -->
 
-    <!-- Item 1 -->
+    <!-- Item 1 (Now the first one) -->
     <div class="carousel-item flex-shrink-0 w-80 cursor-pointer" data-image="../img/iranforce18061godelr.png">
       <img src="../img/iranforce18061godelr.png" alt="The power of Iran" class="w-full rounded shadow-md hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';" loading="lazy">
     </div>
@@ -1307,7 +1313,7 @@
   </div>
 
   <button class="carousel-nav-btn prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 rounded-full p-2 z-10" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-  <button class="carousel-nav-btn next absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 rounded-full p-2 z-10" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+  <button class="carousel-nav-btn next absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 rounded-full p-2 z-10" id="nextBtn"><i class="fas fa-chevron-right"></i></i class="fas fa-chevron-right"></i></button>
 </section>
 
 <!-- Image Modal (for carousel items) -->
@@ -1330,7 +1336,7 @@
       <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Instagram"><i class="fab fa-instagram text-2xl"></i></a></li>
       <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Twitter"><i class="fab fa-twitter text-2xl"></i></a></li>
       <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-200 transition duration-300" title="YouTube"><i class="fab fa-youtube text-2xl"></i></a></li>
-      <li><a href="https://www.linkedin.com/in/shirly-herscovici-a93766278/" class="text-white hover:text-gray-200 transition duration-300" title="LinkedIn"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
+      <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="LinkedIn"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
       <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="GitHub"><i class="fab fa-github ml-2"></i></a></li>
     </ul>
   </footer>
@@ -1779,7 +1785,7 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     let carouselItems = document.querySelectorAll('.carousel-item');
-    let currentIndex = 0;
+    let currentIndex = 0; // Initialize to 0 to start from the first item
     let isUpdating = false;
 
     // Function to calculate and apply dynamic padding for carousel ends
@@ -1790,7 +1796,8 @@
         const wrapperWidth = carouselWrapper.offsetWidth;
         // Calculate padding needed to center the first/last item
         const padding = (wrapperWidth - itemWidth) / 2;
-        carouselWrapper.style.setProperty('--carousel-padding', `${padding}px`);
+        // Removed setting CSS custom property as it's no longer used
+        // carouselWrapper.style.setProperty('--carousel-padding', `${padding}px`);
     }
 
     // Function to update the carousel's scroll position and fade effect
@@ -1801,67 +1808,37 @@
         
         isUpdating = true;
         
-        carouselItems = document.querySelectorAll('.carousel-item'); // Re-query items
+        carouselItems = document.querySelectorAll('.carousel-item'); // Re-query items to ensure up-to-date count
         if (carouselItems.length === 0) {
             isUpdating = false;
             return;
         }
 
-        // Calculate the target scroll position
-        let targetScrollLeft;
-        if (currentIndex === 0) {
-            targetScrollLeft = 0; // Scroll to the very beginning for the first item
-        } else if (currentIndex === carouselItems.length - 1) {
-            targetScrollLeft = carouselWrapper.scrollWidth - carouselWrapper.clientWidth; // Scroll to the very end for the last item
-        } else {
-            // For other items, calculate scroll to center
-            const itemOffsetLeft = carouselItems[currentIndex].offsetLeft;
-            const itemWidth = carouselItems[currentIndex].offsetWidth;
-            const wrapperWidth = carouselWrapper.offsetWidth;
-            targetScrollLeft = itemOffsetLeft - (wrapperWidth / 2) + (itemWidth / 2);
-        }
+        // Calculate the target scroll position to center the item
+        const itemOffsetLeft = carouselItems[currentIndex].offsetLeft;
+        const itemWidth = carouselItems[currentIndex].offsetWidth;
+        const wrapperWidth = carouselWrapper.offsetWidth;
+        const targetScrollLeft = itemOffsetLeft - (wrapperWidth / 2) + (itemWidth / 2);
 
         carouselWrapper.scrollTo({
             left: targetScrollLeft,
             behavior: 'smooth'
         });
 
-        // Update fade effect after a slight delay to allow scroll animation to start
+        // Update fade effect after a slight delay to allow scroll animation to complete
         setTimeout(() => { 
             updateFadeEffect(); 
             isUpdating = false; 
-        }, 300); // Reduced delay slightly
+        }, 300); 
     }
 
     // Function to update the fade effect based on the currently centered item
     function updateFadeEffect() {
-        const currentCenterItemIndex = findClosestItemToCenter(); // Find the truly centered item
+        // Since we are now directly controlling the scroll position to the currentIndex,
+        // the "centered" item is simply the currentIndex.
         carouselItems.forEach((item, index) => {
-            item.classList.toggle('carousel-item-faded', index !== currentCenterItemIndex);
+            item.classList.toggle('carousel-item-faded', index !== currentIndex);
         });
-    }
-
-    // Function to find the index of the carousel item closest to the center of the wrapper
-    function findClosestItemToCenter() {
-        if (!carouselWrapper || carouselItems.length === 0) return 0;
-
-        const scrollLeft = carouselWrapper.scrollLeft;
-        const containerWidth = carouselWrapper.offsetWidth;
-        const centralViewPoint = scrollLeft + (containerWidth / 2); // Center point of the visible container
-
-        let closestIndex = 0;
-        let minDistance = Infinity;
-
-        carouselItems.forEach((item, index) => {
-            const itemCenter = item.offsetLeft + (item.offsetWidth / 2); // Center of the item relative to its parent
-            const distance = Math.abs(itemCenter - centralViewPoint);
-
-            if (distance < minDistance) {
-                minDistance = distance;
-                closestIndex = index;
-            }
-        });
-        return closestIndex;
     }
 
     // Initialize the carousel on load
@@ -1870,7 +1847,7 @@
         if (carouselItems.length === 0) {
             return;
         }
-        applyCarouselPadding(); // Apply padding on initialization
+        applyCarouselPadding(); // Apply padding on initialization (still useful for initial layout)
         currentIndex = 0; // Start at the first item
         updateCarousel(); // Update to show the first item
     }
@@ -1897,26 +1874,8 @@
         });
     }
 
-    // Event listener for native scroll events (e.g., mouse wheel, scrollbar drag)
-    if (carouselWrapper) {
-        let scrollTimeout;
-        carouselWrapper.addEventListener('scroll', () => {
-            clearTimeout(scrollTimeout);
-            // Debounce the scroll event to only react after scrolling has paused
-            scrollTimeout = setTimeout(onCarouselScroll, 100);
-        });
-    }
-
-    // Function called after native scroll stops
-    function onCarouselScroll() {
-        if (isUpdating) return; // Prevent conflicts with button-triggered updates
-
-        const newIndex = findClosestItemToCenter();
-        if (newIndex !== currentIndex) {
-            currentIndex = newIndex;
-            updateFadeEffect();
-        }
-    }
+    // Removed the onCarouselScroll and findClosestItemToCenter functions
+    // as manual scrolling is disabled and they are no longer needed.
 
     // Touch/Swipe functionality for carousel
     let startX = 0;
@@ -1948,7 +1907,8 @@
     window.addEventListener('load', initCarousel);
     window.addEventListener('resize', () => {
         setTimeout(() => {
-            applyCarouselPadding(); // Recalculate padding on resize
+            // No longer need to apply carousel padding as it's calculated directly in updateCarousel
+            // applyCarouselPadding(); 
             initCarousel(); // Re-initialize carousel to ensure correct centering
         }, 100); // Debounce resize
     });
@@ -1993,7 +1953,7 @@
 
     // FIX: Corrected the event listener for closeZoomBtn
     if (closeZoomBtn) {
-        closeZoomBtn.addEventListener('click', closeZoomBtn);
+        closeZoomBtn.addEventListener('click', closeImageZoom); // Corrected to call closeImageZoom
     }
 
     imageZoomModal.addEventListener('click', (event) => {
@@ -2005,7 +1965,7 @@
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && imageZoomModal.classList.contains('visible')) {
-            closeZoomBtn.click(); // Simulate click on close button for consistency
+            closeImageZoom(); // Corrected to call closeImageZoom directly
         }
     });
 
