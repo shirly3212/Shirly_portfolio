@@ -313,24 +313,23 @@
             justify-content: space-between;
             align-items: center;
             /* Added to center children horizontally */
-            height: 220px; /* Set a fixed height for consistent content area height */
+            flex-grow: 1; /* Allow content to grow and fill space */
         }
 
         .project-card p {
             font-size: 0.9rem;
             color: #4a5568;
             line-height: 1.5;
-            margin-bottom: 0.5rem;
-            /* Removed flex-grow from here, now controlled by parent .project-card-content */
+            margin-bottom: 1rem; /* Added margin for spacing */
+            flex-grow: 1; /* Allow description to take up available space */
             text-align: center;
             overflow-wrap: break-word;
             word-break: break-word;
         }
 
         .project-card .view-project-btn {
-            margin-top: auto;
-            display: block;
-            margin: 0 auto;
+            margin-top: auto; /* Push button to the bottom */
+            display: inline-block; /* Changed from block */
             background-image: linear-gradient(to right, #3b82f6, #7c3aed, #3b82f6);
             background-size: 200% auto;
             background-position: left center;
@@ -338,12 +337,7 @@
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
             transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
-            align-items: center;
-            justify-content: center;
             font-weight: 500;
-            margin-bottom: 0.5rem;
-            /* Added fixed height to ensure uniformity */
-            height: 48px; /* This value is an estimation based on the padding, adjust if needed */
         }
 
         .project-card .view-project-btn:hover {
@@ -400,29 +394,11 @@
             color: #6b7280;
             cursor: pointer;
             transition: color 0.2s ease;
+            z-index: 10;
         }
 
         .modal-close-btn:hover {
             color: #3b82f6;
-        }
-
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border-left-color: #3b82f6;
-            animation: spin 1s ease infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
         }
 
         .video-container {
@@ -433,15 +409,17 @@
             height: 0;
             overflow: hidden;
             margin-bottom: 1rem;
+            background-color: #000;
+            border-radius: 0.5rem;
         }
 
-        .video-container iframe {
+        .video-container iframe,
+        .video-container video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 0.5rem;
         }
 
         /* Header & Nav specific styles for dropdown */
@@ -603,29 +581,6 @@
                 font-size: 0.8rem;
             }
         }
-
-        /* New CSS for the centered row of two projects */
-        .projects-grid-two-columns {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(280px, 1fr));
-            /* Two columns for larger screens */
-            gap: 2rem;
-            padding: 2rem;
-            max-width: 600px;
-            /* Max width for two cards + gap */
-            margin: 0 auto;
-            /* Center the grid container */
-            justify-items: center;
-            /* Center items within their grid cells */
-        }
-
-        @media (max-width: 767px) {
-            .projects-grid-two-columns {
-                grid-template-columns: 1fr;
-                /* Stack on mobile */
-                max-width: 100%;
-            }
-        }
     </style>
 </head>
 
@@ -694,14 +649,14 @@
                 <div class="projects-grid">
                     <!-- Video Project 1 -->
                     <div class="project-card animate-on-scroll" data-project='{
-                  "id": "video1",
-                  "title": "Promotional Video: Special Events",
-                  "image": "https://img.youtube.com/vi/fBhoF49Xwsg/mqdefault.jpg",
-                  "description": "A promotional video created for an event production company, showcasing unforgettable moments.",
-                  "technologies": ["Adobe Premiere Pro", "After Effects"],
-                  "video_id": "fBhoF49Xwsg",
-                  "type": "video"
-              }'>
+                        "id": "video1",
+                        "title": "Promotional Video: Special Events",
+                        "image": "https://img.youtube.com/vi/fBhoF49Xwsg/mqdefault.jpg",
+                        "description": "A promotional video created for an event production company, showcasing unforgettable moments.",
+                        "technologies": ["Adobe Premiere Pro", "After Effects"],
+                        "video_id": "fBhoF49Xwsg",
+                        "type": "video"
+                    }'>
                         <div class="project-card-image-wrapper">
                             <img src="https://img.youtube.com/vi/fBhoF49Xwsg/mqdefault.jpg"
                                 alt="Promotional Video: Special Events"
@@ -709,23 +664,21 @@
                             <h4 class="project-card-title-overlay">Promotional Video: Special Events</h4>
                         </div>
                         <div class="project-card-content">
-                            <p>A promotional video created for an event production company, showcasing unforgettable
-                                moments.</p>
-                            <button class="view-project-btn">Watch Video <i
-                                    class="fas fa-play-circle ml-2"></i></button>
+                            <p>A promotional video created for an event production company, showcasing unforgettable moments.</p>
+                            <button class="view-project-btn">Watch Video <i class="fas fa-play-circle ml-2"></i></button>
                         </div>
                     </div>
 
                     <!-- Video Project 2 -->
                     <div class="project-card animate-on-scroll" data-project='{
-                  "id": "video2",
-                  "title": "Product Animation: The Future of Technology",
-                  "image": "https://img.youtube.com/vi/ta4cFc-fKDk/mqdefault.jpg",
-                  "description": "A short animation presenting an innovative tech product and its benefits.",
-                  "technologies": ["Adobe After Effects", "Cinema 4D"],
-                  "video_id": "ta4cFc-fKDk",
-                  "type": "video"
-              }'>
+                        "id": "video2",
+                        "title": "Product Animation: The Future of Technology",
+                        "image": "https://img.youtube.com/vi/ta4cFc-fKDk/mqdefault.jpg",
+                        "description": "A short animation presenting an innovative tech product and its benefits.",
+                        "technologies": ["Adobe After Effects", "Cinema 4D"],
+                        "video_id": "ta4cFc-fKDk",
+                        "type": "video"
+                    }'>
                         <div class="project-card-image-wrapper">
                             <img src="https://img.youtube.com/vi/ta4cFc-fKDk/mqdefault.jpg"
                                 alt="Product Animation: The Future of Technology"
@@ -734,21 +687,20 @@
                         </div>
                         <div class="project-card-content">
                             <p>A short animation presenting an innovative tech product and its benefits.</p>
-                            <button class="view-project-btn">Watch Video <i
-                                    class="fas fa-play-circle ml-2"></i></button>
+                            <button class="view-project-btn">Watch Video <i class="fas fa-play-circle ml-2"></i></button>
                         </div>
                     </div>
 
                     <!-- Video Project 3 -->
                     <div class="project-card animate-on-scroll" data-project='{
-                  "id": "video3",
-                  "title": "Music Video: Urban Landscape",
-                  "image": "https://img.youtube.com/vi/CWz7jLhbisM/mqdefault.jpg",
-                  "description": "A music video with urban cinematography and stunning visual processing.",
-                  "technologies": ["DaVinci Resolve", "Color Grading"],
-                  "video_id": "CWz7jLhbisM",
-                  "type": "video"
-              }'>
+                        "id": "video3",
+                        "title": "Music Video: Urban Landscape",
+                        "image": "https://img.youtube.com/vi/CWz7jLhbisM/mqdefault.jpg",
+                        "description": "A music video with urban cinematography and stunning visual processing.",
+                        "technologies": ["DaVinci Resolve", "Color Grading"],
+                        "video_id": "CWz7jLhbisM",
+                        "type": "video"
+                    }'>
                         <div class="project-card-image-wrapper">
                             <img src="https://img.youtube.com/vi/CWz7jLhbisM/mqdefault.jpg"
                                 alt="Music Video: Urban Landscape"
@@ -757,24 +709,19 @@
                         </div>
                         <div class="project-card-content">
                             <p>A music video with urban cinematography and stunning visual processing.</p>
-                            <button class="view-project-btn">Watch Video <i
-                                    class="fas fa-play-circle ml-2"></i></button>
+                            <button class="view-project-btn">Watch Video <i class="fas fa-play-circle ml-2"></i></button>
                         </div>
                     </div>
-                </div>
-
-                <!-- New container for the last two projects to center them -->
-                <div class="projects-grid-two-columns">
                     <!-- Video Project 4 -->
                     <div class="project-card animate-on-scroll" data-project='{
-                  "id": "video4",
-                  "title": "Short Film: Journey Through Time",
-                  "image": "https://img.youtube.com/vi/elBRaTEolz4/mqdefault.jpg",
-                  "description": "A dramatic short film following a character on a mysterious journey through time.",
-                  "technologies": ["Final Cut Pro", "Screenwriting"],
-                  "video_id": "elBRaTEolz4",
-                  "type": "video"
-              }'>
+                        "id": "video4",
+                        "title": "Short Film: Journey Through Time",
+                        "image": "https://img.youtube.com/vi/elBRaTEolz4/mqdefault.jpg",
+                        "description": "A dramatic short film following a character on a mysterious journey through time.",
+                        "technologies": ["Final Cut Pro", "Screenwriting"],
+                        "video_id": "elBRaTEolz4",
+                        "type": "video"
+                    }'>
                         <div class="project-card-image-wrapper">
                             <img src="https://img.youtube.com/vi/elBRaTEolz4/mqdefault.jpg"
                                 alt="Short Film: Journey Through Time"
@@ -783,21 +730,20 @@
                         </div>
                         <div class="project-card-content">
                             <p>A dramatic short film following a character on a mysterious journey through time.</p>
-                            <button class="view-project-btn">Watch Video <i
-                                    class="fas fa-play-circle ml-2"></i></button>
+                            <button class="view-project-btn">Watch Video <i class="fas fa-play-circle ml-2"></i></button>
                         </div>
                     </div>
 
                     <!-- Video Project 5 -->
                     <div class="project-card animate-on-scroll" data-project='{
-                  "id": "video5",
-                  "title": "Educational Video: Environmental Preservation",
-                  "image": "https://img.youtube.com/vi/lw9X3q-9H4Q/mqdefault.jpg",
-                  "description": "An educational video promoting environmental protection.",
-                  "technologies": ["Adobe Animate", "Voice Over"],
-                  "video_id": "lw9X3q-9H4Q",
-                  "type": "video"
-              }'>
+                        "id": "video5",
+                        "title": "Educational Video: Environmental Preservation",
+                        "image": "https://img.youtube.com/vi/lw9X3q-9H4Q/mqdefault.jpg",
+                        "description": "An educational video promoting environmental protection.",
+                        "technologies": ["Adobe Animate", "Voice Over"],
+                        "video_id": "lw9X3q-9H4Q",
+                        "type": "video"
+                    }'>
                         <div class="project-card-image-wrapper">
                             <img src="https://img.youtube.com/vi/lw9X3q-9H4Q/mqdefault.jpg"
                                 alt="Educational Video: Environmental Preservation"
@@ -806,8 +752,29 @@
                         </div>
                         <div class="project-card-content">
                             <p>An educational video promoting environmental protection.</p>
-                            <button class="view-project-btn">Watch Video <i
-                                    class="fas fa-play-circle ml-2"></i></button>
+                            <button class="view-project-btn">Watch Video <i class="fas fa-play-circle ml-2"></i></button>
+                        </div>
+                    </div>
+                    
+                    <!-- NEW Video Project 6 -->
+                    <div class="project-card animate-on-scroll" data-project='{
+                        "id": "video6",
+                        "title": "How to Pre-play",
+                        "image": "https://placehold.co/800x600/3b82f6/ffffff?text=Video+Tutorial",
+                        "description": "A step-by-step tutorial video demonstrating the pre-play process for video projects.",
+                        "technologies": ["Screen Recording", "Video Editing", "Voice Over"],
+                        "video_url": "https://shirly3212.github.io/Shirly_portfolio/videos/HOW_TO_PREPLAY.mp4",
+                        "type": "video"
+                      }'>
+                        <div class="project-card-image-wrapper">
+                            <img src="https://placehold.co/800x600/3b82f6/ffffff?text=Video+Tutorial"
+                                alt="How to Pre-play Tutorial"
+                                onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Video+Thumbnail';">
+                            <h4 class="project-card-title-overlay">How to Pre-play</h4>
+                        </div>
+                        <div class="project-card-content">
+                            <p>A step-by-step tutorial video demonstrating the pre-play process for video projects.</p>
+                            <button class="view-project-btn">Watch Video <i class="fas fa-play-circle ml-2"></i></button>
                         </div>
                     </div>
                 </div>
@@ -839,19 +806,21 @@
         <div class="modal-content">
             <button class="modal-close-btn" id="closeModalBtn">&times;</button>
             <div id="modalVideoEmbed" class="video-container">
-                <!-- YouTube iframe will be loaded here -->
+                <!-- YouTube iframe or HTML5 video will be loaded here -->
             </div>
-            <h3 id="modalProjectTitle" class="text-3xl font-bold text-gray-800 mb-4"></h3>
-            <p id="modalProjectDescription" class="text-gray-700 mb-4"></p>
-            <div class="flex flex-wrap gap-2 mb-4">
-                <span class="text-gray-600 font-semibold">Technologies Used:</span>
-                <div id="modalTechnologies" class="flex flex-wrap gap-2"></div>
-            </div>
-            <div class="flex justify-center gap-4 mt-6">
-                <a id="modalWatchVideoBtn" href="#" target="_blank" rel="noopener noreferrer"
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
-                    Watch on YouTube <i class="fab fa-youtube ml-2"></i>
-                </a>
+            <div class="p-6">
+                <h3 id="modalProjectTitle" class="text-3xl font-bold text-gray-800 mb-4"></h3>
+                <p id="modalProjectDescription" class="text-gray-700 mb-4"></p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="text-gray-600 font-semibold">Technologies Used:</span>
+                    <div id="modalTechnologies" class="flex flex-wrap gap-2"></div>
+                </div>
+                <div class="flex justify-center gap-4 mt-6">
+                    <a id="modalWatchVideoBtn" href="#" target="_blank" rel="noopener noreferrer"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
+                        Watch on YouTube <i class="fab fa-youtube ml-2"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -944,7 +913,7 @@
             // Clear previous video embed
             modalVideoEmbed.innerHTML = '';
 
-            // Embed YouTube video
+            // Embed YouTube video or local video
             if (projectData.video_id) {
                 const iframe = document.createElement('iframe');
                 iframe.setAttribute('src', `https://www.youtube.com/embed/${projectData.video_id}?autoplay=1&rel=0`);
@@ -953,8 +922,16 @@
                 iframe.setAttribute('allowfullscreen', '');
                 modalVideoEmbed.appendChild(iframe);
                 modalVideoEmbed.classList.remove('hidden');
+            } else if (projectData.video_url) {
+                const video = document.createElement('video');
+                video.setAttribute('src', projectData.video_url);
+                video.setAttribute('controls', '');
+                video.setAttribute('autoplay', '');
+                video.setAttribute('playsinline', '');
+                modalVideoEmbed.appendChild(video);
+                modalVideoEmbed.classList.remove('hidden');
             } else {
-                modalVideoEmbed.classList.add('hidden'); // Hide video embed if no ID
+                modalVideoEmbed.classList.add('hidden'); // Hide video embed if no ID or URL
             }
 
             modalTechnologies.innerHTML = '';
@@ -965,9 +942,9 @@
                     span.classList.add('bg-blue-100', 'text-blue-800', 'text-xs', 'font-medium', 'px-2.5', 'py-0.5', 'rounded-full');
                     modalTechnologies.appendChild(span);
                 });
-                modalTechnologies.parentElement.classList.remove('hidden');
+                modalTechnologies.parentElement.parentElement.classList.remove('hidden');
             } else {
-                modalTechnologies.parentElement.classList.add('hidden'); // Hide if no technologies
+                modalTechnologies.parentElement.parentElement.classList.add('hidden'); // Hide if no technologies
             }
 
             if (projectData.video_id) {
@@ -992,10 +969,6 @@
         // Event listeners for opening modal (clicking anywhere on card)
         document.querySelectorAll('.project-card').forEach(item => {
             item.addEventListener('click', (event) => {
-                // Prevent opening modal if clicking directly on a button *inside* the card that has its own action
-                if (event.target.closest('.view-project-btn')) {
-                    return; // Let the button's own event handler take over
-                }
                 let projectData = null;
                 const projectDataString = item.dataset.project;
 
@@ -1012,27 +985,6 @@
                 }
                 if (projectData) {
                     openModal(projectData);
-                }
-            });
-        });
-
-        // Handle clicks on "Watch Video" buttons *inside* the project cards
-        document.querySelectorAll('.view-project-btn').forEach(button => {
-            button.addEventListener('click', (event) => {
-                event.stopPropagation(); // Stop click from propagating to parent card
-                const card = event.target.closest('.project-card');
-                if (card) {
-                    const projectDataString = card.dataset.project;
-                    if (!projectDataString || projectDataString === "undefined") {
-                        console.error("Invalid or undefined project data string for this card:", projectDataString);
-                        return;
-                    }
-                    try {
-                        const projectData = JSON.parse(projectDataString);
-                        openModal(projectData);
-                    } catch (e) {
-                        console.error("Error parsing JSON for project data:", projectDataString, e);
-                    }
                 }
             });
         });
@@ -1088,51 +1040,10 @@
                         event.stopPropagation();
                         designSubMenu.classList.toggle('active');
                         designMenuToggle.querySelector('i').classList.toggle('rotate-180');
-                    } else {
-                        // On desktop, allow default navigation for the main Design link,
-                        // unless the dropdown is currently open (in which case, close it).
-                        // If dropdown is open, prevent default to just close it without navigating.
-                        if (designSubMenu.classList.contains('show-dropdown')) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                            designSubMenu.classList.remove('show-dropdown');
-                            designMenuToggle.querySelector('i').classList.remove('rotate-180');
-                        }
-                        // If dropdown is not open, default navigation happens via href (no preventDefault).
                     }
-                });
-
-                // Handle clicks outside the dropdown to close it on desktop
-                document.addEventListener('click', (event) => {
-                    if (window.innerWidth >= 768) {
-                        const isClickInsideDesignToggle = designMenuToggle.contains(event.target);
-                        const isClickInsideDesignSubMenu = designSubMenu.contains(event.target);
-
-                        if (designSubMenu.classList.contains('show-dropdown') && !isClickInsideDesignToggle && !isClickInsideDesignSubMenu) {
-                            designSubMenu.classList.remove('show-dropdown');
-                            designMenuToggle.querySelector('i').classList.remove('rotate-180');
-                        }
-                    }
-                });
-
-                mainNavUl.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', (event) => {
-                        // Close menus if it's a sub-menu item or a non-group main nav link.
-                        // For the main 'Design' link on desktop, allow its navigation
-                        // unless the click event was already handled by the designMenuToggle logic
-                        // (e.g., to close the dropdown).
-                        if (link.closest('.group ul') || (!link.closest('.group') && link.href && link.href !== '#')) {
-                            closeAllMenus();
-                        }
-                    });
                 });
             }
 
-            window.addEventListener('resize', () => {
-                if (window.innerWidth >= 768) {
-                    closeAllMenus();
-                }
-            });
         });
     </script>
 </body>
