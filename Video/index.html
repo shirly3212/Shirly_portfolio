@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -13,17 +14,12 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts for 'Inter' -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Particles.js CDN (for background effects) -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Custom font for a modern look - Inter is a good choice */
         html {
             height: 100%;
             scroll-behavior: smooth;
-            /* Smooth scrolling for anchor links */
             scroll-padding-top: 5rem;
-            /* Added for fixed header compensation */
         }
 
         body {
@@ -37,10 +33,8 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            /* Ensure body takes full viewport height */
         }
 
-        /* Particles.js canvas styling */
         #particles-js {
             position: fixed;
             width: 100%;
@@ -50,18 +44,11 @@
             z-index: -2;
         }
 
-        /* Keyframes for background gradient animation */
         @keyframes gradientBackground {
-            0% {
-                background-position: 0% 0%;
-            }
-
-            100% {
-                background-position: 100% 100%;
-            }
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
         }
 
-        /* Abstract background shapes/particles */
         body::before,
         body::after {
             content: '';
@@ -70,7 +57,6 @@
             border-radius: 50%;
             opacity: 0.3;
             filter: blur(120px);
-            transition: all 0.5s ease-in-out;
         }
 
         body::before {
@@ -92,961 +78,299 @@
         }
 
         @keyframes floatShape {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-
-            25% {
-                transform: translate(40px, -50px) rotate(75deg);
-            }
-
-            50% {
-                transform: translate(-20px, 80px) rotate(150deg);
-            }
-
-            75% {
-                transform: translate(-60px, 30px) rotate(225deg);
-            }
-
-            100% {
-                transform: translate(0, 0) rotate(300deg);
-            }
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-20px, 80px) rotate(150deg); }
+            100% { transform: translate(0, 0) rotate(300deg); }
         }
-
-        /* Custom Footer Gradient - replicating original CSS */
-        .custom-footer-gradient {
-            background: linear-gradient(to right, #ff6600, #ff007b);
-        }
-
-        /* Frosted glass effect for header */
-        .header-frosted {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        /* Main Title for All Video Projects Page */
-        .video-projects-main-title-section {
-            margin-top: 5rem;
-            /* Push down below header */
-            padding: 4rem 1rem 2rem 1rem;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 200px;
-        }
-
+        
         .video-projects-main-title {
-            font-size: 4.5rem;
-            /* Increased font size */
-            font-weight: 800;
-            /* Extra bold */
-            text-align: center;
-            background: linear-gradient(to right, #2563eb, #7c3aed, #ef4444);
-            /* Blue-Purple-Red gradient */
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            /* Fallback */
             animation: fadeInSlideUp 1.5s ease-out forwards;
-            /* NEW ANIMATION */
-            display: inline-block;
-            /* Essential for background-clip */
-            line-height: 1.1;
-            letter-spacing: -2px;
-            /* Slightly tighter letter spacing */
-            position: relative;
-            padding: 0 1rem;
-            /* Reduced padding further to ensure text doesn't clip */
-            white-space: nowrap;
-            /* Keep text on one line if possible, will break on small screens with media query */
-            z-index: 1;
-            /* Ensure text is above the background effect */
         }
-
-        /* NEW ANIMATION FOR MAIN TITLE */
         @keyframes fadeInSlideUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px) scale(0.95);
-                filter: blur(5px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+            0% { opacity: 0; transform: translateY(30px) scale(0.95); filter: blur(5px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
         }
 
-        /* NEW: Animated background element behind the main title */
         .title-bg-effect {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 500px;
-            /* Adjusted width to be less wide */
-            height: 700px;
-            /* Increased height for elongated look */
-            background: radial-gradient(circle, rgba(124, 58, 237, 0.5) 0%, rgba(37, 99, 235, 0.5) 100%);
-            /* Purple to blue gradient, slightly more opaque */
-            border-radius: 50%;
-            filter: blur(180px);
-            /* Adjusted blur */
-            transform: translate(-50%, -50%) scale(0.8);
-            /* Center and initial scale */
-            animation: pulseElongated 20s ease-in-out infinite alternate;
-            /* NEW ANIMATION */
-            z-index: 0;
-            /* Behind the text, above particles */
+             animation: pulseElongated 20s ease-in-out infinite alternate;
         }
-
-        /* NEW ANIMATION FOR BACKGROUND EFFECT */
         @keyframes pulseElongated {
-            0% {
-                transform: translate(-50%, -50%) scale(0.8, 1.0);
-                opacity: 0.7;
-            }
-
-            50% {
-                transform: translate(-50%, -50%) scale(0.9, 1.1);
-                opacity: 0.9;
-            }
-
-            100% {
-                transform: translate(-50%, -50%) scale(0.8, 1.0);
-                opacity: 0.7;
-            }
+            0% { transform: translate(-50%, -50%) scale(0.8, 1.0); opacity: 0.7; }
+            50% { transform: translate(-50%, -50%) scale(0.9, 1.1); opacity: 0.9; }
+            100% { transform: translate(-50%, -50%) scale(0.8, 1.0); opacity: 0.7; }
         }
-
-        /* --- General Section Title Styles (for both graphic and web) --- */
-        .section-title {
-            font-size: 3rem;
-            /* Increased font size */
-            font-weight: 700;
-            background: linear-gradient(to right, #2563eb, #7c3aed);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            margin-bottom: 2rem;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 1s ease-out;
-        }
-
-        .section-title.is-visible {
-            opacity: 1;
-        }
-
-        /* Project Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            /* Responsive grid columns */
-            gap: 2rem;
-            /* Increased gap between project cards */
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Project Card Styling */
+        
         .project-card {
-            background-color: #ffffff;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: auto;
-            /* Allow card height to adjust if content requires it */
-            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2), 0 0 25px 5px rgba(37, 99, 235, 0.7);
+        .project-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        .project-card-image-wrapper {
-            position: relative;
-            overflow: hidden;
-            border-radius: 0.75rem 0.75rem 0 0;
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 220px;
-            /* Fixed height for consistency */
-            object-fit: cover;
-            border-radius: 0.75rem 0.75rem 0 0;
-        }
-
-        .project-card-title-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-            color: white;
-            padding: 1.5rem 1rem 0.75rem 1rem;
-            text-align: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            line-height: 1.3;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .project-card-content {
-            padding: 1rem;
-            text-align: center;
-            /* Center text within the content area */
-            display: flex;
-            /* Changed to flex */
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            /* Added to center children horizontally */
-            flex-grow: 1; /* Allow content to grow and fill space */
-        }
-
-        .project-card p {
-            font-size: 0.9rem;
-            color: #4a5568;
-            line-height: 1.5;
-            margin-bottom: 1rem; /* Added margin for spacing */
-            flex-grow: 1; /* Allow description to take up available space */
-            text-align: center;
-            overflow-wrap: break-word;
-            word-break: break-word;
-        }
-
-        .project-card .view-project-btn {
-            margin-top: auto; /* Push button to the bottom */
-            display: inline-block; /* Changed from block */
-            background-image: linear-gradient(to right, #3b82f6, #7c3aed, #3b82f6);
-            background-size: 200% auto;
-            background-position: left center;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px;
-            transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
-            font-weight: 500;
-        }
-
-        .project-card .view-project-btn:hover {
-            background-position: right center;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3), 0 0 15px 3px rgba(37, 99, 235, 0.7);
-        }
-
-        /* Project Details Modal specific styling */
+        
         .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
             display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            padding: 1rem;
         }
-
         .modal-overlay.is-visible {
             display: flex;
         }
-
-        .modal-content {
-            background-color: #ffffff;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            max-width: 700px;
-            /* Wider modal for video */
-            width: 90%;
-            position: relative;
-            text-align: left;
-            transform: scale(0.9);
-            opacity: 0;
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        
+        @keyframes scaleIn {
+          from { transform: scale(0.9); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
         }
-
-        .modal-overlay.is-visible .modal-content {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        .modal-close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: #6b7280;
-            cursor: pointer;
-            transition: color 0.2s ease;
-            z-index: 10;
-        }
-
-        .modal-close-btn:hover {
-            color: #3b82f6;
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            margin-bottom: 1rem;
-            background-color: #000;
-            border-radius: 0.5rem;
-        }
-
-        .video-container iframe,
-        .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Header & Nav specific styles for dropdown */
-        nav ul li.group {
-            position: relative;
-        }
-
-        nav ul li.group ul {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: white;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 0.5rem;
-            min-width: 100%;
-            z-index: 10;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-            pointer-events: none;
-            display: block;
-        }
-
-        nav ul li.group ul.show-dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
-        nav ul li.group:hover ul {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
-        /* Responsive adjustments for header and general sections */
-        @media (max-width: 767px) {
-
-            /* Header, nav, and main padding adjustments */
-            header .container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                width: 100%;
-                position: relative;
-            }
-
-            #main-nav-menu {
-                display: none;
-                /* Controlled by JS active class */
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: rgba(241, 245, 249, 0.95);
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                z-index: 100;
-                padding: 1rem 0;
-                border-radius: 0 0 0.5rem 0.5rem;
-            }
-
-            #main-nav-menu.active {
-                display: flex;
-                /* Show main menu on mobile */
-            }
-
-            #main-nav-menu li {
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid #e2e8f0;
-            }
-
-            #main-nav-menu li:last-child {
-                border-bottom: none;
-            }
-
-            #main-nav-menu li a {
-                display: block;
-                padding: 0.75rem 1rem;
-                color: #4a5568;
-                font-weight: 500;
-            }
-
-            #main-nav-menu li a.bg-blue-600 {
-                color: white;
-                border-radius: 0;
-            }
-
-            #mobile-menu-toggle {
-                display: block;
-                order: 2;
-            }
-
-            main {
-                padding-top: 8rem;
-                /* Higher padding for mobile to clear header */
-            }
-
-            /* Main Title on Mobile */
-            .video-projects-main-title-section {
-                margin-top: 6rem;
-                min-height: 150px;
-            }
-
-            .video-projects-main-title {
-                font-size: 2.8rem;
-                letter-spacing: -1px;
-                line-height: 1.2;
-                padding: 0 1rem;
-                white-space: normal;
-            }
-
-            .title-bg-effect {
-                width: 250px;
-                height: 350px;
-                filter: blur(120px);
-                transform: translate(-50%, -50%) scale(0.9, 1.3);
-            }
-
-            @keyframes pulseElongated {
-                0% {
-                    transform: translate(-50%, -50%) scale(0.9, 1.3);
-                    opacity: 0.7;
-                }
-
-                50% {
-                    transform: translate(-50%, -50%) scale(1.0, 1.4);
-                    opacity: 0.9;
-                }
-
-                100% {
-                    transform: translate(-50%, -50%) scale(0.9, 1.3);
-                    opacity: 0.7;
-                }
-            }
-
-            /* Project Grid on Mobile */
-            .projects-grid {
-                grid-template-columns: 1fr;
-                /* Stack on mobile */
-                gap: 1.5rem;
-                padding: 1rem;
-            }
-
-            .project-card img {
-                height: 180px;
-            }
-
-            .project-card-title-overlay {
-                font-size: 1.1rem;
-                padding: 1rem 0.5rem 0.5rem 0.5rem;
-            }
-
-            .project-card p {
-                font-size: 0.8rem;
-            }
+        .animate-scale-in {
+            animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
     </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
 </head>
 
 <body>
-    <!-- Particles.js Canvas -->
     <div id="particles-js"></div>
 
-    <!-- Header -->
-    <header class="header-frosted shadow-md fixed w-full z-50">
+    <header class="fixed w-full z-50 bg-white/80 backdrop-blur-md shadow-md">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
-            <div class="logo flex items-center">
+            <div class="flex items-center">
                 <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
                 <h1 class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition duration-300 rounded-lg p-2">
-                    Shirly Herscovici</h1>
+                    Shirly Herscovici
+                </h1>
             </div>
-            <!-- Hamburger menu button for mobile -->
-            <button id="mobile-menu-toggle"
-                class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600">
+            <button id="mobile-menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
-            <ul id="main-nav-menu"
-                class="hidden md:flex flex-col md:flex-row space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
-                <!-- Home link updated -->
-                <li><a href="https://shirly3212.github.io/Shirly_portfolio/index.html"
-                        class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Home</a>
-                </li>
-
-                <!-- Design with Sub-menu -->
-                <li class="relative group">
-                    <!-- Updated href for the main "Design" link -->
-                    <a href="https://shirly3212.github.io/Shirly_portfolio/Projects/index.html"
-                        class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md"
-                        id="design-menu-toggle">Design <i
-                            class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform"></i></a>
-                    <ul class="absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10">
-                        <!-- Updated href for the "Graphic Projects" link within the dropdown -->
-                        <li><a href="https://shirly3212.github.io/Shirly_portfolio/Projects/graphic-all-projects.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Graphic Projects</a>
-                        </li>
+            <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 w-full md:w-auto items-center">
+                <li><a href="https://shirly3212.github.io/Shirly_portfolio/index.html" class="block text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Home</a></li>
+                <li class="relative group w-full md:w-auto">
+                    <a href="https://shirly3212.github.io/Shirly_portfolio/Projects/index.html" id="design-menu-toggle" class="flex justify-center items-center text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">
+                        Design <i class="fas fa-chevron-down ml-1 text-sm transition-transform group-hover:rotate-180"></i>
+                    </a>
+                    <ul id="design-submenu" class="hidden md:hidden md:group-hover:block md:absolute bg-white shadow-lg rounded-md mt-2 w-full md:w-48 z-10">
+                        <li><a href="https://shirly3212.github.io/Shirly_portfolio/Projects/graphic-all-projects.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Graphic Projects</a></li>
                     </ul>
                 </li>
-                <li><a href="https://shirly3212.github.io/Shirly_portfolio/Video/index.html"
-                        class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md bg-blue-600 text-white">Video</a>
-                </li>
-                <li><a href="https://shirly3212.github.io/Shirly_portfolio/ai/index.html"
-                        class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a>
-                </li>
-                <li><a href="https://shirly3212.github.io/Shirly_portfolio/index.html#contact-section"
-                        class="text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a>
-                </li>
+                <li><a href="https://shirly3212.github.io/Shirly_portfolio/Video/index.html" class="block text-lg bg-blue-600 text-white transition duration-300 py-2 px-3 rounded-md">Video</a></li>
+                <li><a href="https://shirly3212.github.io/Shirly_portfolio/ai/index.html" class="block text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">AI</a></li>
+                <li><a href="https://shirly3212.github.io/Shirly_portfolio/index.html#contact-section" class="block text-lg text-gray-700 hover:text-blue-600 transition duration-300 py-2 px-3 rounded-md">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="pt-20 pb-12 flex-grow">
-        <!-- Main Title for Video Projects Page -->
-        <section class="video-projects-main-title-section text-center">
-            <h1 class="video-projects-main-title">
+        <section class="mt-20 py-16 px-4 overflow-hidden relative flex justify-center items-center min-h-[200px] text-center">
+            <h1 class="video-projects-main-title text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-500 to-red-500 bg-clip-text text-transparent inline-block leading-tight tracking-tighter relative z-10 p-4 whitespace-nowrap">
                 All Video Projects
             </h1>
-            <div class="title-bg-effect"></div> <!-- Animated background graphic -->
+            <div class="title-bg-effect absolute top-1/2 left-1/2 w-[250px] h-[350px] md:w-[500px] md:h-[700px] bg-gradient-radial from-purple-500/50 to-blue-600/50 rounded-full blur-[120px] md:blur-[180px] -translate-x-1/2 -translate-y-1/2 scale-y-130 md:scale-100 z-0"></div>
         </section>
 
-        <div class="page-content container mx-auto px-4">
+        <div class="container mx-auto px-4">
             <section id="video-projects-grid-section" class="py-12">
-                <div class="projects-grid">
-                    <!-- Video Project 1 -->
-                    <div class="project-card animate-on-scroll" data-project='{
-                        "id": "video1",
-                        "title": "Promotional Video: Special Events",
-                        "image": "https://img.youtube.com/vi/fBhoF49Xwsg/mqdefault.jpg",
-                        "description": "A promotional video created for an event production company, showcasing unforgettable moments.",
-                        "technologies": ["Adobe Premiere Pro", "After Effects"],
-                        "video_id": "fBhoF49Xwsg",
-                        "type": "video"
-                    }'>
-                        <div class="project-card-image-wrapper">
-                            <img src="https://img.youtube.com/vi/fBhoF49Xwsg/mqdefault.jpg"
-                                alt="Promotional Video: Special Events"
-                                onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Video+Thumbnail';">
-                            <h4 class="project-card-title-overlay">Promotional Video: Special Events</h4>
-                        </div>
-                        <div class="project-card-content">
-                            <p>A promotional video created for an event production company, showcasing unforgettable moments.</p>
-                            <button class="view-project-btn">Watch Video <i class="fas fa-play-circle ml-2"></i></button>
-                        </div>
-                    </div>
-
-                    <!-- Video Project 2 -->
-                    <div class="project-card animate-on-scroll" data-project='{
-                        "id": "video2",
-                        "title": "Product Animation: The Future of Technology",
-                        "image": "https://img.youtube.com/vi/ta4cFc-fKDk/mqdefault.jpg",
-                        "description": "A short animation presenting an innovative tech product and its benefits.",
-                        "technologies": ["Adobe After Effects", "Cinema 4D"],
-                        "video_id": "ta4cFc-fKDk",
-                        "type": "video"
-                    }'>
-                        <div class="project-card-image-wrapper">
-                            <img src="https://img.youtube.com/vi/ta4cFc-fKDk/mqdefault.jpg"
-                                alt="Product Animation: The Future of Technology"
-                                onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Video+Thumbnail';">
-                            <h4 class="project-card-title-overlay">Product Animation: The Future of Technology</h4>
-                        </div>
-                        <div class="project-card-content">
-                            <p>A short animation presenting an innovative tech product and its benefits.</p>
-                            <button class="view-project-btn">Watch Video <i class="fas fa-play-circle ml-2"></i></button>
-                        </div>
-                    </div>
-
-                    <!-- Video Project 3 -->
-                    <div class="project-card animate-on-scroll" data-project='{
-                        "id": "video3",
-                        "title": "Music Video: Urban Landscape",
-                        "image": "https://img.youtube.com/vi/CWz7jLhbisM/mqdefault.jpg",
-                        "description": "A music video with urban cinematography and stunning visual processing.",
-                        "technologies": ["DaVinci Resolve", "Color Grading"],
-                        "video_id": "CWz7jLhbisM",
-                        "type": "video"
-                    }'>
-                        <div class="project-card-image-wrapper">
-                            <img src="https://img.youtube.com/vi/CWz7jLhbisM/mqdefault.jpg"
-                                alt="Music Video: Urban Landscape"
-                                onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Video+Thumbnail';">
-                            <h4 class="project-card-title-overlay">Music Video: Urban Landscape</h4>
-                        </div>
-                        <div class="project-card-content">
-                            <p>A music video with urban cinematography and stunning visual processing.</p>
-                            <button class="view-project-btn">Watch Video <i class="fas fa-play-circle ml-2"></i></button>
-                        </div>
-                    </div>
-                    <!-- Video Project 4 -->
-                    <div class="project-card animate-on-scroll" data-project='{
-                        "id": "video4",
-                        "title": "Short Film: Journey Through Time",
-                        "image": "https://img.youtube.com/vi/elBRaTEolz4/mqdefault.jpg",
-                        "description": "A dramatic short film following a character on a mysterious journey through time.",
-                        "technologies": ["Final Cut Pro", "Screenwriting"],
-                        "video_id": "elBRaTEolz4",
-                        "type": "video"
-                    }'>
-                        <div class="project-card-image-wrapper">
-                            <img src="https://img.youtube.com/vi/elBRaTEolz4/mqdefault.jpg"
-                                alt="Short Film: Journey Through Time"
-                                onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Video+Thumbnail';">
-                            <h4 class="project-card-title-overlay">Short Film: Journey Through Time</h4>
-                        </div>
-                        <div class="project-card-content">
-                            <p>A dramatic short film following a character on a mysterious journey through time.</p>
-                            <button class="view-project-btn">Watch Video <i class="fas fa-play-circle ml-2"></i></button>
-                        </div>
-                    </div>
-
-                    <!-- Video Project 5 -->
-                    <div class="project-card animate-on-scroll" data-project='{
-                        "id": "video5",
-                        "title": "Educational Video: Environmental Preservation",
-                        "image": "https://img.youtube.com/vi/lw9X3q-9H4Q/mqdefault.jpg",
-                        "description": "An educational video promoting environmental protection.",
-                        "technologies": ["Adobe Animate", "Voice Over"],
-                        "video_id": "lw9X3q-9H4Q",
-                        "type": "video"
-                    }'>
-                        <div class="project-card-image-wrapper">
-                            <img src="https://img.youtube.com/vi/lw9X3q-9H4Q/mqdefault.jpg"
-                                alt="Educational Video: Environmental Preservation"
-                                onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Video+Thumbnail';">
-                            <h4 class="project-card-title-overlay">Educational Video: Environmental Preservation</h4>
-                        </div>
-                        <div class="project-card-content">
-                            <p>An educational video promoting environmental protection.</p>
-                            <button class="view-project-btn">Watch Video <i class="fas fa-play-circle ml-2"></i></button>
-                        </div>
-                    </div>
-                    
-                    <!-- NEW Video Project 6 -->
-                    <div class="project-card animate-on-scroll" data-project='{
-                        "id": "video6",
-                        "title": "How to Pre-play",
-                        "image": "https://shirly3212.github.io/Shirly_portfolio/images/how-to-preplay-thumbnail.jpg",
-                        "description": "A step-by-step tutorial video demonstrating the pre-play process for video projects.",
-                        "technologies": ["Screen Recording", "Video Editing", "Voice Over"],
-                        "video_url": "https://shirly3212.github.io/Shirly_portfolio/videos/HOW_TO_PREPLAY.mp4",
-                        "type": "video"
-                      }'>
-                        <div class="project-card-image-wrapper">
-                            <img src="https://shirly3212.github.io/Shirly_portfolio/images/how-to-preplay-thumbnail.png"
-                                alt="How to Pre-play Tutorial"
-                                onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Video+Thumbnail';">
-                            <h4 class="project-card-title-overlay">How to Pre-play</h4>
-                        </div>
-                        <div class="project-card-content">
-                            <p>A step-by-step tutorial video demonstrating the pre-play process for video projects.</p>
-                            <button class="view-project-btn">Watch Video <i class="fas fa-play-circle ml-2"></i></button>
-                        </div>
-                    </div>
+                <div id="projects-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Project cards will be injected here by JavaScript -->
                 </div>
             </section>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer
-        class="custom-footer-gradient text-white min-h-7vh py-8 flex justify-between items-center flex-wrap px-5 mt-auto">
+    <footer class="bg-gradient-to-r from-[#ff6600] to-[#ff007b] text-white py-8 flex justify-between items-center flex-wrap px-5 mt-auto">
         <h4 class="text-xl font-medium mb-4 md:mb-0">Shirly Herscovici © 2025</h4>
         <ul class="flex justify-center items-center flex-wrap gap-6">
-            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Instagram"><i
-                        class="fab fa-instagram text-2xl"></i></a></li>
-            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Twitter"><i
-                        class="fab fa-twitter text-2xl"></i></a></li>
-            <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank"
-                    rel="noopener noreferrer" class="text-white hover:text-gray-200 transition duration-300"
-                    title="YouTube"><i class="fab fa-youtube text-2xl"></i></a></li>
-            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="LinkedIn"><i
-                        class="fab fa-linkedin-in text-2xl"></i></a></li>
-            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="GitHub"><i
-                        class="fab fa-github text-2xl"></i></a></li>
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Instagram"><i class="fab fa-instagram text-2xl"></i></a></li>
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="Twitter"><i class="fab fa-twitter text-2xl"></i></a></li>
+            <li><a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-200 transition duration-300" title="YouTube"><i class="fab fa-youtube text-2xl"></i></a></li>
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="LinkedIn"><i class="fab fa-linkedin-in text-2xl"></i></a></li>
+            <li><a href="#" class="text-white hover:text-gray-200 transition duration-300" title="GitHub"><i class="fab fa-github text-2xl"></i></a></li>
         </ul>
     </footer>
 
-    <!-- Project Details Modal -->
+    <!-- Project Modal Structure -->
     <div id="projectModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close-btn" id="closeModalBtn">&times;</button>
-            <div id="modalVideoEmbed" class="video-container">
-                <!-- YouTube iframe or HTML5 video will be loaded here -->
+        <div id="modalContent" class="bg-white rounded-lg shadow-2xl max-w-3xl w-full relative">
+            <button id="closeModalBtn" class="absolute top-2 right-4 text-gray-500 hover:text-blue-600 text-4xl font-light z-10 transition-colors">&times;</button>
+            <div id="modalVideoContainer" class="relative w-full pt-[56.25%] bg-black rounded-t-lg overflow-hidden">
+                <!-- Video will be injected here -->
             </div>
             <div class="p-6">
-                <h3 id="modalProjectTitle" class="text-3xl font-bold text-gray-800 mb-4"></h3>
-                <p id="modalProjectDescription" class="text-gray-700 mb-4"></p>
-                <div class="flex flex-wrap gap-2 mb-4">
+                <h3 id="modalTitle" class="text-3xl font-bold text-gray-800 mb-4"></h3>
+                <p id="modalDescription" class="text-gray-700 mb-4"></p>
+                <div id="modalTechContainer" class="flex flex-wrap items-center gap-2 mb-4">
                     <span class="text-gray-600 font-semibold">Technologies Used:</span>
                     <div id="modalTechnologies" class="flex flex-wrap gap-2"></div>
                 </div>
-                <div class="flex justify-center gap-4 mt-6">
-                    <a id="modalWatchVideoBtn" href="#" target="_blank" rel="noopener noreferrer"
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">
-                        Watch on YouTube <i class="fab fa-youtube ml-2"></i>
-                    </a>
+                <div id="modalYoutubeButtonContainer" class="flex justify-center gap-4 mt-6">
+                    <!-- YouTube button will be injected here -->
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Particles.js library -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // --- Particles.js Initialization ---
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#ffffff" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.5, "random": false },
-                "size": { "value": 3, "random": true },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#ffffff",
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 6,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 }
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": { "enable": true, "mode": "grab" },
-                    "onclick": { "enable": true, "mode": "push" },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
-                    "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 },
-                    "repulse": { "distance": 200, "duration": 0.4 },
-                    "push": { "particles_nb": 4 },
-                    "remove": { "particles_nb": 2 }
-                }
-            },
-            "retina_detect": true
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- DATA ---
+            const PROJECTS = [
+              { id: "video1", title: "Promotional Video: Special Events", image: "https://img.youtube.com/vi/fBhoF49Xwsg/mqdefault.jpg", description: "A promotional video created for an event production company, showcasing unforgettable moments.", technologies: ["Adobe Premiere Pro", "After Effects"], video_id: "fBhoF49Xwsg", type: "video" },
+              { id: "video2", title: "Product Animation: The Future of Technology", image: "https://img.youtube.com/vi/ta4cFc-fKDk/mqdefault.jpg", description: "A short animation presenting an innovative tech product and its benefits.", technologies: ["Adobe After Effects", "Cinema 4D"], video_id: "ta4cFc-fKDk", type: "video" },
+              { id: "video3", title: "Music Video: Urban Landscape", image: "https://img.youtube.com/vi/CWz7jLhbisM/mqdefault.jpg", description: "A music video with urban cinematography and stunning visual processing.", technologies: ["DaVinci Resolve", "Color Grading"], video_id: "CWz7jLhbisM", type: "video" },
+              { id: "video4", title: "Short Film: Journey Through Time", image: "https://img.youtube.com/vi/elBRaTEolz4/mqdefault.jpg", description: "A dramatic short film following a character on a mysterious journey through time.", technologies: ["Final Cut Pro", "Screenwriting"], video_id: "elBRaTEolz4", type: "video" },
+              { id: "video5", title: "Educational Video: Environmental Preservation", image: "https://img.youtube.com/vi/lw9X3q-9H4Q/mqdefault.jpg", description: "An educational video promoting environmental protection.", technologies: ["Adobe Animate", "Voice Over"], video_id: "lw9X3q-9H4Q", type: "video" },
+              { id: "video6", title: "How to Pre-play", image: "https://shirly3212.github.io/Shirly_portfolio/images/how-to-preplay-thumbnail.png", description: "A step-by-step tutorial video demonstrating the pre-play process for video projects.", technologies: ["Screen Recording", "Video Editing", "Voice Over"], video_url: "https://shirly3212.github.io/Shirly_portfolio/videos/HOW_TO_PREPLAY.mp4", type: "video" },
+              { id: "video7", title: "Futuristic 3D Animation", image: "https://img.youtube.com/vi/Zwu93hTOipc/mqdefault.jpg", description: "A captivating 3D animation showcasing advanced modeling and rendering techniques.", technologies: ["Blender", "After Effects", "3D Modeling"], video_id: "Zwu93hTOipc", type: "video" }
+            ];
 
-        // --- Animation on Scroll Logic ---
-        const allAnimatedElements = document.querySelectorAll('.animate-on-scroll, .section-title');
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
+            // --- RENDER PROJECT CARDS ---
+            const gridContainer = document.getElementById('projects-grid-container');
+            PROJECTS.forEach((project, index) => {
+                const card = document.createElement('div');
+                card.className = 'project-card bg-white rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:scale-102 overflow-hidden flex flex-col cursor-pointer';
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${project.image}" alt="${project.title}" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Video+Thumbnail';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <h4 class="absolute bottom-0 left-0 p-4 text-white text-xl font-bold">${project.title}</h4>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow">
+                        <p class="text-gray-600 mb-4 text-center flex-grow">${project.description}</p>
+                        <button class="mt-auto self-center inline-block bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-white font-semibold py-2 px-6 rounded-full transition-all duration-500">
+                            Watch Video <i class="fas fa-play-circle ml-2"></i>
+                        </button>
+                    </div>
+                `;
+                card.addEventListener('click', () => openModal(project));
+                card.dataset.delay = index * 100;
+                gridContainer.appendChild(card);
             });
-        }, observerOptions);
 
-        allAnimatedElements.forEach(element => {
-            observer.observe(element);
-        });
-
-        // --- Modal Logic ---
-        const projectModal = document.getElementById('projectModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const modalVideoEmbed = document.getElementById('modalVideoEmbed');
-        const modalProjectTitle = document.getElementById('modalProjectTitle');
-        const modalProjectDescription = document.getElementById('modalProjectDescription');
-        const modalTechnologies = document.getElementById('modalTechnologies');
-        const modalWatchVideoBtn = document.getElementById('modalWatchVideoBtn');
-
-        let currentProjectData = null;
-
-        // Function to open the modal
-        function openModal(projectData) {
-            currentProjectData = projectData;
-            modalProjectTitle.textContent = projectData.title;
-            modalProjectDescription.textContent = projectData.description;
-
-            // Clear previous video embed
-            modalVideoEmbed.innerHTML = '';
-
-            // Embed YouTube video or local video
-            if (projectData.video_id) {
-                const iframe = document.createElement('iframe');
-                iframe.setAttribute('src', `https://www.youtube.com/embed/${projectData.video_id}?autoplay=1&rel=0`);
-                iframe.setAttribute('frameborder', '0');
-                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-                iframe.setAttribute('allowfullscreen', '');
-                modalVideoEmbed.appendChild(iframe);
-                modalVideoEmbed.classList.remove('hidden');
-            } else if (projectData.video_url) {
-                const video = document.createElement('video');
-                video.setAttribute('src', projectData.video_url);
-                video.setAttribute('controls', '');
-                video.setAttribute('autoplay', '');
-                video.setAttribute('playsinline', '');
-                modalVideoEmbed.appendChild(video);
-                modalVideoEmbed.classList.remove('hidden');
-            } else {
-                modalVideoEmbed.classList.add('hidden'); // Hide video embed if no ID or URL
-            }
-
-            modalTechnologies.innerHTML = '';
-            if (projectData.technologies && projectData.technologies.length > 0) {
-                projectData.technologies.forEach(tech => {
-                    const span = document.createElement('span');
-                    span.textContent = tech;
-                    span.classList.add('bg-blue-100', 'text-blue-800', 'text-xs', 'font-medium', 'px-2.5', 'py-0.5', 'rounded-full');
-                    modalTechnologies.appendChild(span);
-                });
-                modalTechnologies.parentElement.parentElement.classList.remove('hidden');
-            } else {
-                modalTechnologies.parentElement.parentElement.classList.add('hidden'); // Hide if no technologies
-            }
-
-            if (projectData.video_id) {
-                modalWatchVideoBtn.href = `https://www.youtube.com/watch?v=${projectData.video_id}`;
-                modalWatchVideoBtn.classList.remove('hidden');
-            } else {
-                modalWatchVideoBtn.classList.add('hidden');
-            }
-
-            projectModal.classList.add('is-visible');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Function to close the modal and stop video playback
-        function closeModal() {
-            projectModal.classList.remove('is-visible');
-            document.body.style.overflow = '';
-            currentProjectData = null;
-            modalVideoEmbed.innerHTML = ''; // Stop video playback
-        }
-
-        // Event listeners for opening modal (clicking anywhere on card)
-        document.querySelectorAll('.project-card').forEach(item => {
-            item.addEventListener('click', (event) => {
-                let projectData = null;
-                const projectDataString = item.dataset.project;
-
-                if (!projectDataString || projectDataString === "undefined") {
-                    console.error("Invalid or undefined project data string for this item:", item);
-                    return;
-                }
-                try {
-                    projectData = JSON.parse(projectDataString);
-                }
-                catch (e) {
-                    console.error("Error parsing JSON for project data:", projectDataString, e);
-                    return;
-                }
-                if (projectData) {
-                    openModal(projectData);
-                }
-            });
-        });
-
-        // Event listener for closing modal via button
-        closeModalBtn.addEventListener('click', closeModal);
-
-        // Event listener for closing modal by clicking outside content
-        projectModal.addEventListener('click', (event) => {
-            if (event.target === projectModal) {
-                closeModal();
-            }
-        });
-
-        // Event listener for closing modal with Escape key
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && projectModal.classList.contains('is-visible')) {
-                closeModal();
-            }
-        });
-
-        // --- Mobile Navigation Toggle ---
-        document.addEventListener("DOMContentLoaded", function () {
-            const mainNavUl = document.getElementById("main-nav-menu");
+            // --- HEADER/NAV LOGIC ---
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mainNavMenu = document.getElementById('main-nav-menu');
             const designMenuToggle = document.getElementById('design-menu-toggle');
-            const designSubMenu = designMenuToggle.nextElementSibling;
+            const designSubmenu = document.getElementById('design-submenu');
+            const menuIcon = mobileMenuToggle.querySelector('i');
 
-            function closeAllMenus() {
-                mainNavUl.classList.remove('active');
-                if (designSubMenu) {
-                    designSubMenu.classList.remove('active');
-                    designSubMenu.classList.remove('show-dropdown');
-                    designMenuToggle.querySelector('i').classList.remove('rotate-180');
+            mobileMenuToggle.addEventListener('click', () => {
+                mainNavMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('fa-bars');
+                menuIcon.classList.toggle('fa-times');
+                if (mainNavMenu.classList.contains('hidden')) {
+                   designSubmenu.classList.add('hidden');
                 }
+            });
+
+            designMenuToggle.addEventListener('click', (e) => {
+                if (window.innerWidth < 768) {
+                    e.preventDefault();
+                    designSubmenu.classList.toggle('hidden');
+                    designMenuToggle.querySelector('i').classList.toggle('rotate-180');
+                }
+            });
+
+            // --- MODAL LOGIC ---
+            const projectModal = document.getElementById('projectModal');
+            const modalContent = document.getElementById('modalContent');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const modalVideoContainer = document.getElementById('modalVideoContainer');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalTechContainer = document.getElementById('modalTechContainer');
+            const modalTechnologies = document.getElementById('modalTechnologies');
+            const modalYoutubeBtnContainer = document.getElementById('modalYoutubeButtonContainer');
+
+            function openModal(project) {
+                modalTitle.textContent = project.title;
+                modalDescription.textContent = project.description;
+                
+                // Video embed
+                modalVideoContainer.innerHTML = '';
+                if (project.video_id) {
+                    modalVideoContainer.innerHTML = `<iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/${project.video_id}?autoplay=1&rel=0" title="${project.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                } else if (project.video_url) {
+                    modalVideoContainer.innerHTML = `<video class="absolute top-0 left-0 w-full h-full" src="${project.video_url}" controls autoplay playsinline></video>`;
+                }
+
+                // Technologies
+                modalTechnologies.innerHTML = '';
+                if (project.technologies && project.technologies.length > 0) {
+                    project.technologies.forEach(tech => {
+                        modalTechnologies.innerHTML += `<span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">${tech}</span>`;
+                    });
+                    modalTechContainer.style.display = 'flex';
+                } else {
+                    modalTechContainer.style.display = 'none';
+                }
+
+                // YouTube button
+                modalYoutubeBtnContainer.innerHTML = '';
+                 if (project.video_id) {
+                    modalYoutubeBtnContainer.innerHTML = `<a href="https://www.youtube.com/watch?v=${project.video_id}" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full text-lg transition duration-300 flex items-center">Watch on YouTube <i class="fab fa-youtube ml-2"></i></a>`;
+                }
+
+                projectModal.classList.add('is-visible');
+                modalContent.classList.add('animate-scale-in');
+                document.body.style.overflow = 'hidden';
             }
 
-            if (mobileMenuToggle) {
-                mobileMenuToggle.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    mainNavUl.classList.toggle('active');
-                    if (!mainNavUl.classList.contains('active')) {
-                        closeAllMenus();
+            function closeModal() {
+                modalContent.classList.remove('animate-scale-in');
+                projectModal.classList.remove('is-visible');
+                document.body.style.overflow = '';
+                modalVideoContainer.innerHTML = ''; // Stop video playback
+            }
+
+            closeModalBtn.addEventListener('click', closeModal);
+            projectModal.addEventListener('click', (e) => {
+                if (e.target === projectModal) closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            // --- SCROLL ANIMATION LOGIC ---
+            const animatedCards = document.querySelectorAll('.project-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.dataset.delay || "0");
+                        setTimeout(() => {
+                            entry.target.classList.add('is-visible');
+                        }, delay);
+                        observer.unobserve(entry.target);
                     }
                 });
-            }
+            }, { threshold: 0.1 });
 
-            if (designMenuToggle && designSubMenu) {
-                designMenuToggle.addEventListener('click', (event) => {
-                    // For mobile, prevent default and toggle dropdown
-                    if (window.innerWidth < 768) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        designSubMenu.classList.toggle('active');
-                        designMenuToggle.querySelector('i').classList.toggle('rotate-180');
-                    }
+            animatedCards.forEach(card => observer.observe(card));
+
+            // --- PARTICLES.JS INIT ---
+            if (window.particlesJS) {
+                particlesJS("particles-js", {
+                    "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#4a5568" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5, "random": false }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#4a5568", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } },
+                    "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } },
+                    "retina_detect": true
                 });
             }
-
         });
     </script>
 </body>
-
 </html>
 
