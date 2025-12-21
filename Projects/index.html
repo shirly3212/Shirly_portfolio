@@ -17,7 +17,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f4f8, #e2e8f0, #f0f4f8);
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9, #f8fafc);
             background-size: 400% 400%;
             animation: gradientBackground 15s ease infinite alternate;
             color: #1a202c;
@@ -37,14 +37,14 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.5;
+            opacity: 0.3;
         }
 
         .header-frosted {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
         }
 
         .view-project-btn {
@@ -58,6 +58,10 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
         }
 
         .view-project-btn:hover {
@@ -71,11 +75,14 @@
             background: white;
             border-radius: 1.5rem;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f1f5f9;
         }
 
         .project-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
         }
 
         .vertical-title {
@@ -100,31 +107,47 @@
             transform: translateY(0);
         }
 
-        /* Auto Scroll for Magazine */
         .magazine-scroll {
             height: 500px;
             overflow-y: scroll;
+            cursor: zoom-in;
         }
 
-        /* Fade Item for Magazine */
+        .fade-container {
+            position: relative;
+            background: #f8fafc;
+        }
+
         .fade-item {
             position: absolute;
             inset: 0;
             opacity: 0;
             transition: opacity 1s ease-in-out;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .fade-item.active {
             opacity: 1;
         }
 
-        /* Modal */
         #modal {
             display: none;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(8px);
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            cursor: pointer;
         }
-        #modal.active {
-            display: flex;
+        #modal.active { display: flex; }
+
+        .nav-link-active {
+            background-color: #2563eb !important;
+            color: white !important;
+            font-weight: 600 !important;
         }
     </style>
 </head>
@@ -132,213 +155,283 @@
     <div id="particles-js"></div>
 
     <!-- HEADER NAVIGATION -->
-    <header class="header-frosted fixed w-full z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <header class="header-frosted shadow-md fixed w-full z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center relative">
             <div class="logo flex items-center cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
-                    <span class="text-white font-black text-xl">SH</span>
-                </div>
-                <h1 class="text-2xl font-black text-gray-800 tracking-tighter">SHIRLY HERSCOVICI</h1>
+                <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
+                <h1 class="text-2xl font-bold text-gray-800 tracking-tighter">Shirly Herscovici</h1>
             </div>
             
-            <ul class="hidden md:flex items-center space-x-8">
-                <li><a href="#all-projects" class="text-xs font-bold text-gray-500 hover:text-blue-600 uppercase tracking-widest transition">Projects</a></li>
-                <li><a href="#n12-magazine" class="text-xs font-bold text-gray-500 hover:text-blue-600 uppercase tracking-widest transition">Editorial</a></li>
-                <li><a href="#galgaltz" class="text-xs font-bold text-gray-500 hover:text-blue-600 uppercase tracking-widest transition">UI/UX</a></li>
-                <li><a href="#editing-suite" class="text-xs font-bold text-gray-500 hover:text-blue-600 uppercase tracking-widest transition">Retouching</a></li>
-                <li><a href="mailto:shirly3212@gmail.com" class="px-6 py-2 bg-gray-900 text-white rounded-full text-[10px] font-black hover:bg-blue-600 transition uppercase tracking-widest">Contact</a></li>
+            <button id="mobile-menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none" onclick="document.getElementById('main-nav-menu').classList.toggle('hidden')">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+
+            <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row items-center space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
+                <li><a href="../index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md transition">Home</a></li>
+                
+                <!-- Design - MARKED AS ACTIVE -->
+                <li>
+                    <a href="#design-section" id="nav-design" class="nav-link-active text-lg py-2 px-3 rounded-md transition">
+                        Design
+                    </a>
+                </li>
+
+                <li><a href="../Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md transition">Video</a></li>
+                <li><a href="../ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md transition">AI</a></li>
+                <li><a href="#contact-section" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md transition">Contact</a></li>
             </ul>
-            
-            <button class="md:hidden text-gray-800"><i class="fas fa-bars text-2xl"></i></button>
         </nav>
     </header>
 
     <main>
-        <!-- HERO / ALL PROJECTS -->
-        <section id="all-projects" class="pt-40 pb-20 px-6 scroll-reveal">
-            <div class="container mx-auto text-center mb-16">
-                <h1 class="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 leading-tight tracking-tighter mb-4">
-                    Graphic Design Projects
+        <!-- HERO SECTION -->
+        <section id="home-section" class="pt-48 pb-24 px-6 scroll-reveal flex flex-col items-center justify-center text-center">
+            <div class="max-w-4xl">
+                <h1 class="text-6xl md:text-8xl font-black text-gray-900 leading-tight tracking-tighter mb-8">
+                    Shirly Herscovici
                 </h1>
-                <p class="text-gray-500 text-lg max-w-2xl mx-auto font-medium">Senior Designer specializing in multi-platform visual storytelling and editorial excellence.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto" id="project-grid">
-                <!-- Project 1 -->
-                <div class="project-card" data-img="../img/thumbnail1.jpg" data-link="https://makospecial.co.il/worldcup22">
-                    <div class="h-64 overflow-hidden"><img src="../img/thumbnail1.jpg" class="w-full h-full object-cover"></div>
-                    <div class="p-8 text-center">
-                        <h3 class="text-xl font-bold mb-2">World Cup 22 Infographic</h3>
-                        <p class="text-sm text-gray-500 mb-6">Key stats and highlights from the 2022 World Cup.</p>
-                        <button class="view-project-btn w-full">View Project</button>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card" data-img="../img/thumbnail2.jpg" data-link="https://specialprojects.mako.co.il/Road_Accidents">
-                    <div class="h-64 overflow-hidden"><img src="../img/thumbnail2.jpg" class="w-full h-full object-cover"></div>
-                    <div class="p-8 text-center">
-                        <h3 class="text-xl font-bold mb-2">Road Accidents Visualization</h3>
-                        <p class="text-sm text-gray-500 mb-6">Data visualization for road safety statistics.</p>
-                        <button class="view-project-btn w-full">View Project</button>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card" data-img="../img/ukraineeee12.png" data-link="https://makospecial.co.il/ukrainewar?makoOpenChromeTabs=1">
-                    <div class="h-64 overflow-hidden"><img src="../img/ukraineeee12.png" class="w-full h-full object-cover"></div>
-                    <div class="p-8 text-center">
-                        <h3 class="text-xl font-bold mb-2">Ukraine & Russia War</h3>
-                        <p class="text-sm text-gray-500 mb-6">Editorial graphics documenting the global conflict.</p>
-                        <button class="view-project-btn w-full">View Project</button>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card" data-img="../img/thumbnail4.jpg" data-link="https://makospecial.co.il/40Britney">
-                    <div class="h-64 overflow-hidden"><img src="../img/thumbnail4.jpg" class="w-full h-full object-cover"></div>
-                    <div class="p-8 text-center">
-                        <h3 class="text-xl font-bold mb-2">Britney 40 Pop Culture</h3>
-                        <p class="text-sm text-gray-500 mb-6">Celebrating pop culture icons through data.</p>
-                        <button class="view-project-btn w-full">View Project</button>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-card" data-img="../img/thumbnail5.jpg" data-link="https://makospecial.co.il/israel_politics">
-                    <div class="h-64 overflow-hidden"><img src="../img/thumbnail5.jpg" class="w-full h-full object-cover"></div>
-                    <div class="p-8 text-center">
-                        <h3 class="text-xl font-bold mb-2">Israeli Politics Data</h3>
-                        <p class="text-sm text-gray-500 mb-6">Dynamic infographics of the political landscape.</p>
-                        <button class="view-project-btn w-full">View Project</button>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="project-card" data-img="../img/thumbnail6.jpg" data-link="https://makospecial.co.il/homat_magen">
-                    <div class="h-64 overflow-hidden"><img src="../img/thumbnail6.jpg" class="w-full h-full object-cover"></div>
-                    <div class="p-8 text-center">
-                        <h3 class="text-xl font-bold mb-2">Homat Magen Overview</h3>
-                        <p class="text-sm text-gray-500 mb-6">Operational overview and strategic visualization.</p>
-                        <button class="view-project-btn w-full">View Project</button>
-                    </div>
+                <h2 class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-8">
+                    Motion Graphic Designer <br/> & Senior Webstie Developer
+                </h2>
+                <p class="text-gray-500 text-xl font-medium leading-relaxed max-w-2xl mx-auto mb-12">
+                    Specializing in high-impact visual storytelling, editorial flow, and pixel-perfect post-production.
+                </p>
+                <div class="flex justify-center gap-6">
+                    <a href="#design-section" class="view-project-btn px-10 py-4 w-auto">View My Design</a>
+                    <a href="mailto:shirly3212@gmail.com" class="border-2 border-gray-900 text-gray-900 font-bold py-3 px-8 rounded-full hover:bg-gray-900 hover:text-white transition">Get In Touch</a>
                 </div>
             </div>
         </section>
 
-        <!-- N12 MAGAZINE SECTION (VERTICAL TITLE RESTORED) -->
-        <section id="n12-magazine" class="bg-white py-32 px-6 scroll-reveal">
-            <div class="container mx-auto grid lg:grid-cols-[4fr_1fr] grid-cols-1 gap-12 items-start">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
-                    <!-- Scroll Spread 1 -->
-                    <div class="magazine-scroll no-scrollbar rounded-2xl shadow-xl border border-gray-100 cursor-zoom-in" onclick="openFullImage('../img_new/project_a.png')">
-                        <img src="../img_new/project_a.png" class="w-full h-auto">
-                    </div>
-                    <!-- Fade Spread 1 -->
-                    <div class="h-[500px] relative rounded-2xl shadow-xl border border-gray-100 overflow-hidden fade-container" data-images='["../img_new/img_new_003.jpeg", "../img_new/2.png", "../img_new/3.png", "../img_new/img_new_002.jpeg"]'></div>
-                    <!-- Fade Spread 2 -->
-                    <div class="h-[500px] relative rounded-2xl shadow-xl border border-gray-100 overflow-hidden fade-container" data-images='["../img_new/img_new_004.jpeg", "../img_new/img_new_005.jpeg", "../img_new/img_new_006.jpeg", "../img_new/1.png", "../img_new/4.png"]'></div>
-                    <!-- Scroll Spread 2 -->
-                    <div class="magazine-scroll no-scrollbar rounded-2xl shadow-xl border border-gray-100 cursor-zoom-in" onclick="openFullImage('../img_new/scroling_1.png')">
-                        <img src="../img_new/scroling_1.png" class="w-full h-auto">
-                    </div>
+        <!-- DESIGN SECTION -->
+        <section id="design-section">
+            <!-- ALL GRAPHIC PROJECTS GRID -->
+            <div id="all-projects" class="py-24 px-6 scroll-reveal bg-white">
+                <div class="container mx-auto text-center mb-16">
+                    <h2 class="text-4xl md:text-6xl font-black text-gray-900 tracking-tighter mb-6">
+                        Graphic Design Projects
+                    </h2>
+                    <div class="h-1 w-24 bg-blue-600 mx-auto"></div>
                 </div>
-                
-                <div class="flex flex-col justify-between h-full max-lg:order-[-1] max-lg:mb-12">
-                    <h2 class="text-black text-[9vw] lg:text-[7vw] font-black uppercase vertical-title lg:mt-8">N12 MAGAZINE</h2>
-                    <div class="lg:max-w-[220px] mt-auto">
-                        <p class="text-[0.8rem] font-bold text-gray-400 uppercase tracking-widest leading-loose border-t-4 border-black pt-8">
-                            Bold typography and precision grids defining the digital news standard for N12 Israel.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- GALGALTZ SECTION -->
-        <section id="galgaltz" class="bg-gray-900 py-32 px-6 scroll-reveal overflow-hidden">
-            <div class="container mx-auto grid lg:grid-cols-2 gap-24 items-center">
-                <div class="text-white">
-                    <h2 class="text-5xl lg:text-7xl font-black mb-8 italic tracking-tighter uppercase">Cinematic <span class="text-blue-500 not-italic">UI.</span></h2>
-                    <p class="text-gray-400 text-xl font-light italic mb-12">"Bridging the broadcast world and digital immersion."</p>
-                    <div class="p-10 bg-white/5 rounded-[3rem] border border-white/10 cursor-pointer hover:border-blue-500 transition shadow-2xl" onclick="window.open('https://www.mako.co.il/music-galgalatz/screen_music', '_blank')">
-                        <div class="relative h-80 rounded-3xl overflow-hidden mb-8">
-                            <img src="../img_new/img_1.jpg" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition duration-700">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center shadow-2xl"><i class="fas fa-play text-white ml-1"></i></div>
-                            </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="h-64 overflow-hidden cursor-pointer" onclick="openModal('../img/thumbnail1.jpg')">
+                            <img src="../img/thumbnail1.jpg" class="w-full h-full object-cover">
                         </div>
-                        <h3 class="text-3xl font-black uppercase tracking-tighter">Live Demo →</h3>
+                        <div class="p-8 text-center flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">World Cup 22 Infographic</h3>
+                                <p class="text-sm text-gray-500 mb-6">Key stats and highlights from the 2022 World Cup.</p>
+                            </div>
+                            <a href="https://makospecial.co.il/worldcup22" target="_blank" class="view-project-btn">View Project</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="h-64 overflow-hidden cursor-pointer" onclick="openModal('../img/thumbnail2.jpg')">
+                            <img src="../img/thumbnail2.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-8 text-center flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Road Accidents Data</h3>
+                                <p class="text-sm text-gray-500 mb-6">Road accident statistics and safety info.</p>
+                            </div>
+                            <a href="https://specialprojects.mako.co.il/Road_Accidents" target="_blank" class="view-project-btn">View Project</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <div class="h-64 overflow-hidden cursor-pointer" onclick="openModal('../img/ukraineeee12.png')">
+                            <img src="../img/ukraineeee12.png" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-8 text-center flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Ukraine & Russia War</h3>
+                                <p class="text-sm text-gray-500 mb-6">Graphics created to raise awareness about the war between Ukraine and Russia.</p>
+                            </div>
+                            <a href="https://makospecial.co.il/ukrainewar?makoOpenChromeTabs=1" target="_blank" class="view-project-btn">View Project</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="project-card">
+                        <div class="h-64 overflow-hidden cursor-pointer" onclick="openModal('../img/thumbnail4.jpg')">
+                            <img src="../img/thumbnail4.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-8 text-center flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Britney 40 Pop Culture</h3>
+                                <p class="text-sm text-gray-500 mb-6">Celebrating Britney Spears' 40th birthday.</p>
+                            </div>
+                            <a href="https://makospecial.co.il/40Britney" target="_blank" class="view-project-btn">View Project</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="project-card">
+                        <div class="h-64 overflow-hidden cursor-pointer" onclick="openModal('../img/thumbnail5.jpg')">
+                            <img src="../img/thumbnail5.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-8 text-center flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Israeli Politics Data</h3>
+                                <p class="text-sm text-gray-500 mb-6">Key aspects and trends in Israeli politics.</p>
+                            </div>
+                            <a href="https://makospecial.co.il/israel_politics" target="_blank" class="view-project-btn">View Project</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="project-card">
+                        <div class="h-64 overflow-hidden cursor-pointer" onclick="openModal('../img/thumbnail6.jpg')">
+                            <img src="../img/thumbnail6.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-8 text-center flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Homat Magen Overview</h3>
+                                <p class="text-sm text-gray-500 mb-6">Overview and explanation of 'Homat Magen' operation.</p>
+                            </div>
+                            <a href="https://makospecial.co.il/homat_magen" target="_blank" class="view-project-btn">View Project</a>
+                        </div>
                     </div>
                 </div>
-                <div class="flex justify-center">
-                    <div class="w-[340px] h-[680px] bg-black rounded-[4rem] border-[12px] border-black shadow-[0_40px_100px_rgba(0,0,0,0.6)] overflow-hidden relative">
-                        <img id="carousel-screen" src="../img_new/img_1.jpg" class="w-full h-full object-cover transition-opacity duration-500">
+            </div>
+
+            <!-- N12 MAGAZINE SECTION (VERTICAL TITLE) -->
+            <div id="n12-magazine" class="bg-gray-50 py-32 px-6 scroll-reveal">
+                <div class="container mx-auto grid lg:grid-cols-[4fr_1fr] grid-cols-1 gap-12 items-start">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+                        <div class="magazine-scroll no-scrollbar rounded-2xl shadow-xl border border-white" onclick="openModal('../img_new/project_a.png')">
+                            <img src="../img_new/project_a.png" class="w-full h-auto">
+                        </div>
+                        <div class="h-[500px] relative rounded-2xl shadow-xl border border-white overflow-hidden fade-container" data-images='["../img_new/img_new_003.jpeg", "../img_new/2.png", "../img_new/3.png", "../img_new/img_new_002.jpeg"]'></div>
+                        <div class="h-[500px] relative rounded-2xl shadow-xl border border-white overflow-hidden fade-container" data-images='["../img_new/img_new_004.jpeg", "../img_new/img_new_005.jpeg", "../img_new/img_new_006.jpeg", "../img_new/1.png", "../img_new/4.png"]'></div>
+                        <div class="magazine-scroll no-scrollbar rounded-2xl shadow-xl border border-white" onclick="openModal('../img_new/scroling_1.png')">
+                            <img src="../img_new/scroling_1.png" class="w-full h-auto">
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col justify-between h-full max-lg:order-[-1] max-lg:mb-12">
+                        <h2 class="text-black text-[10vw] lg:text-[8vw] font-black uppercase vertical-title lg:mt-12">N12 MAGAZINE</h2>
+                        <div class="lg:max-w-[220px] mt-auto">
+                            <p class="text-[0.75rem] font-bold text-gray-400 uppercase tracking-widest leading-loose border-t-4 border-black pt-8">
+                                Editorial layouts defining the digital news landscape for N12 Israel.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GALGALTZ UI -->
+            <div id="galgaltz" class="bg-gray-900 py-32 px-6 scroll-reveal overflow-hidden">
+                <div class="container mx-auto grid lg:grid-cols-2 gap-24 items-center">
+                    <div class="text-white">
+                        <h2 class="text-5xl lg:text-7xl font-black mb-8 italic tracking-tighter uppercase">Cinematic <span class="text-blue-500 not-italic">UI.</span></h2>
+                        <p class="text-gray-400 text-xl font-light italic mb-12">"Collaborative design interface for Galgaltz Music Chart."</p>
+                        <div class="p-10 bg-white/5 rounded-[3rem] border border-white/10 cursor-pointer hover:border-blue-500 transition shadow-2xl" onclick="window.open('https://www.mako.co.il/music-galgalatz/screen_music', '_blank')">
+                            <div class="relative h-80 rounded-3xl overflow-hidden mb-8">
+                                <img src="../img_new/img_1.jpg" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition duration-700">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center shadow-2xl"><i class="fas fa-play text-white ml-1"></i></div>
+                                </div>
+                            </div>
+                            <h3 class="text-3xl font-black uppercase tracking-tighter">Live Experience →</h3>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <div class="w-[340px] h-[680px] bg-black rounded-[4rem] border-[12px] border-black shadow-[0_40px_100px_rgba(0,0,0,0.6)] overflow-hidden relative">
+                            <img id="carousel-screen" src="../img_new/img_1.jpg" class="w-full h-full object-cover transition-opacity duration-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EDITING SUITE -->
+            <div id="editing-suite" class="bg-white py-32 px-6 scroll-reveal">
+                <div class="container mx-auto grid lg:grid-cols-2 gap-24 items-center">
+                    <div class="max-w-xl mx-auto bg-gray-50 p-12 rounded-[4rem] shadow-2xl border border-gray-100 w-full">
+                        <div class="aspect-square rounded-[3rem] overflow-hidden mb-12 shadow-inner bg-gray-200">
+                            <img id="edit-preview" src="../img_new/portrait_before.jpg.png" class="w-full h-full object-cover transition-opacity duration-500">
+                        </div>
+                        <div class="grid grid-cols-4 gap-4">
+                            <button class="edit-tool h-16 rounded-2xl bg-white flex items-center justify-center hover:bg-blue-600 hover:text-white transition shadow-sm" data-img="../img_new/portrait_color_corrected.jpg.jpg"><i class="fas fa-wand-magic-sparkles text-xl"></i></button>
+                            <button class="edit-tool h-16 rounded-2xl bg-white flex items-center justify-center hover:bg-blue-600 hover:text-white transition shadow-sm" data-img="../img_new/portrait_mic_removed.jpg.png"><i class="fas fa-microphone-slash text-xl"></i></button>
+                            <button class="edit-tool h-16 rounded-2xl bg-white flex items-center justify-center hover:bg-blue-600 hover:text-white transition shadow-sm" data-img="../img_new/portrait_new_shirt.jpg.png"><i class="fas fa-shirt text-xl"></i></button>
+                            <button class="edit-tool h-16 rounded-2xl bg-white flex items-center justify-center hover:bg-blue-600 hover:text-white transition shadow-sm" data-img="../img_new/portrait_no_bg.png.png"><i class="fas fa-object-ungroup text-xl"></i></button>
+                        </div>
+                        <button id="reset-edit" class="w-full mt-10 py-5 rounded-3xl border-2 border-dashed border-gray-300 text-gray-400 font-black uppercase tracking-widest text-[10px] hover:border-black hover:text-black transition-all">Reset Preview</button>
+                    </div>
+                    <div>
+                        <h2 class="text-5xl lg:text-7xl font-black mb-10 text-gray-900 leading-tight tracking-tighter uppercase">Retouching <br/><span class="text-purple-600 italic">Console.</span></h2>
+                        <p class="text-gray-500 text-xl font-medium leading-relaxed mb-12">High-end asset optimization and professional post-production for commercial campaigns.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ARCHIVE -->
+            <div id="archive" class="bg-gray-900 py-40 px-6 scroll-reveal">
+                <div class="container mx-auto">
+                    <h2 class="text-7xl lg:text-9xl font-black uppercase tracking-tighter mb-24 opacity-5 italic text-white">Visual Archive</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="archive-grid">
+                        <!-- JS renders these -->
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- EDITING SUITE -->
-        <section id="editing-suite" class="bg-white py-32 px-6 scroll-reveal">
-            <div class="container mx-auto grid lg:grid-cols-2 gap-24 items-center">
-                <div class="max-w-xl mx-auto bg-gray-50 p-12 rounded-[4rem] shadow-2xl border border-gray-100 w-full">
-                    <div class="aspect-square rounded-[3rem] overflow-hidden mb-12 shadow-inner bg-gray-200">
-                        <img id="edit-preview" src="../img_new/portrait_before.jpg.png" class="w-full h-full object-cover transition-opacity duration-500">
+        <!-- CONTACT SECTION -->
+        <section id="contact-section" class="py-32 px-6 scroll-reveal bg-white">
+            <div class="max-w-2xl mx-auto bg-gray-50 p-12 rounded-[3rem] shadow-xl border border-gray-100">
+                <h2 class="text-4xl font-black text-gray-900 mb-10 text-center uppercase tracking-tighter">Get in Touch</h2>
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-gray-700 text-xs font-black uppercase tracking-widest mb-2">Name</label>
+                        <input type="text" class="w-full px-6 py-4 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-600 transition outline-none">
                     </div>
-                    <div class="grid grid-cols-4 gap-4">
-                        <button class="edit-tool h-16 rounded-2xl bg-white flex items-center justify-center hover:bg-blue-600 hover:text-white transition shadow-sm" data-img="../img_new/portrait_color_corrected.jpg.jpg"><i class="fas fa-wand-magic-sparkles text-xl"></i></button>
-                        <button class="edit-tool h-16 rounded-2xl bg-white flex items-center justify-center hover:bg-blue-600 hover:text-white transition shadow-sm" data-img="../img_new/portrait_mic_removed.jpg.png"><i class="fas fa-microphone-slash text-xl"></i></button>
-                        <button class="edit-tool h-16 rounded-2xl bg-white flex items-center justify-center hover:bg-blue-600 hover:text-white transition shadow-sm" data-img="../img_new/portrait_new_shirt.jpg.png"><i class="fas fa-shirt text-xl"></i></button>
-                        <button class="edit-tool h-16 rounded-2xl bg-white flex items-center justify-center hover:bg-blue-600 hover:text-white transition shadow-sm" data-img="../img_new/portrait_no_bg.png.png"><i class="fas fa-object-ungroup text-xl"></i></button>
+                    <div>
+                        <label class="block text-gray-700 text-xs font-black uppercase tracking-widest mb-2">Email</label>
+                        <input type="email" class="w-full px-6 py-4 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-600 transition outline-none">
                     </div>
-                    <button id="reset-edit" class="w-full mt-10 py-5 rounded-3xl border-2 border-dashed border-gray-300 text-gray-400 font-black uppercase tracking-widest text-[10px] hover:border-black hover:text-black transition-all">Clear Session</button>
-                </div>
-                <div>
-                    <h2 class="text-5xl lg:text-7xl font-black mb-10 text-gray-900 leading-tight tracking-tighter uppercase">Retouching <br/><span class="text-purple-600 italic">Suite.</span></h2>
-                    <p class="text-gray-500 text-xl font-medium leading-relaxed mb-12">Professional asset post-production. Pixel-perfect precision for high-end editorial and commercial usage.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ARCHIVE -->
-        <section id="archive" class="bg-gray-900 py-32 px-6 scroll-reveal">
-            <div class="container mx-auto">
-                <h2 class="text-7xl lg:text-9xl font-black uppercase tracking-tighter mb-24 opacity-5 italic text-white">The Archive</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="archive-grid">
-                    <!-- Images will be injected by JS -->
-                </div>
+                    <div>
+                        <label class="block text-gray-700 text-xs font-black uppercase tracking-widest mb-2">Message</label>
+                        <textarea class="w-full px-6 py-4 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-600 transition outline-none h-40"></textarea>
+                    </div>
+                    <button type="submit" class="view-project-btn py-5">Send Message</button>
+                </form>
             </div>
         </section>
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white py-32 px-6 border-t border-gray-100 text-center">
+    <footer class="bg-gray-900 py-24 px-6 text-center text-white">
         <div class="max-w-4xl mx-auto">
-            <h3 class="text-5xl font-black text-gray-900 mb-12 tracking-tighter uppercase">Shirly Herscovici.</h3>
-            <div class="flex justify-center gap-12 text-3xl text-gray-300 mb-16">
-                <a href="mailto:shirly3212@gmail.com" class="hover:text-blue-600 transition duration-300"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" class="hover:text-red-600 transition duration-300"><i class="fab fa-youtube"></i></a>
-                <a href="tel:0549775275" class="hover:text-green-600 transition duration-300"><i class="fas fa-phone"></i></a>
+            <h3 class="text-4xl font-black mb-12 tracking-tighter uppercase">Shirly Herscovici.</h3>
+            <div class="flex justify-center gap-12 text-3xl text-gray-500 mb-16">
+                <a href="mailto:shirly3212@gmail.com" class="hover:text-blue-600 transition"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" class="hover:text-red-600 transition"><i class="fab fa-youtube"></i></a>
+                <a href="tel:0549775275" class="hover:text-green-600 transition"><i class="fas fa-phone"></i></a>
             </div>
-            <p class="text-gray-300 text-[9px] font-black uppercase tracking-[0.6em]">Senior Graphic Designer &copy; 2025 • Visual Excellence</p>
+            <p class="text-gray-600 text-[10px] font-black uppercase tracking-[0.6em]">Senior Graphic Designer &copy; 2025 • Visual Excellence</p>
         </div>
     </footer>
 
     <!-- MODAL -->
-    <div id="modal" class="fixed inset-0 z-[2000] flex items-center justify-center p-8 cursor-pointer" onclick="closeModal()">
+    <div id="modal" onclick="this.classList.remove('active'); document.body.style.overflow = 'auto';">
         <img id="modal-img" src="" class="max-w-full max-h-full rounded-2xl shadow-2xl">
-        <div class="absolute top-10 right-10 text-white text-4xl hover:text-blue-500 transition">&times;</div>
+        <div class="absolute top-10 right-10 text-white text-5xl hover:text-blue-500 transition">&times;</div>
     </div>
 
     <script>
-        // Constants & Data
-        const GALGALTZ_IMAGES = ["img_new/img_1.jpg", "img_new/img_7.jpg", "img_new/img_4.png", "img_new/img_2.png", "img_new/img_3.png"];
+        const GALGALTZ_IMAGES = ["../img_new/img_1.jpg", "../img_new/img_7.jpg", "../img_new/img_4.png", "../img_new/img_2.png", "../img_new/img_3.png"];
         const DIVERSE_DESIGNS = [
-            { src: "../img_new/img_new_016.jpeg", title: "News 12 Archive" },
-            { src: "../img_new/img_new_014.png", title: "Visionary Layouts" },
-            { src: "../img_new/img_new_013.jpeg", title: "Memorial Editorial" },
-            { src: "../img_new/img_new_012.png", title: "Arena Interface" },
+            { src: "../img_new/img_new_016.jpeg", title: "N12 News Spread" },
+            { src: "../img_new/img_new_014.png", title: "Editorial Layout" },
+            { src: "../img_new/img_new_013.jpeg", title: "Memorial Series" },
+            { src: "../img_new/img_new_012.png", title: "Arena Platform" },
             { src: "../img_new/img_new_009.jpeg", title: "Strategic Visuals" },
             { src: "../img_new/img_new_011.jpeg", title: "Global Events" }
         ];
@@ -347,17 +440,17 @@
             // Particles
             particlesJS("particles-js", {
                 particles: {
-                    number: { value: 60 },
+                    number: { value: 40 },
                     color: { value: "#3b82f6" },
                     shape: { type: "circle" },
                     opacity: { value: 0.1 },
                     size: { value: 3 },
                     line_linked: { enable: true, distance: 150, color: "#3b82f6", opacity: 0.1, width: 1 },
-                    move: { enable: true, speed: 2 }
+                    move: { enable: true, speed: 1 }
                 }
             });
 
-            // Auto-Scroll Magazine
+            // Magazine Scrolls
             document.querySelectorAll('.magazine-scroll').forEach(el => {
                 setInterval(() => {
                     if (el.scrollTop + el.clientHeight >= el.scrollHeight - 5) {
@@ -368,24 +461,23 @@
                 }, 60);
             });
 
-            // Fade Containers
+            // Fade Sliders
             document.querySelectorAll('.fade-container').forEach(container => {
                 const images = JSON.parse(container.getAttribute('data-images'));
                 images.forEach((src, idx) => {
                     const img = document.createElement('img');
                     img.src = src;
-                    img.className = `fade-item ${idx === 0 ? 'active' : ''} w-full h-full object-cover cursor-zoom-in`;
-                    img.onclick = () => openFullImage(src);
+                    img.className = `fade-item ${idx === 0 ? 'active' : ''}`;
+                    img.onclick = () => openModal(src);
                     container.appendChild(img);
                 });
-
                 let current = 0;
                 setInterval(() => {
                     const items = container.querySelectorAll('.fade-item');
                     items[current].classList.remove('active');
                     current = (current + 1) % items.length;
                     items[current].classList.add('active');
-                }, 3000);
+                }, 4000);
             });
 
             // Render Archive
@@ -393,9 +485,9 @@
             DIVERSE_DESIGNS.forEach(d => {
                 const div = document.createElement('div');
                 div.className = "rounded-3xl overflow-hidden group relative cursor-zoom-in h-96";
-                div.onclick = () => openFullImage(d.src);
+                div.onclick = () => openModal(d.src);
                 div.innerHTML = `
-                    <img src="${d.src}" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition duration-700">
+                    <img src="${d.src}" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-8">
                         <span class="text-white font-black uppercase tracking-widest text-lg">${d.title}</span>
                     </div>
@@ -403,7 +495,7 @@
                 archiveGrid.appendChild(div);
             });
 
-            // Galgaltz Carousel
+            // Galgaltz Animation
             let slideIdx = 0;
             const carouselScreen = document.getElementById('carousel-screen');
             setInterval(() => {
@@ -413,9 +505,9 @@
                     carouselScreen.src = GALGALTZ_IMAGES[slideIdx];
                     carouselScreen.style.opacity = 1;
                 }, 500);
-            }, 4000);
+            }, 5000);
 
-            // Editing Suite
+            // Editing Console
             const editPreview = document.getElementById('edit-preview');
             document.querySelectorAll('.edit-tool').forEach(tool => {
                 tool.onclick = () => {
@@ -427,47 +519,25 @@
                 };
             });
             document.getElementById('reset-edit').onclick = () => {
-                editPreview.src = "img_new/portrait_before.jpg.png";
+                editPreview.src = "../img_new/portrait_before.jpg.png";
             };
 
-            // Project Grid Links
-            document.querySelectorAll('.project-card .view-project-btn').forEach(btn => {
-                btn.onclick = (e) => {
-                    e.stopPropagation();
-                    const link = btn.closest('.project-card').getAttribute('data-link');
-                    window.open(link, '_blank');
-                };
-            });
-            document.querySelectorAll('.project-card').forEach(card => {
-                card.onclick = () => openFullImage(card.getAttribute('data-img'));
-            });
-
-            // Scroll Reveal
-            const observer = new IntersectionObserver(entries => {
+            // Scroll Reveal Animation
+            const revealObserver = new IntersectionObserver(entries => {
                 entries.forEach(e => {
                     if (e.isIntersecting) e.target.classList.add('is-visible');
                 });
             }, { threshold: 0.1 });
-            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+            document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
         });
 
-        function openFullImage(src) {
+        function openModal(src) {
             const modal = document.getElementById('modal');
             const modalImg = document.getElementById('modal-img');
             modalImg.src = src;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-
-        function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
     </script>
 </body>
 </html>
-
-
-
-
