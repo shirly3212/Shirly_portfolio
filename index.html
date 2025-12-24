@@ -503,82 +503,34 @@
     <!-- Splash image - Moved outside the intro section for fixed positioning -->
     <img class="splash" src="img/splash.svg" alt="Shirly Herscovici background splash graphic">
 
-   
-        const Header = () => {
-            const [isMenuOpen, setIsMenuOpen] = useState(false);
+    <!-- HEADER NAVIGATION -->
+    <header class="header-frosted shadow-md fixed w-full z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center relative">
+            <div class="logo flex items-center cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <i class="fas fa-code text-blue-600 text-3xl mr-2"></i>
+                <h1 class="text-2xl font-bold text-gray-800 tracking-tighter">Shirly Herscovici</h1>
+            </div>
+            
+            <button id="mobile-menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none" onclick="document.getElementById('main-nav-menu').classList.toggle('hidden')">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
 
-            const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-            const closeMenu = () => setIsMenuOpen(false);
+            <ul id="main-nav-menu" class="hidden md:flex flex-col md:flex-row items-center space-x-0 md:space-x-8 mt-4 md:mt-0 w-full md:w-auto">
+                <li><a href="../index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md transition">Home</a></li>
+                
+                <!-- Design - MARKED AS ACTIVE -->
+                <li>
+                    <a href="#design-section" id="nav-design" class="nav-link-active text-lg py-2 px-3 rounded-md transition">
+                        Design
+                    </a>
+                </li>
 
-            useEffect(() => {
-                document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
-                return () => { document.body.style.overflow = 'auto'; };
-            }, [isMenuOpen]);
-
-            const blueButtonStyle = "bg-blue-600 text-white hover:bg-blue-700 py-2.5 px-8 rounded-full font-bold shadow-lg hover:shadow-blue-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center block whitespace-nowrap";
-            const standardLinkStyle = "text-gray-700 hover:text-blue-600 font-semibold transition-colors text-center block py-2 md:py-0";
-
-            return (
-                <header className="header-frosted fixed top-0 w-full z-[100]">
-                    <nav className="container mx-auto px-6 py-4 flex justify-between items-center relative">
-                        {/* Logo */}
-                        <a href={HOME_URL} className="flex items-center cursor-pointer group z-[110]" onClick={closeMenu}>
-                            <div className="bg-blue-600/10 p-2 rounded-lg mr-3 group-hover:bg-blue-600/20 transition-colors">
-                                <i className="fas fa-code text-blue-600 text-xl"></i>
-                            </div>
-                            <h1 className="text-xl md:text-2xl font-bold text-gray-800 tracking-tight">
-                                Shirly <span className="text-blue-600">Herscovici</span>
-                            </h1>
-                        </a>
-
-                        {/* Hamburger */}
-                        <button 
-                            className="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none z-[110] p-2" 
-                            onClick={toggleMenu}
-                            aria-label="Toggle Navigation"
-                        >
-                            <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'} text-2xl transition-all`}></i>
-                        </button>
-
-                        {/* Desktop Nav */}
-                        <ul className="hidden md:flex items-center space-x-8">
-                            <li><a href={HOME_URL} className={blueButtonStyle}>Home</a></li>
-                            <li><a href={DESIGN_URL} className={standardLinkStyle}>Design</a></li>
-                            <li><a href="#skills" className={standardLinkStyle}>Skills</a></li>
-                            <li><a href="#contact-section" className={standardLinkStyle}>Contact</a></li>
-                        </ul>
-
-                        {/* Mobile Menu Overlay */}
-                        <div 
-                            className={`
-                                fixed inset-0 bg-white z-[100] flex flex-col items-center justify-center transition-all duration-300 md:hidden
-                                ${isMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-10'}
-                            `}
-                        >
-                            <ul className="flex flex-col items-center space-y-8 text-center px-6 w-full max-w-xs">
-                                <li className="w-full">
-                                    <a 
-                                        href={HOME_URL} 
-                                        className="text-2xl font-bold bg-blue-600 text-white py-4 px-10 rounded-full shadow-xl block"
-                                        onClick={closeMenu}
-                                    >
-                                        Home
-                                    </a>
-                                </li>
-                                <li className="w-full"><a href={DESIGN_URL} className="text-3xl font-bold text-gray-800" onClick={closeMenu}>Design</a></li>
-                                <li className="w-full"><a href="#skills" className="text-3xl font-bold text-gray-800" onClick={closeMenu}>Skills</a></li>
-                                <li className="w-full"><a href="#contact-section" className="text-3xl font-bold text-gray-800" onClick={closeMenu}>Contact</a></li>
-                            </ul>
-                            <div className="flex space-x-10 mt-16">
-                                <a href="https://www.linkedin.com/in/shirly-herscovici-a93766278/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-600 text-3xl"><i className="fab fa-linkedin"></i></a>
-                                <a href="https://www.youtube.com/channel/UCmoA-WifFijhY71DV90qi0w" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-600 text-3xl"><i className="fab fa-youtube"></i></a>
-                                <a href="#" className="text-gray-400 hover:text-pink-600 text-3xl"><i className="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </nav>
-                </header>
-            );
-        };
+                <li><a href="../Video/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md transition">Video</a></li>
+                <li><a href="../ai/index.html" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md transition">AI</a></li>
+                <li><a href="#contact-section" class="text-lg text-gray-700 hover:text-blue-600 py-2 px-3 rounded-md transition">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main class="pt-20 pb-12 flex-grow">
         <section id="home-section" class="intro flex-grow pb-12">
@@ -1042,6 +994,7 @@
 </body>
 
 </html>
+
 
 
 
